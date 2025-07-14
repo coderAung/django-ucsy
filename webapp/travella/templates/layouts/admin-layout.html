@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>
+    Admin |{% block title %} Title {% endblock %}
+  </title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+</head>
+
+<body>
+  <div class="d-flex container-fluid">
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar bg-white d-flex flex-column p-2 pt-3 w-25 ms-3">
+      <div class="ms-4 mb-4">
+        <span class="ms-2 fw-bold fs-5 d-none d-md-inline fs-3"
+          style="font-family: 'Playfair Display', serif;">Travella</span>
+      </div>
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link position-relative d-flex align-items-center" href="">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-house"></i>
+            <span class="link-text ms-2 d-none d-md-inline">Dashboard</span>
+          </div>
+          <span class="hover-text d-md-none">Dashboard</span>
+        </a>
+
+        <a class="nav-link text-dark position-relative d-flex align-items-center" href="">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-box-open"></i>
+            <span class="link-text ms-2 d-none d-md-inline">Packages</span>
+          </div>
+          <span class="hover-text d-md-none">Packages</span>
+        </a>
+        <a class="nav-link text-dark position-relative d-flex align-items-center" href="">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-layer-group"></i>
+            <span class="link-text ms-2 d-none d-md-inline">Categories</span>
+          </div>
+          <span class="hover-text d-md-none">Categories</span>
+        </a>
+        <a class="nav-link text-dark position-relative d-flex align-items-center" href="">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-suitcase-rolling"></i>
+            <span class="link-text ms-2 d-none d-md-inline">Bookings</span>
+          </div>
+          <span class="hover-text d-md-none">Bookings</span>
+        </a>
+        <a class="nav-link text-dark position-relative d-flex align-items-center" href="">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-gear"></i>
+            <span class="link-text ms-2 d-none d-md-inline">Setting</span>
+          </div>
+          <span class="hover-text d-md-none">Setting</span>
+        </a>
+      </nav>
+      <div class="mt-auto pt-3">
+        <a class="nav-link position-relative d-flex align-items-center text-muted gap-2" href="#">
+          <div class="d-flex align-items-center">
+            <i class="fa fa-circle-question ms-2"></i>
+            <span class="d-none d-md-inline ms-2">Help & Support</span>
+          </div>
+          <span class="hover-text d-md-none">Help & Support</span>
+        </a>
+      </div>
+    </div>
+    <!-- Sidebar end -->
+
+    <!-- Main content -->
+    <div class="flex-grow-1 pt-4 w-75">
+      {% block content %}
+      <h2>Dashboard</h2>
+      <p>This is your main content area.</p>
+      {% endblock %}
+    </div>
+  </div>
+</body>
+
+</html>

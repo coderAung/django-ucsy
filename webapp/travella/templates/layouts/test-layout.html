@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test | {% block title %} title {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/test.css' %}">
+    <link rel="stylesheet" href="{% static 'css/customer.css' %}">
+</head>
+<body>
+    <h1>Test Template</h1>
+    <div><a href="/test/home">Home</a></div>
+    <div><a href="/test/setting">Setting</a></div>
+    <div>
+        {% block main %} main contents {% endblock %}
+        <div class="btn df-btn">hello</div>  
+    </div>
+</body>
+</html>
