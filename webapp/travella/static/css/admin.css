@@ -53,3 +53,85 @@
 .btn-admin-dark:hover       { background: linear-gradient(135deg, #23272b, #3e444a); box-shadow: 0 2px 6px rgba(52, 58, 64, 0.25); }
 
 /* Outline buttons and hovers omitted for brevity, but should be included as shown before */
+/* Blue Outline */
+.btn-admin-outline-blue {
+  background: transparent;
+  border: 1px solid #2a6edb;
+  color: #2a6edb !important;
+}
+.btn-admin-outline-blue:hover {
+  background: linear-gradient(135deg, #2a6edb, #4d8ef2);
+  color: #fff !important;
+  box-shadow: 0 2px 6px rgba(42, 110, 219, 0.25);
+}
+
+/* Red Outline */
+.btn-admin-outline-red {
+  background: transparent;
+  border: 1px solid #dc3545;
+  color: #dc3545 !important;
+}
+.btn-admin-outline-red:hover {
+  background: linear-gradient(135deg, #dc3545, #e55353);
+  color: #fff !important;
+  box-shadow: 0 2px 6px rgba(220, 53, 69, 0.25);
+}
+
+/* Green Outline */
+.btn-admin-outline-green {
+  background: transparent;
+  border: 1px solid #28a745;
+  color: #28a745 !important;
+}
+.btn-admin-outline-green:hover {
+  background: linear-gradient(135deg, #28a745, #4dd067);
+  color: #fff !important;
+  box-shadow: 0 2px 6px rgba(40, 167, 69, 0.25);
+}
+
+/* Yellow Outline */
+.btn-admin-outline-yellow {
+  background: transparent;
+  border: 1px solid #ffc107;
+  color: #ffc107 !important;
+}
+.btn-admin-outline-yellow:hover {
+  background: linear-gradient(135deg, #ffc107, #ffe066);
+  color: #212529 !important;
+  box-shadow: 0 2px 6px rgba(255, 193, 7, 0.25);
+}
+
+/* Purple Outline */
+.btn-admin-outline-purple {
+  background: transparent;
+  border: 1px solid #6f42c1;
+  color: #6f42c1 !important;
+}
+.btn-admin-outline-purple:hover {
+  background: linear-gradient(135deg, #6f42c1, #a471f7);
+  color: #fff !important;
+  box-shadow: 0 2px 6px rgba(111, 66, 193, 0.25);
+}
+
+/* Gray Outline */
+.btn-admin-outline-gray {
+  background: transparent;
+  border: 1px solid #6c757d;
+  color: #6c757d !important;
+}
+.btn-admin-outline-gray:hover {
+  background: linear-gradient(135deg, #adb5bd, #dee2e6);
+  color: #212529 !important;
+}
+
+/* Dark Outline */
+.btn-admin-outline-dark {
+  background: transparent;
+  border: 1px solid #343a40;
+  color: #343a40 !important;
+}
+.btn-admin-outline-dark:hover {
+  background: linear-gradient(135deg, #343a40, #495057);
+  color: #fff !important;
+  box-shadow: 0 2px 6px rgba(52, 58, 64, 0.25);
+}
