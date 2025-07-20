@@ -1,10 +1,106 @@
 {% extends 'layouts/admin-layout.html' %}
+{% load static %}
 
 
 {% block title %} Packages {% endblock title %}
-    
+
+
+{% block cssFile %}
+<link rel="stylesheet" href="{% static 'css/glass.css' %}">
+{% endblock cssFile %}
+        
 
 {% block content %}
+
+<!-- category modal -->
+
+<div class="modal fade df-fs-sm" id="categoryModal" tabindex="-1">
+    <div class="modal-dialog py-4 mt-5 d-flex justify-content-center">
+        <div class="modal-content w-75 py-3 glass-card shadow">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <div class="d-flex">
+                        <input id="categorySearch" placeholder="Search" type="text" class="form-control w-auto">
+                    </div>
+                </div>
+                <div id="categoryContainer" class="row row-cols-3 row-gap-3">
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci1" id="ci1"><span>Beach</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci2" id="ci2"><span>Resort</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci3" id="ci3"><span>Island</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci4" id="ci4"><span>Pagoda</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci5" id="ci5"><span>Temple</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci6" id="ci6"><span>Hiking</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci7" id="ci7"><span>Camping</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci8" id="ci8"><span>Safari</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci9" id="ci9"><span>Festival</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci10" id="ci10"><span>Heritage</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci11" id="ci11"><span>Waterfall</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci12" id="ci12"><span>Village</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci13" id="ci13"><span>City</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci14" id="ci14"><span>Shopping</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci15" id="ci15"><span>Nightlife</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci16" id="ci16"><span>Lake</span></div>
+                    </div>
+
+                </div>
+                <div class="d-flex mt-2 justify-content-end">
+                    <button class="btn df-btn-glass-purple" id="continueBtn" data-category-id="ci0">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- category modal end -->
+
+
+<!-- modal start -->
+<div class="modal fade df-fs-sm" id="addForm" tabindex="-1">
+    <div class="modal-dialog py-4 mt-5 d-flex justify-content-center">
+        <div class="modal-content w-75 py-3 glass-card shadow">
+            <div class="modal-body">
+                <div class="d-flex align-items-center flex-column gap-3">
+                    <button class="w-50 btn df-btn-glass-purple" data-bs-toggle="modal"
+                        data-bs-target="#categoryModal">Choose from category</button>
+                    <button class="w-50 btn df-btn-glass-green border border-white">Choose from templates</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal end -->
+
 <div class="px-3 mt-3 df-fs-sm">
     <div class="d-flex justify-content-between">
         <h4>All Packages</h4>
@@ -74,7 +170,7 @@
                         <td class="text-end">5</td>
                         <td class="text-center"><span class="df-badge badge-green">Available</span></td>
                         <td class="text-end">1,500,000 MMK</td>
-                        <td class="text-end"><a href="#" class="py-1 text-primary-emphasis w-100 px-2 rounded df-badge badge-blue"><span>5</span><i class="bi bi-arrow-up-right ms-4 fs-6"></i></a></td>
+                        <td class="text-end"><a href="" class="btn btn-sm df-btn-soft-purple">5<i class="bi bi-arrow-up-right ms-4 fs-6"></i></a></td>
                     </tr>
                     <tr class="align-middle">
                         <td>T124</td>
@@ -85,7 +181,7 @@
                         <td class="text-end">5</td>
                         <td class="text-center"><span class="df-badge badge-red">Full</span></td>
                         <td class="text-end">1,800,000 MMK</td>
-                        <td class="text-end"><a href="#" class="py-1 text-primary-emphasis w-100 px-2 rounded df-badge badge-blue"><span>3</span><i class="bi bi-arrow-up-right ms-4 fs-6"></i></a></td>
+                        <td class="text-end"><a class="btn btn-sm df-btn-soft-purple">3<i class="bi bi-arrow-up-right ms-4 fs-6"></i></a></td>
                     </tr>
                     <tr class="align-middle">
                         <td>T125</td>
@@ -96,7 +192,7 @@
                         <td class="text-end">10</td>
                         <td class="text-center"><span class="df-badge badge-green">Available</span></td>
                         <td class="text-end">2,200,000 MMK</td>
-                        <td class="text-end"><a href="#" class="py-1 text-primary-emphasis w-100 px-2 rounded df-badge badge-blue"><span>8</span><i class="bi bi-arrow-up-right ms-4 fs-6"></i></a></td>
+                        <td class="text-end"><a href="" class="btn btn-sm df-btn-soft-purple">5<i class="bi bi-arrow-up-right ms-4 fs-6"></i></a></td>
                     </tr>
                     <!-- Add any more rows as needed -->
                 </tbody>
