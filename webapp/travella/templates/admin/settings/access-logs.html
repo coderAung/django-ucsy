@@ -1,11 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Access Logs</h1>
-</body>
-</html>
+{% extends 'layouts/setting-layout.html' %}
+
+{% block setting_content %}
+
+<h4 class="fw-bold mb-4">Access History</h4>
+<div class="content-card">
+   <div class="table-responsive">
+       <table class="table table-hover">
+           <thead>
+               <tr>
+                   <th>Email</th>
+                   <th>Type</th>
+                   <th>Status</th>
+                   <th>Message</th>
+                   <th>Date</th>
+                   <th>Time</th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr>
+                   <td>catteleya@gmail.com</td>
+                   <td>Log In</td>
+                   <td><span class="badge rounded-pill bg-success">Success</span></td>
+                   <td class="text-secondary">-</td>
+                   <td>January 28, 2025</td>
+                   <td>09:15 AM</td>
+               </tr>
+               <tr>
+                   <td>thanthar@gmail.com</td>
+                   <td>Log In</td>
+                   <td><span class="badge rounded-pill bg-danger">Fail</span></td>
+                   <td>Incorrect password</td>
+                   <td>Match 17, 2025</td>
+                   <td>05:14 PM</td>
+               </tr>
+               <tr>
+                   <td>shoonlae@gmail.com</td>
+                   <td>Log Out</td>
+                   <td><span class="badge rounded-pill bg-success">Success</span></td>
+                   <td class="text-secondary">-</td>
+                   <td>May 21, 2025</td>
+                   <td>02:30 PM</td>
+               </tr>
+               <tr>
+                   <td>AungKoKo@gmail.com</td>
+                   <td>Log In</td>
+                   <td><span class="badge rounded-pill bg-danger">Fail</span></td>
+                   <td>Incorrect password</td>
+                   <td>June 27, 2025</td>
+                   <td>08:15 PM</td>
+               </tr>
+               <tr>
+                   <td>myohtwe@gmail.com</td>
+                   <td>Log Out</td>
+                   <td><span class="badge rounded-pill bg-success">Success</span></td>
+                   <td class="text-secondary">-</td>
+                   <td>July 7, 2025</td>
+                   <td>11:05 PM</td>
+               </tr>
+               <tr>
+                   <td>shinthant@gmail.com</td>
+                   <td>Log In</td>
+                   <td><span class="badge rounded-pill bg-danger">Fail</span></td>
+                   <td>Incorrect password</td>
+                   <td>October 4, 2025</td>
+                   <td>06:28 PM</td>
+               </tr>
+           </tbody>
+       </table>
+   </div>
+</div>
+
+{% endblock %}
