@@ -1,11 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Booking list</h1>
-</body>
-</html>
+{% extends 'layouts/admin-layout.html' %}
+{% block content %}
+<div class="bg-white border rounded-4 p-4 shadow-sm">
+  <h3 class="mb-4 fw-semibold text-primary">Booking Management</h3>
+
+  <!-- Search and filter -->
+  <form class="row row-cols-lg-auto g-3 align-items-center mb-4">
+    <div class="col">
+      <select class="form-select">
+        <option value="">All Status</option>
+        <option value="pending">Pending</option>
+        <option value="reserved">Reserved</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+    </div>
+
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Username or Booking ID">
+    </div>
+
+    <div class="col">
+      <button type="submit" class="btn btn-primary px-4">
+        <i class="bi bi-search"></i> Search
+      </button>
+    </div>
+  </form>
+
+  <!-- Booking table -->
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>Username</th>
+          <th>Package</th>
+          <th>Booked Date</th>
+          <th>Status</th>
+          <th>Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>janedoe</td>
+          <td>Mountain Adventure</td>
+          <td>August 1, 2025</td>
+          <td><span class="badge bg-success">Reserved</span></td>
+          <td>8:00 AM</td>
+          <td>
+            <a href="/admins/bookings/1/" class="btn btn-info btn-sm text-white px-3">Details</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>johnsmith</td>
+          <td>Beach Getaway</td>
+          <td>July 15, 2025</td>
+          <td><span class="badge bg-danger">Cancelled</span></td>
+          <td>8:40 AM</td>
+          <td>
+            <a href="/admins/bookings/2/" class="btn btn-info btn-sm text-white px-3">Details</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
