@@ -8,24 +8,24 @@ from ..controllers.admin.settings import setting_controller, account_controller
 
 
 urlpatterns = [
-    path('dashboard/', dashboard_controller.dashboard),
-    path('bookings/', booking_controller.list),
+    path('dashboard/', dashboard_controller.dashboard, name = 'dashboard'),
+    path('bookings/', booking_controller.list, name = 'bookings'),
     path('bookings/<int:id>/', booking_controller.detail),
 
-    path('categories/', category_controller.list),
+    path('categories/', category_controller.list, name = 'categories'),
     path('categories/<int:id>/', category_controller.detail),
     path('categories/new/', category_controller.new),
     path('categories/save', category_controller.save),
     path('categories/<int:id>/edit', category_controller.edit),
 
-    path('packages/', package_controller.list),
+    path('packages/', package_controller.list, name = 'packages'),
     path('packages/<int:id>/', package_controller.detail),
     path('packages/new/', package_controller.new),
     path('packages/save/', package_controller.save),
     path('packages/<int:id>/edit', package_controller.edit),
 
     # GET method only
-    path('settings/', setting_controller.list),
+    path('settings/', setting_controller.list, name = 'settings'),
     path('settings/access-logs/', setting_controller.logs),
     path('settings/account/', setting_controller.account),
     path('settings/account/email/', setting_controller.email),
