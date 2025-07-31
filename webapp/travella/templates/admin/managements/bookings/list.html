@@ -1,7 +1,7 @@
 {% extends 'layouts/admin-layout.html' %}
 {% block content %}
-<div class="bg-white border rounded-4 p-4 shadow-sm">
-  <h3 class="mb-4 fw-semibold text-primary">Booking Management</h3>
+<div class="container">
+  <h3 class="mb-4 mt-3 fw-semibold text-primary">Booking Management</h3>
 
   <!-- Search and filter -->
   <form class="row row-cols-lg-auto g-3 align-items-center mb-4">
@@ -27,7 +27,7 @@
 
   <!-- Booking table -->
   <div class="table-responsive">
-    <table class="table table-hover align-middle">
+    <table class="table table-hover align-middle df-fs-sm">
       <thead class="table-light">
         <tr>
           <th>Username</th>
@@ -43,7 +43,7 @@
           <td>janedoe</td>
           <td>Mountain Adventure</td>
           <td>August 1, 2025</td>
-          <td><span class="badge bg-success">Reserved</span></td>
+          <td><span class="df-badge badge-green">Reserved</span></td>
           <td>8:00 AM</td>
           <td>
             <a href="/admins/bookings/1/" class="btn btn-info btn-sm text-white px-3">Details</a>
@@ -54,7 +54,7 @@
           <td>johnsmith</td>
           <td>Beach Getaway</td>
           <td>July 15, 2025</td>
-          <td><span class="badge bg-danger">Cancelled</span></td>
+          <td><span class="df-badge badge-red">Cancelled</span></td>
           <td>8:40 AM</td>
           <td>
             <a href="/admins/bookings/2/" class="btn btn-info btn-sm text-white px-3">Details</a>
