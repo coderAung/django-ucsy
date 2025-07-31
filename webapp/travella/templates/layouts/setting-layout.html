@@ -1,0 +1,148 @@
+{% extends 'layouts/admin-layout.html' %}
+
+{% block title %} Settings {% endblock %}
+
+{% block content %}
+<style>
+    :root {
+        --bg-color: #f7f9fa;
+        --border-color: #dee2e6;
+        --text-primary: #0f1419;
+        --text-secondary: #536471;
+        --hover-bg: rgba(0, 200, 150, 0.07);
+        --primary-color: #00c896;
+    }
+    .settings-main-container {
+        display: flex;
+        height: 100%;
+        background-color: var(--bg-color);
+    }
+    .settings-category-col {
+        flex: 0 0 320px;
+        padding: 0;
+        border-right: 1px solid var(--border-color);
+        background-color: #fff;
+    }
+    .settings-header {
+        padding: 1rem 1.5rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .settings-category-nav .nav-link {
+        position: relative;
+        color: var(--text-primary);
+        padding: 1rem 1.5rem;
+        border-radius: 0;
+        transition: background-color 0.2s, color 0.2s;
+        border-bottom: 1px solid #f1f1f1;
+    }
+    .settings-category-nav .nav-link:hover {
+        background-color: var(--hover-bg);
+    }
+    .settings-category-nav .nav-link.active {
+        background-color: var(--hover-bg);
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+    .settings-category-nav .nav-link.active::after {
+        content: '\f285';
+        font-family: 'bootstrap-icons';
+        font-weight: 900;
+        color: var(--primary-color);
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .category-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.1rem;
+    }
+    .category-desc {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+    }
+    .content-display-col {
+        flex-grow: 1;
+        padding: 2rem;
+    }
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    .form-control-custom {
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        box-shadow: none;
+        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .form-control-custom:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(0, 200, 150, 0.25);
+        outline: none;
+    }
+    .btn-custom-primary {
+        background-color: var(--primary-color);
+        color: #fff;
+        font-weight: 700;
+        border: none;
+        padding: 0.6rem 1.5rem;
+        border-radius: 50px;
+    }
+    .btn-custom-primary:hover {
+        background-color: #00a178;
+    }
+    .btn-outline-custom-primary {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+    .btn-outline-custom-primary:hover {
+        background-color: var(--primary-color);
+        color: #fff;
+    }
+    .content-card {
+        background-color: #fff;
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .table th, .table td {
+        border-color: rgba(0, 0, 0, 0.05) !important;
+        vertical-align: middle;
+    }
+</style>
+
+<div class="settings-main-container">
+    <div class="settings-category-col">
+        <div class="settings-header">Settings</div>
+        <nav class="nav flex-column nav-pills settings-category-nav">
+            <a class="nav-link {% if request.path == '/settings/account/' %}active{% endif %}" href="/settings/account/">
+                <div class="category-title">Account Info</div>
+                <div class="category-desc">Update account details.</div>
+            </a>
+            <a class="nav-link {% if request.path == '/settings/account/email/' %}active{% endif %}" href="/settings/account/email/">
+                <div class="category-title">Change Email</div>
+                <div class="category-desc">Update your login email.</div>
+            </a>
+            <a class="nav-link {% if request.path == '/settings/account/password/' %}active{% endif %}" href="/settings/account/password/">
+                <div class="category-title">Change Password</div>
+                <div class="category-desc">Change your password.</div>
+            </a>
+            <a class="nav-link {% if request.path == '/settings/access-logs/' %}active{% endif %}" href="/settings/access-logs/">
+                <div class="category-title">Access Log</div>
+                <div class="category-desc">Review sign-in history.</div>
+            </a>
+        </nav>
+    </div>
+
+    <div class="content-display-col">
+        {% block setting_content %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
