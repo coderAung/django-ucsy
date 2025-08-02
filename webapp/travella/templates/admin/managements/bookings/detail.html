@@ -12,22 +12,31 @@
       src="https://mediaim.expedia.com/destination/2/848e5302089ce2bfa19150042544658f.jpg"
       alt="Package Image"
       class="img-fluid rounded"
-      style="max-width: 450px; flex: 1;"
+      style="max-width: 420px; flex: 1;"
     />
 
     <div class="flex-grow-1">
-      <p class="mb-2"><strong class="d-inline-block" style="margin-left: 45px; width: 180px;">Package Name:</strong> Chaungthar Beach</p>
-      <p class="mb-2"><strong class="d-inline-block" style="margin-left: 45px; width: 180px;">Username:</strong> janedoe</p>
-      <p class="mb-2"><strong class="d-inline-block" style="margin-left: 45px; width: 180px;">Booking ID:</strong> BK67890</p>
-      <p class="mb-2"><strong class="d-inline-block" style="margin-left: 45px; width: 180px;">Email:</strong> janedoe@example.com</p>
-      <p class="mb-2"><strong class="d-inline-block" style="margin-left: 45px; width: 180px;">Phone:</strong> 0911223344</p>
-      <p class="mb-2"><strong class="d-inline-block" style="margin-left: 45px; width: 180px;">Number of People:</strong> 1</p>
-      <p class="mb-2"><strong class="d-inline-block" style="margin-left: 45px; width: 180px;">Departure Time:</strong> 7:30 AM</p>
-      <p class="mb-2"><strong class="d-inline-block" style="margin-left: 45px; width: 180px;">Duration:</strong> 3 days</p>
-      <p class="mb-2"><strong class="d-inline-block" style="margin-left: 45px; width: 180px;">Status:</strong> Reserved</p>
-      <p class="mb-0"><strong class="d-inline-block" style="margin-left: 45px; width: 180px;">Total Cost:</strong> 50,000 MMK</p>
-    </div>
-  </div>
+  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Package Name:</strong> {{ booking.package.title }}</p>
+  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Username:</strong> {{ booking.customer.accountdetail.name }}</p>
+  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Booking ID:</strong> {{ booking.id }}</p>
+  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Email:</strong> {{ booking.customer.email }}</p>
+  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Phone:</strong> {{ booking.customer.accountdetail.phone }}</p>
+  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Number of People:</strong> {{ booking.ticketCount }}</p>
+  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Departure Time:</strong> {{ booking.package.departure|date:"F j, Y" }}</p>
+  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Duration:</strong> {{ booking.package.duration }} days</p>
+  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Status:</strong> 
+    {% if booking.status == booking.Status.RESERVED %}
+      Reserved
+    {% elif booking.status == booking.Status.CANCELLED %}
+      Cancelled
+    {% else %}
+      Pending
+    {% endif %}
+  </p>
+  <p class="mb-0"><strong style="margin-left: 45px; width: 180px;">Total Cost:</strong> 
+    {{ booking.total_cost|floatformat:2 }} MMK</p>
+</div>
+
 
 </div>
 {% endblock %}

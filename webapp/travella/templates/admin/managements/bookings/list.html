@@ -39,28 +39,30 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>janedoe</td>
-          <td>Mountain Adventure</td>
-          <td>August 1, 2025</td>
-          <td><span class="df-badge badge-green">Reserved</span></td>
-          <td>8:00 AM</td>
-          <td>
-            <a href="/admins/bookings/1/" class="btn btn-info btn-sm text-white px-3">Details</a>
-          </td>
-        </tr>
+  {% for booking in bookings %}
+  <tr>
+    <td>{{ booking.customer.email }}</td>  <!-- or booking.customer.accountdetail.name if available -->
+    <td>{{ booking.package.title }}</td>
+    <td>{{ booking.statusUpdatedAt|date:"F j, Y" }}</td>
+    <td>
+      {% if booking.status == booking.Status.RESERVED %}
+        <span class="df-badge badge-green">Reserved</span>
+      {% elif booking.status == booking.Status.CANCELLED %}
+        <span class="df-badge badge-red">Cancelled</span>
+      {% else %}
+        <span class="df-badge badge-yellow">Pending</span>
+      {% endif %}
+    </td>
+    <td>{{ booking.statusUpdatedAt|time:"g:i A" }}</td>
+    <td>
+      <a href="{% url 'booking_detail' booking.id %}" class="btn btn-info btn-sm text-white px-3">Details</a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="6">No bookings found.</td></tr>
+  {% endfor %}
+</tbody>
 
-        <tr>
-          <td>johnsmith</td>
-          <td>Beach Getaway</td>
-          <td>July 15, 2025</td>
-          <td><span class="df-badge badge-red">Cancelled</span></td>
-          <td>8:40 AM</td>
-          <td>
-            <a href="/admins/bookings/2/" class="btn btn-info btn-sm text-white px-3">Details</a>
-          </td>
-        </tr>
-      </tbody>
     </table>
   </div>
 </div>

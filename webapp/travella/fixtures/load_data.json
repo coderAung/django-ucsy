@@ -195,6 +195,7 @@
   {
     "model": "travella.booking",
     "pk": "66666666-7777-8888-9999-000000000000",
+
     "fields": {
       "status": 2,
       "ticketCount": 1,
