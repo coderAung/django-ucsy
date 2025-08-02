@@ -104,11 +104,6 @@
 <div class="px-3 mt-3 df-fs-sm">
     <div class="d-flex justify-content-between">
         <h4>All Packages</h4>
-        <div>
-            <button class="btn btn-admin-outline-gray">Templates</button>
-            <button class="btn btn-admin-blue align-self-end" data-bs-toggle="modal"
-                data-bs-target="#addForm">Add a pacakge</button>
-        </div>
     </div>
 
     <div class="mt-3">
@@ -136,20 +131,25 @@
                         <option value="">Full</option>
                     </select>
                 </div>
+                <div class="d-flex column-gap-2">
+                    <input type="text" class="form-control df-fs-sm w-auto" placeholder="Code or Name">
+                    <button class="btn df-btn-glass-purple">Search</button>
+                </div>
             </div>
-            <div class="d-flex column-gap-2">
-                <input type="text" class="form-control df-fs-sm w-auto" placeholder="Id or Name">
-                <button class="btn btn-outline-info">Search</button>
-            </div>
+                <div>
+            <button class="btn btn-admin-blue align-self-end" data-bs-toggle="modal"
+                data-bs-target="#addForm">Add a pacakge</button>
+        </div>
+
         </div>
     </div>
 
     <div class="shadow-sm mt-3">
         <div>
-            <table class="table table-hover">
+            <table class="table table-hover df-fs-sm">
                 <thead class="table-light">
                     <tr class="align-middle">
-                        <th>ID</th>
+                        <th>Code</th>
                         <th>Name</th>
                         <th>Category</th>
                         <th>Duration</th>
@@ -161,39 +161,25 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for item in list %}
                     <tr class="align-middle">
-                        <td>T123</td>
-                        <td>London</td>
-                        <td>Resort</td>
-                        <td><div class="d-flex align-items-center column-gap-3"><span>5</span><span>Days</span></div></td>
-                        <td>July 03, 2025</td>
-                        <td class="text-end">5</td>
-                        <td class="text-center"><span class="df-badge badge-green">Available</span></td>
-                        <td class="text-end">1,500,000 MMK</td>
-                        <td class="text-end"><a href="/admins/packages/123" class="btn btn-sm df-btn-soft-purple">5<i class="bi bi-arrow-up-right ms-4 fs-6"></i></a></td>
+                        <td>{{item.code}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.category}}</td>
+                        <td><div class="d-flex align-items-center column-gap-3"><span>{{item.duration}}</span><span>Days</span></div></td>
+                        <td>{{item.departure}}</td>
+                        <td class="text-end">{{item.group}}</td>
+                        <td class="text-center">
+                            {% if item.status == 'Available' %}
+                            <span class="df-badge badge-green">{{item.status}}</span>
+                            {% else %}
+                            <span class="df-badge badge-red">{{item.status}}</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-end">{{item.price}} MMK</td>
+                        <td class="text-end"><a href="{% url 'packages_detail' item.code %}" class="btn btn-sm df-btn-soft-purple">{{item.bookings}}<i class="bi bi-arrow-up-right ms-4 fs-6"></i></a></td>
                     </tr>
-                    <tr class="align-middle">
-                        <td>T124</td>
-                        <td>Paris</td>
-                        <td>Resort</td>
-                        <td><div class="d-flex align-items-center column-gap-3"><span>5</span><span>Days</span></div></td>
-                        <td>July 10, 2025</td>
-                        <td class="text-end">5</td>
-                        <td class="text-center"><span class="df-badge badge-red">Full</span></td>
-                        <td class="text-end">1,800,000 MMK</td>
-                        <td class="text-end"><a class="btn btn-sm df-btn-soft-purple">3<i class="bi bi-arrow-up-right ms-4 fs-6"></i></a></td>
-                    </tr>
-                    <tr class="align-middle">
-                        <td>T125</td>
-                        <td>Tokyo</td>
-                        <td>Resort</td>
-                        <td><div class="d-flex align-items-center column-gap-3"><span>7</span><span>Days</span></div></td>
-                        <td>July 15, 2025</td>
-                        <td class="text-end">10</td>
-                        <td class="text-center"><span class="df-badge badge-green">Available</span></td>
-                        <td class="text-end">2,200,000 MMK</td>
-                        <td class="text-end"><a href="" class="btn btn-sm df-btn-soft-purple">5<i class="bi bi-arrow-up-right ms-4 fs-6"></i></a></td>
-                    </tr>
+                    {% endfor %}
                     <!-- Add any more rows as needed -->
                 </tbody>
             </table>

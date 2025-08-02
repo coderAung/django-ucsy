@@ -1,3 +1,5 @@
+from tkinter.font import names
+
 from django.urls import path
 
 from ..controllers.admin.managements import booking_controller, category_controller, package_controller, customer_controller
@@ -19,7 +21,7 @@ urlpatterns = [
     path('categories/<int:id>/edit', category_controller.edit),
 
     path('packages/', package_controller.list, name = 'packages'),
-    path('packages/<int:id>/', package_controller.detail),
+    path('packages/<str:code>/', package_controller.detail, name='packages_detail'),
     path('packages/new/', package_controller.new),
     path('packages/save/', package_controller.save),
     path('packages/<int:id>/edit', package_controller.edit),
