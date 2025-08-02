@@ -1,0 +1,384 @@
+[
+  {
+    "model": "travella.account",
+    "pk": "11111111-1111-4111-8111-111111111111",
+    "fields": {
+      "email": "admin@example.com",
+      "password": "password",
+      "role": "admin",
+      "createdAt": "2025-08-01T00:00:00Z",
+      "updatedAt": "2025-08-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "22222222-2222-4222-8222-222222222222",
+    "fields": {
+      "email": "mod@example.com",
+      "password": "password",
+      "role": "mod",
+      "createdAt": "2025-08-01T00:00:00Z",
+      "updatedAt": "2025-08-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "33333333-3333-4333-8333-333333333333",
+    "fields": {
+      "email": "customer@example.com",
+      "password": "password",
+      "role": "customer",
+      "createdAt": "2025-08-01T00:00:00Z",
+      "updatedAt": "2025-08-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "44444444-4444-4444-8444-444444444444",
+    "fields": {
+      "email": "user1@example.com",
+      "password": "password",
+      "role": "customer",
+      "createdAt": "2025-07-25T08:30:00Z",
+      "updatedAt": "2025-07-25T08:30:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "55555555-5555-4555-8555-555555555555",
+    "fields": {
+      "email": "user2@example.com",
+      "password": "password",
+      "role": "customer",
+      "createdAt": "2025-07-26T09:15:00Z",
+      "updatedAt": "2025-07-26T09:15:00Z"
+    }
+  },
+
+  {
+    "model": "travella.category",
+    "pk": 1,
+    "fields": {
+      "name": "Adventure",
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "createdAt": "2025-08-01T00:00:00Z",
+      "updatedAt": "2025-08-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 2,
+    "fields": {
+      "name": "Relaxation",
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "createdAt": "2025-08-01T00:00:00Z",
+      "updatedAt": "2025-08-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 3,
+    "fields": {
+      "name": "Culture",
+      "createdBy": "33333333-3333-4333-8333-333333333333",
+      "createdAt": "2025-08-01T00:00:00Z",
+      "updatedAt": "2025-08-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 4,
+    "fields": {
+      "name": "Wellness",
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "createdAt": "2025-07-20T12:00:00Z",
+      "updatedAt": "2025-07-20T12:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 5,
+    "fields": {
+      "name": "Wildlife",
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "createdAt": "2025-07-22T14:45:00Z",
+      "updatedAt": "2025-07-22T14:45:00Z"
+    }
+  },
+
+  {
+    "model": "travella.package",
+    "pk": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+    "fields": {
+      "code": "ADV001",
+      "title": "Mountain Hiking",
+      "overview": "Explore the beautiful mountains with expert guides. This package includes detailed route planning, safety briefings, local cuisine tastings on the way, and overnight camps with professional gear. Participants will gain foundational mountaineering skills and enjoy sunrise vistas from the ridgelines, all while learning about the local ecology from our naturalist guide.",
+      "departure": "2025-09-10",
+      "duration": 5,
+      "transportation": 1,
+      "price": "450.00",
+      "availableTicket": 20,
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "category": 1,
+      "createdAt": "2025-08-01T00:00:00Z",
+      "updatedAt": "2025-08-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+    "fields": {
+      "code": "REL001",
+      "title": "Beach Resort Stay",
+      "overview": "Relax on pristine beaches with luxury accommodations. Enjoy daily spa treatments, sunset yoga sessions, gourmet seafood dinners, and private cabanas. The itinerary is designed for maximum downtime without ever feeling idle: herbal teas in the morning, snorkeling safaris, and evening cultural performances. Transportation and premium services are included for a seamless experience.",
+      "departure": "2025-10-05",
+      "duration": 7,
+      "transportation": 2,
+      "price": "1200.00",
+      "availableTicket": 15,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 2,
+      "createdAt": "2025-08-01T00:00:00Z",
+      "updatedAt": "2025-08-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "cccccccc-cccc-cccc-cccc-cccccccccccc",
+    "fields": {
+      "code": "CUL001",
+      "title": "Historical Tour",
+      "overview": "Visit world heritage sites and museums. This deep-dive cultural journey is led by historians and includes private access to archives, curated storytelling evenings, and walking tours through ancient streets. You will learn the layered narratives of the region, its art, religion, and how its past shapes modern identity.",
+      "departure": "2025-11-15",
+      "duration": 4,
+      "transportation": 1,
+      "price": "600.00",
+      "availableTicket": 25,
+      "createdBy": "33333333-3333-4333-8333-333333333333",
+      "category": 3,
+      "createdAt": "2025-08-01T00:00:00Z",
+      "updatedAt": "2025-08-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "dddddddd-dddd-dddd-dddd-dddddddddddd",
+    "fields": {
+      "code": "ADV002",
+      "title": "River Rafting",
+      "overview": "Exciting rafting experience on wild rivers. Includes professional safety gear, rapid navigation coaching, riverside camping, and evening bonfires with storytelling. Perfect for thrill-seekers looking to test their teamwork and endurance while taking in riverside flora and fauna.",
+      "departure": "2025-09-20",
+      "duration": 3,
+      "transportation": 1,
+      "price": "350.00",
+      "availableTicket": 30,
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "category": 1,
+      "createdAt": "2025-08-01T00:00:00Z",
+      "updatedAt": "2025-08-01T00:00:00Z"
+    }
+  },
+
+  {
+    "model": "travella.package",
+    "pk": "eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee",
+    "fields": {
+      "code": "WEL001",
+      "title": "Yoga & Wellness Retreat",
+      "overview": "A comprehensive wellness retreat focused on mental clarity and physical rejuvenation. Daily guided yoga sessions, meditation workshops, nutritional counseling, and sound healing ceremonies are included. Participants will also have access to herbal detox treatments and private coaching to build sustainable habits post-retreat.",
+      "departure": "2025-09-01",
+      "duration": 6,
+      "transportation": 2,
+      "price": "950.00",
+      "availableTicket": 18,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 4,
+      "createdAt": "2025-07-20T12:00:00Z",
+      "updatedAt": "2025-07-20T12:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+    "fields": {
+      "code": "WIL001",
+      "title": "Safari Expedition",
+      "overview": "Journey into the heart of wildlife territory with seasoned trackers. This expedition includes morning and evening game drives, bushwalks, night safaris, and educational talks about conservation. Comfortable eco-lodges, locally sourced meals, and photography sessions are provided to capture rare animal encounters.",
+      "departure": "2025-10-12",
+      "duration": 8,
+      "transportation": 3,
+      "price": "2300.00",
+      "availableTicket": 12,
+      "createdBy": "55555555-5555-4555-8555-555555555555",
+      "category": 5,
+      "createdAt": "2025-07-22T14:45:00Z",
+      "updatedAt": "2025-07-22T14:45:00Z"
+    }
+  },
+
+  {
+    "model": "travella.itinerary",
+    "pk": 1,
+    "fields": {
+      "package": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "day": 1,
+      "title": "Arrival and Orientation",
+      "description": "Meet the guides and review the itinerary. Gear check and safety briefing included."
+    }
+  },
+  {
+    "model": "travella.itinerary",
+    "pk": 2,
+    "fields": {
+      "package": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "day": 2,
+      "title": "Hiking Day 1",
+      "description": "Start mountain hike with safety briefing. Learn about local plants and wildlife."
+    }
+  },
+  {
+    "model": "travella.itinerary",
+    "pk": 3,
+    "fields": {
+      "package": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+      "day": 1,
+      "title": "Relax at the Beach",
+      "description": "Enjoy a day at the sunny beach resort with welcome drinks and spa intro."
+    }
+  },
+  {
+    "model": "travella.itinerary",
+    "pk": 4,
+    "fields": {
+      "package": "cccccccc-cccc-cccc-cccc-cccccccccccc",
+      "day": 1,
+      "title": "Museum Visit",
+      "description": "Tour the historical museum exhibits with a private guide."
+    }
+  },
+  {
+    "model": "travella.itinerary",
+    "pk": 5,
+    "fields": {
+      "package": "eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee",
+      "day": 1,
+      "title": "Welcome Ceremony",
+      "description": "Opening yoga session, meet the wellness coaches, and share intention circles."
+    }
+  },
+  {
+    "model": "travella.itinerary",
+    "pk": 6,
+    "fields": {
+      "package": "eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee",
+      "day": 2,
+      "title": "Mindful Movement",
+      "description": "Morning yoga flow followed by breathing exercises and a nutritional workshop."
+    }
+  },
+  {
+    "model": "travella.itinerary",
+    "pk": 7,
+    "fields": {
+      "package": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+      "day": 1,
+      "title": "Safari Briefing",
+      "description": "Orientation with trackers, safety guidelines, and habitat introduction."
+    }
+  },
+  {
+    "model": "travella.itinerary",
+    "pk": 8,
+    "fields": {
+      "package": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+      "day": 2,
+      "title": "Morning Game Drive",
+      "description": "Early drive to spot big cats and birdlife with photography tips."
+    }
+  },
+
+  {
+    "model": "travella.booking",
+    "pk": "11111111-2222-3333-4444-555555555555",
+    "fields": {
+      "status": 1,
+      "ticketCount": 2,
+      "unitPrice": "450.00",
+      "statusUpdatedAt": "2025-08-05T12:00:00Z",
+      "package": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "customer": "33333333-3333-4333-8333-333333333333",
+      "createdAt": "2025-08-05T10:00:00Z",
+      "updatedAt": "2025-08-05T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "66666666-7777-8888-9999-000000000000",
+    "fields": {
+      "status": 2,
+      "ticketCount": 1,
+      "unitPrice": "1200.00",
+      "statusUpdatedAt": "2025-08-06T15:30:00Z",
+      "package": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+      "customer": "33333333-3333-4333-8333-333333333333",
+      "createdAt": "2025-08-06T14:00:00Z",
+      "updatedAt": "2025-08-06T14:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "aaaaaaaa-bbbb-cccc-dddd-eeeeffff0001",
+    "fields": {
+      "status": 1,
+      "ticketCount": 4,
+      "unitPrice": "950.00",
+      "statusUpdatedAt": "2025-07-25T09:00:00Z",
+      "package": "eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee",
+      "customer": "44444444-4444-4444-8444-444444444444",
+      "createdAt": "2025-07-25T08:45:00Z",
+      "updatedAt": "2025-07-25T08:45:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "bbbbbbbb-cccc-dddd-eeee-ffff00001111",
+    "fields": {
+      "status": 3,
+      "ticketCount": 1,
+      "unitPrice": "2300.00",
+      "statusUpdatedAt": "2025-07-23T16:20:00Z",
+      "package": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+      "customer": "55555555-5555-4555-8555-555555555555",
+      "createdAt": "2025-07-23T15:50:00Z",
+      "updatedAt": "2025-07-23T15:50:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "cccccccc-dddd-eeee-ffff-000011112222",
+    "fields": {
+      "status": 2,
+      "ticketCount": 2,
+      "unitPrice": "450.00",
+      "statusUpdatedAt": "2025-08-01T11:10:00Z",
+      "package": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "customer": "44444444-4444-4444-8444-444444444444",
+      "createdAt": "2025-08-01T10:50:00Z",
+      "updatedAt": "2025-08-01T10:50:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "dddddddd-eeee-ffff-0000-111122223333",
+    "fields": {
+      "status": 1,
+      "ticketCount": 1,
+      "unitPrice": "600.00",
+      "statusUpdatedAt": "2025-08-02T09:00:00Z",
+      "package": "cccccccc-cccc-cccc-cccc-cccccccccccc",
+      "customer": "33333333-3333-4333-8333-333333333333",
+      "createdAt": "2025-08-02T08:30:00Z",
+      "updatedAt": "2025-08-02T08:30:00Z"
+    }
+  }
+]

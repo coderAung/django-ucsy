@@ -1,3 +1,4 @@
+from ..domains.models.booking_models import Booking
 from ..domains.models.tour_models import Package
 from ..dtos.package_dto import PackageItem, PackageDetail
 

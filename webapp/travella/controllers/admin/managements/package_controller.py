@@ -2,6 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 
 from ....services.package_service import PackageService
+from ....services.package_utils import load_categories
 
 base = 'admin/managements/packages/'
 
@@ -22,7 +23,8 @@ def detail(request: HttpRequest, code:str) -> HttpResponse:
 
 # packages/new GET
 def new(request: HttpRequest) -> HttpResponse:
-    return render(request, view('form'))
+    categories = load_categories()
+    return render(request, view('form'), {'categories': categories})
 
 # packages/save POST
 def save(request: HttpRequest) -> HttpResponse:

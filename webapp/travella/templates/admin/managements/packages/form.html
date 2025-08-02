@@ -60,8 +60,22 @@
                     <div class="col-8">
                         <div class="row row-cols-2">
                             <div class="col">
-                                <div>
-                                    <label for="" class="h6">Tour Name <span class="df-badge badge-blue">Resort</span></label>
+                                <div class="d-flex column-gap-3">
+                                    <div>
+                                        <label for="" class="h6">Tour Code</label>
+                                        <input type="text" class="form-control" placeholder="London Tour">
+                                    </div>
+                                    <div>
+                                        <label for="" class="h6">Category</label>
+                                        <button class="btn df-btn-glass-blue"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#categoryModal">Choose One</button>
+
+                                        {% include 'includes/modals/category-modal.html' %}
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <label for="" class="h6">Tour Name</label>
                                     <input type="text" class="form-control" placeholder="London Tour">
                                 </div>
                                 <div class="mt-3">
@@ -79,7 +93,7 @@
                                 <div class="mt-3">
                                     <div class="d-flex">
                                         <div class="w-25 me-3">
-                                            <label for="" class="h6">Group</label>
+                                            <label for="" class="h6">Tickets</label>
                                             <input type="number" class="form-control" placeholder="0">
                                         </div>
                                         <div>
@@ -94,19 +108,6 @@
                                 <div class="mt-3">
                                     <label for="" class="h6">Overview</label>
                                     <textarea name="" rows="4" id="" class="form-control"></textarea>
-                                </div>
-                                <div class="mt-3">
-                                    <div class="d-flex justify-content-between">
-                                        <label for="" class="h6">What's included?</label>
-                                        <button class="btn btn-sm btn-outline-primary align-self-end w-25">+</button>
-                                    </div>
-                                    <div class="mt-2">
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-check-square me-2"></i>
-                                            <input type="text" class="form-control">
-                                        </div>
-
-                                    </div>
                                 </div>
                             </div>
 
@@ -133,7 +134,7 @@
                         </div>
                         <div class="row">
                             <div class="d-flex justify-content-end column-gap-3">
-                                <button class="btn btn-outline-danger">Cancel</button>
+                                <button class="btn df-btn-glass-red">Cancel</button>
                                 <button class="btn btn-primary">Publish</button>
                             </div>
                         </div>
