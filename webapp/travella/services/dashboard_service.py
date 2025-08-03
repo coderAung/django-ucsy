@@ -18,7 +18,7 @@ def get_dashboard_data():
   top_packages = Package.objects.annotate(total_bookings_1pkg=Count('bookings')).order_by('-total_bookings_1pkg')[:5]
 
   top_packages_data = [
-    {'name':pkg.name, 'count': pkg.total_bookings_1pkg}
+    {'name':pkg.title, 'count': pkg.total_bookings_1pkg}
     for pkg in top_packages
   ]
 
