@@ -1,6 +1,7 @@
 from django.urls import path
 
-from ..controllers.admin.managements import booking_controller, category_controller, package_controller, customer_controller
+from ..controllers.admin.managements import booking_controller, category_controller, package_controller, \
+    customer_controller, staff_controller
 
 from ..controllers.admin import dashboard_controller
 
@@ -37,6 +38,12 @@ urlpatterns = [
     path('settings/account/photo/', account_controller.photo),
     path('settings/account/info/', account_controller.info),
 
-    path('users/', customer_controller.list),
-    path('users/<int:id>/', customer_controller.detail),
+    path('customers/', customer_controller.list, name='customers'),
+    path('customers/<uuid:id>/', customer_controller.detail),
+
+    path('staffs/', staff_controller.list, name='staffs'),
+    path('staffs/<uuid:id>/', staff_controller.detail),
+
+
+
 ]
