@@ -17,9 +17,24 @@ class PackageItem:
     duration: int
     departure: datetime.datetime
     tickets: int
-    status: str
+    status: Package.Status
     price: decimal.Decimal
     bookings: int
+
+    @staticmethod
+    def of(package:Package) -> 'PackageItem':
+        return (PackageItem.Builder()
+                .id(package.id)
+                .code(package.code)
+                .name(package.title)
+                .category(package.category.name)
+                .duration(package.duration)
+                .departure(package.departure)
+                .tickets(package.availableTicket)
+                .price(package.price)
+                .status(package.status)
+                .bookings(package.booking_count) #not include CANCELLED bookings
+                .build())
 
     class Builder:
         def __init__(self):
@@ -30,7 +45,7 @@ class PackageItem:
             self._duration: Optional[int] = None
             self._departure: Optional[datetime.datetime] = None
             self._ticket: Optional[int] = None
-            self._status: Optional[str] = None
+            self._status: Optional[Package.Status] = None
             self._price: Optional[decimal.Decimal] = None
             self._bookings: Optional[int] = None
 
@@ -62,7 +77,7 @@ class PackageItem:
             self._ticket = value
             return self
 
-        def status(self, value: str) -> "PackageItem.Builder":
+        def status(self, value: Package.Status) -> "PackageItem.Builder":
             self._status = value
             return self
 
@@ -117,41 +132,37 @@ class PackageItem:
                 bookings=self._bookings,
             )
 
-    @staticmethod
-    def of(package:Package) -> 'PackageItem':
-        return (PackageItem.Builder()
-                .id(package.id)
-                .code(package.code)
-                .name(package.title)
-                .category(package.category.name)
-                .duration(package.duration)
-                .departure(package.departure)
-                .tickets(package.availableTicket)
-                .price(package.price)
-                .status('Available' if package.availableTicket > 0 else 'Full')
-                .bookings(package.bookings.count())
-                .build())
 
 
 @dataclass(frozen=True)
 class BookingStatus:
+    id:uuid
     email:str
     status:str
+    ticket_count:int
     bookedAt:datetime
 
     @staticmethod
     def of(booking:Booking) -> 'BookingStatus':
         return (BookingStatus.Builder()
+                .id(booking.id)
                 .email(booking.customer.email)
                 .status(booking.get_status_display())
+                .ticket_count(booking.ticketCount)
                 .booked_at(booking.createdAt)
                 .build())
 
     class Builder:
         def __init__(self):
+            self._id: Optional[uuid.UUID] = None
             self._email: Optional[str] = None
             self._status: Optional[str] = None
-            self._booked_at: Optional['datetime'] = None
+            self._ticket_count: Optional[int] = None
+            self._booked_at: Optional['datetime.datetime'] = None
+
+        def id(self, value: uuid) -> 'BookingStatus.Builder':
+            self._id = value
+            return self
 
         def email(self, value: str) -> 'BookingStatus.Builder':
             self._email = value
@@ -161,24 +172,34 @@ class BookingStatus:
             self._status = value
             return self
 
+        def ticket_count(self, value:str) -> 'BookingStatus.Builder':
+            self._ticket_count = value
+            return self
+
         def booked_at(self, value: 'datetime') -> 'BookingStatus.Builder':
             self._booked_at = value
             return self
 
         def build(self) -> 'BookingStatus':
             missing = []
+            if self._id is None:
+                missing.append('id')
             if self._email is None:
                 missing.append('email')
             if self._status is None:
                 missing.append('status')
+            if self._ticket_count is None:
+                missing.append('ticketCount')
             if self._booked_at is None:
                 missing.append('bookedAt')
             if missing:
                 raise ValueError(f'Missing fields for BookingStatus: {", ".join(missing)}')
 
             return BookingStatus(
+                id=self._id,
                 email=self._email,  # type: ignore[arg-type]
                 status=self._status,  # type: ignore[arg-type]
+                ticket_count=self._ticket_count,
                 bookedAt=self._booked_at,  # type: ignore[arg-type]
             )
 
@@ -187,21 +208,19 @@ class BookingStatus:
 class PackageDetail(PackageItem):
     overview: str
     bookingStatusItems: List['BookingStatus']  # Correct type hint for a list of BookingStatus
-
+    remaining_ticket: int
     def end_in(self):
         return self.departure - datetime.timedelta(days=2)
 
     def departure_end(self) -> datetime.datetime:
         return self.departure + datetime.timedelta(days=self.duration)
 
-    def remaining_ticket(self) -> int:
-        return self.tickets - self.bookings
-
     @staticmethod
     def of(package: 'Package') -> 'PackageDetail':
         return (PackageDetail.Builder()
                 .item(PackageItem.of(package))
                 .overview(package.overview)
+                .remaining_ticket(package.availableTicket - package.booking_count)
                 .booking_status_items([BookingStatus.of(b) for b in package.bookings.all()])  # Initialize empty list or some default
                 .build())
 
@@ -209,6 +228,7 @@ class PackageDetail(PackageItem):
         def __init__(self):
             self._item_builder: Optional['PackageItem.Builder'] = None
             self._overview: Optional[str] = None
+            self._remaining_ticket: Optional[int] = 0
             self._booking_status_items: Optional[List['BookingStatus']] = None
 
         def item(self, item: 'PackageItem') -> 'PackageDetail.Builder':
@@ -234,6 +254,10 @@ class PackageDetail(PackageItem):
         def overview(self, value: str) -> 'PackageDetail.Builder':
             self._overview = value
             return self
+        
+        def remaining_ticket(self, value: int) -> 'PackageDetail.Builder':
+            self._remaining_ticket = value
+            return self
 
         def booking_status_items(self, value: List['BookingStatus']) -> 'PackageDetail.Builder':
             self._booking_status_items = value
@@ -245,6 +269,8 @@ class PackageDetail(PackageItem):
                 missing.append('item')
             if self._overview is None:
                 missing.append('overview')
+            if self._remaining_ticket is None:
+                missing.append('remainingTicket')
             if self._booking_status_items is None:
                 missing.append('bookingStatusItems')
             if missing:
@@ -263,5 +289,6 @@ class PackageDetail(PackageItem):
                 price=item.price,
                 bookings=item.bookings,
                 overview=self._overview,  # type: ignore[arg-type]
+                remaining_ticket=self._remaining_ticket,
                 bookingStatusItems=self._booking_status_items,  # type: ignore[arg-type]
             )
