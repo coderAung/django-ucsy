@@ -1,13 +1,48 @@
-# travella/services/booking_service.py
-
 from travella.domains.models.booking_models import Booking
-from travella.dtos.booking_dto import BookingListDTO, BookingDetailDTO
+from travella.dtos.booking_dto import BookingListDTO, BookingDetailDTO, BookingFilterDTO
+from django.db.models import Q
 
-def get_booking_list_dtos():
-    bookings = Booking.objects.select_related('customer__accountdetail', 'package').all()
+
+def get_all_bookings():
+    return Booking.objects.select_related('customer__accountdetail', 'package').all()
+
+
+def get_booking_by_id(id):
+    return Booking.objects.select_related('customer__accountdetail', 'package').get(id=id)
+
+
+def get_filtered_bookings(query=None, status=None):
+    bookings = Booking.objects.select_related('customer__accountdetail', 'package')
+
+    if query:
+        bookings = bookings.filter(
+            Q(id__icontains=query) |
+            Q(customer__email__icontains=query) |
+            Q(customer__accountdetail__name__icontains=query)
+        )
+    
+    if status:
+        # Map status string to Booking.Status integer
+        status_map = {
+            'pending': Booking.Status.PENDING,
+            'reserved': Booking.Status.RESERVED,
+            'cancelled': Booking.Status.CANCELLED,
+        }
+        status_value = status_map.get(status.lower())
+        if status_value is not None:
+            bookings = bookings.filter(status=status_value)
+
+    return bookings
+
+
+def get_booking_list_dtos_from_queryset(bookings_queryset):
     dtos = []
-    for b in bookings:
-        customer_name = b.customer.accountdetail.name if hasattr(b.customer, 'accountdetail') else b.customer.email
+    for b in bookings_queryset:
+        customer_name = (
+            b.customer.accountdetail.name
+            if hasattr(b.customer, 'accountdetail')
+            else b.customer.email
+        )
         dtos.append(BookingListDTO(
             id=b.id,
             customer_name=customer_name,
@@ -35,13 +70,3 @@ def get_booking_detail_dto(booking_id):
         package_departure=b.package.departure,
         package_duration=b.package.duration,
     )
-
-
-
-def get_all_bookings():
-    return Booking.objects.select_related('customer__accountdetail', 'package').all()
-
-def get_booking_by_id(id):
-    return Booking.objects.select_related('customer__accountdetail', 'package').get(id=id)
-
-

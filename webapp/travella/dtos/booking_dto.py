@@ -30,3 +30,8 @@ class BookingDetailDTO:
     @property
     def total_price(self):
         return self.unit_price * self.ticket_count
+
+class BookingFilterDTO:
+    def __init__(self, status=None, query=None):
+        self.status = status
+        self.query = query

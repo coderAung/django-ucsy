@@ -1,42 +1,101 @@
 {% extends 'layouts/admin-layout.html' %}
 
 {% block content %}
-<div style="max-width: 960px; margin: 20px auto; padding: 30px; background: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-
-  <h3 class="fw-bold text-white text-center mb-4 py-2 px-3 rounded" style="background-color: #45c4d5;">
-    Booking Detail Info
-  </h3>
-
-  <div class="d-flex gap-4 align-items-start flex-wrap">
-    <img
-      src="https://mediaim.expedia.com/destination/2/848e5302089ce2bfa19150042544658f.jpg"
-      alt="Package Image"
-      class="img-fluid rounded"
-      style="max-width: 420px; flex: 1;"
-    />
-
-    <div class="flex-grow-1">
-  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Package Name:</strong> {{ booking.package.title }}</p>
-  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Username:</strong> {{ booking.customer.accountdetail.name }}</p>
-  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Booking ID:</strong> {{ booking.id }}</p>
-  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Email:</strong> {{ booking.customer.email }}</p>
-  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Phone:</strong> {{ booking.customer.accountdetail.phone }}</p>
-  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Number of People:</strong> {{ booking.ticketCount }}</p>
-  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Departure Time:</strong> {{ booking.package.departure|date:"F j, Y" }}</p>
-  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Duration:</strong> {{ booking.package.duration }} days</p>
-  <p class="mb-2"><strong style="margin-left: 45px; width: 180px;">Status:</strong> 
-    {% if booking.status == booking.Status.RESERVED %}
-      Reserved
-    {% elif booking.status == booking.Status.CANCELLED %}
-      Cancelled
-    {% else %}
-      Pending
-    {% endif %}
-  </p>
-  <p class="mb-0"><strong style="margin-left: 45px; width: 180px;">Total Cost:</strong> 
-    {{ total_cost|floatformat:2 }}  MMK</p>
+<div class="container my-5">
+  <div class="card border-0 shadow-lg rounded-4" style="max-width: 800px; margin-left: 70px;">
+    
+    <!-- Fancy Header -->
+    
+ <div class="card-header bg-gradient bg-info text-center py-2 rounded-top-4">
+  <h4 class="mb-1 fw-semibold" style="color:#393B4D;">📋 Booking Info</h4> <!-- Tailwind blue-500 as example -->
+  <p class="mb-0 small" style="color: #6c757d;">Overview of the traveler's booking information</p>
 </div>
 
 
+    <!-- Card Body -->
+    <div class="card-body bg-light px-5 py-4 rounded-bottom-4">
+
+      <!-- First Section -->
+      <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">📦 Package Name:</div>
+        <div class="col-sm-7">{{ booking.package.title }}</div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">🔖 Booking ID:</div>
+        <div class="col-sm-7">{{ booking.id }}</div>
+      </div>
+
+       <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">📌 Status:</div>
+        <div class="col-sm-7">
+          {% if booking.status == Status.RESERVED %}
+            <span class="badge bg-success px-3 py-2 rounded-pill">Reserved at {{ booking.statusUpdatedAt|time:"g:i A" }}</span>
+          {% elif booking.status == Status.CANCELLED %}
+            <span class="badge bg-danger px-3 py-2 rounded-pill">Cancelled at {{ booking.statusUpdatedAt|time:"g:i A" }}</span>
+          {% else %}
+            <span class="badge bg-primary px-3 py-2 rounded-pill">Pending at {{ booking.statusUpdatedAt|time:"g:i A" }}</span>
+          {% endif %}
+        </div>
+      </div>
+       <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">🗓️ Departure Time:</div>
+        <div class="col-sm-7">{{ booking.package.departure|date:"F j, Y" }}</div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">⏳ Duration:</div>
+        <div class="col-sm-7">{{ booking.package.duration }} days</div>
+      </div>
+
+       <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">👥 Number of People:</div>
+        <div class="col-sm-7">{{ booking.ticketCount }}</div>
+      </div>
+     <div class="row mb-3">
+     <div class="col-sm-5 text-muted fw-semibold">💵 Unit Price (per ticket):</div>
+     <div class="col-sm-7">{{ booking.unitPrice|floatformat:2 }} MMK</div>
+     </div>
+     
+
+       <div class="row">
+        <div class="col-sm-5 text-muted fw-semibold">💰 Total Cost:</div>
+        <div class="col-sm-7">{{ total_cost|floatformat:2 }} MMK</div>
+      </div>
+
+      <!-- Decorative Divider -->
+      <hr class="border border-info border-2 opacity-50 rounded-pill my-4">
+
+      <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">👤 Traveler Name:</div>
+        <div class="col-sm-7">{{ booking.customer.accountdetail.name }}</div>
+      </div>
+
+      
+
+      <div class="row mb-4">
+        <div class="col-sm-5 text-muted fw-semibold">✉️ Email:</div>
+        <div class="col-sm-7">{{ booking.customer.email }}</div>
+      </div>
+
+     
+
+     
+      <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">📞 Phone:</div>
+        <div class="col-sm-7">{{ booking.customer.accountdetail.phone }}</div>
+      </div>
+    </div>
+  </div>
 </div>
+
+ 
+
+     
+
+     
+
+      
+
+     
 {% endblock %}
