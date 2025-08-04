@@ -1,9 +1,8 @@
 from django.urls import path
-
-from travella.controllers.auth import auth_controller
-
+from ..controllers.admin.managements import auth_controller
 
 urlpatterns = [
-    path('sign-in/', auth_controller.sign_in, name='sign_in'),
-    path('sign-out/', auth_controller.sign_out, name='sign_out'),
+    path('login/', auth_controller.admin_login, name='login'),
+    path('logout/', auth_controller.logout, name='logout'),
+    path('setup-admin/', auth_controller.setup_admin, name='setup_admin'),
 ]
