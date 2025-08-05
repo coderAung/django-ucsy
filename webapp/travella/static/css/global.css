@@ -40,8 +40,11 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 16px;
 }
 
-.df-fs-sm {
-  font-size: 14px;
+/* apply to table and its cells */
+.table.df-fs-sm,
+.table.df-fs-sm th,
+.table.df-fs-sm td {
+  font-size: 14px !important;
 }
 
 .df-fs-nm {
