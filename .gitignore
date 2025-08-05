@@ -1,7 +1,7 @@
-*.pyc
+*.py[cod]
 db.sqlite3
 *.sqlite3
 
 .idea/
-_pycache_/
+__pycache__/
 
