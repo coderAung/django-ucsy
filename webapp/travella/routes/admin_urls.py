@@ -10,7 +10,9 @@ from ..controllers.admin.settings import setting_controller, account_controller
 urlpatterns = [
     path('dashboard/', dashboard_controller.dashboard, name = 'dashboard'),
     path('bookings/', booking_controller.list, name = 'bookings'),
-    path('bookings/<int:id>/', booking_controller.detail),
+   path('bookings/<uuid:id>/', booking_controller.detail, name='booking_detail'),
+
+
 
     path('categories/', category_controller.list, name = 'categories'),
     path('categories/<int:id>/', category_controller.detail),
