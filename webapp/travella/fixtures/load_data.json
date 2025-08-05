@@ -4,10 +4,10 @@
     "pk": "11111111-1111-4111-8111-111111111111",
     "fields": {
       "email": "admin@example.com",
-      "password": "password",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
       "role": "admin",
-      "createdAt": "2025-08-01T00:00:00Z",
-      "updatedAt": "2025-08-01T00:00:00Z"
+      "createdAt": "2025-07-08T00:47:00Z",
+      "updatedAt": "2025-07-18T07:14:00Z"
     }
   },
   {
@@ -15,10 +15,10 @@
     "pk": "22222222-2222-4222-8222-222222222222",
     "fields": {
       "email": "mod@example.com",
-      "password": "password",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
       "role": "mod",
-      "createdAt": "2025-08-01T00:00:00Z",
-      "updatedAt": "2025-08-01T00:00:00Z"
+      "createdAt": "2025-07-09T23:06:00Z",
+      "updatedAt": "2025-08-04T02:37:00Z"
     }
   },
   {
@@ -26,13 +26,1079 @@
     "pk": "33333333-3333-4333-8333-333333333333",
     "fields": {
       "email": "customer@example.com",
-      "password": "password",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
       "role": "customer",
-      "createdAt": "2025-08-01T00:00:00Z",
-      "updatedAt": "2025-08-01T00:00:00Z"
+      "createdAt": "2025-07-28T01:01:00Z",
+      "updatedAt": "2025-07-06T06:14:00Z"
     }
   },
-
+  {
+    "model": "travella.account",
+    "pk": "44444444-4444-4444-8444-444444444444",
+    "fields": {
+      "email": "user1@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-02T19:01:00Z",
+      "updatedAt": "2025-07-13T22:41:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "55555555-5555-4555-8555-555555555555",
+    "fields": {
+      "email": "user2@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-04T13:14:00Z",
+      "updatedAt": "2025-07-29T18:17:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+    "fields": {
+      "email": "user6@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "mod",
+      "createdAt": "2025-07-01T05:44:00Z",
+      "updatedAt": "2025-07-28T10:17:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+    "fields": {
+      "email": "user7@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "mod",
+      "createdAt": "2025-07-10T06:48:00Z",
+      "updatedAt": "2025-07-22T03:05:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "f2cf4fc1-3451-4784-b752-0af9c03fe5cc",
+    "fields": {
+      "email": "user8@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-25T03:22:00Z",
+      "updatedAt": "2025-07-23T19:16:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "1cf166e5-92a7-4841-a3be-764f1c466460",
+    "fields": {
+      "email": "user9@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-03T23:29:00Z",
+      "updatedAt": "2025-08-04T03:59:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "02e437a9-6604-460f-b6b3-0b741eb70dde",
+    "fields": {
+      "email": "user10@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-25T02:35:00Z",
+      "updatedAt": "2025-07-19T20:39:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "354e83d5-da65-4b1a-81f6-eda9241ed1d0",
+    "fields": {
+      "email": "user11@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-24T18:12:00Z",
+      "updatedAt": "2025-07-05T01:42:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "144b123a-2413-47e4-9d9a-9c486af3819b",
+    "fields": {
+      "email": "user12@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-15T09:05:00Z",
+      "updatedAt": "2025-07-15T03:24:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "149e01e4-6e39-4b5d-948c-4e88c880ec3a",
+    "fields": {
+      "email": "user13@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-18T14:40:00Z",
+      "updatedAt": "2025-07-24T05:23:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "4d220363-0110-42af-92ad-afa00700dd44",
+    "fields": {
+      "email": "user14@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-23T06:42:00Z",
+      "updatedAt": "2025-07-18T22:59:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "4b86ee86-7c27-4aaa-a938-a48623cd7cd6",
+    "fields": {
+      "email": "user15@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-05T19:40:00Z",
+      "updatedAt": "2025-07-11T17:46:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "165d36cc-16f1-4045-9dbe-194a545ede22",
+    "fields": {
+      "email": "user16@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-16T05:29:00Z",
+      "updatedAt": "2025-07-25T08:59:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "b02b7132-75c8-4b6f-9497-43d705736351",
+    "fields": {
+      "email": "user17@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-15T21:20:00Z",
+      "updatedAt": "2025-07-04T07:52:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "ae9182ab-d048-478b-8691-ab42708cd73f",
+    "fields": {
+      "email": "user18@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-03T10:25:00Z",
+      "updatedAt": "2025-07-18T02:13:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "cb0626db-64c1-414e-bb8a-ea11501a9e5f",
+    "fields": {
+      "email": "user19@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-21T06:41:00Z",
+      "updatedAt": "2025-08-01T12:56:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "3ca393cd-0400-4b38-81fc-96c186123d81",
+    "fields": {
+      "email": "user20@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-30T04:16:00Z",
+      "updatedAt": "2025-07-09T07:47:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "a01a35ba-8f78-447a-86ff-8ec50d19022e",
+    "fields": {
+      "email": "user21@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-04T08:47:00Z",
+      "updatedAt": "2025-07-28T18:25:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "4419144c-ebfe-45b9-b256-c96dc015641d",
+    "fields": {
+      "email": "user22@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-24T07:08:00Z",
+      "updatedAt": "2025-08-02T15:05:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "dffdf23d-4cf8-4246-bdf6-5dccbe9329f1",
+    "fields": {
+      "email": "user23@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-04T03:09:00Z",
+      "updatedAt": "2025-07-11T21:27:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "83cd33f2-aff4-4e46-874c-d3d0ececc7a5",
+    "fields": {
+      "email": "user24@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-05T12:24:00Z",
+      "updatedAt": "2025-07-30T16:16:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "5a4407a8-b164-46c0-a450-a708ee5a0dbb",
+    "fields": {
+      "email": "user25@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-01T21:46:00Z",
+      "updatedAt": "2025-07-08T21:56:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "4970b6ba-a1df-4b34-8855-bacb86bc3f4b",
+    "fields": {
+      "email": "user26@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-04T08:49:00Z",
+      "updatedAt": "2025-07-22T03:18:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "04ca7be2-e40f-4023-80e7-e1803ec707f3",
+    "fields": {
+      "email": "user27@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-28T05:29:00Z",
+      "updatedAt": "2025-07-01T23:56:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "dd51cc52-92bc-4dc8-9191-41c8a32b651c",
+    "fields": {
+      "email": "user28@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-17T16:48:00Z",
+      "updatedAt": "2025-07-12T16:58:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "aabe8b4c-ee6b-41b7-b202-8e459514a0cd",
+    "fields": {
+      "email": "user29@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-07T20:19:00Z",
+      "updatedAt": "2025-08-02T19:12:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "07689f1e-3a4f-4e70-8ef4-0494c845fad8",
+    "fields": {
+      "email": "user30@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-10T11:48:00Z",
+      "updatedAt": "2025-07-11T17:49:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "86fd0ef5-537b-4781-ae5a-290c87231f37",
+    "fields": {
+      "email": "user31@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-03T00:38:00Z",
+      "updatedAt": "2025-07-21T15:01:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "63c16f7c-220b-4a52-94f5-80f01417ace6",
+    "fields": {
+      "email": "user32@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-08T11:56:00Z",
+      "updatedAt": "2025-07-20T07:03:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "93c3ac2e-f103-453d-bf93-42afd1424eb7",
+    "fields": {
+      "email": "user33@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-16T18:05:00Z",
+      "updatedAt": "2025-07-06T23:31:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "372897c5-3725-4d62-a8fd-8909eb00c8ff",
+    "fields": {
+      "email": "user34@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-05T17:49:00Z",
+      "updatedAt": "2025-07-09T04:42:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "aa41a944-e851-4312-8872-f082fdcb211a",
+    "fields": {
+      "email": "user35@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-31T17:10:00Z",
+      "updatedAt": "2025-07-17T16:55:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "78f1325b-563e-4eac-9fae-6d7e2da06367",
+    "fields": {
+      "email": "user36@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-28T06:59:00Z",
+      "updatedAt": "2025-08-04T23:44:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "3f1b3c9b-ec41-4c67-ab92-a5903f4d64b5",
+    "fields": {
+      "email": "user37@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-13T22:19:00Z",
+      "updatedAt": "2025-07-26T21:41:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "b456c082-6d23-4f42-b6e6-b29af2163e88",
+    "fields": {
+      "email": "user38@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-24T14:57:00Z",
+      "updatedAt": "2025-08-03T14:07:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "50b973a8-22fe-441c-8dca-c9b7b6a91a21",
+    "fields": {
+      "email": "user39@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-16T07:04:00Z",
+      "updatedAt": "2025-07-22T00:37:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "c0e8d9e3-49b1-4859-9e9b-ccdabf8b75b6",
+    "fields": {
+      "email": "user40@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-15T18:14:00Z",
+      "updatedAt": "2025-07-01T02:45:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "3811c135-0ec1-43d3-a557-5acbb6f2c979",
+    "fields": {
+      "email": "user41@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-04T07:04:00Z",
+      "updatedAt": "2025-07-03T10:04:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "fd16c25e-e5e4-4ac1-ab3c-ebe205cfd7d2",
+    "fields": {
+      "email": "user42@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-02T07:17:00Z",
+      "updatedAt": "2025-08-01T06:34:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "25578d36-5779-489b-8bee-ced98e9999ce",
+    "fields": {
+      "email": "user43@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-09T23:59:00Z",
+      "updatedAt": "2025-07-31T07:50:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "64809cab-cedb-4893-bdb3-c484c2bcfdec",
+    "fields": {
+      "email": "user44@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-31T13:12:00Z",
+      "updatedAt": "2025-07-07T03:42:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "2c041b62-3d71-4dcb-adca-7ff32ddc9a88",
+    "fields": {
+      "email": "user45@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-28T11:27:00Z",
+      "updatedAt": "2025-07-27T14:55:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "a65ca63c-d11b-45c4-b429-afb507b26bda",
+    "fields": {
+      "email": "user46@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-04T21:41:00Z",
+      "updatedAt": "2025-07-07T01:25:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "31ccef4e-62e4-42b1-8a81-e4f1af7acbbe",
+    "fields": {
+      "email": "user47@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-22T03:15:00Z",
+      "updatedAt": "2025-07-13T06:34:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "23f8c5b5-41f9-40de-b169-5c2eabd0722c",
+    "fields": {
+      "email": "user48@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-29T04:27:00Z",
+      "updatedAt": "2025-07-12T08:29:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "64ab6b5a-19c3-4bc5-9946-156d992c393b",
+    "fields": {
+      "email": "user49@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-16T02:28:00Z",
+      "updatedAt": "2025-07-07T01:41:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "f1583ad9-1a41-4417-9083-32005ea8e103",
+    "fields": {
+      "email": "user50@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-04T00:05:00Z",
+      "updatedAt": "2025-07-16T05:26:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "9ada413f-95eb-4c0b-8aa5-7567405d32a1",
+    "fields": {
+      "email": "user51@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-01T15:13:00Z",
+      "updatedAt": "2025-07-26T01:10:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "209c1e55-e770-4629-9ce9-5c7e6a9a3a31",
+    "fields": {
+      "email": "user52@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-25T00:24:00Z",
+      "updatedAt": "2025-07-17T14:18:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "ec588a7a-5831-4e57-8bac-ff349c60ea34",
+    "fields": {
+      "email": "user53@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-28T22:46:00Z",
+      "updatedAt": "2025-08-01T04:12:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "63d169a0-dcee-490f-99d4-63aaa7b0818f",
+    "fields": {
+      "email": "user54@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-19T06:03:00Z",
+      "updatedAt": "2025-08-04T01:47:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "839b32be-872e-4d9f-a2f3-62f51cf595a6",
+    "fields": {
+      "email": "user55@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-21T01:03:00Z",
+      "updatedAt": "2025-07-31T16:58:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "68ec95df-ec2d-459a-867f-044adf3d8d26",
+    "fields": {
+      "email": "user56@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-03T05:03:00Z",
+      "updatedAt": "2025-08-02T02:54:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "a7f7d438-b298-48db-a266-fb539c79ea22",
+    "fields": {
+      "email": "user57@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-12T02:38:00Z",
+      "updatedAt": "2025-07-05T21:55:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "7db72cda-0ea3-4edf-a61a-a79434ed7af3",
+    "fields": {
+      "email": "user58@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-16T12:07:00Z",
+      "updatedAt": "2025-07-16T18:38:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "7142f87a-c126-4550-94c3-202d2bf30f73",
+    "fields": {
+      "email": "user59@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-03T19:05:00Z",
+      "updatedAt": "2025-07-27T21:37:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "dde85298-ed79-4e4c-b0e7-edd42f8282c8",
+    "fields": {
+      "email": "user60@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-03T10:59:00Z",
+      "updatedAt": "2025-07-17T06:42:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "82d4df09-100d-481f-9878-59a88d80a439",
+    "fields": {
+      "email": "user61@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-21T07:16:00Z",
+      "updatedAt": "2025-07-26T04:42:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "11cfc8dd-ce0c-4df7-8f3d-d01b31440d74",
+    "fields": {
+      "email": "user62@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-20T14:20:00Z",
+      "updatedAt": "2025-07-05T00:29:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "8175904a-a9de-44c9-8ab6-a1363c0c8f28",
+    "fields": {
+      "email": "user63@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-07T02:34:00Z",
+      "updatedAt": "2025-07-14T16:16:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "bdff114e-2215-4e5b-a2c8-44bb36817230",
+    "fields": {
+      "email": "user64@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-09T11:56:00Z",
+      "updatedAt": "2025-07-05T07:23:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "74784455-297b-4ff6-97d7-32cf60aa5b0c",
+    "fields": {
+      "email": "user65@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-19T05:28:00Z",
+      "updatedAt": "2025-08-04T22:19:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "a1e9820f-98f9-40ac-97ad-07896919698f",
+    "fields": {
+      "email": "user66@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-03T00:42:00Z",
+      "updatedAt": "2025-07-20T21:06:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "818ae815-5c44-41ac-b81e-9d6650a6f8f6",
+    "fields": {
+      "email": "user67@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-09T08:07:00Z",
+      "updatedAt": "2025-07-07T23:35:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "84ac8071-b043-43cb-8043-ad0dba48f6cd",
+    "fields": {
+      "email": "user68@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-10T08:18:00Z",
+      "updatedAt": "2025-07-14T22:21:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "a8a59467-19e5-4359-b114-46318c2ec3f1",
+    "fields": {
+      "email": "user69@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-14T21:40:00Z",
+      "updatedAt": "2025-07-17T16:31:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "2e2d898b-5e78-4fa2-8438-f3adde6e8a45",
+    "fields": {
+      "email": "user70@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-17T01:05:00Z",
+      "updatedAt": "2025-07-28T08:02:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "a190acfa-04e4-419c-a9b6-de1b2b06de50",
+    "fields": {
+      "email": "user71@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-01T10:49:00Z",
+      "updatedAt": "2025-07-09T20:16:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "87d1772a-a3f9-4189-9bdb-de4f05b6a77e",
+    "fields": {
+      "email": "user72@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-11T23:28:00Z",
+      "updatedAt": "2025-07-28T17:00:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "48f7259b-024d-43e7-851f-82ba13433056",
+    "fields": {
+      "email": "user73@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-08T02:56:00Z",
+      "updatedAt": "2025-07-10T17:02:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "cc198bd3-1fda-4240-9645-423f17ca2774",
+    "fields": {
+      "email": "user74@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-24T18:35:00Z",
+      "updatedAt": "2025-07-10T13:08:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "aa2ca760-ba4a-4653-b5ee-11a1cc9cb7d1",
+    "fields": {
+      "email": "user75@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-03T09:23:00Z",
+      "updatedAt": "2025-07-03T11:13:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "36c127a1-219d-4c86-a59f-d9aca8a0eb47",
+    "fields": {
+      "email": "user76@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-16T21:06:00Z",
+      "updatedAt": "2025-07-23T17:56:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "d1b8a681-124f-465b-872a-a40ef2b680f4",
+    "fields": {
+      "email": "user77@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-27T19:47:00Z",
+      "updatedAt": "2025-07-10T07:55:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "0e350ee3-bd91-4f2e-8791-b72d059e47d2",
+    "fields": {
+      "email": "user78@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-11T05:56:00Z",
+      "updatedAt": "2025-07-27T00:11:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "f3ace33c-5454-4a07-ba1b-93ef7713e3c9",
+    "fields": {
+      "email": "user79@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-22T13:51:00Z",
+      "updatedAt": "2025-07-16T08:10:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "1288f40f-0f3e-441e-aa1c-26d5508ea05d",
+    "fields": {
+      "email": "user80@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-07T12:55:00Z",
+      "updatedAt": "2025-07-03T15:14:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "a69ceccb-ae9b-4486-949f-7b13e23dcffb",
+    "fields": {
+      "email": "user81@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-13T14:22:00Z",
+      "updatedAt": "2025-07-20T07:14:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "d1a37299-cd7e-4aa9-8719-242f545eb849",
+    "fields": {
+      "email": "user82@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-02T21:12:00Z",
+      "updatedAt": "2025-07-26T10:17:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "cd484b26-223e-47a7-9d84-d95de552d719",
+    "fields": {
+      "email": "user83@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-05T08:22:00Z",
+      "updatedAt": "2025-08-02T12:43:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "50750034-fc1e-452d-b306-4cca09861940",
+    "fields": {
+      "email": "user84@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-04T10:01:00Z",
+      "updatedAt": "2025-07-08T08:11:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "90b27dc0-eecb-4d7b-9869-e135567de16f",
+    "fields": {
+      "email": "user85@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-17T01:06:00Z",
+      "updatedAt": "2025-07-28T11:46:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "35fd9a08-2b84-4ec3-b9b9-ca51b9a90ab3",
+    "fields": {
+      "email": "user86@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-21T13:38:00Z",
+      "updatedAt": "2025-08-02T03:24:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "d2c69722-3aba-4f78-9dfb-7f7d8046cdab",
+    "fields": {
+      "email": "user87@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-13T08:02:00Z",
+      "updatedAt": "2025-07-28T00:33:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "e3a580b3-7934-4a31-a340-bd6869eb4ee3",
+    "fields": {
+      "email": "user88@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-04T21:46:00Z",
+      "updatedAt": "2025-07-13T11:27:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "86f89dd8-12ca-48c9-915d-178a5da60996",
+    "fields": {
+      "email": "user89@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-05T21:58:00Z",
+      "updatedAt": "2025-07-22T19:20:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "4de3382c-e509-4b3b-83cd-e734725aaf8a",
+    "fields": {
+      "email": "user90@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-08T23:57:00Z",
+      "updatedAt": "2025-07-20T16:19:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "3a782de0-bbf4-4f99-9bb8-460b59608bb4",
+    "fields": {
+      "email": "user91@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-27T10:25:00Z",
+      "updatedAt": "2025-07-19T17:08:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "9c37e57e-7c60-4b74-8de7-9ee941048bf6",
+    "fields": {
+      "email": "user92@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-13T13:42:00Z",
+      "updatedAt": "2025-07-25T21:47:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "64a12b29-caf2-4223-a2f3-7628c5010efa",
+    "fields": {
+      "email": "user93@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-12T19:36:00Z",
+      "updatedAt": "2025-07-20T12:35:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "3f33122e-5ffb-43f9-8c73-f3fb71ff41f3",
+    "fields": {
+      "email": "user94@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-01T09:18:00Z",
+      "updatedAt": "2025-07-14T13:50:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "0c932ed4-53e8-418e-bc16-3b6d2fbb08fd",
+    "fields": {
+      "email": "user95@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-21T14:28:00Z",
+      "updatedAt": "2025-07-29T21:13:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "b600afc7-7d15-4ee3-bedb-41cb9cb32fee",
+    "fields": {
+      "email": "user96@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-08-02T15:50:00Z",
+      "updatedAt": "2025-07-11T21:05:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "c7602b52-cd0c-4a0b-a011-9ff9585f448e",
+    "fields": {
+      "email": "user97@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-19T16:42:00Z",
+      "updatedAt": "2025-07-22T02:52:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "c6dadf19-28ab-4e2b-adbb-17f216c86867",
+    "fields": {
+      "email": "user98@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-16T21:19:00Z",
+      "updatedAt": "2025-07-15T06:09:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "1ad99a5a-32b7-477a-89d1-abc9c701f387",
+    "fields": {
+      "email": "user99@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-02T01:15:00Z",
+      "updatedAt": "2025-07-31T19:54:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "d8ec15fc-de80-4dc2-bd7e-1bde6218fa57",
+    "fields": {
+      "email": "user100@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "createdAt": "2025-07-05T14:26:00Z",
+      "updatedAt": "2025-07-13T22:44:00Z"
+    }
+  },
   {
     "model": "travella.category",
     "pk": 1,
@@ -63,14 +1129,63 @@
       "updatedAt": "2025-08-01T00:00:00Z"
     }
   },
-
+  {
+    "model": "travella.category",
+    "pk": 4,
+    "fields": {
+      "name": "Wellness",
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "createdAt": "2025-07-20T12:00:00Z",
+      "updatedAt": "2025-07-20T12:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 5,
+    "fields": {
+      "name": "Wildlife",
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "createdAt": "2025-07-22T14:45:00Z",
+      "updatedAt": "2025-07-22T14:45:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 6,
+    "fields": {
+      "name": "Culinary",
+      "createdBy": "44444444-4444-4444-8444-444444444444",
+      "createdAt": "2025-07-22T00:00:00Z",
+      "updatedAt": "2025-07-25T00:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 7,
+    "fields": {
+      "name": "Family",
+      "createdBy": "55555555-5555-4555-8555-555555555555",
+      "createdAt": "2025-07-22T00:00:00Z",
+      "updatedAt": "2025-07-17T00:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 8,
+    "fields": {
+      "name": "Extreme",
+      "createdBy": "44444444-4444-4444-8444-444444444444",
+      "createdAt": "2025-07-14T00:00:00Z",
+      "updatedAt": "2025-07-30T00:00:00Z"
+    }
+  },
   {
     "model": "travella.package",
     "pk": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
     "fields": {
       "code": "ADV001",
       "title": "Mountain Hiking",
-      "overview": "Explore the beautiful mountains with expert guides.",
+      "overview": "Explore the beautiful mountains with expert guides. This package includes detailed route planning, safety briefings, local cuisine tastings on the way, and overnight camps with professional gear. Participants will gain foundational mountaineering skills and enjoy sunrise vistas from the ridgelines, all while learning about the local ecology from our naturalist guide.",
       "departure": "2025-09-10",
       "duration": 5,
       "transportation": 1,
@@ -88,7 +1203,7 @@
     "fields": {
       "code": "REL001",
       "title": "Beach Resort Stay",
-      "overview": "Relax on pristine beaches with luxury accommodations.",
+      "overview": "Relax on pristine beaches with luxury accommodations. Enjoy daily spa treatments, sunset yoga sessions, gourmet seafood dinners, and private cabanas. The itinerary is designed for maximum downtime without ever feeling idle: herbal teas in the morning, snorkeling safaris, and evening cultural performances. Transportation and premium services are included for a seamless experience.",
       "departure": "2025-10-05",
       "duration": 7,
       "transportation": 2,
@@ -106,7 +1221,7 @@
     "fields": {
       "code": "CUL001",
       "title": "Historical Tour",
-      "overview": "Visit world heritage sites and museums.",
+      "overview": "Visit world heritage sites and museums. This deep-dive cultural journey is led by historians and includes private access to archives, curated storytelling evenings, and walking tours through ancient streets. You will learn the layered narratives of the region, its art, religion, and how its past shapes modern identity.",
       "departure": "2025-11-15",
       "duration": 4,
       "transportation": 1,
@@ -124,7 +1239,7 @@
     "fields": {
       "code": "ADV002",
       "title": "River Rafting",
-      "overview": "Exciting rafting experience on wild rivers.",
+      "overview": "Exciting rafting experience on wild rivers. Includes professional safety gear, rapid navigation coaching, riverside camping, and evening bonfires with storytelling. Perfect for thrill-seekers looking to test their teamwork and endurance while taking in riverside flora and fauna.",
       "departure": "2025-09-20",
       "duration": 3,
       "transportation": 1,
@@ -136,74 +1251,1712 @@
       "updatedAt": "2025-08-01T00:00:00Z"
     }
   },
-
   {
-    "model": "travella.itinerary",
-    "pk": 1,
+    "model": "travella.package",
+    "pk": "eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee",
     "fields": {
-      "package": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-      "day": 1,
-      "title": "Arrival and Orientation",
-      "description": "Meet the guides and review the itinerary."
+      "code": "WEL001",
+      "title": "Yoga & Wellness Retreat",
+      "overview": "A comprehensive wellness retreat focused on mental clarity and physical rejuvenation. Daily guided yoga sessions, meditation workshops, nutritional counseling, and sound healing ceremonies are included. Participants will also have access to herbal detox treatments and private coaching to build sustainable habits post-retreat.",
+      "departure": "2025-09-01",
+      "duration": 6,
+      "transportation": 2,
+      "price": "950.00",
+      "availableTicket": 18,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 4,
+      "createdAt": "2025-07-20T12:00:00Z",
+      "updatedAt": "2025-07-20T12:00:00Z"
     }
   },
   {
-    "model": "travella.itinerary",
-    "pk": 2,
+    "model": "travella.package",
+    "pk": "ffffffff-ffff-ffff-ffff-ffffffffffff",
     "fields": {
-      "package": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-      "day": 2,
-      "title": "Hiking Day 1",
-      "description": "Start mountain hike with safety briefing."
+      "code": "WIL001",
+      "title": "Safari Expedition",
+      "overview": "Journey into the heart of wildlife territory with seasoned trackers. This expedition includes morning and evening game drives, bushwalks, night safaris, and educational talks about conservation. Comfortable eco-lodges, locally sourced meals, and photography sessions are provided to capture rare animal encounters.",
+      "departure": "2025-10-12",
+      "duration": 8,
+      "transportation": 3,
+      "price": "2300.00",
+      "availableTicket": 12,
+      "createdBy": "55555555-5555-4555-8555-555555555555",
+      "category": 5,
+      "createdAt": "2025-07-22T14:45:00Z",
+      "updatedAt": "2025-07-22T14:45:00Z"
     }
   },
   {
-    "model": "travella.itinerary",
-    "pk": 3,
+    "model": "travella.package",
+    "pk": "159d98bc-bb8c-4576-bbdc-ae42c758bc21",
     "fields": {
-      "package": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
-      "day": 1,
-      "title": "Relax at the Beach",
-      "description": "Enjoy a day at the sunny beach resort."
+      "code": "ADV100",
+      "title": "Mountain Trekking 1",
+      "overview": "High-altitude trekking with guides and acclimatization stops.",
+      "departure": "2025-12-24",
+      "duration": 3,
+      "transportation": 2,
+      "price": "703.33",
+      "availableTicket": 30,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 1,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
     }
   },
   {
-    "model": "travella.itinerary",
-    "pk": 4,
+    "model": "travella.package",
+    "pk": "a0423d08-a5fb-4724-92df-134d81cca0d3",
     "fields": {
-      "package": "cccccccc-cccc-cccc-cccc-cccccccccccc",
-      "day": 1,
-      "title": "Museum Visit",
-      "description": "Tour the historical museum exhibits."
+      "code": "ADV101",
+      "title": "Mountain Trekking 2",
+      "overview": "High-altitude trekking with guides and acclimatization stops.",
+      "departure": "2025-11-11",
+      "duration": 5,
+      "transportation": 1,
+      "price": "1249.86",
+      "availableTicket": 25,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 1,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
     }
   },
-
+  {
+    "model": "travella.package",
+    "pk": "5f7576fa-c7e5-4750-b3c8-6e8cb3641a29",
+    "fields": {
+      "code": "CUL102",
+      "title": "Gastronomy Trail 3",
+      "overview": "Food tours and market explorations.",
+      "departure": "2025-11-18",
+      "duration": 10,
+      "transportation": 2,
+      "price": "2110.31",
+      "availableTicket": 30,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 6,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "68131fce-ded3-4a01-9c65-f64b8b76acd0",
+    "fields": {
+      "code": "CUL103",
+      "title": "City Heritage Walk 4",
+      "overview": "Guided walking tours through historic city centers.",
+      "departure": "2025-12-05",
+      "duration": 9,
+      "transportation": 2,
+      "price": "796.14",
+      "availableTicket": 15,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 3,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "1a0fc36f-4888-4289-8fbd-bf722b257080",
+    "fields": {
+      "code": "CUL104",
+      "title": "Gastronomy Trail 5",
+      "overview": "Food tours and market explorations.",
+      "departure": "2025-11-20",
+      "duration": 5,
+      "transportation": 2,
+      "price": "1211.71",
+      "availableTicket": 20,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 6,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "000cffc4-5713-42f1-b204-7a6b073ceff6",
+    "fields": {
+      "code": "WIL105",
+      "title": "Jungle Safari 6",
+      "overview": "Deep jungle exploration for endemic species.",
+      "departure": "2025-10-13",
+      "duration": 7,
+      "transportation": 3,
+      "price": "385.33",
+      "availableTicket": 15,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 5,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "486127c7-003e-4b59-8389-1586444f64eb",
+    "fields": {
+      "code": "FAM106",
+      "title": "Theme Park Family Fun 7",
+      "overview": "All-inclusive passes to major amusement parks.",
+      "departure": "2025-11-28",
+      "duration": 4,
+      "transportation": 3,
+      "price": "692.09",
+      "availableTicket": 25,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 7,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "1e16cec7-eea0-48a0-a915-d6f9ea3239bd",
+    "fields": {
+      "code": "EXT107",
+      "title": "Skydiving Adventure 8",
+      "overview": "Tandem skydiving with professional instructors.",
+      "departure": "2025-11-09",
+      "duration": 9,
+      "transportation": 2,
+      "price": "343.21",
+      "availableTicket": 25,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 8,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "8562557f-2745-4bc3-8688-70021a2d25bf",
+    "fields": {
+      "code": "ADV108",
+      "title": "Mountain Trekking 9",
+      "overview": "High-altitude trekking with guides and acclimatization stops.",
+      "departure": "2025-12-19",
+      "duration": 8,
+      "transportation": 2,
+      "price": "213.56",
+      "availableTicket": 20,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 1,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "b1ee5c06-42d1-4668-a226-7e46e20b8406",
+    "fields": {
+      "code": "FAM109",
+      "title": "Theme Park Family Fun 10",
+      "overview": "All-inclusive passes to major amusement parks.",
+      "departure": "2025-12-19",
+      "duration": 8,
+      "transportation": 3,
+      "price": "1919.29",
+      "availableTicket": 30,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 7,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "14248af2-012c-436e-a39b-7380bf41009c",
+    "fields": {
+      "code": "CUL110",
+      "title": "Gastronomy Trail 11",
+      "overview": "Food tours and market explorations.",
+      "departure": "2025-09-29",
+      "duration": 6,
+      "transportation": 2,
+      "price": "1316.98",
+      "availableTicket": 25,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 6,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "1b684145-6631-44e2-9734-ac3dace3a88f",
+    "fields": {
+      "code": "FAM111",
+      "title": "Theme Park Family Fun 12",
+      "overview": "All-inclusive passes to major amusement parks.",
+      "departure": "2025-12-02",
+      "duration": 4,
+      "transportation": 2,
+      "price": "2314.95",
+      "availableTicket": 30,
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "category": 7,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "a910ba4b-84e4-41e9-8668-7a5e218f2d95",
+    "fields": {
+      "code": "FAM112",
+      "title": "Theme Park Family Fun 13",
+      "overview": "All-inclusive passes to major amusement parks.",
+      "departure": "2025-11-15",
+      "duration": 2,
+      "transportation": 1,
+      "price": "1678.32",
+      "availableTicket": 15,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 7,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "c3c38bc7-076c-40dd-818e-32ad1af44caf",
+    "fields": {
+      "code": "CUL113",
+      "title": "City Heritage Walk 14",
+      "overview": "Guided walking tours through historic city centers.",
+      "departure": "2025-09-07",
+      "duration": 6,
+      "transportation": 2,
+      "price": "952.91",
+      "availableTicket": 25,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 3,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "fc80479c-67f5-4c4f-8af8-2ae508e7b011",
+    "fields": {
+      "code": "EXT114",
+      "title": "Skydiving Adventure 15",
+      "overview": "Tandem skydiving with professional instructors.",
+      "departure": "2025-12-07",
+      "duration": 8,
+      "transportation": 2,
+      "price": "1929.62",
+      "availableTicket": 6,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 8,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "c01a5c1e-f796-4eef-8949-fde2ac4ef97d",
+    "fields": {
+      "code": "REL115",
+      "title": "Island Spa Escape 16",
+      "overview": "Overwater bungalows with spa and private chefs.",
+      "departure": "2025-10-31",
+      "duration": 2,
+      "transportation": 3,
+      "price": "1440.66",
+      "availableTicket": 20,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 2,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "48289c22-d8d2-4d2c-b09c-b87d1bf7d4d6",
+    "fields": {
+      "code": "REL116",
+      "title": "Island Spa Escape 17",
+      "overview": "Overwater bungalows with spa and private chefs.",
+      "departure": "2025-12-09",
+      "duration": 2,
+      "transportation": 1,
+      "price": "2384.11",
+      "availableTicket": 15,
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "category": 2,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "331f4bdf-3b38-4fa9-917f-41d65ece0b47",
+    "fields": {
+      "code": "CUL117",
+      "title": "City Heritage Walk 18",
+      "overview": "Guided walking tours through historic city centers.",
+      "departure": "2025-10-01",
+      "duration": 4,
+      "transportation": 2,
+      "price": "1739.76",
+      "availableTicket": 30,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 3,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "9be8e2ed-71be-4258-b18f-f65deccede26",
+    "fields": {
+      "code": "CUL118",
+      "title": "Gastronomy Trail 19",
+      "overview": "Food tours and market explorations.",
+      "departure": "2025-11-29",
+      "duration": 6,
+      "transportation": 2,
+      "price": "585.92",
+      "availableTicket": 30,
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "category": 6,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "6a79a4d7-4e80-4b72-9108-1dcdf12bedd9",
+    "fields": {
+      "code": "CUL119",
+      "title": "City Heritage Walk 20",
+      "overview": "Guided walking tours through historic city centers.",
+      "departure": "2025-10-10",
+      "duration": 3,
+      "transportation": 3,
+      "price": "259.06",
+      "availableTicket": 20,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 3,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "699c74de-bd51-48b0-93d5-612926f117bf",
+    "fields": {
+      "code": "FAM120",
+      "title": "Theme Park Family Fun 21",
+      "overview": "All-inclusive passes to major amusement parks.",
+      "departure": "2025-12-30",
+      "duration": 5,
+      "transportation": 1,
+      "price": "1561.83",
+      "availableTicket": 15,
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "category": 7,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "6ac09f9e-1d8c-4afb-8192-0ec99e0c0a6c",
+    "fields": {
+      "code": "WIL121",
+      "title": "Jungle Safari 22",
+      "overview": "Deep jungle exploration for endemic species.",
+      "departure": "2025-12-18",
+      "duration": 3,
+      "transportation": 3,
+      "price": "2000.06",
+      "availableTicket": 20,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 5,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "ed2d6eca-a42e-409a-afd4-47e87fe8a63b",
+    "fields": {
+      "code": "EXT122",
+      "title": "Skydiving Adventure 23",
+      "overview": "Tandem skydiving with professional instructors.",
+      "departure": "2025-09-09",
+      "duration": 10,
+      "transportation": 3,
+      "price": "984.83",
+      "availableTicket": 25,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 8,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "9e2493bb-29e1-489f-9385-b83b9f06f104",
+    "fields": {
+      "code": "REL123",
+      "title": "Island Spa Escape 24",
+      "overview": "Overwater bungalows with spa and private chefs.",
+      "departure": "2025-10-26",
+      "duration": 7,
+      "transportation": 3,
+      "price": "2250.62",
+      "availableTicket": 25,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 2,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "c82350dd-6d50-4195-965a-b02c73221397",
+    "fields": {
+      "code": "FAM124",
+      "title": "Theme Park Family Fun 25",
+      "overview": "All-inclusive passes to major amusement parks.",
+      "departure": "2025-09-23",
+      "duration": 10,
+      "transportation": 3,
+      "price": "821.19",
+      "availableTicket": 30,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 7,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "25067f13-bd53-461e-b243-f748aaa4de5e",
+    "fields": {
+      "code": "CUL125",
+      "title": "Gastronomy Trail 26",
+      "overview": "Food tours and market explorations.",
+      "departure": "2025-10-26",
+      "duration": 6,
+      "transportation": 2,
+      "price": "2158.94",
+      "availableTicket": 10,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 6,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "c8ebebde-a4a3-47af-bf90-1e439dd820a2",
+    "fields": {
+      "code": "CUL126",
+      "title": "Gastronomy Trail 27",
+      "overview": "Food tours and market explorations.",
+      "departure": "2025-10-02",
+      "duration": 9,
+      "transportation": 3,
+      "price": "1603.76",
+      "availableTicket": 25,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 6,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "ff1018be-8158-4cec-a703-dfcd2583da67",
+    "fields": {
+      "code": "ADV127",
+      "title": "Mountain Trekking 28",
+      "overview": "High-altitude trekking with guides and acclimatization stops.",
+      "departure": "2025-11-03",
+      "duration": 7,
+      "transportation": 1,
+      "price": "1321.36",
+      "availableTicket": 20,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 1,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "f3df22e0-6eb1-445e-a5ba-0486a6db36bb",
+    "fields": {
+      "code": "EXT128",
+      "title": "Skydiving Adventure 29",
+      "overview": "Tandem skydiving with professional instructors.",
+      "departure": "2025-10-06",
+      "duration": 6,
+      "transportation": 3,
+      "price": "223.35",
+      "availableTicket": 15,
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "category": 8,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "12b7adda-5edd-427b-ae87-3e68bee20c32",
+    "fields": {
+      "code": "WEL129",
+      "title": "Detox Retreat 30",
+      "overview": "Clean eating, meditation, and journaling sessions.",
+      "departure": "2025-12-02",
+      "duration": 8,
+      "transportation": 2,
+      "price": "1476.91",
+      "availableTicket": 15,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 4,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "08b5a7cf-e18b-4ca1-9689-d5668dd8d03a",
+    "fields": {
+      "code": "CUL130",
+      "title": "Gastronomy Trail 31",
+      "overview": "Food tours and market explorations.",
+      "departure": "2025-10-28",
+      "duration": 2,
+      "transportation": 1,
+      "price": "876.74",
+      "availableTicket": 25,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 6,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "eff64558-afb9-4ad8-af00-0fb529bd18b1",
+    "fields": {
+      "code": "WIL131",
+      "title": "Jungle Safari 32",
+      "overview": "Deep jungle exploration for endemic species.",
+      "departure": "2025-11-24",
+      "duration": 7,
+      "transportation": 2,
+      "price": "1472.99",
+      "availableTicket": 4,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 5,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "f14b987b-7402-4b69-befe-ee13939b0d07",
+    "fields": {
+      "code": "EXT132",
+      "title": "Skydiving Adventure 33",
+      "overview": "Tandem skydiving with professional instructors.",
+      "departure": "2025-10-16",
+      "duration": 9,
+      "transportation": 2,
+      "price": "905.23",
+      "availableTicket": 15,
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "category": 8,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "a202fd66-2dc1-4361-9d52-599882c018ea",
+    "fields": {
+      "code": "WEL133",
+      "title": "Detox Retreat 34",
+      "overview": "Clean eating, meditation, and journaling sessions.",
+      "departure": "2025-10-11",
+      "duration": 3,
+      "transportation": 3,
+      "price": "1432.49",
+      "availableTicket": 15,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 4,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "1d089a4c-cd3b-4d20-80c0-3b9a099d48fd",
+    "fields": {
+      "code": "WEL134",
+      "title": "Detox Retreat 35",
+      "overview": "Clean eating, meditation, and journaling sessions.",
+      "departure": "2025-12-04",
+      "duration": 9,
+      "transportation": 2,
+      "price": "1866.55",
+      "availableTicket": 30,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 4,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "f926f657-b181-4d26-bf0e-8f263090515c",
+    "fields": {
+      "code": "REL135",
+      "title": "Island Spa Escape 36",
+      "overview": "Overwater bungalows with spa and private chefs.",
+      "departure": "2025-12-16",
+      "duration": 5,
+      "transportation": 2,
+      "price": "723.21",
+      "availableTicket": 15,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 2,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "75ec492c-6889-48b3-8342-637986c2a13b",
+    "fields": {
+      "code": "ADV136",
+      "title": "Mountain Trekking 37",
+      "overview": "High-altitude trekking with guides and acclimatization stops.",
+      "departure": "2025-11-30",
+      "duration": 10,
+      "transportation": 1,
+      "price": "830.92",
+      "availableTicket": 10,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 1,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "258e7484-e82d-4aec-b486-3a7f108a63e8",
+    "fields": {
+      "code": "CUL137",
+      "title": "City Heritage Walk 38",
+      "overview": "Guided walking tours through historic city centers.",
+      "departure": "2025-11-21",
+      "duration": 9,
+      "transportation": 1,
+      "price": "2207.26",
+      "availableTicket": 30,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 3,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "f2e91aec-ab38-4c38-9ace-bf01f3035e5a",
+    "fields": {
+      "code": "CUL138",
+      "title": "Gastronomy Trail 39",
+      "overview": "Food tours and market explorations.",
+      "departure": "2025-11-01",
+      "duration": 9,
+      "transportation": 2,
+      "price": "624.04",
+      "availableTicket": 10,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 6,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "b028894a-e130-4a6f-9392-73c8d41856da",
+    "fields": {
+      "code": "CUL139",
+      "title": "Gastronomy Trail 40",
+      "overview": "Food tours and market explorations.",
+      "departure": "2025-09-15",
+      "duration": 3,
+      "transportation": 2,
+      "price": "1331.02",
+      "availableTicket": 30,
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "category": 6,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "17ade171-a515-481a-a600-7d4e06d7e598",
+    "fields": {
+      "code": "CUL140",
+      "title": "City Heritage Walk 41",
+      "overview": "Guided walking tours through historic city centers.",
+      "departure": "2025-09-20",
+      "duration": 6,
+      "transportation": 1,
+      "price": "2486.01",
+      "availableTicket": 10,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 3,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "b7c85e92-53f1-4072-b1b7-0442d3337818",
+    "fields": {
+      "code": "WEL141",
+      "title": "Detox Retreat 42",
+      "overview": "Clean eating, meditation, and journaling sessions.",
+      "departure": "2025-12-09",
+      "duration": 10,
+      "transportation": 2,
+      "price": "1236.18",
+      "availableTicket": 25,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 4,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "d697f8c5-351d-4231-9a5d-85f78057554f",
+    "fields": {
+      "code": "FAM142",
+      "title": "Theme Park Family Fun 43",
+      "overview": "All-inclusive passes to major amusement parks.",
+      "departure": "2025-10-10",
+      "duration": 2,
+      "transportation": 3,
+      "price": "2408.25",
+      "availableTicket": 10,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 7,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "872e52e4-ed49-4e8b-8760-15a1cb85793f",
+    "fields": {
+      "code": "WEL143",
+      "title": "Detox Retreat 44",
+      "overview": "Clean eating, meditation, and journaling sessions.",
+      "departure": "2025-10-04",
+      "duration": 3,
+      "transportation": 1,
+      "price": "751.69",
+      "availableTicket": 3,
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "category": 4,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "34d3ca1d-68b2-4c8a-bb07-f1fc902f02d1",
+    "fields": {
+      "code": "CUL144",
+      "title": "City Heritage Walk 45",
+      "overview": "Guided walking tours through historic city centers.",
+      "departure": "2025-09-01",
+      "duration": 8,
+      "transportation": 2,
+      "price": "1785.55",
+      "availableTicket": 25,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 3,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "ade81eab-def8-4b80-a4a8-5ece4f9b88d0",
+    "fields": {
+      "code": "ADV145",
+      "title": "Mountain Trekking 46",
+      "overview": "High-altitude trekking with guides and acclimatization stops.",
+      "departure": "2025-09-30",
+      "duration": 6,
+      "transportation": 3,
+      "price": "850.25",
+      "availableTicket": 25,
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "category": 1,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "ad48b64b-4ae4-4c30-bbee-e50f8c6d5708",
+    "fields": {
+      "code": "WEL146",
+      "title": "Detox Retreat 47",
+      "overview": "Clean eating, meditation, and journaling sessions.",
+      "departure": "2025-12-28",
+      "duration": 6,
+      "transportation": 3,
+      "price": "1556.52",
+      "availableTicket": 15,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 4,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "adb7b94e-aa08-4d3c-b7a9-84a971f1aab3",
+    "fields": {
+      "code": "REL147",
+      "title": "Island Spa Escape 48",
+      "overview": "Overwater bungalows with spa and private chefs.",
+      "departure": "2025-11-09",
+      "duration": 5,
+      "transportation": 3,
+      "price": "542.68",
+      "availableTicket": 20,
+      "createdBy": "22222222-2222-4222-8222-222222222222",
+      "category": 2,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "42dbcf76-2772-45c3-a8bc-43bb56f572a4",
+    "fields": {
+      "code": "REL148",
+      "title": "Island Spa Escape 49",
+      "overview": "Overwater bungalows with spa and private chefs.",
+      "departure": "2025-09-08",
+      "duration": 4,
+      "transportation": 2,
+      "price": "1568.60",
+      "availableTicket": 7,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 2,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "8ea57204-f613-40c5-9dc9-b5689e804155",
+    "fields": {
+      "code": "CUL149",
+      "title": "Gastronomy Trail 50",
+      "overview": "Food tours and market explorations.",
+      "departure": "2025-09-16",
+      "duration": 9,
+      "transportation": 3,
+      "price": "899.41",
+      "availableTicket": 10,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 6,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "9669febe-a213-45c7-a6c0-0b94fbf67678",
+    "fields": {
+      "code": "CUL150",
+      "title": "Gastronomy Trail 51",
+      "overview": "Food tours and market explorations.",
+      "departure": "2025-10-27",
+      "duration": 3,
+      "transportation": 3,
+      "price": "291.68",
+      "availableTicket": 25,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 6,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "de10bcaa-c4dc-404a-a8c6-1298d968c4b6",
+    "fields": {
+      "code": "WIL151",
+      "title": "Jungle Safari 52",
+      "overview": "Deep jungle exploration for endemic species.",
+      "departure": "2025-09-04",
+      "duration": 3,
+      "transportation": 1,
+      "price": "2412.40",
+      "availableTicket": 30,
+      "createdBy": "11111111-1111-4111-8111-111111111111",
+      "category": 5,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "3055e04c-12b7-452f-b1c3-cfd3e0f8eed7",
+    "fields": {
+      "code": "WIL152",
+      "title": "Jungle Safari 53",
+      "overview": "Deep jungle exploration for endemic species.",
+      "departure": "2025-11-13",
+      "duration": 2,
+      "transportation": 1,
+      "price": "1282.15",
+      "availableTicket": 25,
+      "createdBy": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "category": 5,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "4b203170-957a-449e-96c7-8f025dc5d98d",
+    "fields": {
+      "code": "CUL153",
+      "title": "City Heritage Walk 54",
+      "overview": "Guided walking tours through historic city centers.",
+      "departure": "2025-11-14",
+      "duration": 8,
+      "transportation": 3,
+      "price": "2072.76",
+      "availableTicket": 10,
+      "createdBy": "ffe8da62-de62-4d4c-8bcd-f832cd74cd4d",
+      "category": 3,
+      "createdAt": "2025-07-30T10:00:00Z",
+      "updatedAt": "2025-07-30T10:00:00Z"
+    }
+  },
   {
     "model": "travella.booking",
-    "pk": "11111111-2222-3333-4444-555555555555",
+    "pk": "cb75febe-7a2a-4255-9d0e-8948ab50cede",
     "fields": {
       "status": 1,
-      "ticketCount": 2,
-      "unitPrice": "450.00",
-      "statusUpdatedAt": "2025-08-05T12:00:00Z",
-      "package": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-      "customer": "33333333-3333-4333-8333-333333333333",
-      "createdAt": "2025-08-05T10:00:00Z",
-      "updatedAt": "2025-08-05T10:00:00Z"
+      "ticketCount": 3,
+      "unitPrice": "1929.62",
+      "statusUpdatedAt": "2025-07-23T10:21:00Z",
+      "package": "fc80479c-67f5-4c4f-8af8-2ae508e7b011",
+      "customer": "4de3382c-e509-4b3b-83cd-e734725aaf8a",
+      "createdAt": "2025-07-21T05:21:00Z",
+      "updatedAt": "2025-07-21T05:21:00Z"
     }
   },
   {
     "model": "travella.booking",
-    "pk": "66666666-7777-8888-9999-000000000000",
+    "pk": "1701153d-401c-4d7f-82fd-c7aa1bfeedcf",
+    "fields": {
+      "status": 2,
+      "ticketCount": 3,
+      "unitPrice": "830.92",
+      "statusUpdatedAt": "2025-09-04T04:02:00Z",
+      "package": "75ec492c-6889-48b3-8342-637986c2a13b",
+      "customer": "68ec95df-ec2d-459a-867f-044adf3d8d26",
+      "createdAt": "2025-09-01T17:02:00Z",
+      "updatedAt": "2025-09-01T17:02:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "370388b2-7e83-4308-99a3-d115a214c60e",
+    "fields": {
+      "status": 1,
+      "ticketCount": 3,
+      "unitPrice": "1929.62",
+      "statusUpdatedAt": "2025-09-05T06:55:00Z",
+      "package": "fc80479c-67f5-4c4f-8af8-2ae508e7b011",
+      "customer": "cb0626db-64c1-414e-bb8a-ea11501a9e5f",
+      "createdAt": "2025-09-02T12:55:00Z",
+      "updatedAt": "2025-09-02T12:55:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "4b7190e5-4f8c-4d2f-9490-031912c2d010",
     "fields": {
       "status": 2,
       "ticketCount": 1,
-      "unitPrice": "1200.00",
-      "statusUpdatedAt": "2025-08-06T15:30:00Z",
-      "package": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
-      "customer": "33333333-3333-4333-8333-333333333333",
-      "createdAt": "2025-08-06T14:00:00Z",
-      "updatedAt": "2025-08-06T14:00:00Z"
+      "unitPrice": "830.92",
+      "statusUpdatedAt": "2025-08-14T14:03:00Z",
+      "package": "75ec492c-6889-48b3-8342-637986c2a13b",
+      "customer": "cc198bd3-1fda-4240-9645-423f17ca2774",
+      "createdAt": "2025-08-13T13:03:00Z",
+      "updatedAt": "2025-08-13T13:03:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "b11658fe-8d7c-4081-aac1-3a8cbe36fece",
+    "fields": {
+      "status": 1,
+      "ticketCount": 5,
+      "unitPrice": "2408.25",
+      "statusUpdatedAt": "2025-08-24T21:48:00Z",
+      "package": "d697f8c5-351d-4231-9a5d-85f78057554f",
+      "customer": "84ac8071-b043-43cb-8043-ad0dba48f6cd",
+      "createdAt": "2025-08-24T14:48:00Z",
+      "updatedAt": "2025-08-24T14:48:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "d2f8e3a2-f9cf-47cb-88b7-31bc46beed1b",
+    "fields": {
+      "status": 1,
+      "ticketCount": 5,
+      "unitPrice": "2110.31",
+      "statusUpdatedAt": "2025-08-13T14:31:00Z",
+      "package": "5f7576fa-c7e5-4750-b3c8-6e8cb3641a29",
+      "customer": "3811c135-0ec1-43d3-a557-5acbb6f2c979",
+      "createdAt": "2025-08-12T22:31:00Z",
+      "updatedAt": "2025-08-12T22:31:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "34a3a2a7-cb9e-41c1-af5e-fd1a09595fb2",
+    "fields": {
+      "status": 1,
+      "ticketCount": 5,
+      "unitPrice": "850.25",
+      "statusUpdatedAt": "2025-09-01T04:19:00Z",
+      "package": "ade81eab-def8-4b80-a4a8-5ece4f9b88d0",
+      "customer": "aa41a944-e851-4312-8872-f082fdcb211a",
+      "createdAt": "2025-08-29T05:19:00Z",
+      "updatedAt": "2025-08-29T05:19:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "0c9efc94-afb6-4f59-8326-8fb8f1388950",
+    "fields": {
+      "status": 1,
+      "ticketCount": 4,
+      "unitPrice": "2300.00",
+      "statusUpdatedAt": "2025-07-23T10:07:00Z",
+      "package": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+      "customer": "93c3ac2e-f103-453d-bf93-42afd1424eb7",
+      "createdAt": "2025-07-22T14:07:00Z",
+      "updatedAt": "2025-07-22T14:07:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "dfc2151e-d287-4421-92de-f631fe84435b",
+    "fields": {
+      "status": 1,
+      "ticketCount": 3,
+      "unitPrice": "1603.76",
+      "statusUpdatedAt": "2025-08-04T03:53:00Z",
+      "package": "c8ebebde-a4a3-47af-bf90-1e439dd820a2",
+      "customer": "0c932ed4-53e8-418e-bc16-3b6d2fbb08fd",
+      "createdAt": "2025-08-01T13:53:00Z",
+      "updatedAt": "2025-08-01T13:53:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "a67b754b-e28f-4d02-b0ba-f66f495ebf1f",
+    "fields": {
+      "status": 3,
+      "ticketCount": 2,
+      "unitPrice": "2250.62",
+      "statusUpdatedAt": "2025-07-27T06:12:00Z",
+      "package": "9e2493bb-29e1-489f-9385-b83b9f06f104",
+      "customer": "aa2ca760-ba4a-4653-b5ee-11a1cc9cb7d1",
+      "createdAt": "2025-07-24T12:12:00Z",
+      "updatedAt": "2025-07-24T12:12:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "4c6ae6d6-52b2-4766-9bab-8f857df94f0e",
+    "fields": {
+      "status": 2,
+      "ticketCount": 2,
+      "unitPrice": "899.41",
+      "statusUpdatedAt": "2025-08-04T06:21:00Z",
+      "package": "8ea57204-f613-40c5-9dc9-b5689e804155",
+      "customer": "149e01e4-6e39-4b5d-948c-4e88c880ec3a",
+      "createdAt": "2025-08-01T13:21:00Z",
+      "updatedAt": "2025-08-01T13:21:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "f4e0d1a9-9b3a-40d4-8428-e162cefff0bc",
+    "fields": {
+      "status": 1,
+      "ticketCount": 1,
+      "unitPrice": "1678.32",
+      "statusUpdatedAt": "2025-08-06T09:37:00Z",
+      "package": "a910ba4b-84e4-41e9-8668-7a5e218f2d95",
+      "customer": "c7602b52-cd0c-4a0b-a011-9ff9585f448e",
+      "createdAt": "2025-08-03T18:37:00Z",
+      "updatedAt": "2025-08-03T18:37:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "366004ed-d55a-480e-a2e7-15b0fb5660f2",
+    "fields": {
+      "status": 3,
+      "ticketCount": 4,
+      "unitPrice": "223.35",
+      "statusUpdatedAt": "2025-08-09T08:35:00Z",
+      "package": "f3df22e0-6eb1-445e-a5ba-0486a6db36bb",
+      "customer": "a1e9820f-98f9-40ac-97ad-07896919698f",
+      "createdAt": "2025-08-06T10:35:00Z",
+      "updatedAt": "2025-08-06T10:35:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "e9023116-395a-49a3-987c-bfc544486533",
+    "fields": {
+      "status": 1,
+      "ticketCount": 3,
+      "unitPrice": "899.41",
+      "statusUpdatedAt": "2025-08-30T09:36:00Z",
+      "package": "8ea57204-f613-40c5-9dc9-b5689e804155",
+      "customer": "aabe8b4c-ee6b-41b7-b202-8e459514a0cd",
+      "createdAt": "2025-08-28T07:36:00Z",
+      "updatedAt": "2025-08-28T07:36:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "c002a448-8582-4781-894f-696e712e3fd4",
+    "fields": {
+      "status": 1,
+      "ticketCount": 4,
+      "unitPrice": "600.00",
+      "statusUpdatedAt": "2025-09-02T16:45:00Z",
+      "package": "cccccccc-cccc-cccc-cccc-cccccccccccc",
+      "customer": "2c041b62-3d71-4dcb-adca-7ff32ddc9a88",
+      "createdAt": "2025-08-31T15:45:00Z",
+      "updatedAt": "2025-08-31T15:45:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "4700eb04-0582-4871-8305-838a091b39a7",
+    "fields": {
+      "status": 1,
+      "ticketCount": 2,
+      "unitPrice": "2158.94",
+      "statusUpdatedAt": "2025-07-25T11:37:00Z",
+      "package": "25067f13-bd53-461e-b243-f748aaa4de5e",
+      "customer": "1cf166e5-92a7-4841-a3be-764f1c466460",
+      "createdAt": "2025-07-23T16:37:00Z",
+      "updatedAt": "2025-07-23T16:37:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "8563ea09-b07a-4b08-bd19-4361b0bbf6b2",
+    "fields": {
+      "status": 3,
+      "ticketCount": 4,
+      "unitPrice": "703.33",
+      "statusUpdatedAt": "2025-08-13T19:46:00Z",
+      "package": "159d98bc-bb8c-4576-bbdc-ae42c758bc21",
+      "customer": "87d1772a-a3f9-4189-9bdb-de4f05b6a77e",
+      "createdAt": "2025-08-13T00:46:00Z",
+      "updatedAt": "2025-08-13T00:46:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "77afaad2-1dcf-443b-9f8b-15c343f18b01",
+    "fields": {
+      "status": 1,
+      "ticketCount": 2,
+      "unitPrice": "950.00",
+      "statusUpdatedAt": "2025-09-05T11:21:00Z",
+      "package": "eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee",
+      "customer": "74784455-297b-4ff6-97d7-32cf60aa5b0c",
+      "createdAt": "2025-09-03T08:21:00Z",
+      "updatedAt": "2025-09-03T08:21:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "2238b666-4e1b-41bc-838e-8c1cb1e5fb69",
+    "fields": {
+      "status": 2,
+      "ticketCount": 3,
+      "unitPrice": "1568.60",
+      "statusUpdatedAt": "2025-08-21T03:20:00Z",
+      "package": "42dbcf76-2772-45c3-a8bc-43bb56f572a4",
+      "customer": "3a782de0-bbf4-4f99-9bb8-460b59608bb4",
+      "createdAt": "2025-08-18T12:20:00Z",
+      "updatedAt": "2025-08-18T12:20:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "5c20bf3c-b457-4111-b17a-026df7e8fe81",
+    "fields": {
+      "status": 3,
+      "ticketCount": 1,
+      "unitPrice": "1432.49",
+      "statusUpdatedAt": "2025-08-01T09:43:00Z",
+      "package": "a202fd66-2dc1-4361-9d52-599882c018ea",
+      "customer": "149e01e4-6e39-4b5d-948c-4e88c880ec3a",
+      "createdAt": "2025-07-30T20:43:00Z",
+      "updatedAt": "2025-07-30T20:43:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "8c9abd2c-7e16-4b7e-9cfb-31148c1e90e2",
+    "fields": {
+      "status": 3,
+      "ticketCount": 1,
+      "unitPrice": "2000.06",
+      "statusUpdatedAt": "2025-09-02T09:45:00Z",
+      "package": "6ac09f9e-1d8c-4afb-8192-0ec99e0c0a6c",
+      "customer": "b02b7132-75c8-4b6f-9497-43d705736351",
+      "createdAt": "2025-09-01T20:45:00Z",
+      "updatedAt": "2025-09-01T20:45:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "720d6c71-7688-43e3-876c-2159eed0ab2e",
+    "fields": {
+      "status": 1,
+      "ticketCount": 3,
+      "unitPrice": "2412.40",
+      "statusUpdatedAt": "2025-07-17T18:50:00Z",
+      "package": "de10bcaa-c4dc-404a-a8c6-1298d968c4b6",
+      "customer": "f2cf4fc1-3451-4784-b752-0af9c03fe5cc",
+      "createdAt": "2025-07-17T10:50:00Z",
+      "updatedAt": "2025-07-17T10:50:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "d4fd321a-2d52-490f-bd36-0cb2898bfccd",
+    "fields": {
+      "status": 1,
+      "ticketCount": 3,
+      "unitPrice": "2000.06",
+      "statusUpdatedAt": "2025-07-31T16:26:00Z",
+      "package": "6ac09f9e-1d8c-4afb-8192-0ec99e0c0a6c",
+      "customer": "dffdf23d-4cf8-4246-bdf6-5dccbe9329f1",
+      "createdAt": "2025-07-30T16:26:00Z",
+      "updatedAt": "2025-07-30T16:26:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "8a781558-3ee0-49f4-b007-04d80642015d",
+    "fields": {
+      "status": 1,
+      "ticketCount": 1,
+      "unitPrice": "1432.49",
+      "statusUpdatedAt": "2025-08-26T13:15:00Z",
+      "package": "a202fd66-2dc1-4361-9d52-599882c018ea",
+      "customer": "ec588a7a-5831-4e57-8bac-ff349c60ea34",
+      "createdAt": "2025-08-23T21:15:00Z",
+      "updatedAt": "2025-08-23T21:15:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "00f0a67f-b3b6-4ead-a49a-b0d92211d706",
+    "fields": {
+      "status": 3,
+      "ticketCount": 2,
+      "unitPrice": "213.56",
+      "statusUpdatedAt": "2025-08-25T17:29:00Z",
+      "package": "8562557f-2745-4bc3-8688-70021a2d25bf",
+      "customer": "bdff114e-2215-4e5b-a2c8-44bb36817230",
+      "createdAt": "2025-08-24T08:29:00Z",
+      "updatedAt": "2025-08-24T08:29:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "67d96745-bf1c-4121-92c3-72076d7e51aa",
+    "fields": {
+      "status": 2,
+      "ticketCount": 4,
+      "unitPrice": "2412.40",
+      "statusUpdatedAt": "2025-08-28T03:10:00Z",
+      "package": "de10bcaa-c4dc-404a-a8c6-1298d968c4b6",
+      "customer": "3811c135-0ec1-43d3-a557-5acbb6f2c979",
+      "createdAt": "2025-08-27T17:10:00Z",
+      "updatedAt": "2025-08-27T17:10:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "498496d7-1119-409d-b5fe-870f53747b7b",
+    "fields": {
+      "status": 1,
+      "ticketCount": 3,
+      "unitPrice": "1472.99",
+      "statusUpdatedAt": "2025-08-25T22:44:00Z",
+      "package": "eff64558-afb9-4ad8-af00-0fb529bd18b1",
+      "customer": "25578d36-5779-489b-8bee-ced98e9999ce",
+      "createdAt": "2025-08-24T13:44:00Z",
+      "updatedAt": "2025-08-24T13:44:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "e7c288b3-7085-4a4d-b0db-8154cb8acf1e",
+    "fields": {
+      "status": 1,
+      "ticketCount": 3,
+      "unitPrice": "692.09",
+      "statusUpdatedAt": "2025-08-16T04:15:00Z",
+      "package": "486127c7-003e-4b59-8389-1586444f64eb",
+      "customer": "63d169a0-dcee-490f-99d4-63aaa7b0818f",
+      "createdAt": "2025-08-14T03:15:00Z",
+      "updatedAt": "2025-08-14T03:15:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "f96894c4-6ddf-4c3d-a0a2-f56557fdaaaa",
+    "fields": {
+      "status": 1,
+      "ticketCount": 5,
+      "unitPrice": "1678.32",
+      "statusUpdatedAt": "2025-08-04T03:53:00Z",
+      "package": "a910ba4b-84e4-41e9-8668-7a5e218f2d95",
+      "customer": "3f33122e-5ffb-43f9-8c73-f3fb71ff41f3",
+      "createdAt": "2025-08-02T00:53:00Z",
+      "updatedAt": "2025-08-02T00:53:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "93c0fb63-d69f-415a-bdab-a1e7aaca327a",
+    "fields": {
+      "status": 1,
+      "ticketCount": 5,
+      "unitPrice": "899.41",
+      "statusUpdatedAt": "2025-09-05T15:03:00Z",
+      "package": "8ea57204-f613-40c5-9dc9-b5689e804155",
+      "customer": "9c37e57e-7c60-4b74-8de7-9ee941048bf6",
+      "createdAt": "2025-09-02T23:03:00Z",
+      "updatedAt": "2025-09-02T23:03:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "cece2662-7ba2-41be-bec9-62ae84bcb542",
+    "fields": {
+      "status": 2,
+      "ticketCount": 3,
+      "unitPrice": "751.69",
+      "statusUpdatedAt": "2025-08-23T12:14:00Z",
+      "package": "872e52e4-ed49-4e8b-8760-15a1cb85793f",
+      "customer": "372897c5-3725-4d62-a8fd-8909eb00c8ff",
+      "createdAt": "2025-08-22T11:14:00Z",
+      "updatedAt": "2025-08-22T11:14:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "9fd7a483-5f8a-4586-ae70-94714cfef0d2",
+    "fields": {
+      "status": 2,
+      "ticketCount": 2,
+      "unitPrice": "1866.55",
+      "statusUpdatedAt": "2025-08-26T12:02:00Z",
+      "package": "1d089a4c-cd3b-4d20-80c0-3b9a099d48fd",
+      "customer": "b02b7132-75c8-4b6f-9497-43d705736351",
+      "createdAt": "2025-08-24T20:02:00Z",
+      "updatedAt": "2025-08-24T20:02:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "c3ae312e-827c-4d78-8009-735e22011523",
+    "fields": {
+      "status": 2,
+      "ticketCount": 1,
+      "unitPrice": "1472.99",
+      "statusUpdatedAt": "2025-08-31T18:05:00Z",
+      "package": "eff64558-afb9-4ad8-af00-0fb529bd18b1",
+      "customer": "9ada413f-95eb-4c0b-8aa5-7567405d32a1",
+      "createdAt": "2025-08-30T04:05:00Z",
+      "updatedAt": "2025-08-30T04:05:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "7cd3801a-184d-4b48-ba1c-644341cdc823",
+    "fields": {
+      "status": 1,
+      "ticketCount": 4,
+      "unitPrice": "385.33",
+      "statusUpdatedAt": "2025-07-25T16:56:00Z",
+      "package": "000cffc4-5713-42f1-b204-7a6b073ceff6",
+      "customer": "07689f1e-3a4f-4e70-8ef4-0494c845fad8",
+      "createdAt": "2025-07-23T17:56:00Z",
+      "updatedAt": "2025-07-23T17:56:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "5509c966-76f8-4b59-8a63-95cc5d1aa10c",
+    "fields": {
+      "status": 1,
+      "ticketCount": 3,
+      "unitPrice": "542.68",
+      "statusUpdatedAt": "2025-08-02T05:51:00Z",
+      "package": "adb7b94e-aa08-4d3c-b7a9-84a971f1aab3",
+      "customer": "4970b6ba-a1df-4b34-8855-bacb86bc3f4b",
+      "createdAt": "2025-07-31T15:51:00Z",
+      "updatedAt": "2025-07-31T15:51:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "b26a8181-b6bf-4329-95ba-b38f36f30ff1",
+    "fields": {
+      "status": 2,
+      "ticketCount": 3,
+      "unitPrice": "850.25",
+      "statusUpdatedAt": "2025-08-14T07:09:00Z",
+      "package": "ade81eab-def8-4b80-a4a8-5ece4f9b88d0",
+      "customer": "cb0626db-64c1-414e-bb8a-ea11501a9e5f",
+      "createdAt": "2025-08-13T02:09:00Z",
+      "updatedAt": "2025-08-13T02:09:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "3423380e-7021-4efd-a57e-95d1688e56a7",
+    "fields": {
+      "status": 3,
+      "ticketCount": 4,
+      "unitPrice": "1568.60",
+      "statusUpdatedAt": "2025-08-09T05:50:00Z",
+      "package": "42dbcf76-2772-45c3-a8bc-43bb56f572a4",
+      "customer": "36c127a1-219d-4c86-a59f-d9aca8a0eb47",
+      "createdAt": "2025-08-07T02:50:00Z",
+      "updatedAt": "2025-08-07T02:50:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "2bb6db72-0b6b-4bc2-b736-5642a09eac92",
+    "fields": {
+      "status": 1,
+      "ticketCount": 5,
+      "unitPrice": "1249.86",
+      "statusUpdatedAt": "2025-08-09T07:47:00Z",
+      "package": "a0423d08-a5fb-4724-92df-134d81cca0d3",
+      "customer": "8175904a-a9de-44c9-8ab6-a1363c0c8f28",
+      "createdAt": "2025-08-07T21:47:00Z",
+      "updatedAt": "2025-08-07T21:47:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "a617686e-9d47-43dc-a9ac-ffd9a856cef6",
+    "fields": {
+      "status": 1,
+      "ticketCount": 3,
+      "unitPrice": "703.33",
+      "statusUpdatedAt": "2025-08-01T15:01:00Z",
+      "package": "159d98bc-bb8c-4576-bbdc-ae42c758bc21",
+      "customer": "3a782de0-bbf4-4f99-9bb8-460b59608bb4",
+      "createdAt": "2025-07-29T15:01:00Z",
+      "updatedAt": "2025-07-29T15:01:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "719ea158-a641-4e05-af05-dada0abc2036",
+    "fields": {
+      "status": 1,
+      "ticketCount": 5,
+      "unitPrice": "213.56",
+      "statusUpdatedAt": "2025-07-22T08:52:00Z",
+      "package": "8562557f-2745-4bc3-8688-70021a2d25bf",
+      "customer": "d2c69722-3aba-4f78-9dfb-7f7d8046cdab",
+      "createdAt": "2025-07-19T20:52:00Z",
+      "updatedAt": "2025-07-19T20:52:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "dd31d5ef-030b-42e2-a322-1663e2b9def6",
+    "fields": {
+      "status": 3,
+      "ticketCount": 3,
+      "unitPrice": "723.21",
+      "statusUpdatedAt": "2025-07-22T09:02:00Z",
+      "package": "f926f657-b181-4d26-bf0e-8f263090515c",
+      "customer": "a7f7d438-b298-48db-a266-fb539c79ea22",
+      "createdAt": "2025-07-22T04:02:00Z",
+      "updatedAt": "2025-07-22T04:02:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "e957d49a-8347-4087-9d53-02fe50730b6c",
+    "fields": {
+      "status": 1,
+      "ticketCount": 4,
+      "unitPrice": "1249.86",
+      "statusUpdatedAt": "2025-08-01T19:08:00Z",
+      "package": "a0423d08-a5fb-4724-92df-134d81cca0d3",
+      "customer": "b02b7132-75c8-4b6f-9497-43d705736351",
+      "createdAt": "2025-07-30T17:08:00Z",
+      "updatedAt": "2025-07-30T17:08:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "6c450f26-65ff-4ff6-b23d-144d1f8566ed",
+    "fields": {
+      "status": 1,
+      "ticketCount": 5,
+      "unitPrice": "1561.83",
+      "statusUpdatedAt": "2025-09-03T05:09:00Z",
+      "package": "699c74de-bd51-48b0-93d5-612926f117bf",
+      "customer": "1288f40f-0f3e-441e-aa1c-26d5508ea05d",
+      "createdAt": "2025-08-31T23:09:00Z",
+      "updatedAt": "2025-08-31T23:09:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "7c3dedf4-dd5b-405e-8687-dceb43c35bc5",
+    "fields": {
+      "status": 2,
+      "ticketCount": 4,
+      "unitPrice": "1432.49",
+      "statusUpdatedAt": "2025-08-03T01:44:00Z",
+      "package": "a202fd66-2dc1-4361-9d52-599882c018ea",
+      "customer": "a7f7d438-b298-48db-a266-fb539c79ea22",
+      "createdAt": "2025-08-01T01:44:00Z",
+      "updatedAt": "2025-08-01T01:44:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "838e0766-ec82-4ccf-af38-43d04c5b80b7",
+    "fields": {
+      "status": 1,
+      "ticketCount": 4,
+      "unitPrice": "1919.29",
+      "statusUpdatedAt": "2025-07-24T19:23:00Z",
+      "package": "b1ee5c06-42d1-4668-a226-7e46e20b8406",
+      "customer": "9ada413f-95eb-4c0b-8aa5-7567405d32a1",
+      "createdAt": "2025-07-21T21:23:00Z",
+      "updatedAt": "2025-07-21T21:23:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "50f4efe5-860e-4f2b-9799-c3f571a86e23",
+    "fields": {
+      "status": 3,
+      "ticketCount": 3,
+      "unitPrice": "350.00",
+      "statusUpdatedAt": "2025-08-03T17:07:00Z",
+      "package": "dddddddd-dddd-dddd-dddd-dddddddddddd",
+      "customer": "839b32be-872e-4d9f-a2f3-62f51cf595a6",
+      "createdAt": "2025-08-01T06:07:00Z",
+      "updatedAt": "2025-08-01T06:07:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "5d73e102-4846-4624-8cbf-67780f696360",
+    "fields": {
+      "status": 1,
+      "ticketCount": 2,
+      "unitPrice": "723.21",
+      "statusUpdatedAt": "2025-08-23T19:03:00Z",
+      "package": "f926f657-b181-4d26-bf0e-8f263090515c",
+      "customer": "35fd9a08-2b84-4ec3-b9b9-ca51b9a90ab3",
+      "createdAt": "2025-08-22T00:03:00Z",
+      "updatedAt": "2025-08-22T00:03:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "ac1bf5a2-6a5c-40d2-b67d-ced59c8eb8c2",
+    "fields": {
+      "status": 1,
+      "ticketCount": 2,
+      "unitPrice": "1785.55",
+      "statusUpdatedAt": "2025-07-31T01:53:00Z",
+      "package": "34d3ca1d-68b2-4c8a-bb07-f1fc902f02d1",
+      "customer": "d1b8a681-124f-465b-872a-a40ef2b680f4",
+      "createdAt": "2025-07-28T02:53:00Z",
+      "updatedAt": "2025-07-28T02:53:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "43f228ec-9ef5-4252-ab87-143c77d9a75d",
+    "fields": {
+      "status": 1,
+      "ticketCount": 2,
+      "unitPrice": "1556.52",
+      "statusUpdatedAt": "2025-08-05T05:50:00Z",
+      "package": "ad48b64b-4ae4-4c30-bbee-e50f8c6d5708",
+      "customer": "372897c5-3725-4d62-a8fd-8909eb00c8ff",
+      "createdAt": "2025-08-05T04:50:00Z",
+      "updatedAt": "2025-08-05T04:50:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "cea0864a-64de-42b6-b05c-06dccdee4c8c",
+    "fields": {
+      "status": 1,
+      "ticketCount": 2,
+      "unitPrice": "2110.31",
+      "statusUpdatedAt": "2025-07-31T09:07:00Z",
+      "package": "5f7576fa-c7e5-4750-b3c8-6e8cb3641a29",
+      "customer": "cc198bd3-1fda-4240-9645-423f17ca2774",
+      "createdAt": "2025-07-31T05:07:00Z",
+      "updatedAt": "2025-07-31T05:07:00Z"
     }
   }
 ]
