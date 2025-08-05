@@ -46,6 +46,14 @@
             <a class="nav-link text-dark d-flex align-items-center" href="/admins/settings/account">
                 <i class="fa fa-gear"></i><span class="ms-2 d-none d-md-inline">Setting</span>
             </a>
+            <form id="signOutForm" action="{% url 'sign_out' %}" method="post" class="nav-link text-dark d-flex align-items-center pointer">
+                {% csrf_token %}
+                <i class="bi bi-box-arrow-right"></i><span class="ms-2 d-none d-md-inline text-danger" onclick='signout()'>Sign out</span>
+            </form>
+            <script>
+              const signout = () => document.getElementById('signOutForm').submit()
+            </script>
+
         </nav>
         <div class="mt-auto pt-3 pb-2">
             <a class="nav-link text-muted d-flex align-items-center" href="#">
