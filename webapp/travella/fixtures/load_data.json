@@ -2275,10 +2275,6 @@
   },
   {
     "model": "travella.booking",
-<<<<<<< HEAD
-    "pk": "66666666-7777-8888-9999-000000000000",
-
-=======
     "pk": "1701153d-401c-4d7f-82fd-c7aa1bfeedcf",
     "fields": {
       "status": 2,
@@ -2308,7 +2304,6 @@
   {
     "model": "travella.booking",
     "pk": "4b7190e5-4f8c-4d2f-9490-031912c2d010",
->>>>>>> security
     "fields": {
       "status": 2,
       "ticketCount": 1,

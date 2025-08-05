@@ -34,6 +34,7 @@ class Package(AbstractModel):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     availableTicket = models.IntegerField()
 
+    cover_photo = models.TextField(null=True)
     createdBy = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='packages')
 
@@ -61,3 +62,7 @@ class Itinerary(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['package', 'day'], name='unique_itinerary')
         ]
+
+class Photo(models.Model):
+    path = models.TextField(null=False)
+    package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name='photos')

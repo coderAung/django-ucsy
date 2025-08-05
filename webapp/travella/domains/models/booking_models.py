@@ -14,6 +14,6 @@ class Booking(AbstractModel):
     ticketCount = models.IntegerField()
     unitPrice = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     statusUpdatedAt = models.DateTimeField(auto_now=True)
-
+    
     package = models.ForeignKey('Package', on_delete=models.PROTECT, related_name='bookings')
     customer = models.ForeignKey('Account', on_delete=models.PROTECT, related_name='bookings')

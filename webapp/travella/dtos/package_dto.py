@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from typing import List, Optional
 
 from ..domains.models.booking_models import Booking
-from ..domains.models.tour_models import Package
+from ..domains.models.tour_models import Itinerary, Package
 
 
 @dataclass(frozen=True)
@@ -204,11 +204,23 @@ class BookingStatus:
             )
 
 
+@dataclass
+class ItineraryDto:
+    day:int
+    title:str
+    description:str
+
+    @staticmethod
+    def of(i:Itinerary) -> 'ItineraryDto':
+        return ItineraryDto(i.day, i.title, i.description)
+
 @dataclass(frozen=True)
 class PackageDetail(PackageItem):
     overview: str
     bookingStatusItems: List['BookingStatus']  # Correct type hint for a list of BookingStatus
     remaining_ticket: int
+    itineraries: List['ItineraryDto']
+
     def end_in(self):
         return self.departure - datetime.timedelta(days=2)
 
@@ -222,6 +234,7 @@ class PackageDetail(PackageItem):
                 .overview(package.overview)
                 .remaining_ticket(package.availableTicket - package.booking_count)
                 .booking_status_items([BookingStatus.of(b) for b in package.bookings.all()])  # Initialize empty list or some default
+                .itineraries([ItineraryDto.of(i) for i in package.itineraries.all()])
                 .build())
 
     class Builder:
@@ -230,6 +243,7 @@ class PackageDetail(PackageItem):
             self._overview: Optional[str] = None
             self._remaining_ticket: Optional[int] = 0
             self._booking_status_items: Optional[List['BookingStatus']] = None
+            self._itineraries: Optional[List['ItineraryDto']] = None
 
         def item(self, item: 'PackageItem') -> 'PackageDetail.Builder':
             self._item_builder = (
@@ -262,6 +276,10 @@ class PackageDetail(PackageItem):
         def booking_status_items(self, value: List['BookingStatus']) -> 'PackageDetail.Builder':
             self._booking_status_items = value
             return self
+        
+        def itineraries(self, value: List['ItineraryDto']) -> 'PackageDetail.Builder':
+            self._itineraries = value
+            return self
 
         def build(self) -> 'PackageDetail':
             missing = []
@@ -273,6 +291,8 @@ class PackageDetail(PackageItem):
                 missing.append('remainingTicket')
             if self._booking_status_items is None:
                 missing.append('bookingStatusItems')
+            if self._itineraries is None:
+                missing.append('_itineraries')
             if missing:
                 raise ValueError(f'Missing fields for PackageDetail: {", ".join(missing)}')
 
@@ -291,4 +311,5 @@ class PackageDetail(PackageItem):
                 overview=self._overview,  # type: ignore[arg-type]
                 remaining_ticket=self._remaining_ticket,
                 bookingStatusItems=self._booking_status_items,  # type: ignore[arg-type]
+                itineraries=self._itineraries
             )

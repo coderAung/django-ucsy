@@ -28,10 +28,10 @@
   </form>
 
   <!-- Booking table -->
-  <div class="table-responsive">
+  <div class="">
     <table class="table table-hover align-middle df-fs-sm">
       <thead class="table-light">
-        <tr>
+        <tr class="postition-sticky sticky-top">
           <th>Username</th>
           <th>Package</th>
           <th>Booked Date</th>
@@ -47,13 +47,13 @@
     <td>{{ booking.package_title }}</td>
     <td>{{ booking.booked_date|date:"F j, Y" }}</td>
     <td>
-      <span class="badge
+      <span class="df-badge
         {% if booking.status_display == 'Reserved' %}
-          bg-success
+          badge-green
         {% elif booking.status_display == 'Cancelled' %}
-          bg-danger
+          badge-red
         {% else %}
-          bg-primary
+          badge-blue
         {% endif %}
       ">
       {{ booking.status_display }}

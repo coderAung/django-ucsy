@@ -47,6 +47,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px !important;
 }
 
+.df-fs-sm {
+  font-size: 14px !important;
+}
+
 .df-fs-nm {
   font-size: 16px;
 }
@@ -82,14 +86,13 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s ease-in-out;
 }
 
-/* Slightly transparent backgrounds */
-.badge-blue    { background-color: rgba(230, 240, 255, 0.4); color: var(--df-text-blue); }
-.badge-red     { background-color: rgba(253, 234, 234, 0.4); color: var(--df-text-red); }
-.badge-yellow  { background-color: rgba(255, 248, 225, 0.4); color: var(--df-text-yellow); }
-.badge-green   { background-color: rgba(230, 244, 234, 0.4); color: var(--df-text-green); }
-.badge-cyan    { background-color: rgba(224, 247, 250, 0.4); color: var(--df-text-cyan); }
-.badge-purple  { background-color: rgba(243, 232, 253, 0.4); color: var(--df-text-purple); }
-.badge-gray    { background-color: rgba(241, 243, 245, 0.4); color: var(--df-text-gray); }
+.badge-blue    { background-color: rgba(230, 240, 255, 0.9); color: var(--df-text-blue); }
+.badge-red     { background-color: rgba(253, 234, 234, 0.9); color: var(--df-text-red); }
+.badge-yellow  { background-color: rgba(255, 248, 225, 0.9); color: var(--df-text-yellow); }
+.badge-green   { background-color: rgba(230, 244, 234, 0.9); color: var(--df-text-green); }
+.badge-cyan    { background-color: rgba(224, 247, 250, 0.9); color: var(--df-text-cyan); }
+.badge-purple  { background-color: rgba(243, 232, 253, 0.9); color: var(--df-text-purple); }
+.badge-gray    { background-color: rgba(241, 243, 245, 0.9); color: var(--df-text-gray); }
 
 /* ======================
    DF Soft Button Styles
