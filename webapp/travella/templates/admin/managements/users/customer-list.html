@@ -77,35 +77,70 @@
     <div class="d-flex justify-content-between align-items-center mb-4 page-header">
         <h2>Customer Management</h2>
     </div>
+
     <div class="content-card">
-        <div class="row mb-4">
-            <div class="col-md-5">
-                <div class="input-group">
-                    <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-search"></i></span>
-                    <input type="text" class="form-control border-start-0" placeholder="Search...">
+        <form method="GET" action="">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search_query" placeholder="Search by name, email, or phone..." aria-label="Search">
+                        <button class="btn btn-add-staff" type="submit" id="button-addon2">
+                            <i class="bi bi-search me-1"></i> Search
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <select class="form-select"><option selected>All Statuses</option></select>
-            </div>
-        </div>
+        </form>
+
         <div class="table-responsive">
             <table class="table">
-                <thead><tr><th>Name</th><th>Contact</th><th>Joined</th><th>Status</th><th></th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Account Created</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
-                                <img src="..." class="profile-pic-sm me-3">
+                                <img src="https://plus.unsplash.com/premium_photo-1690407617542-2f210cf20d7e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fHww" class="profile-pic-sm me-3">
                                 <div>
                                     <div class="user-name">Aung</div>
                                     <div class="small text-muted">aung@gmail.com</div>
                                 </div>
                             </div>
                         </td>
-                        <td>09-123456789</td><td>Aug 03, 2025</td>
+                        <td>09-123456789</td>
+                        <td>Aug 03, 2025</td>
                         <td><span class="badge bg-success">Active</span></td>
-                        <td class="text-end"><a href="..." class="btn btn-sm btn-view-details px-3">View</a></td>
+                        <td class="text-end">
+                            <a href="..." class="btn btn-light btn-sm border-0" title="View Details">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="https://plus.unsplash.com/premium_photo-1690407617542-2f210cf20d7e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fHww" class="profile-pic-sm me-3">
+                                <div>
+                                    <div class="user-name">May</div>
+                                    <div class="small text-muted">may@gmail.com</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>09-987654321</td>
+                        <td>Jul 20, 2025</td>
+                        <td><span class="badge bg-danger-subtle text-danger-emphasis">Banned</span></td>
+                        <td class="text-end">
+                            <a href="..." class="btn btn-light btn-sm border-0" title="View Details">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
