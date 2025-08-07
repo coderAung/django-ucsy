@@ -3,6 +3,14 @@
 <div class="container">
   <h3 class="mb-4 mt-3 fw-semibold text-primary">Booking Management</h3>
 
+  <!-- Counts summary -->
+  <div style="background:#f8f9fa; padding:10px 15px; border-radius:6px; margin-bottom:25px; font-size:1rem; font-weight:600; color:#444; display:inline-flex; gap:30px;">
+    <div style="margin-bottom:4px;">Total Bookings: <span style="color:#1a2940;">{{ total_count }}</span></div>
+    <div style="margin-bottom:4px;">Pending Bookings: <span style="color:#1847c9;">{{ pending_count }}</span></div>
+    <div style="margin-bottom:4px;">Reserved Bookings: <span style="color:#198754;">{{ reserved_count }}</span></div>
+    <div style="margin-bottom:4px;">Cancelled Bookings: <span style="color:#dc3545;">{{ cancelled_count }}</span></div>
+  </div>
+    
   <!-- Search and filter -->
   <form method="GET" class="row row-cols-lg-auto g-3 align-items-center mb-4" >
     <div class="col">
@@ -34,8 +42,8 @@
         <tr class="postition-sticky sticky-top">
           <th>Username</th>
           <th>Package</th>
-          <th>Booked Date</th>
           <th>Status</th>
+          <th>Booked Date</th>
           <th>Time</th>
           <th>Action</th>
         </tr>
@@ -45,7 +53,7 @@
   <tr>
     <td>{{ booking.customer_name }}</td>
     <td>{{ booking.package_title }}</td>
-    <td>{{ booking.booked_date|date:"F j, Y" }}</td>
+   
     <td>
       <span class="df-badge
         {% if booking.status_display == 'Reserved' %}
@@ -59,7 +67,22 @@
       {{ booking.status_display }}
       </span>
     </td>
-    <td>{{ booking.time|time:"g:i A" }}</td>
+   <td>
+  {% if booking.status_display == "Pending" %}
+    {{ booking.created_date|date:"F j, Y" }}
+  {% else %}
+    {{ booking.status_updated_date|date:"F j, Y" }}
+  {% endif %}
+</td>
+<td>
+  {% if booking.status_display == "Pending" %}
+    {{ booking.created_time }}
+  {% else %}
+    {{ booking.status_updated_time }}
+  {% endif %}
+</td>
+
+
     <td>
       <a href="{% url 'booking_detail' booking.id %}" class="btn btn-info btn-sm text-white px-3">Details</a>
     </td>
