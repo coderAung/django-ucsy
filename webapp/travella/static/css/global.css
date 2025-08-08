@@ -10,6 +10,8 @@
   --df-text-yellow: #ffc107;
   --df-text-green: #28a745;
   --df-text-cyan: #17a2b8;
+  --df-text-purple: #6f42c1;
+  --df-text-gray: #6c757d;
 
   --df-linen: #ece7e2;
 }
@@ -34,21 +36,48 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
-.df-fs-sm { font-size: 14px; }
+* {
+    font-size: 16px;
+}
 
-.df-bg-linen        { background-color: var(--df-linen); }
+.pointer {
+  cursor: pointer;
+}
 
-.df-text-primary    { color: var(--df-blue-primary); }
-.df-text-light      { color: var(--df-blue-light); }
-.df-text-softer     { color: var(--df-blue-softer); }
-.df-text-pale       { color: var(--df-blue-pale); }
-.df-text-blue       { color: var(--df-text-blue); }
-.df-text-red        { color: var(--df-text-red); }
-.df-text-yellow     { color: var(--df-text-yellow); }
-.df-text-green      { color: var(--df-text-green); }
-.df-text-cyan       { color: var(--df-text-cyan); }
+/* apply to table and its cells */
+.table.df-fs-sm,
+.table.df-fs-sm th,
+.table.df-fs-sm td {
+  font-size: 14px !important;
+}
 
-/* DF Badge */
+.df-fs-sm {
+  font-size: 14px !important;
+}
+
+.df-fs-nm {
+  font-size: 16px;
+}
+
+.df-bg-linen {
+  background-color: var(--df-linen);
+}
+
+.df-text-primary { color: var(--df-blue-primary); }
+.df-text-light   { color: var(--df-blue-light); }
+.df-text-softer  { color: var(--df-blue-softer); }
+.df-text-pale    { color: var(--df-blue-pale); }
+.df-text-blue    { color: var(--df-text-blue); }
+.df-text-red     { color: var(--df-text-red); }
+.df-text-yellow  { color: var(--df-text-yellow); }
+.df-text-green   { color: var(--df-text-green); }
+.df-text-cyan    { color: var(--df-text-cyan); }
+.df-text-purple  { color: var(--df-text-purple); }
+.df-text-gray    { color: var(--df-text-gray); }
+
+/* ======================
+   DF Badge Styles
+====================== */
 .df-badge {
   display: inline-block;
   padding: 0.35em 0.75em;
@@ -56,14 +85,205 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1;
   border-radius: 0.5rem;
-  background-color: #f0f0f0;
+  background-color: rgba(240, 240, 240, 0.7);
   user-select: none;
   transition: all 0.3s ease-in-out;
 }
 
-/* Badge Colors */
-.badge-blue     { background-color: #e6f0ff; color: var(--df-text-blue); }
-.badge-red      { background-color: #fdeaea; color: var(--df-text-red); }
-.badge-yellow   { background-color: #fff8e1; color: var(--df-text-yellow); }
-.badge-green    { background-color: #e6f4ea; color: var(--df-text-green); }
-.badge-cyan     { background-color: #e0f7fa; color: var(--df-text-cyan); }
+.badge-blue    { background-color: rgba(230, 240, 255, 0.9); color: var(--df-text-blue); }
+.badge-red     { background-color: rgba(253, 234, 234, 0.9); color: var(--df-text-red); }
+.badge-yellow  { background-color: rgba(255, 248, 225, 0.9); color: var(--df-text-yellow); }
+.badge-green   { background-color: rgba(230, 244, 234, 0.9); color: var(--df-text-green); }
+.badge-cyan    { background-color: rgba(224, 247, 250, 0.9); color: var(--df-text-cyan); }
+.badge-purple  { background-color: rgba(243, 232, 253, 0.9); color: var(--df-text-purple); }
+.badge-gray    { background-color: rgba(241, 243, 245, 0.9); color: var(--df-text-gray); }
+
+/* ======================
+   DF Soft Button Styles
+====================== */
+.df-btn-soft-blue {
+  background-color: #e6f0ff;
+  color: var(--df-text-blue);
+  border: 1px solid transparent;
+}
+.df-btn-soft-blue:hover {
+  background-color: #cfe4ff;
+  border-color: var(--df-text-blue);
+}
+
+.df-btn-soft-red {
+  background-color: #fdeaea;
+  color: var(--df-text-red);
+  border: 1px solid transparent;
+}
+.df-btn-soft-red:hover {
+  background-color: #fcd3d3;
+  border-color: var(--df-text-red);
+}
+
+.df-btn-soft-yellow {
+  background-color: #fff8e1;
+  color: var(--df-text-yellow);
+  border: 1px solid transparent;
+}
+.df-btn-soft-yellow:hover {
+  background-color: #fff2c2;
+  border-color: var(--df-text-yellow);
+}
+
+.df-btn-soft-green {
+  background-color: #e6f4ea;
+  color: var(--df-text-green);
+  border: 1px solid transparent;
+}
+.df-btn-soft-green:hover {
+  background-color: #cfead8;
+  border-color: var(--df-text-green);
+}
+
+.df-btn-soft-cyan {
+  background-color: #e0f7fa;
+  color: var(--df-text-cyan);
+  border: 1px solid transparent;
+}
+.df-btn-soft-cyan:hover {
+  background-color: #b8eef5;
+  border-color: var(--df-text-cyan);
+}
+
+.df-btn-soft-purple {
+  background-color: #f3e8fd;
+  color: var(--df-text-purple);
+  border: 1px solid transparent;
+}
+.df-btn-soft-purple:hover {
+  background-color: #e1d1fa;
+  border-color: var(--df-text-purple);
+}
+
+.df-btn-soft-gray {
+  background-color: #f1f3f5;
+  color: var(--df-text-gray);
+  border: 1px solid transparent;
+}
+.df-btn-soft-gray:hover {
+  background-color: #e2e6ea;
+  border-color: var(--df-text-gray);
+}
+
+/* ======================
+   DF Alert Styles
+====================== */
+.df-alert {
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.375rem;
+}
+.df-alert * {
+  color: inherit;
+}
+
+.df-alert-blue {
+  background-color: #e6f0ff;
+  color: var(--df-text-blue);
+  border: 1px solid var(--df-text-blue);
+}
+
+.df-alert-red {
+  background-color: #fdeaea;
+  color: var(--df-text-red);
+  border: 1px solid var(--df-text-red);
+}
+
+.df-alert-yellow {
+  background-color: #fff8e1;
+  color: var(--df-text-yellow);
+  border: 1px solid var(--df-text-yellow);
+}
+
+.df-alert-green {
+  background-color: #e6f4ea;
+  color: var(--df-text-green);
+  border: 1px solid var(--df-text-green);
+}
+
+.df-alert-cyan {
+  background-color: #e0f7fa;
+  color: var(--df-text-cyan);
+  border: 1px solid var(--df-text-cyan);
+}
+
+.df-alert-purple {
+  background-color: #f3e8fd;
+  color: var(--df-text-purple);
+  border: 1px solid var(--df-text-purple);
+}
+
+.df-alert-gray {
+  background-color: #f1f3f5;
+  color: var(--df-text-gray);
+  border: 1px solid var(--df-text-gray);
+}
+
+/* Glass button */
+.df-btn-glass-blue {
+  background-color: rgba(0, 123, 255, 0.15);
+  color: var(--df-text-blue);
+  backdrop-filter: blur(8px);
+}
+.df-btn-glass-blue:hover {
+  background-color: rgba(0, 123, 255, 0.25);
+}
+
+.df-btn-glass-red {
+  background-color: rgba(220, 53, 69, 0.15);
+  color: var(--df-text-red);
+  backdrop-filter: blur(8px);
+}
+.df-btn-glass-red:hover {
+  background-color: rgba(220, 53, 69, 0.25);
+}
+
+.df-btn-glass-yellow {
+  background-color: rgba(255, 193, 7, 0.15);
+  color: var(--df-text-yellow);
+  backdrop-filter: blur(8px);
+}
+.df-btn-glass-yellow:hover {
+  background-color: rgba(255, 193, 7, 0.25);
+}
+
+.df-btn-glass-green {
+  background-color: rgba(40, 167, 69, 0.15);
+  color: var(--df-text-green);
+  backdrop-filter: blur(8px);
+}
+.df-btn-glass-green:hover {
+  background-color: rgba(40, 167, 69, 0.25);
+}
+
+.df-btn-glass-cyan {
+  background-color: rgba(23, 162, 184, 0.15);
+  color: var(--df-text-cyan);
+  backdrop-filter: blur(8px);
+}
+.df-btn-glass-cyan:hover {
+  background-color: rgba(23, 162, 184, 0.25);
+}
+
+.df-btn-glass-purple {
+  background-color: rgba(111, 66, 193, 0.15);
+  color: var(--df-text-purple);
+  backdrop-filter: blur(8px);
+}
+.df-btn-glass-purple:hover {
+  background-color: rgba(111, 66, 193, 0.25);
+}
+
+.df-btn-glass-gray {
+  background-color: rgba(108, 117, 125, 0.15);
+  color: var(--df-text-gray);
+  backdrop-filter: blur(8px);
+}
+.df-btn-glass-gray:hover {
+  background-color: rgba(108, 117, 125, 0.25);
+}

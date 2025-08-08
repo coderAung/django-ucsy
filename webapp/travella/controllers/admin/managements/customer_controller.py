@@ -1,3 +1,5 @@
+import uuid
+
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
@@ -8,8 +10,8 @@ def view(name:str) -> str:
 
 # customers/ GET
 def list(request:HttpRequest) -> HttpResponse:
-    return render(request, view('list'))
+    return render(request, view('customer-list'))
 
 # customers/<id:int> GET
-def detail(request:HttpRequest, id:int) -> HttpResponse:
-    return render(request, view('detail'))
+def detail(request:HttpRequest, id:uuid) -> HttpResponse:
+    return render(request, view('customer-detail'))

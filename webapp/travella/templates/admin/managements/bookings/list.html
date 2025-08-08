@@ -1,21 +1,23 @@
 {% extends 'layouts/admin-layout.html' %}
 {% block content %}
-<div class="bg-white border rounded-4 p-4 shadow-sm">
-  <h3 class="mb-4 fw-semibold text-primary">Booking Management</h3>
+<div class="container">
+  <h3 class="mb-4 mt-3 fw-semibold text-primary">Booking Management</h3>
 
   <!-- Search and filter -->
-  <form class="row row-cols-lg-auto g-3 align-items-center mb-4">
+  <form method="GET" class="row row-cols-lg-auto g-3 align-items-center mb-4" >
     <div class="col">
-      <select class="form-select">
-        <option value="">All Status</option>
-        <option value="pending">Pending</option>
-        <option value="reserved">Reserved</option>
-        <option value="cancelled">Cancelled</option>
-      </select>
+     <select name="status" class="form-select">
+    <option value="">All</option>
+    <option value="pending" {% if request.GET.status == 'pending' %}selected{% endif %}>Pending</option>
+    <option value="reserved" {% if request.GET.status == 'reserved' %}selected{% endif %}>Reserved</option>
+    <option value="cancelled" {% if request.GET.status == 'cancelled' %}selected{% endif %}>Cancelled</option>
+</select>
+
+
     </div>
 
     <div class="col">
-      <input type="text" class="form-control" placeholder="Username or Booking ID">
+      <input type="text" class="form-control" name="query"  placeholder="Username or Booking ID">
     </div>
 
     <div class="col">
@@ -26,10 +28,10 @@
   </form>
 
   <!-- Booking table -->
-  <div class="table-responsive">
-    <table class="table table-hover align-middle">
+  <div class="">
+    <table class="table table-hover align-middle df-fs-sm">
       <thead class="table-light">
-        <tr>
+        <tr class="postition-sticky sticky-top">
           <th>Username</th>
           <th>Package</th>
           <th>Booked Date</th>
@@ -39,28 +41,34 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>janedoe</td>
-          <td>Mountain Adventure</td>
-          <td>August 1, 2025</td>
-          <td><span class="badge bg-success">Reserved</span></td>
-          <td>8:00 AM</td>
-          <td>
-            <a href="/admins/bookings/1/" class="btn btn-info btn-sm text-white px-3">Details</a>
-          </td>
-        </tr>
+ {% for booking in bookings %}
+  <tr>
+    <td>{{ booking.customer_name }}</td>
+    <td>{{ booking.package_title }}</td>
+    <td>{{ booking.booked_date|date:"F j, Y" }}</td>
+    <td>
+      <span class="df-badge
+        {% if booking.status_display == 'Reserved' %}
+          badge-green
+        {% elif booking.status_display == 'Cancelled' %}
+          badge-red
+        {% else %}
+          badge-blue
+        {% endif %}
+      ">
+      {{ booking.status_display }}
+      </span>
+    </td>
+    <td>{{ booking.time|time:"g:i A" }}</td>
+    <td>
+      <a href="{% url 'booking_detail' booking.id %}" class="btn btn-info btn-sm text-white px-3">Details</a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="6">No bookings found.</td></tr>
+  {% endfor %}
+</tbody>
 
-        <tr>
-          <td>johnsmith</td>
-          <td>Beach Getaway</td>
-          <td>July 15, 2025</td>
-          <td><span class="badge bg-danger">Cancelled</span></td>
-          <td>8:40 AM</td>
-          <td>
-            <a href="/admins/bookings/2/" class="btn btn-info btn-sm text-white px-3">Details</a>
-          </td>
-        </tr>
-      </tbody>
     </table>
   </div>
 </div>
