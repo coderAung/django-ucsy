@@ -1,0 +1,14 @@
+from django.urls import path
+from travella.controllers.public import public_controller
+from travella.controllers.customer import review_controller
+
+
+urlpatterns = [
+    path('discover/', public_controller.discover, name='discover'),
+    path('packages/', public_controller.packages),
+    path('packages/<str:code>', public_controller.package_detail),
+
+    path('reviews/', review_controller.list),
+    path('reviews/<int:id>/', review_controller.detail),
+
+]
