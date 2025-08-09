@@ -47,17 +47,25 @@ def get_booking_list_dtos_from_queryset(bookings_queryset):
             id=b.id,
             customer_name=customer_name,
             package_title=b.package.title,
-            booked_date=b.statusUpdatedAt.date(),
             status_display=b.get_status_display(),
-            time=b.statusUpdatedAt.time(),
+            created_date=b.createdAt.date(),
+            created_time=b.createdAt.strftime('%I:%M %p').lstrip("0"),
+            status_updated_date=b.statusUpdatedAt.date(),
+            status_updated_time=b.statusUpdatedAt.strftime('%I:%M %p').lstrip("0"),
         ))
     return dtos
 
 
+
+
+
 def get_booking_detail_dto(booking_id):
     b = Booking.objects.select_related('customer__accountdetail', 'package').get(id=booking_id)
-    customer_name = b.customer.accountdetail.name if hasattr(b.customer, 'accountdetail') else b.customer.email
-    customer_phone = b.customer.accountdetail.phone if hasattr(b.customer, 'accountdetail') else ''
+    account_detail = getattr(b.customer, 'accountdetail', None)
+    
+    customer_name = account_detail.name if account_detail else b.customer.email
+    customer_phone = account_detail.phone if account_detail else ''
+    
     return BookingDetailDTO(
         id=b.id,
         status=b.get_status_display(),
@@ -70,3 +78,4 @@ def get_booking_detail_dto(booking_id):
         package_departure=b.package.departure,
         package_duration=b.package.duration,
     )
+

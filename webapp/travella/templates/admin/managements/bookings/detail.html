@@ -2,12 +2,12 @@
 
 {% block content %}
 <div class="container my-5">
-  <div class="card border-0 shadow-lg rounded-4" style="max-width: 800px; margin-left: 70px;">
+  <div class="card border-0 shadow-lg rounded-4" style="max-width: 800px; margin-left: 20px;">
     
     <!-- Fancy Header -->
     
- <div class="card-header bg-gradient bg-info text-center py-2 rounded-top-4">
-  <h4 class="mb-1 fw-semibold" style="color:#393B4D;">📋 Booking Info</h4> <!-- Tailwind blue-500 as example -->
+ <div class="card-header text-center py-2 rounded-top-4" style="background: #BBF6FC;">
+  <h4 class="mb-1 fw-semibold" style="color:#393B4D;">📋 Booking Info</h4>
   <p class="mb-0 small" style="color: #6c757d;">Overview of the traveler's booking information</p>
 </div>
 
@@ -26,18 +26,52 @@
         <div class="col-sm-7">{{ booking.id }}</div>
       </div>
 
-       <div class="row mb-3">
-        <div class="col-sm-5 text-muted fw-semibold">📌 Status:</div>
-        <div class="col-sm-7">
-          {% if booking.status == Status.RESERVED %}
-            <span class="badge bg-success px-3 py-2 rounded-pill">Reserved at {{ booking.statusUpdatedAt|time:"g:i A" }}</span>
-          {% elif booking.status == Status.CANCELLED %}
-            <span class="badge bg-danger px-3 py-2 rounded-pill">Cancelled at {{ booking.statusUpdatedAt|time:"g:i A" }}</span>
-          {% else %}
-            <span class="badge bg-primary px-3 py-2 rounded-pill">Pending at {{ booking.statusUpdatedAt|time:"g:i A" }}</span>
-          {% endif %}
-        </div>
-      </div>
+       <!-- Booking Date & Time Section -->
+{% if booking.status == 1 %}
+  <div class="row mb-3">
+    <div class="col-sm-5 text-muted fw-semibold">⏳ Pending Date:</div>
+    <div class="col-sm-7">{{ pending_date }}</div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-5 text-muted fw-semibold">🕒 Pending Time:</div>
+    <div class="col-sm-7">{{ pending_time }}</div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-5 text-muted fw-semibold">📅 Reserved/Cancelled Date:</div>
+    <div class="col-sm-7">{{ reserved_or_cancelled_date }}</div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-5 text-muted fw-semibold">⏰ Reserved/Cancelled Time:</div>
+    <div class="col-sm-7">{{ reserved_or_cancelled_time }}</div>
+  </div>
+
+{% elif booking.status == 2 %}
+  <div class="row mb-3">
+    <div class="col-sm-5 text-muted fw-semibold">📅 Reserved Date:</div>
+    <div class="col-sm-7">{{ reserved_or_cancelled_date }}</div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-5 text-muted fw-semibold">⏰ Reserved Time:</div>
+    <div class="col-sm-7">{{ reserved_or_cancelled_time }}</div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-5 text-muted fw-semibold">🙍 Reserved By:</div>
+    <div class="col-sm-7">{{ reserved_by_name }}</div>
+  </div>
+
+{% elif booking.status == 3 %}
+  <div class="row mb-3">
+    <div class="col-sm-5 text-muted fw-semibold">❌ Cancelled Date:</div>
+    <div class="col-sm-7">{{ reserved_or_cancelled_date }}</div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-5 text-muted fw-semibold">⏰ Cancelled Time:</div>
+    <div class="col-sm-7">{{ reserved_or_cancelled_time }}</div>
+  </div>
+{% endif %}
+
+
+
        <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">🗓️ Departure Time:</div>
         <div class="col-sm-7">{{ booking.package.departure|date:"F j, Y" }}</div>
@@ -64,7 +98,7 @@
       </div>
 
       <!-- Decorative Divider -->
-      <hr class="border border-info border-2 opacity-50 rounded-pill my-4">
+      <hr class="border border-info border-2 opacity-70 rounded-pill my-4">
 
       <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">👤 Traveler Name:</div>
@@ -87,15 +121,6 @@
       </div>
     </div>
   </div>
-</div>
-
- 
-
-     
-
-     
-
-      
-
-     
+</div> 
+    
 {% endblock %}

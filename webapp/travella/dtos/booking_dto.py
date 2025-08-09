@@ -1,13 +1,20 @@
 # travella/dtos/booking_dto.py
 
 class BookingListDTO:
-    def __init__(self, id, customer_name, package_title, booked_date, status_display, time):
+    def __init__(
+        self, id, customer_name, package_title, status_display,
+        created_date, created_time,
+        status_updated_date, status_updated_time,
+    ):
         self.id = id
         self.customer_name = customer_name
         self.package_title = package_title
-        self.booked_date = booked_date
         self.status_display = status_display
-        self.time = time
+        self.created_date = created_date
+        self.created_time = created_time
+        self.status_updated_date = status_updated_date
+        self.status_updated_time = status_updated_time
+
 
 
 class BookingDetailDTO:
