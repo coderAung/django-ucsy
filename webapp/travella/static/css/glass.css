@@ -45,7 +45,6 @@
 
 .glass-item.active {
   background-color: rgba(107, 147, 233, 0.4);
-  color: #ffffff;
 }
 
 .glass-item.active::before {
