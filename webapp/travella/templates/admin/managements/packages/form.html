@@ -14,6 +14,7 @@
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/package-form.css' %}" />
     <link rel="stylesheet" href="{% static 'css/glass.css' %}" />
     <script src="{% static 'js/package-form.js' %}"></script>
 </head>
@@ -25,33 +26,28 @@
                 <h3>Add a package</h3>
             </div>
             <div class="shadow p-2">
-                <form action="" enctype="multipart/form-data">
+                <form id="packageForm" action="/admins/packages/save/" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-4">
                             <div id="gallery" class="px-3 py-3 border h-100">
-                                {% if image %}
-                                <div id="pictureContainer" class="row row-cols-2 row-gap-3">                   
+                                <div id="pictureContainer" class="row row-cols-2 row-gap-4">                   
+                                    {% if image %}
                                     <div class="col">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <img src="https://cdn.wallpapersafari.com/1/28/vw96To.jpg"
                                             alt="" class="img-fluid rounded">
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div
-                                            class="w-100 h-100 d-flex justify-content-center align-items-center df-bg-linen rounded">
-                                            <i class="bi bi-folder-plus fs-2 text-muted"></i>
+                                    {% endif %}
+                                    <div class="col d-flex align-items-center">
+                                        <input id="imageInput" class="d-none" type="file" name="images" multiple>
+                                        <div id="uploadPictureBtn" class="uploadPictureCard w-100 rounded d-flex justify-content-center align-items-center pointer" style="min-height: 100px; border: 2px dashed #0d6efd;">
+                                            Upload Photo
                                         </div>
                                     </div>
 
                                 </div>
-                                {% else %}
-                                <div id="uploadPictureBtnContainer">
-                                    <input id="imageInput" class="d-none" type="file" name="images" multiple>
-                                    <button id="uploadPictureBtn" type="button" class="btn df-btn-glass-gray w-100">Upload Picture</button>
-                                </div>
-                                {% endif %}
                             </div>
                         </div>
                         <div class="col-8">
@@ -64,8 +60,8 @@
                                         </div>
                                         <div>
                                             <label for="categoryBtn" class="h6">Category</label>
-                                            <input type="text" class="d-none" name="cid">
-                                            <button id="categoryBtn" class="btn df-btn-glass-blue"
+                                            <input type="text" id="cidInput" class="d-none" name="cid">
+                                            <button id="categoryBtn" type="button" class="btn df-btn-glass-blue"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#categoryModal">Choose One</button>
 
@@ -135,7 +131,7 @@
                             <div class="row">
                                 <div class="d-flex justify-content-end column-gap-3">
                                     <button class="btn df-btn-glass-red">Cancel</button>
-                                    <button class="btn btn-primary">Publish</button>
+                                    <button type="submit" class="btn btn-primary">Publish</button>
                                 </div>
                             </div>
                         </div>

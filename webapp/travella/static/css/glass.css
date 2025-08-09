@@ -50,3 +50,11 @@
 .glass-item.active::before {
   display: none;
 }
+
+.glass-remove {
+  background-color: rgba(62, 61, 61, 0.288);
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+  margin-top: -10px;
+  border: 0.5px solid rgba(255, 255, 255, 0.421);
+}

@@ -1,7 +1,7 @@
 import uuid
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_POST
 
 from travella.dtos.package_dto import PackageItem
 from travella.dtos.api_dtos import BookingOverview
@@ -39,7 +39,14 @@ def new(request: HttpRequest) -> HttpResponse:
     return render(request, view('form'), {'categories': categories})
 
 # packages/save POST
+@require_POST
 def save(request: HttpRequest) -> HttpResponse:
+    code = request.POST.get('code')
+    name = request.POST.get('name')
+    print(f'code : {code}\nname : {name}')
+    images = request.FILES.getlist('images[]')
+    for i in images:
+        print(f'file : {i.name}')
     return redirect('/admins/packages/')
 
 # packages/<id>/edit/ GET and POST

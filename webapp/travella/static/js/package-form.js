@@ -1,3 +1,5 @@
+let images = []
+
 document.addEventListener('DOMContentLoaded', () => {
     const continueBtn = document.getElementById('continueBtn')
     const setSelected = (cid) => {
@@ -47,17 +49,36 @@ document.addEventListener('DOMContentLoaded', () => {
         imageInput.addEventListener('change', () => {
             const data = imageInput.files
             if(!pictureContainer) {
-                console.log('created');
                 pictureContainer = generatePictureContainer()
+                gallery.innerHTML = ''
                 gallery.appendChild(pictureContainer)
             }
             pictureContainer.innerHTML = ''
-            Array.from(data).forEach(i => {
+            images = images.concat(Array.from(data))
+            images.forEach(i => {
                 const col = generatePictureCol(URL.createObjectURL(i))
                 pictureContainer.appendChild(col)
             })
+            if(!document.getElementById('uploadPictureBtn')) {
+                card = generateUploadPictureCard(() => imageInput.click())
+                card.id = 'uploadPictureBtn'
+                pictureContainer.appendChild(card)
+            }
         })
         uploadPictureBtn.addEventListener('click', () => imageInput.click())
+    }
+
+    const packageForm = document.getElementById('packageForm')
+    if(packageForm) {
+        packageForm.addEventListener('submit', e => {
+            e.preventDefault()
+            const formData = new FormData(packageForm)
+            images.forEach(i => formData.append('images[]', i))
+            fetch(packageForm.action, {
+                method: 'POST',
+                body: formData,
+            }).then(res => res.json())
+        })
     }
 })
 
@@ -74,18 +95,49 @@ function generatePictureContainer() {
     div.classList.add('row-gap-3')
     return div
 }
+
 function generatePictureCol(imgSrc) {
     const div = document.createElement('div')
-    div.classList.add('col')
+    div.classList.add(...'col pictureCol d-flex justify-content-center align-items-center'.split(' '))
     const div2 = document.createElement('div')
     div2.classList.add('d-flex')
     div2.classList.add('justify-content-center')
     div2.classList.add('align-items-center')
+    div.classList.add('position-relative')
+    div2.classList.add('imgPreview')
+    div.style.minHeight = '100px'
     div.appendChild(div2)
     const img = document.createElement('img')
     img.classList.add('img-fluid')
     img.classList.add('rounded')
     img.src = imgSrc
     div2.appendChild(img)
+
+    removeBtn = document.createElement('div')
+    removeBtn.classList.add(...'position-absolute shadow d-flex align-items-center justify-content-center rounded-circle top-0 end-0 glass-remove'.split(' '))
+    removeBtn.style.width = '25px'
+    removeBtn.style.height = '25px'
+    removeBtn.innerHTML = '<i class="bi bi-dash df-text-red fs-3"/>'
+    // div2.appendChild(removeBtn)
+
+    // hover removal feat
+    const removal = document.createElement('div')
+    removal.classList.add(...'removal rounded'.split(' '))
+    removal.innerText = 'Remove'
+    div.appendChild(removal)
     return div
+}
+
+function generateUploadPictureCard(onClick) {
+    const col = document.createElement('div')
+    col.classList.add(...'col d-flex align-items-center'.split(' '))
+    const div = document.createElement('div')
+    div.classList.add(...'uploadPictureCard w-100 rounded d-flex justify-content-center align-items-center pointer'.split(' '))
+    div.id = 'uploadPictureBtn'
+    div.style.minHeight = '100px'
+    div.style.border = '2px dashed #0d6efd'
+    col.appendChild(div)
+    div.addEventListener('click', onClick)
+    div.innerText = 'Upload Photo'
+    return col
 }
