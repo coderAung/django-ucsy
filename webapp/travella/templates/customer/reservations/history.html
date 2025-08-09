@@ -1,11 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Reservation History</h1>
-</body>
-</html>
+{% extends 'layouts/admin-layout.html' %}
+{% load static %}
+
+{% block content %}
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .search-input {
+      max-width: 300px;
+      margin-bottom: 20px;
+    }
+
+    .booking-row:hover {
+      background-color: #f0f0f0;
+    }
+
+    .booking-row.active-row {
+      background-color: #4f46e5;
+      color: white;
+    }
+
+    .badge-status {
+      font-size: 0.75rem;
+      padding: 5px 10px;
+      border-radius: 12px;
+    }
+
+    .badge-processing {
+      background-color: #e7f0ff;
+      color: #2563eb;
+    }
+
+    .badge-expired {
+      background-color: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .booking-table th,
+    .booking-table td {
+      width: 25%;
+      vertical-align: middle;
+      text-align: left;
+    }
+
+    .booking-table th {
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .booking-table thead {
+        display: none;
+      }
+
+      .booking-table tbody td {
+        display: block;
+        width: 100% !important;
+        text-align: left;
+        border: none;
+        padding: 10px 0;
+      }
+
+      .booking-table tbody tr {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+
+  <div class="container py-5">
+    <h2 class="mb-4">Tour Bookings</h2>
+
+    <!-- Search Bar -->
+    <input type="text" class="form-control search-input" id="searchInput" placeholder="Search name or tour code...">
+
+    <!-- Booking Table -->
+    <table class="table booking-table">
+      <thead>
+        <tr>
+          <th class="text-center">Tour</th>
+          <th class="text-center">Tour Date</th>
+          <th class="text-center">Price</th>
+          <th class="text-center">Status</th>
+        </tr>
+      </thead>
+      <tbody id="bookingTable">
+        <tr class="booking-row">
+          <td>Chaung Tha Beach</td>
+          <td>Sat 17 June, 21<br><small>2:00 PM - 4:00 PM</small></td>
+          <td>120,000 mmk</td>
+          <td><span class="badge badge-status badge-processing">Processing</span></td>
+        </tr>
+        <tr class="booking-row active-row">
+          <td>Mandalay</td>
+          <td>Mon 19 June, 21<br><small>1:00 PM - 4:00 PM</small></td>
+          <td>300,000 mmk</td>
+          <td><span class="badge badge-status badge-processing">Processing</span></td>
+        </tr>
+        <tr class="booking-row">
+          <td>Pyin Oo Lwin</td>
+          <td>Mon 10 May, 21<br><small>10:00 AM - 3:00 PM</small></td>
+          <td>90,000 mmk</td>
+          <td><span class="badge badge-status badge-expired">Expired</span></td>
+        </tr>
+        <tr class="booking-row">
+          <td>Beyik</td>
+          <td>Sun 30 April, 21<br><small>9:00 AM - 12:00 PM</small></td>
+          <td>100,000 mmk</td>
+          <td><span class="badge badge-status badge-expired">Expired</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
