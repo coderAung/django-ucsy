@@ -20,7 +20,7 @@ urlpatterns = [
     path('categories/', category_controller.list, name = 'categories'),
     path('categories/<int:id>/', category_controller.detail),
     path('categories/new/', category_controller.new),
-    path('categories/save', category_controller.save),
+    path('categories/save', category_controller.save, name='create_category'),
     path('categories/<int:id>/edit', category_controller.edit),
 
     path('packages/', package_controller.list, name = 'packages'),

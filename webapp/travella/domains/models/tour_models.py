@@ -2,7 +2,6 @@ from datetime import date, timedelta
 import uuid
 from django.db import models
 from django.db.models import Sum
-
 from travella.domains.models.booking_models import Booking
 from .abstract_models import AbstractModel
 from .account_models import Account
