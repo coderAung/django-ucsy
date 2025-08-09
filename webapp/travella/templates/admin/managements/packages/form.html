@@ -15,7 +15,7 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/global.css' %}" />
     <link rel="stylesheet" href="{% static 'css/glass.css' %}" />
-
+    <script src="{% static 'js/package-form.js' %}"></script>
 </head>
 
 <body>
@@ -51,7 +51,7 @@
                                 <div class="d-flex column-gap-3">
                                     <div>
                                         <label for="" class="h6">Tour Code</label>
-                                        <input type="text" class="form-control" placeholder="#Code">
+                                        <input id="codeInput" type="text" class="form-control" placeholder="#Code">
                                     </div>
                                     <div>
                                         <label for="" class="h6">Category</label>
@@ -133,6 +133,5 @@
         </div>
     </div>
 </body>
-<script src="form.js"></script>
 
 </html>

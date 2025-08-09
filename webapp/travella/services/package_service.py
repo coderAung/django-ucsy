@@ -6,11 +6,24 @@ from django.db.models import Q
 from travella.services.package_utils import is_empty
 from travella.dtos.api_dtos import BookingOverview
 from ..domains.models.booking_models import Booking
-from ..domains.models.tour_models import Package
+from ..domains.models.tour_models import Category, Package
 from ..dtos.package_dto import PackageItem, PackageDetail
 
 
 class PackageService:
+
+    def generate_code(self, cid:int) -> str:
+        last_code_str:str = (Package.objects
+                         .filter(category_id = cid)
+                         .order_by('-code')
+                         .values('code')
+                         .first())['code']
+        prefix = last_code_str[:3]
+        last_code = int(last_code_str.removeprefix(prefix))
+
+        new_code = last_code + 1
+        new_code_str = str(new_code).zfill(3)
+        return f'{prefix}{new_code_str}'
 
     def get_all(self) -> list[PackageItem]:
         packages = Package.objects.all()

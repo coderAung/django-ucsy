@@ -4,11 +4,12 @@ from ..domains.models.tour_models import Category, Package
 
 @dataclass
 class CategoryItem:
+    id:int
     name:str
 
     @staticmethod
     def of(category:Category) -> 'CategoryItem':
-        return CategoryItem(category.name)
+        return CategoryItem(category.id, category.name)
 
 def load_categories() -> list[CategoryItem]:
     return [CategoryItem.of(c) for c in Category.objects.all()]
