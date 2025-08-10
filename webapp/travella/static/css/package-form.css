@@ -20,9 +20,12 @@
     height: 100%;
     position: absolute;
     display: none;
-    background-color: rgba(34, 32, 32, 0.414);
+    background-color: rgba(33, 32, 32, 0.4);
     color: white;
     backdrop-filter: blur(3px);
+}
+.removal > i {
+    color: white;
 }
 
 .pictureCol {

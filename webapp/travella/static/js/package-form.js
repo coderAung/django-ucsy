@@ -55,8 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             pictureContainer.innerHTML = ''
             images = images.concat(Array.from(data))
-            images.forEach(i => {
-                const col = generatePictureCol(URL.createObjectURL(i))
+            images.forEach((i, index) => {
+                const col = generatePictureCol(URL.createObjectURL(i), index, e => {
+                    pictureContainer.removeChild(col)
+                    images = images.filter(d => d !== i)
+                    if(images.length === 0)  imageInput.value = ''
+                })
                 pictureContainer.appendChild(col)
             })
             if(!document.getElementById('uploadPictureBtn')) {
@@ -96,8 +100,9 @@ function generatePictureContainer() {
     return div
 }
 
-function generatePictureCol(imgSrc) {
+function generatePictureCol(imgSrc, index = 0, removeFunc) {
     const div = document.createElement('div')
+    div.id = `i${index}`
     div.classList.add(...'col pictureCol d-flex justify-content-center align-items-center'.split(' '))
     const div2 = document.createElement('div')
     div2.classList.add('d-flex')
@@ -113,18 +118,24 @@ function generatePictureCol(imgSrc) {
     img.src = imgSrc
     div2.appendChild(img)
 
-    removeBtn = document.createElement('div')
-    removeBtn.classList.add(...'position-absolute shadow d-flex align-items-center justify-content-center rounded-circle top-0 end-0 glass-remove'.split(' '))
-    removeBtn.style.width = '25px'
-    removeBtn.style.height = '25px'
-    removeBtn.innerHTML = '<i class="bi bi-dash df-text-red fs-3"/>'
+    // removeBtn = document.createElement('div')
+    // removeBtn.classList.add(...'position-absolute shadow d-flex align-items-center justify-content-center rounded-circle top-0 end-0 glass-remove'.split(' '))
+    // removeBtn.style.width = '25px'
+    // removeBtn.style.height = '25px'
+    // removeBtn.innerHTML = '<i class="bi bi-dash df-text-red fs-3"/>'
     // div2.appendChild(removeBtn)
 
     // hover removal feat
     const removal = document.createElement('div')
     removal.classList.add(...'removal rounded'.split(' '))
-    removal.innerText = 'Remove'
+    const icon = document.createElement('i')
+    icon.classList.add(...'bi bi-dash-circle fs-4 me-2'.split(' '))
+    removal.appendChild(icon)
+    removal.appendChild(document.createTextNode('Removal'))
+    removal.dataset['index'] = `i${index}`
     div.appendChild(removal)
+
+    removal.addEventListener('click', e => removeFunc(e))
     return div
 }
 
