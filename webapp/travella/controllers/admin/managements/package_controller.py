@@ -5,6 +5,7 @@ from django.views.decorators.http import require_GET, require_POST
 
 from travella.dtos.package_dto import PackageItem
 from travella.dtos.api_dtos import BookingOverview
+from travella.dtos.package_form import PackageForm
 
 from ....services.package_service import PackageService
 from ....services.package_utils import is_empty, load_categories, load_status
@@ -41,9 +42,8 @@ def new(request: HttpRequest) -> HttpResponse:
 # packages/save POST
 @require_POST
 def save(request: HttpRequest) -> HttpResponse:
-    code = request.POST.get('code')
-    name = request.POST.get('name')
-    print(f'code : {code}\nname : {name}')
+    form = PackageForm.of(request.POST)
+    print(form)
     images = request.FILES.getlist('images[]')
     for i in images:
         print(f'file : {i.name}')

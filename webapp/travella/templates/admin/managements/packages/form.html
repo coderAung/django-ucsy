@@ -27,8 +27,9 @@
                 <h3>Add a package</h3>
             </div>
             <div class="shadow p-2">
-                <form id="packageForm" action="/admins/packages/save/" enctype="multipart/form-data">
+                <form id="packageForm" method="post" action="/admins/packages/save/" enctype="multipart/form-data">
                     {% csrf_token %}
+                    <input id="imageInput" class="d-none" type="file" name="images[]" multiple>
                     <div class="row">
                         <div class="col-4">
                             <div id="gallery" class="px-3 py-3 border h-100">
@@ -41,13 +42,12 @@
                                         </div>
                                     </div>
                                     {% endif %}
-                                    <div class="col d-flex align-items-center">
-                                        <input id="imageInput" class="d-none" type="file" name="images" multiple>
-                                        <div id="uploadPictureBtn" class="uploadPictureCard w-100 rounded d-flex justify-content-center align-items-center pointer" style="min-height: 100px; border: 2px dashed #0d6efd;">
+                                    <div class="col w-100 d-flex align-items-center">
+                                        <div id="uploadPictureBtn" class="uploadPictureCard w-100 rounded d-flex flex-column justify-content-center align-items-center pointer" style="min-height: 100px; border: 2px dashed #0d6efd;">
+                                            <i class="bi bi-upload fs-4"></i>
                                             Upload Photo
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                     <div class="d-flex column-gap-3">
                                         <div>
                                             <label for="codeInput" class="h6">Tour Code</label>
-                                            <input id="codeInput" type="text" name="code" class="form-control" placeholder="#Code">
+                                            <input id="codeInput" type="text" name="code" class="form-control" placeholder="Code">
                                         </div>
                                         <div>
                                             <label for="categoryBtn" class="h6">Category</label>
@@ -77,7 +77,7 @@
                                         <div class="d-flex column-gap-3 align-items-center">
                                             <div>
                                                 <label for="departureInput" class="h6">Departure</label>
-                                                <input id="departureInput" type="text" name="departure" class="form-control" placeholder="Jan 01, 2025">
+                                                <input id="departureInput" type="date" name="departure" class="form-control" placeholder="Jan 01, 2025">
                                             </div>
                                             <div>
                                                 <label for="durationInput" class="h6">Duration</label>
@@ -105,7 +105,7 @@
                                 <div class="col">
                                     <div class="">
                                         <label for="overviewInput" class="h6">Overview</label>
-                                        <textarea name="" rows="4" id="overviewInput" name="overview" class="form-control"></textarea>
+                                        <textarea name="overview" rows="4" id="overviewInput" name="overview" class="form-control"></textarea>
                                     </div>
                                 </div>
                                 {% comment %} <!-- itinery -->
@@ -132,7 +132,7 @@
                             <div class="row">
                                 <div class="d-flex justify-content-end column-gap-3">
                                     <button class="btn df-btn-glass-red">Cancel</button>
-                                    <button type="submit" class="btn btn-primary">Publish</button>
+                                    <button id="publishBtn" type="submit" class="btn btn-primary">Publish</button>
                                 </div>
                             </div>
                         </div>

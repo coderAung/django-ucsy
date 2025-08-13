@@ -23,7 +23,8 @@ class PackageService:
 
         new_code = last_code + 1
         new_code_str = str(new_code).zfill(3)
-        return f'{prefix}{new_code_str}'
+        cname = Category.objects.get(pk = cid).name
+        return f'{prefix}{new_code_str}', cname
 
     def get_all(self) -> list[PackageItem]:
         packages = Package.objects.all()

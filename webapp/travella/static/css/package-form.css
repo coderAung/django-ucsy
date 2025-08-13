@@ -1,4 +1,4 @@
-.uploadPictureCard {
+.uploadPictureCard, .uploadPictureCard > i {
     color: rgba(0, 60, 255);
 }
 
@@ -29,7 +29,7 @@
 }
 
 .pictureCol {
-    overflow: hidden;
+    /* overflow: hidden; */
     cursor: pointer;
 }
 

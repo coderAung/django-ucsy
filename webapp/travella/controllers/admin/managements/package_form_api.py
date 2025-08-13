@@ -7,5 +7,5 @@ packageService = PackageService()
 
 @require_GET
 def new_package_code(request:HttpRequest) -> JsonResponse:
-    code = packageService.generate_code(request.GET.get('cid'))
-    return JsonResponse({'newCode': code})
+    code, cname = packageService.generate_code(request.GET.get('cid'))
+    return JsonResponse({'newCode': code, 'cname': cname})
