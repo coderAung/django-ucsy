@@ -1,12 +1,15 @@
 from datetime import date, timedelta
 import uuid
 from django.http import QueryDict
-from django.db.models import Q
+from django.db.models import Q, QuerySet
+from django.core.files.uploadedfile import UploadedFile
 
+from travella.domains.models.account_models import Account
+from travella.dtos.package_form import PackageForm
 from travella.services.package_utils import is_empty
 from travella.dtos.api_dtos import BookingOverview
 from ..domains.models.booking_models import Booking
-from ..domains.models.tour_models import Category, Package
+from ..domains.models.tour_models import Category, Package, Photo
 from ..dtos.package_dto import PackageItem, PackageDetail
 
 
@@ -34,6 +37,10 @@ class PackageService:
     def get_one(self, code:str) -> PackageDetail:
         package = Package.objects.get(code = code)
         return PackageDetail.of(package)
+    
+    def get_gallery(self, code:str) -> list[str]:
+        photos:QuerySet[Photo] = Package.objects.get(code = code).photos.all()
+        return [p.path.url for p in photos]
 
     def search(self, query:QueryDict) -> list[PackageItem]:
         category = query.get('category')
@@ -55,7 +62,7 @@ class PackageService:
                 qf &= Q(createdAt__gte = last_month_start, createdAt__lte = last_month_end)
         if not is_empty(q):
             qf &= Q(code__startswith=q.lower()) | Q(title__startswith=q.lower())
-        qs = Package.objects.filter(qf)
+        qs = Package.objects.filter(qf).order_by('-createdAt')
         if not is_empty(status):
             qs = [q for q in qs if q.status == status]        
         return [PackageItem.of(p) for p in qs]
@@ -63,3 +70,11 @@ class PackageService:
     def booking_overview(self, id:uuid) -> BookingOverview:
         booking = Booking.objects.filter(id = id).first()
         return BookingOverview.of(booking)
+    
+    def save(self, account:Account, form:PackageForm, images:list[UploadedFile]) -> bool:
+        print(form.departure)
+        package:Package = form.to_model(account)
+        package.save()
+        for i in images:
+            Photo.objects.create(package=package, path=i)
+        return True

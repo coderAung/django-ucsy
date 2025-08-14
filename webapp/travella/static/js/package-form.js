@@ -60,9 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 setSelected(t.dataset['cid'])
                 continueBtn.disabled = false
             } else {
-                clearActive()
-                setSelected('0')
-                continueBtn.disabled = true
+                // clearActive()
+                // setSelected('0')
+                // continueBtn.disabled = true
+                continueBtn.click()
             }
         })
 
@@ -78,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cidInput.value = cid
         })
     }
-
 
     // image upload feature
     const uploadPictureBtnContainer = document.getElementById('uploadPictureBtnContainer')
@@ -122,15 +122,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const packageForm = document.getElementById('packageForm')
     const publishBtn = document.getElementById('publishBtn')
+    const nameInput = document.getElementById('nameInput')
+    const departureInput = document.getElementById('departureInput')
+    const durationInput = document.getElementById('durationInput')
+    const ticketInput = document.getElementById('ticketInput')
+    const priceInput = document.getElementById('priceInput')
+    const locationInput = document.getElementById('locationInput')
+    const transportationInput = document.getElementById('transportationInput')
+    
+    if(departureInput) {
+        flatpickr('#departureInput', {
+            altInput: true,
+            altFormat: 'F j, Y',
+            dateformat: '',
+            minDate: new Date().fp_incr(10),
+            position: 'above'
+        })
+    }
+
     if(packageForm && publishBtn) {
-        publishBtn.addEventListener('click', e => {
+        
+        validateForm = () => {
+            if(codeInput.value &&
+                cidInput.value &&
+                nameInput.value &&
+                departureInput.value &&
+                durationInput.value &&
+                ticketInput.value &&
+                priceInput.value &&
+                locationInput.value &&
+                transportationInput.value
+            ) {
+                Array.from(document.getElementsByClassName('validationError'))
+                    .forEach(er => !er.classList.contains('d-none') ? er.classList.add('d-none') : '')
+                    return true
+                } else {
+                Array.from(document.getElementsByClassName('validationError'))
+                    .forEach(er => er.classList.contains('d-none') ? er.classList.remove('d-none') : '')
+            }
+            return false
+        }
+
+        formSubmit = e => {
             e.preventDefault()
             const dt = new DataTransfer()
             images.forEach(i => dt.items.add(i))
             imageInput.value = ''
             imageInput.files = dt.files
+            // packageForm.submit()
+            success = validateForm()
+            if(!success) {
+                return
+            }
             packageForm.submit()
-        })
+        }
+
+        publishBtn.addEventListener('click', formSubmit)
+        packageForm.addEventListener('submit', formSubmit)
         // packageForm.addEventListener('submit', e => {
         //     e.preventDefault()
         //     const formData = new FormData(packageForm)

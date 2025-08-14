@@ -3,12 +3,14 @@ from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET, require_POST
 
+from travella.domains.models.tour_models import Package
 from travella.dtos.package_dto import PackageItem
 from travella.dtos.api_dtos import BookingOverview
 from travella.dtos.package_form import PackageForm
+from travella.services.auth_user import get_auth_user
 
 from ....services.package_service import PackageService
-from ....services.package_utils import is_empty, load_categories, load_status
+from ....services.package_utils import is_empty, load_categories, load_locations, load_status
 
 base = 'admin/managements/packages/'
 
@@ -32,22 +34,34 @@ def list(request: HttpRequest) -> HttpResponse:
 # packages/<id> GET
 def detail(request: HttpRequest, code:str) -> HttpResponse:
     dto = packageService.get_one(code)
-    return render(request, view('detail'), {'dto': dto})
+    gallery = packageService.get_gallery(code)
+    return render(request, view('detail'), {'dto': dto, 'gallery': gallery})
 
 # packages/new GET
 def new(request: HttpRequest) -> HttpResponse:
+    if request.method == 'POST':
+        return save(request)
     categories = load_categories()
-    return render(request, view('form'), {'categories': categories})
+    transportations = [t for t in Package.Transportation]
+    locations = load_locations()
+    return render(request, view('form'), {
+        'categories': categories,
+        'transportations': transportations,
+        'locations': locations})
 
 # packages/save POST
-@require_POST
 def save(request: HttpRequest) -> HttpResponse:
-    form = PackageForm.of(request.POST)
-    print(form)
+    form, errors = PackageForm.of(request.POST)
+    if len(errors) > 0:
+        print(errors)
+        categories = load_categories()
+        return render(request, view('form'), {'categories': categories})
+
     images = request.FILES.getlist('images[]')
+    packageService.save(get_auth_user(request), form, images)
     for i in images:
         print(f'file : {i.name}')
-    return redirect('/admins/packages/')
+    return redirect('packages')
 
 # packages/<id>/edit/ GET and POST
 def edit(request: HttpRequest, id: int) -> HttpResponse:

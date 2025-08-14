@@ -23,8 +23,8 @@ urlpatterns = [
 
     path('packages/', package_controller.list, name = 'packages'),
     path('packages/new/', package_controller.new, name='packages_new'),
+    path('packages/save/', package_controller.save, name='packages_save'),
     path('packages/new-code/', package_form_api.new_package_code),
-    path('packages/save/', package_controller.save),
     path('packages/<str:code>/', package_controller.detail, name='packages_detail'),
     path('packages/<uuid:id>/edit', package_controller.edit),
 
