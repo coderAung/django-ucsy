@@ -1,6 +1,7 @@
 from datetime import date, timedelta
 import uuid
 from django.http import QueryDict
+from django.db import transaction
 from django.db.models import Q, QuerySet
 from django.core.files.uploadedfile import UploadedFile
 
@@ -78,3 +79,10 @@ class PackageService:
         for i in images:
             Photo.objects.create(package=package, path=i)
         return True
+    
+    def delete(self, code:str):
+        package = Package.objects.get(code = code)
+        with transaction.atomic():
+            for p in package.photos.all():
+                p.path.delete(save = False)
+            package.delete()

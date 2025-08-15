@@ -66,3 +66,9 @@ def save(request: HttpRequest) -> HttpResponse:
 # packages/<id>/edit/ GET and POST
 def edit(request: HttpRequest, id: int) -> HttpResponse:
     return render(request, view('form'))
+
+@require_POST
+def delete(request: HttpRequest) -> HttpResponse:
+    code = request.POST.get('code')
+    packageService.delete(code)
+    return redirect('packages')
