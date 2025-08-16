@@ -1,37 +1,99 @@
 {% extends 'layouts/customer-layout.html' %}
 
+{% load static %}
+
+{% block cssFile %}
+<link rel="stylesheet" href="{% static 'css/c/package-list.css' %}">
+{% endblock cssFile %}
+    
 
 {% block content %}
-    <div>
+    <div class="df-bg-linen">
+        <div class="position-sticky sticky-top">
+            <div class="mx-5 px-4 d-flex justify-content-center">
+                <div class="w-100 d-flex align-items-center column-gap-3 px-2 py-2 rounded-pill shadow-sm filterBar">
+                    <div class="dropdown">
+                        <button type="button" class="filterItem rounded-pill" data-bs-toggle="dropdown">Category</button>
+                        <ul class="dropdown-menu">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title">Hello</div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <button type="button" class="filterItem rounded-pill" data-bs-toggle="dropdown">Location</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <button type="button" class="filterItem rounded-pill" data-bs-toggle="dropdown">Departure Date</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                    <script src="{% static 'js/c/package-list.js' %}"></script>
+                    <input type="text" class="form-control w-auto rounded-pill" placeholder="Search with key">
+                    <button class="btn df-btn-glass-blue rounded-pill px-3">Search</button>
+                </div>
+            </div>
+        </div>
         <div class="container">
-            <div><h5>Filter</h5></div>
-            <div>
+            <div class="mt-4 d-flex justify-content-between">
+                <h5>All Packages</h5>
+                <span>Total Result : 50</span>
+            </div>
+            <div class="mt-3">
                 <div>
-                    <div class="row row-cols-4 row-gap-4">
-                        
-                        {% for i in '012345678988770909' %}
+                    <div class="row row-cols-3 row-gap-4 align-items-center">    
+                        {% for item in list %}
                             <div class="col">
-                                <div class="">
-                                    <div class="d-flex justify-content-center align-items-center overflow-hidden rounded">
-                                        <img src="https://images.pexels.com/photos/3930029/pexels-photo-3930029.jpeg?cs=srgb&dl=pexels-yogendras31-3930029.jpg&fm=jpg"
-                                         alt="" class="img-fluid">
+                                <div class="bg-white rounded shadow">
+                                    <div class="d-flex justify-content-center align-items-center overflow-hidden rounded-top position-relative">
+                                        <span class="glass-badge rounded-pill position-absolute top-0 start-0 mt-1 ms-1 df-fs-sm">{{item.category}}</span>
+                                        {% if item.cover_photo != '' %}
+                                            <img src="{{item.cover_photo}}"
+                                            alt="" class="img-fluid">
+                                        {% else %}
+                                            <img src="https://images.pexels.com/photos/3930029/pexels-photo-3930029.jpeg?cs=srgb&dl=pexels-yogendras31-3930029.jpg&fm=jpg"
+                                            alt="" class="img-fluid">
+                                        {% endif %}
+                                            
                                     </div>
-                                    <div>
+                                    <div class="px-3 py-2">
                                         <div class="d-flex justify-content-between align-items-center py-1 mt-2">
-                                            <span class="text-muted df-fs-sm">3-days</span>
-                                            <span class="df-text-green df-fs-sm">40000 MMK / person</span>
+                                            <span class="text-muted df-fs-sm">{{item.days}}</span>
+                                            <span class="df-text-green df-fs-sm">{{item.price_display}}</span>
                                         </div>
                                         <div class="mt-2">
-                                            <h6>This is Tour Title</h6>
+                                            <h6>{{item.title}}</h6>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center py-1 mt-2">
-                                            <span class="df-fs-sm"><i class="bi bi-geo-alt me-2"></i> London</span>
+                                            <span class="df-fs-sm df-text-blue"><i class="bi bi-geo-alt df-text-blue df-fs-sm"></i> {{item.location}}</span>
                                             <a href="#" class="btn btn-sm df-btn-soft-blue rounded-pill">Explore More</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 pb-3">
+                <div class="d-flex justify-content-center py-2">
+                    <div class="d-flex column-gap-3">
+                        <div class="paginationBtn active shadow"><i class="bi bi-arrow-left"></i></div>
+                        {% for i in '1234' %}
+                        <div class="paginationBtn shadow">{{i}}</div>
+                        {% endfor %}
+                        <div class="paginationBtn shadow"><i class="bi bi-arrow-right"></i></div>
                     </div>
                 </div>
             </div>

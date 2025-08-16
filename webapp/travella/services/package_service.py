@@ -6,6 +6,7 @@ from django.db.models import Q, QuerySet
 from django.core.files.uploadedfile import UploadedFile
 
 from travella.domains.models.account_models import Account
+from travella.dtos.package_card import PackageCard
 from travella.dtos.package_form import PackageForm
 from travella.services.package_utils import is_empty
 from travella.dtos.api_dtos import BookingOverview
@@ -22,7 +23,7 @@ class PackageService:
                          .order_by('-code')
                          .values('code')
                          .first())['code']
-        prefix = last_code_str[:3]
+        prefix = last_code_str[:4]
         last_code = int(last_code_str.removeprefix(prefix))
 
         new_code = last_code + 1
@@ -86,3 +87,8 @@ class PackageService:
             for p in package.photos.all():
                 p.path.delete(save = False)
             package.delete()
+
+    def search_for_customer(self)  -> list[PackageCard]:
+        packages = Package.objects.all().order_by('-createdAt')
+        cards = [PackageCard.of(p) for p in packages]
+        return cards
