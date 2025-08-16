@@ -12,12 +12,16 @@ class Category(AbstractModel):
     name = models.CharField(max_length=20, unique=True)
     createdBy = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='categories')
 
+class Location(AbstractModel):
+    name = models.CharField(max_length=100, unique=True)
+    created_by = models.ForeignKey(Account, on_delete=models.PROTECT, related_name='locations')
 
 class Package(AbstractModel):
 
     class Transportation(models.IntegerChoices):
         BUS = 1, 'Bus'
-        PLANE = 2, 'Plane'
+        TRAIN = 2, 'Train'
+        PLANE = 3, 'Plane'
 
     class Status(models.TextChoices):
         AVAILABLE = 'Available', 'Available'
@@ -37,6 +41,7 @@ class Package(AbstractModel):
     cover_photo = models.TextField(null=True)
     createdBy = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='packages')
+    location = models.ForeignKey(Location, on_delete=models.PROTECT, related_name='packages', null=True)
 
     @property
     def booking_count(self) -> int:
@@ -64,5 +69,5 @@ class Itinerary(models.Model):
         ]
 
 class Photo(models.Model):
-    path = models.TextField(null=False)
+    path = models.ImageField(upload_to='tours/')
     package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name='photos')

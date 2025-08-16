@@ -3,7 +3,7 @@ from tkinter.font import names
 from django.urls import path
 
 from ..controllers.admin.managements import booking_controller, category_controller, package_controller, \
-    customer_controller, staff_controller
+    customer_controller, staff_controller, package_form_api
 
 from ..controllers.admin import dashboard_controller
 
@@ -13,9 +13,7 @@ from ..controllers.admin.settings import setting_controller, account_controller
 urlpatterns = [
     path('dashboard/', dashboard_controller.dashboard, name = 'dashboard'),
     path('bookings/', booking_controller.list, name = 'bookings'),
-   path('bookings/<uuid:id>/', booking_controller.detail, name='booking_detail'),
-
-
+    path('bookings/<uuid:id>/', booking_controller.detail, name='booking_detail'),
 
     path('categories/', category_controller.list, name = 'categories'),
     path('categories/<int:id>/', category_controller.detail),
@@ -25,9 +23,12 @@ urlpatterns = [
 
     path('packages/', package_controller.list, name = 'packages'),
     path('packages/new/', package_controller.new, name='packages_new'),
+    path('packages/save/', package_controller.save, name='packages_save'),
+    path('packages/new-code/', package_form_api.new_package_code),
+    path('packages/delete/', package_controller.delete, name='packages_delete'),
     path('packages/<str:code>/', package_controller.detail, name='packages_detail'),
-    path('packages/save/', package_controller.save),
-    path('packages/<int:id>/edit', package_controller.edit),
+    path('packages/<uuid:id>/edit', package_controller.edit),
+
 
     # GET method only
     path('settings/', setting_controller.list, name = 'settings'),

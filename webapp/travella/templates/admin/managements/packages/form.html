@@ -10,141 +10,177 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+    <link rel="stylesheet" 
+    href="{% static 'css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/package-form.css' %}" />
     <link rel="stylesheet" href="{% static 'css/glass.css' %}" />
-
-</head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script></head>
+    <script src="{% static 'js/package-form.js' %}"></script>
 
 <body>
     <div class="container py-3">
         <div class="">
-            <div class="d-flex mb-3">
+            <div class="d-flex mb-2">
                 <h3>Add a package</h3>
-                <div class="ms-3">
-                    <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2 align-self-start">Resort</div>
-                </div>
             </div>
             <div class="shadow p-2">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="px-3 py-3 border h-100">
-                            <div class="row row-cols-2 row-gap-3">
-                                <div class="col">
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <img src="photos/h1.png" alt="" class="img-fluid rounded">
+                <form id="packageForm" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input id="imageInput" class="d-none" type="file" name="images[]" multiple>
+                    <div class="row">
+                        <div class="col-4">
+                            <div id="gallery" class="px-3 py-3 border h-100">
+                                <div id="pictureContainer" class="row row-cols-2 row-gap-4">                   
+                                    {% if image %}
+                                    <div class="col">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <img src="https://cdn.wallpapersafari.com/1/28/vw96To.jpg"
+                                            alt="" class="img-fluid rounded">
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    <div class="col w-100 d-flex align-items-center">
+                                        <div id="uploadPictureBtn" class="uploadPictureCard w-100 rounded d-flex flex-column justify-content-center align-items-center pointer" style="min-height: 100px; border: 2px dashed #0d6efd;">
+                                            <i class="bi bi-upload fs-4"></i>
+                                            Upload Photo
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <img src="photos/h3.png" alt="" class="img-fluid rounded">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <img src="photos/h2.png" alt="" class="img-fluid rounded">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div
-                                        class="w-100 h-100 d-flex justify-content-center align-items-center df-bg-linen rounded">
-                                        <i class="bi bi-folder-plus fs-2 text-muted"></i>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="row row-cols-2">
-                            <div class="col">
-                                <div class="d-flex column-gap-3">
-                                    <div>
-                                        <label for="" class="h6">Tour Code</label>
-                                        <input type="text" class="form-control" placeholder="London Tour">
-                                    </div>
-                                    <div>
-                                        <label for="" class="h6">Category</label>
-                                        <button class="btn df-btn-glass-blue"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#categoryModal">Choose One</button>
-
-                                        {% include 'includes/modals/category-modal.html' %}
-                                    </div>
-                                </div>
-                                <div class="mt-3">
-                                    <label for="" class="h6">Tour Name</label>
-                                    <input type="text" class="form-control" placeholder="London Tour">
-                                </div>
-                                <div class="mt-3">
-                                    <div class="d-flex column-gap-3 align-items-center">
-                                        <div>
-                                            <label for="" class="h6">Departure</label>
-                                            <input type="text" class="form-control" placeholder="Jan 01, 2025">
+                        <div class="col-8">
+                            <div class="row row-cols-2">
+                                <div class="col">
+                                    <div class="d-flex column-gap-3">
+                                        <div class="w-50">
+                                            <label for="codeInput" class="h6">Tour Code <small class="df-fs-sm df-text-red">*</small></label>
+                                            <input id="codeInput" type="text" name="code" class="form-control" placeholder="Code" readonly required>
+                                            <smalll id="codeVal" class="df-fs-sm df-text-red d-none validationError">Code is required.</smalll>
                                         </div>
                                         <div>
-                                            <label for="" class="h6">Duration</label>
-                                            <input type="number" class="form-control" placeholder="0">
+                                            <label for="categoryBtn" class="h6">Category<small class="df-fs-sm df-text-red">*</small></label>
+                                            <input type="text" id="cidInput" class="d-none" name="cid" required>
+                                            <div>
+                                                <button id="categoryBtn" type="button" class="btn df-btn-glass-blue"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#categoryModal">Choose One</button>
+                                            </div>
+                                            <smalll class="df-fs-sm df-text-red d-none validationError">Category is required.</smalll>
+                                            {% include 'includes/modals/category-modal.html' %}
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mt-3">
-                                    <div class="d-flex">
-                                        <div class="w-25 me-3">
-                                            <label for="" class="h6">Tickets</label>
-                                            <input type="number" class="form-control" placeholder="0">
+                                    <div class="mt-3">
+                                        <label for="nameInput" class="h6">Tour Title <small class="df-fs-sm df-text-red">*</small></label>
+                                        <input id="nameInput" type="text" name="title" class="form-control" placeholder="Tour Title" required>
+                                        <smalll class="df-fs-sm df-text-red d-none validationError">Title is required.</smalll>
+                                    </div>
+                                    <div class="mt-5">
+                                        <div class="d-flex column-gap-3 align-items-center">
+                                            <div>
+                                                <label for="departureInput" class="h6">Departure <small class="df-fs-sm df-text-red">*</small></label>
+                                                <input id="departureInput" type="date" name="departure" class="form-control pointer" placeholder="MM dd, YY">
+                                                <smalll class="df-fs-sm df-text-red d-none validationError">Departure is required.</smalll>
+                                            </div>
+                                            <div>
+                                                <label for="durationInput" class="h6">Duration <small class="df-fs-sm df-text-red">*</small></label>
+                                                <input id="durationInput" type="number" name="duration" class="form-control" placeholder="0">
+                                                <smalll class="df-fs-sm df-text-red d-none validationError">Duration is required.</smalll>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <label for="" class="h6">Price per Person</label>
-                                            <div class="input-group">
-                                                <input type="number" class="form-control" placeholder="0">
-                                                <span class="input-group-text">MMK</span>
+                                    </div>
+                                    <div class="mt-5">
+                                        <div class="d-flex">
+                                            <div class="w-25 me-3">
+                                                <label for="ticketInput" class="h6">Tickets <small class="df-fs-sm df-text-red">*</small></label>
+                                                <input id="ticketInput" name="ticket" type="number" class="form-control" placeholder="0">
+                                                <smalll class="df-fs-sm df-text-red d-none validationError">Ticket is required.</smalll>
+                                            </div>
+                                            <div>
+                                                <label for="priceInput" class="h6">Price per Person <small class="df-fs-sm df-text-red">*</small></label>
+                                                <div class="input-group">
+                                                    <input id="priceInput" name="price" type="number" class="form-control" placeholder="0">
+                                                    <span class="input-group-text">MMK</span>
+                                                </div>
+                                                <smalll class="df-fs-sm df-text-red d-none validationError">Price is required.</smalll>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mt-3">
-                                    <label for="" class="h6">Overview</label>
-                                    <textarea name="" rows="4" id="" class="form-control"></textarea>
-                                </div>
-                            </div>
 
-                            <!-- itinery -->
-                            <div class="col">
-                                <h6>Itinery</h6>
-                                <div id="dayContainer" class="d-flex flex-column row-gap-2">
-
-                                    <div data-day="1" class="border p-2">
-                                        <div class="input-group">
-                                            <span class="input-group-text">Day 1</span>
-                                            <input type="text" class="form-control" placeholder="Title">
+                                <div class="col">
+                                    <div class="">
+                                        <div class="d-flex">
+                                            <div class="w-50 me-3">
+                                                <label for="locationInput" class="h6">Location <small class="df-fs-sm df-text-red">*</small></label>
+                                                <input id="locationInput" name="location" list="locations" placeholder="Enter Location" type="text" class="form-control">
+                                                <smalll class="df-fs-sm df-text-red d-none validationError">Location is required.</smalll>
+                                                <datalist id="locations">
+                                                    {% for l in locations %}
+                                                        <option value="{{l.name}}">{{l.id}}</option>
+                                                    {% endfor %}
+                                                </datalist>
+                                                
+                                                {% comment %} <select id="locationInput" name="location" class="form-select">
+                                                    <option value="Kalaw">Kalaw</option>
+                                                    <option value="Kalaw">Taungyi</option>
+                                                    <option value="Kalaw">Laos</option>
+                                                </select> {% endcomment %}
+                                            </div>
+                                            <div class="w-auto me-3">
+                                                <label for="transportationInput" class="h6">Transportation <small class="df-fs-sm df-text-red">*</small></label>
+                                                <select id="transportationInput" name="transportation" class="form-select">
+                                                    <option value="">Choose</option>
+                                                    {% for t in transportations %}
+                                                        <option value="{{t.value}}">{{t.label}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <smalll class="df-fs-sm df-text-red d-none validationError">Transportation is required.</smalll>
+                                            </div>
                                         </div>
-                                        <textarea name="" id="" rows="4" class="form-control mt-2"
-                                            placeholder="Descripton"></textarea>
                                     </div>
+                                    <div class="mt-3">
+                                        <label for="overviewInput" class="h6">Overview</label>
+                                        <textarea name="overview" rows="6" id="overviewInput"class="form-control" placeholder="Description of Trip"></textarea>
+                                    </div>
+                                </div>
+                                {% comment %} <!-- itinery -->
+                                <div class="col">
+                                    <h6>Itinery</h6>
+                                    <div id="dayContainer" class="d-flex flex-column row-gap-2">
 
-                                </div>
-                                <div class="d-flex justify-content-end py-2">
-                                    <button data-day="1" id="dayAddBtn"
-                                        class="btn btn-sm btn-outline-primary w-25">+</button>
-                                </div>
+                                        <div data-day="1" class="border p-2">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Day 1</span>
+                                                <input type="text" class="form-control" placeholder="Title">
+                                            </div>
+                                            <textarea name="" id="" rows="4" class="form-control mt-2"
+                                                placeholder="Descripton"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div class="d-flex justify-content-end py-2">
+                                        <button data-day="1" id="dayAddBtn"
+                                            class="btn btn-sm btn-outline-primary w-25">+</button>
+                                    </div>
+                                </div> {% endcomment %}
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="d-flex justify-content-end column-gap-3">
-                                <button class="btn df-btn-glass-red">Cancel</button>
-                                <button class="btn btn-primary">Publish</button>
+                            <div class="row">
+                                <div class="d-flex justify-content-end column-gap-3 pt-3">
+                                    <a href="{% url 'packages' %}" class="btn df-btn-glass-red">Cancel</a>
+                                    <button id="publishBtn" type="submit" class="btn btn-primary">Publish</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
 
             </div>
         </div>
     </div>
 </body>
-<script src="form.js"></script>
-
 </html>
