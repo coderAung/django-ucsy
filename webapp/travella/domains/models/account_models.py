@@ -50,6 +50,7 @@ class Account(AbstractBaseUser, PermissionsMixin, AbstractModel):
             return self.email
 
 class AccountDetail(AbstractModel):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
     photo = models.URLField(blank=True, null=True)  # Or ImageField if you use media storage
     address = models.CharField(max_length=255, blank=True, null=True)

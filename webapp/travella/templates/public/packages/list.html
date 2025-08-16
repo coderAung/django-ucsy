@@ -1,11 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>View The package List</h1>
-</body>
-</html>
+{% extends 'layouts/customer-layout.html' %}
+
+
+{% block content %}
+    <div>
+        <div class="container">
+            <div><h5>Filter</h5></div>
+            <div>
+                <div>
+                    <div class="row row-cols-4 row-gap-4">
+                        
+                        {% for i in '012345678988770909' %}
+                            <div class="col">
+                                <div class="">
+                                    <div class="d-flex justify-content-center align-items-center overflow-hidden rounded">
+                                        <img src="https://images.pexels.com/photos/3930029/pexels-photo-3930029.jpeg?cs=srgb&dl=pexels-yogendras31-3930029.jpg&fm=jpg"
+                                         alt="" class="img-fluid">
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-between align-items-center py-1 mt-2">
+                                            <span class="text-muted df-fs-sm">3-days</span>
+                                            <span class="df-text-green df-fs-sm">40000 MMK / person</span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <h6>This is Tour Title</h6>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center py-1 mt-2">
+                                            <span class="df-fs-sm"><i class="bi bi-geo-alt me-2"></i> London</span>
+                                            <a href="#" class="btn btn-sm df-btn-soft-blue rounded-pill">Explore More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
