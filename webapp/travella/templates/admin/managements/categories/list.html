@@ -19,117 +19,159 @@
     margin-bottom: 15px;
     text-align: right;
   }
+
+  .toast-container {
+    z-index: 1100;
+  }
+
+  .bg-success {
+    background-color: #198754 !important;
+  }
+
+  .bg-danger {
+    background-color: #dc3545 !important;
+  }
+
+  .borderless-table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .borderless-table th,
+  .borderless-table td {
+    border: none;
+  }
 </style>
 {% endblock cssFile %}
 
 {% block content %}
-<div class="">
-  <div class="ps-3 pt-2">
-    <h3 class="page-title">Categories</h3>
-  </div>
-  <div class="container">
-    <div class="px-3 py-2 rounded shadow bg-white">
-      
-      <div class="d-flex align-items-center justify-content-between mb-3">
-        <input type="text" class="form-control w-auto" placeholder="Search category..." />
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">+ Add Category</button>
-      </div>
 
-      <!-- Show Total Categories on Right -->
-      <div class="total-categories">
-        Total Categories: <strong>{{ categories|length }}</strong>
-      </div>
+<body data-categories-url="{% url 'categories' %}">
+  <div class="">
+    <div class="ps-3 pt-2">
+      <h3 class="page-title">Categories</h3>
+    </div>
+    <div class="container">
+      <div class="px-3 py-2 rounded shadow bg-white">
 
-      <!-- Category Table -->
-      <div class="table-responsive mt-3">
-        <table class="table table-hover borderless-table">
-          <thead>
-            <tr class="align-middle">
-              <th>ID</th>
-              <th>Category</th>
-              <th class="text-center">Packages</th>
-              <th class="text-center">Created By</th>
-              <th class="text-center">Created Date</th>
-              <th class="text-center">Created Time</th>
-              <th class="text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for category in categories %}
-            <tr class="align-middle">
-              <td>{{ category.id }}</td>
-              <td>{{ category.name }}</td>
-              <td class="text-center">{{ category.packages_count }}</td>
-              <td class="text-center">{{ category.createdBy.email }}</td>
-              <td class="text-center">{{ category.created_at|date:"Y-m-d" }}</td>
-              <td class="text-center">{{ category.created_at|time:"H:i" }}</td>
-              <td class="text-center">
-                <a href="{% url 'admin:edit_category' category.id %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></a>
-                <form action="{% url 'admin:delete_category' category.id %}" method="POST" style="display:inline;">
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
-                </form>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <input type="text" class="form-control w-auto" placeholder="Search category..." />
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+            <i class="bi bi-plus-circle"></i> Add Category
+          </button>
+        </div>
+
+        <!-- Show Total Categories on Right -->
+        <div class="total-categories">
+          Total Categories: <strong>{{ categories|length }}</strong>
+        </div>
+
+        <!-- Category Table -->
+        <div class="table-responsive mt-3">
+          <table class="table table-hover borderless-table">
+            <thead>
+              <tr class="align-middle">
+                <th>No</th>
+                <th>Category</th>
+                <th class="text-center">Packages</th>
+                <th class="text-center">Created By</th>
+                <th class="text-center">Created Date</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for category in categories %}
+              <tr class="align-middle" data-category-id="{{ category.id }}">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ category.name }}</td>
+                <td class="text-center">
+                  {% if category.packages_count %}
+                  {{ category.packages_count }}
+                  {% else %}
+                  0
+                  {% endif %}
+                </td>
+                <td class="text-center">{{ category.createdBy.email }}</td>
+                <td class="text-center">
+                  {% firstof category.createdAt|date:"Y-m-d H:i" category.created_at|date:"Y-m-d H:i"%}
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-sm btn-outline-primary edit-category-btn" data-bs-toggle="modal"
+                    data-bs-target="#editCategoryModal" data-category-id="{{ category.id }}"
+                    data-category-name="{{ category.name }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Edit category">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger delete-category-btn" data-category-id="{{ category.id }}"
+                    data-category-name="{{ category.name }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Delete category">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Modal for Adding Category -->
-<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addCategoryModalLabel">Add Category</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="addCategoryForm" method="POST" action="{% url 'admin:create_category' %}">
-          {% csrf_token %}
-          <div class="mb-3">
-            <label for="categoryName" class="form-label">Enter Category Name</label>
-            <input type="text" class="form-control" id="categoryName" name="name" required>
-          </div>
-          <button type="submit" class="btn btn-success">Add</button>
-        </form>
+  <!-- Add Category Modal -->
+  <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addCategoryModalLabel">Add Category</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addCategoryForm" method="POST" action="{% url 'create_category' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="categoryName" class="form-label">Enter Category Name</label>
+              <input type="text" class="form-control" id="categoryName" name="name" required>
+            </div>
+            <button type="submit" class="btn btn-success" id="submitBtn">
+              <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+              Add Category
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  document.getElementById('addCategoryForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    const formData = new FormData(this);
-
-    fetch("{% url 'admin:create_category' %}", {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest', // To identify the request as AJAX
-      },
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        // Optionally, update the category table or display a success message
-        alert('Category added successfully!');
-        // You can also close the modal here
-        $('#addCategoryModal').modal('hide');
-        // Optionally, refresh the category list or append the new category to the table
-      } else {
-        alert('Failed to add category.');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  });
-</script>
+  <!-- Edit Category Modal -->
+  <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editCategoryForm" method="POST" action="">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="editCategoryName" class="form-label">Category Name</label>
+              <input type="text" class="form-control" id="editCategoryName" name="name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+              Save Changes
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 
 {% endblock content %}
+
+{% block jsFile %}
+<script src="{% static 'js/category.js' %}"></script>
+{% endblock jsFile %}

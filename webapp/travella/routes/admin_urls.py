@@ -17,11 +17,11 @@ urlpatterns = [
 
 
 
-    path('categories/', category_controller.list, name = 'categories'),
-    path('categories/<int:id>/', category_controller.detail),
-    path('categories/new/', category_controller.new),
-    path('categories/save', category_controller.save, name='create_category'),
-    path('categories/<int:id>/edit', category_controller.edit),
+    path('categories/', category_controller.list, name='categories'),
+    path('categories/new/', category_controller.new, name='category-new'),
+    path('categories/save/', category_controller.save, name='create_category'),
+    path('categories/<int:id>/edit/', category_controller.edit, name='edit_category'),
+    path('categories/<int:id>/delete/', category_controller.delete, name='delete_category'),
 
     path('packages/', package_controller.list, name = 'packages'),
     path('packages/new/', package_controller.new, name='packages_new'),
