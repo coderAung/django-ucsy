@@ -5,6 +5,20 @@
   <title>Traveler Reviews</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .review-card {
+      transition: transform 0.3s;
+    }
+    .review-card:hover {
+      transform: translateY(-5px);
+    }
+    .review-content {
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
 </head>
 <body class="bg-light">
 
@@ -12,60 +26,69 @@
     <div class="text-center mb-5">
       <h1 class="display-4 fw-bold text-primary">Traveler Reviews</h1>
       <p class="text-muted">See what our happy travelers are saying</p>
-      <a href="write-review.html" class="btn btn-primary rounded-pill px-4 py-2 mt-3">Write a Review</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'create_review' %}" class="btn btn-primary rounded-pill px-4 py-2 mt-3">Write a Review</a>
+      {% endif %}
     </div>
 
     <div class="row g-4">
+      {% for review in reviews %}
       <div class="col-md-4">
-        <div class="card p-4 border-0 shadow-sm h-100">
-          <h5>John Smith</h5>
-          <div class="text-warning">★★★★☆</div>
-          <p>"The trip to Inle Lake was unforgettable. Excellent service!"</p>
+        <div class="card p-4 border-0 shadow-sm h-100 review-card">
+          <h5>{{ review.account_name|default:"Anonymous" }}</h5>
+          <p class="text-muted small">{{ review.created_at|date:"F j, Y" }}</p>
+          <div class="review-content">
+            <p>"{{ review.content }}"</p>
+          </div>
+          <a href="#" class="mt-2 text-primary read-more">Read more</a>
         </div>
       </div>
-
-      <div class="col-md-4">
-        <div class="card p-4 border-0 shadow-sm h-100">
-          <h5>John Smith</h5>
-          <div class="text-warning">★★★★☆</div>
-          <p>"The trip to Inle Lake was unforgettable. Excellent service!"
-            The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!
-          </p>
-        </div>
+      {% empty %}
+      <div class="col-12 text-center py-5">
+        <h4 class="text-muted">No reviews yet. Be the first to review!</h4>
+        {% if user.is_authenticated %}
+          <a href="{% url 'create_review' %}" class="btn btn-primary mt-3">Write a Review</a>
+        {% endif %}
       </div>
-
-      <div class="col-md-4">
-        <div class="card p-4 border-0 shadow-sm h-100">
-          <h5>John Smith</h5>
-          <div class="text-warning">★★★★☆</div>
-          <p>"The trip to Inle Lake was unforgettable. Excellent service!"
-            The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. 
-          </p>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card p-4 border-0 shadow-sm h-100">
-          <h5>John Smith</h5>
-          <div class="text-warning">★★★★☆</div>
-          <p>"The trip to Inle Lake was unforgettable. Excellent service!"
-            The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!
-          </p>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card p-4 border-0 shadow-sm h-100">
-          <h5>John Smith</h5>
-          <div class="text-warning">★★★★☆</div>
-          <p>"The trip to Inle Lake was unforgettable. Excellent service!"
-            The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!The trip to Inle Lake was unforgettable. Excellent service!
-          </p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
+
+    {% if reviews.has_other_pages %}
+    <nav class="mt-5">
+      <ul class="pagination justify-content-center">
+        {% if reviews.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ reviews.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        
+        {% for num in reviews.paginator.page_range %}
+          {% if reviews.number == num %}
+            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+          {% elif num > reviews.number|add:'-3' and num < reviews.number|add:'3' %}
+            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+        
+        {% if reviews.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ reviews.next_page_number }}">Next</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ reviews.paginator.num_pages }}">Last</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.querySelectorAll('.read-more').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const card = this.closest('.card');
+        const content = card.querySelector('.review-content');
+        content.style.webkitLineClamp = content.style.webkitLineClamp ? '' : '5';
+        this.textContent = content.style.webkitLineClamp ? 'Read more' : 'Show less';
+      });
+    });
+  </script>
 </body>
 </html>
