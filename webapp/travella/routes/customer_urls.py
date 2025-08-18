@@ -5,8 +5,8 @@ from ..controllers.customer import review_controller, booking_controller, reserv
 urlpatterns = [
     path('packages/book/<str:code>/', booking_controller.new),
     path("test-form/", lambda request: render(request, "customer/bookings/form.html")),
-    path('bookings/save', booking_controller.save),
-
+    path('bookings/save/', booking_controller.save, name='booking_save'),
+    
     path('bookings/', booking_controller.history),
     path('bookings/<uuid:id>', booking_controller.detail),
 

@@ -3,12 +3,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from django.db.models import Sum
+from django.http import JsonResponse
 from travella.domains.models.tour_models import Package
 from travella.domains.models.booking_models import Booking
+from travella.domains.models.account_models import AccountDetail
 
 BASE_TEMPLATE_PATH = 'customer/bookings/'
-
 
 @login_required
 def new(request, code: str):
@@ -21,50 +22,57 @@ def new(request, code: str):
 
     context = {
         'package': package,
-        'price_per_seat': f"{int(package.price):,} MMK",
+        'price_per_seat': f"{package.price:.2f} MMK",
+        'price_per_seat_value': float(package.price),
         'departure_date': package.departure.strftime("%B %d, %Y") if package.departure else "N/A",
     }
     return render(request, BASE_TEMPLATE_PATH + 'form.html', context)
 
-
 @login_required
 def history(request):
     """Show all bookings for the current user."""
-    bookings = Booking.objects.filter(customer=request.user).order_by('-statusUpdatedAt')
-    return render(request, BASE_TEMPLATE_PATH + 'history.html', {"bookings": bookings})
-
+    bookings = Booking.objects.filter(customer=request.user).select_related('package').order_by('-statusUpdatedAt')
+    return render(request, BASE_TEMPLATE_PATH + 'history.html', {
+        "bookings": bookings,
+        "status_labels": dict(Booking.Status.choices)
+    })
 
 @login_required
 def detail(request, id):
     """Show details for a specific booking."""
     booking = get_object_or_404(Booking, id=id, customer=request.user)
-    return render(request, BASE_TEMPLATE_PATH + 'detail.html', {"booking": booking})
+    total_cost = booking.ticketCount * booking.unitPrice
+    return render(request, BASE_TEMPLATE_PATH + 'detail.html', {
+        "booking": booking,
+        "total_cost": total_cost,
+        "status_label": booking.get_status_display()
+    })
 
-
-@require_POST
 @login_required
+@require_POST
 def save(request):
-    """Save a new booking from the submitted form."""
     package_id = request.POST.get('package_id')
     ticket_count = int(request.POST.get('ticketCount', 1))
-
     package = get_object_or_404(Package, id=package_id)
 
+    # Check package availability
     if package.status != Package.Status.AVAILABLE:
-        messages.error(request, "Sorry, this tour is no longer available.")
-        return redirect('customer_booking_history')
+        return JsonResponse({"success": False, "error": "Tour not available"}, status=400)
 
-    if package.booking_count + ticket_count > package.availableTicket:
-        messages.error(request, "Not enough tickets available.")
-        return redirect('customer_booking_history')
+    # Check remaining seats
+    current_booked = Booking.objects.filter(package=package).aggregate(
+        total=Sum("ticketCount")
+    )["total"] or 0
 
+    if current_booked + ticket_count > package.availableTicket:
+        return JsonResponse({"success": False, "error": "Not enough tickets available"}, status=400)
+
+    # ✅ Only one Booking instance, ticketCount = number of people
     booking = Booking.objects.create(
         package=package,
         customer=request.user,
         ticketCount=ticket_count,
         unitPrice=package.price
-        # status will default to PENDING
     )
 
-    messages.success(request, "Your booking has been submitted and is now pending.")
-    return redirect('customer_booking_detail', id=booking.id)
+    return JsonResponse({"success": True, "booking_id": str(booking.id)})
