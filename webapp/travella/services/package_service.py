@@ -4,12 +4,14 @@ from django.http import QueryDict
 from django.db import transaction
 from django.db.models import Q, QuerySet
 from django.core.files.uploadedfile import UploadedFile
+from django.core.paginator import Paginator, Page
 
 from travella.domains.models.account_models import Account
 from travella.dtos.package_card import PackageCard
 from travella.dtos.package_form import PackageForm
 from travella.services.package_utils import is_empty
 from travella.dtos.api_dtos import BookingOverview
+from travella.utils.pagination import PaginationResult
 from ..domains.models.booking_models import Booking
 from ..domains.models.tour_models import Category, Package, Photo
 from ..dtos.package_dto import PackageItem, PackageDetail
@@ -88,7 +90,9 @@ class PackageService:
                 p.path.delete(save = False)
             package.delete()
 
-    def search_for_customer(self)  -> list[PackageCard]:
+    def search_for_customer(self)  -> PaginationResult:
         packages = Package.objects.all().order_by('-createdAt')
-        cards = [PackageCard.of(p) for p in packages]
-        return cards
+        pagination = Paginator(packages, 2)
+        paginationResult = PaginationResult(2, pagination, PackageCard.of)
+        # cards = [PackageCard.of(p) for p in packages]
+        return paginationResult
