@@ -18,6 +18,9 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+    .expanded {
+      -webkit-line-clamp: unset !important;
+    }
   </style>
 </head>
 <body class="bg-light">
@@ -27,7 +30,9 @@
       <h1 class="display-4 fw-bold text-primary">Traveler Reviews</h1>
       <p class="text-muted">See what our happy travelers are saying</p>
       {% if user.is_authenticated %}
-        <a href="{% url 'create_review' %}" class="btn btn-primary rounded-pill px-4 py-2 mt-3">Write a Review</a>
+        <a href="{% url 'create_review' %}" class="btn btn-primary rounded-pill px-4 py-2 mt-3">
+          Write a Review
+        </a>
       {% endif %}
     </div>
 
@@ -40,7 +45,19 @@
           <div class="review-content">
             <p>"{{ review.content }}"</p>
           </div>
-          <a href="#" class="mt-2 text-primary read-more">Read more</a>
+          
+          {% if user.is_authenticated and review.owned_by_user %}
+            <div class="mt-3">
+              <a href="{% url 'edit_review' review.id %}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+              <form action="{% url 'delete_review' review.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-danger"
+                        onclick="return confirm('Are you sure you want to delete this review?');">
+                  Delete
+                </button>
+              </form>
+            </div>
+          {% endif %}
         </div>
       </div>
       {% empty %}
@@ -54,7 +71,7 @@
     </div>
 
     {% if reviews.has_other_pages %}
-    <nav class="mt-5">
+    <nav class="mt-5" aria-label="Review pagination">
       <ul class="pagination justify-content-center">
         {% if reviews.has_previous %}
           <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
@@ -62,10 +79,14 @@
         {% endif %}
         
         {% for num in reviews.paginator.page_range %}
-          {% if reviews.number == num %}
+          {% if num == reviews.number %}
             <li class="page-item active"><span class="page-link">{{ num }}</span></li>
           {% elif num > reviews.number|add:'-3' and num < reviews.number|add:'3' %}
             <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% elif num == 1 or num == reviews.paginator.num_pages %}
+            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% elif forloop.first or forloop.last %}
+            <li class="page-item disabled"><span class="page-link">…</span></li>
           {% endif %}
         {% endfor %}
         
@@ -85,8 +106,8 @@
         e.preventDefault();
         const card = this.closest('.card');
         const content = card.querySelector('.review-content');
-        content.style.webkitLineClamp = content.style.webkitLineClamp ? '' : '5';
-        this.textContent = content.style.webkitLineClamp ? 'Read more' : 'Show less';
+        content.classList.toggle('expanded');
+        this.textContent = content.classList.contains('expanded') ? 'Show less' : 'Read more';
       });
     });
   </script>
