@@ -4,14 +4,18 @@ from django.http import QueryDict
 from django.db import transaction
 from django.db.models import Q, QuerySet
 from django.core.files.uploadedfile import UploadedFile
+from django.core.paginator import Paginator, Page
 
 from travella.domains.models.account_models import Account
+from travella.dtos.package_card import PackageCard, PackageDetail
 from travella.dtos.package_form import PackageForm
+from travella.dtos.package_search import PublicPackageSearch
 from travella.services.package_utils import is_empty
 from travella.dtos.api_dtos import BookingOverview
+from travella.utils.pagination import SIZE, PaginationResult
 from ..domains.models.booking_models import Booking
 from ..domains.models.tour_models import Category, Package, Photo
-from ..dtos.package_dto import PackageItem, PackageDetail
+from ..dtos.package_dto import PackageItem, PackageItemDetail
 
 
 class PackageService:
@@ -22,7 +26,7 @@ class PackageService:
                          .order_by('-code')
                          .values('code')
                          .first())['code']
-        prefix = last_code_str[:3]
+        prefix = last_code_str[:4]
         last_code = int(last_code_str.removeprefix(prefix))
 
         new_code = last_code + 1
@@ -35,9 +39,9 @@ class PackageService:
         items = [PackageItem.of(p) for p in packages]
         return items
 
-    def get_one(self, code:str) -> PackageDetail:
+    def get_one(self, code:str) -> PackageItemDetail:
         package = Package.objects.get(code = code)
-        return PackageDetail.of(package)
+        return PackageItemDetail.of(package)
     
     def get_gallery(self, code:str) -> list[str]:
         photos:QuerySet[Photo] = Package.objects.get(code = code).photos.all()
@@ -86,3 +90,17 @@ class PackageService:
             for p in package.photos.all():
                 p.path.delete(save = False)
             package.delete()
+
+    def search_for_customer(self, search:PublicPackageSearch)  -> PaginationResult:
+        packages = Package.objects.filter(search.filter()).order_by('-createdAt')
+        pagination = Paginator(packages, SIZE)
+        paginationResult = PaginationResult(search.page, pagination, PackageCard.of)
+        return paginationResult
+
+    def count(self) -> int:
+        return Package.objects.count()
+    
+    def detail(self, code:str) -> PackageDetail:
+        package = Package.objects.get(code = code)
+        dto = PackageDetail.of(package)
+        return dto

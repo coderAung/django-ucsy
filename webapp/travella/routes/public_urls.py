@@ -6,7 +6,7 @@ from travella.controllers.customer import review_controller
 urlpatterns = [
     path('discover/', public_controller.discover, name='discover'),
     path('packages/', public_controller.packages),
-    path('packages/<str:code>', public_controller.package_detail),
+    path('packages/<str:code>', public_controller.package_detail, name='public_packages_code'),
 
     path('reviews/', review_controller.list, name='review_list'),
     path('reviews/<int:id>/', review_controller.detail),
