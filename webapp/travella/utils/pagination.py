@@ -4,6 +4,8 @@ from django.core.paginator import Paginator, Page
 ITEM = TypeVar('ITEM')
 DTO = TypeVar('DTO')
 
+SIZE = 9
+
 class PaginationResult(Generic[DTO, ITEM]):
     items:list[DTO] = []
     has_prev:bool

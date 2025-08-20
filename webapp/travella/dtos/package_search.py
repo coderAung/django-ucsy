@@ -1,22 +1,20 @@
 from datetime import date, datetime
 
 from django.http import QueryDict
+from django.db.models import Q
+
+from travella.services.package_utils import is_empty
 
 
 class PublicPackageSearch:
     categoryId:int = 0
     locationId:int = 0
-    departureFrom:date
-    departureTo:date
+    departureFrom:date = None
+    departureTo:date = None
     q:str = ''
     page:int = 1
 
-    def __init__(self, categoryId = 0, locationId = 0, departureFrom:date = None, departureTo:date = None, q = '', page = 1):
-        self.categoryId = categoryId
-        self.locationId = locationId
-        self.departureFrom = departureFrom
-        self.departureTo = departureTo
-        self.q = q
+    def __init__(self, page = 1):
         self.page = page
 
     def __str__(self):
@@ -37,3 +35,17 @@ class PublicPackageSearch:
         if query.get('page') != '' and query.get('page') != None:
             form.page = int(query.get('page'))
         return form
+    
+    def filter(self) -> Q:
+        qf = Q()
+        if not is_empty(self.categoryId) and self.categoryId != 0:
+            qf &= Q(category__id = self.categoryId)
+        if not is_empty(self.locationId) and self.locationId != 0:
+            qf &= Q(location__id = self.locationId)
+        if not is_empty(self.q):
+            qf &= Q(title__startswith = self.q.lower())
+        if not is_empty(self.departureFrom) and not is_empty(self.departureTo):
+            qf &= Q(departure__gte = self.departureFrom, departure__lte = self.departureTo)
+        return qf
+
+    

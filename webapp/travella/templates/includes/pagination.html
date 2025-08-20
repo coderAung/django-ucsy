@@ -2,11 +2,11 @@
     <div class="d-flex column-gap-3">
         
         {% if result.has_prev %}
-            <div class="paginationBtn shadow"><i class="bi bi-arrow-left"></i></div>
+            <div data-page="{{result.prev_page}}" class="paginationBtn shadow"><i class="bi bi-arrow-left"></i></div>
         {% endif %}
             
         {% for i in result.pages %}
-            <div class="paginationBtn
+            <div data-page="{{i}}" class="paginationBtn
                 {% if i == result.current_page %}
                     {{'active'}}
                 {% endif %}
@@ -14,7 +14,7 @@
         {% endfor %}
 
         {% if result.has_next %}
-            <div class="paginationBtn shadow"><i class="bi bi-arrow-right"></i></div>
+            <div data-page="{{result.next_page}}" class="paginationBtn shadow"><i class="bi bi-arrow-right"></i></div>
         {% endif %}
 
     </div>

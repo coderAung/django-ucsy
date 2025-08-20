@@ -142,4 +142,21 @@ document.addEventListener('DOMContentLoaded', () => {
         })
 
     }
+
+    const paginationBtns = document.getElementsByClassName('paginationBtn')
+    const pageInput = document.getElementById('pageInput')
+    const filterForm = document.getElementById('filterForm')
+    if(paginationBtns && pageInput && filterForm) {
+        const paginate = btn => {            
+            const page = btn.dataset['page']
+            pageInput.value = page
+            filterForm.submit()
+        }
+        Array.from(paginationBtns).forEach(btn => {
+            if(!btn.classList.contains('active')) {
+                btn.addEventListener('click', () => paginate(btn))
+            }
+        })
+    }
 })
+
