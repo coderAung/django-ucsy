@@ -295,7 +295,7 @@
             <div class="mb-3">
               <label class="form-label fw-semibold">Your Review</label>
               <textarea name="content" class="form-control" rows="5"
-                placeholder="Share your experience...">{% if edit_review %}{{ edit_review.content }}{% endif %}</textarea>
+                placeholder="Share your experience..." required>{% if edit_review %}{{ edit_review.content }}{% endif %}</textarea>
             </div>
             {% if user.is_authenticated %}
             <button type="submit" class="btn btn-primary w-100">
