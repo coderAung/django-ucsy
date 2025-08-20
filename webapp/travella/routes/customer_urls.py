@@ -14,8 +14,9 @@ urlpatterns = [
     path('reservations/', reservation_controller.history),
     path('reservations/<int:id>/', reservation_controller.voucher),
 
-    path('reviews/new/', review_controller.new),
-    path('reviews/edit/<int:id>/', review_controller.edit),
-    path('reviews/save/', review_controller.save),
-    path('reviews/delete/<int:id>', review_controller.delete),
+    path('reviews/', review_controller.list, name='review_list'),
+    path('reviews/new/', review_controller.new, name='create_review'),
+    path('reviews/save/', review_controller.save, name='save_review'),
+    path('customer/reviews/edit/<uuid:id>/', review_controller.edit, name='edit_review'),
+    path('customer/reviews/delete/<uuid:id>/', review_controller.delete, name='delete_review'),
 ]

@@ -8,7 +8,7 @@ urlpatterns = [
     path('packages/', public_controller.packages),
     path('packages/<str:code>', public_controller.package_detail),
 
-    path('reviews/', review_controller.list),
+    path('reviews/', review_controller.list, name='review_list'),
     path('reviews/<int:id>/', review_controller.detail),
 
 ]
