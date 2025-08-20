@@ -4,6 +4,8 @@ import uuid
 from dataclasses import dataclass
 from typing import List, Optional
 
+from travella.utils.constants import BOOK_BEFORE
+
 from ..domains.models.booking_models import Booking
 from ..domains.models.tour_models import Itinerary, Package
 
@@ -215,21 +217,21 @@ class ItineraryDto:
         return ItineraryDto(i.day, i.title, i.description)
 
 @dataclass(frozen=True)
-class PackageDetail(PackageItem):
+class PackageItemDetail(PackageItem):
     overview: str
     bookingStatusItems: List['BookingStatus']  # Correct type hint for a list of BookingStatus
     remaining_ticket: int
     itineraries: List['ItineraryDto']
 
     def end_in(self):
-        return self.departure - datetime.timedelta(days=2)
+        return self.departure - datetime.timedelta(days=BOOK_BEFORE)
 
     def departure_end(self) -> datetime.datetime:
         return self.departure + datetime.timedelta(days=self.duration)
 
     @staticmethod
-    def of(package: 'Package') -> 'PackageDetail':
-        return (PackageDetail.Builder()
+    def of(package: 'Package') -> 'PackageItemDetail':
+        return (PackageItemDetail.Builder()
                 .item(PackageItem.of(package))
                 .overview(package.overview)
                 .remaining_ticket(package.availableTicket - package.booking_count)
@@ -245,7 +247,7 @@ class PackageDetail(PackageItem):
             self._booking_status_items: Optional[List['BookingStatus']] = None
             self._itineraries: Optional[List['ItineraryDto']] = None
 
-        def item(self, item: 'PackageItem') -> 'PackageDetail.Builder':
+        def item(self, item: 'PackageItem') -> 'PackageItemDetail.Builder':
             self._item_builder = (
                 PackageItem.Builder()
                 .id(item.id)
@@ -261,27 +263,27 @@ class PackageDetail(PackageItem):
             )
             return self
 
-        def from_package(self, package: 'Package') -> 'PackageDetail.Builder':
+        def from_package(self, package: 'Package') -> 'PackageItemDetail.Builder':
             pkg_item = PackageItem.of(package)
             return self.item(pkg_item)
 
-        def overview(self, value: str) -> 'PackageDetail.Builder':
+        def overview(self, value: str) -> 'PackageItemDetail.Builder':
             self._overview = value
             return self
         
-        def remaining_ticket(self, value: int) -> 'PackageDetail.Builder':
+        def remaining_ticket(self, value: int) -> 'PackageItemDetail.Builder':
             self._remaining_ticket = value
             return self
 
-        def booking_status_items(self, value: List['BookingStatus']) -> 'PackageDetail.Builder':
+        def booking_status_items(self, value: List['BookingStatus']) -> 'PackageItemDetail.Builder':
             self._booking_status_items = value
             return self
         
-        def itineraries(self, value: List['ItineraryDto']) -> 'PackageDetail.Builder':
+        def itineraries(self, value: List['ItineraryDto']) -> 'PackageItemDetail.Builder':
             self._itineraries = value
             return self
 
-        def build(self) -> 'PackageDetail':
+        def build(self) -> 'PackageItemDetail':
             missing = []
             if self._item_builder is None:
                 missing.append('item')
@@ -297,7 +299,7 @@ class PackageDetail(PackageItem):
                 raise ValueError(f'Missing fields for PackageDetail: {", ".join(missing)}')
 
             item = self._item_builder.build()
-            return PackageDetail(
+            return PackageItemDetail(
                 id=item.id,
                 code=item.code,
                 name=item.name,

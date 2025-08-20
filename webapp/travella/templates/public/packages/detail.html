@@ -1,0 +1,216 @@
+{% extends 'layouts/customer-layout.html' %}
+
+
+{% block content %}
+        <div class="container py-2">
+        <div class="mb-3">
+            <span class="df-badge badge-blue">{{dto.category}}</span>
+            <span class="df-badge badge-cyan">{{dto.transportation}}</span>
+            <span class="df-badge badge-green">Available</span>
+        </div>
+        <div>
+            <h4 class="h2 mb-3">{{dto.title}}</h4>
+            <div class="d-flex">
+                <div class="pe-3">
+                    <div>
+                        <i class="bi bi-geo-alt df-text-blue me-4"></i>
+                        <span>{{dto.location}}</span>
+                    </div>
+                    {% comment %} <div>
+                        <i class="bi bi-star-fill df-text-blue me-4"></i>
+                        <span>4.5 / 5</span>
+                    </div> {% endcomment %}
+                </div>
+
+                <div class="ps-3 border-start">
+                    <span class="fs-5 fw-bold df-text-cyan">{{dto.price}} MMK</span>
+                    <span class="px-3">per person</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <div class="row row-cols-2">
+                <div class="col d-flex align-items-center">
+                    <img src="photos/h1.png" alt="" class="img-fluid rounded">
+                </div>
+
+                <div class="col">
+                    <div class="row row-cols-2 row-gap-3">
+                        <div class="col d-flex align-items-center">
+                            <img src="photos/h2.png" alt="" class="img-fluid rounded">
+                        </div>
+                        <div class="col d-flex align-items-center">
+                            <img src="photos/h3.png" alt="" class="img-fluid rounded">
+                        </div>
+                        <div class="col d-flex align-items-center">
+                            <img src="photos/h4.png" alt="" class="img-fluid rounded">
+                        </div>
+                        <div class="col d-flex align-items-center">
+                            <img src="photos/h1.png" alt="" class="img-fluid rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <div class="row">
+                <div class="col-8">
+                    <div>
+                        <h4 class="h3">Overview</h4>
+                        <p class="mt-3 pe-3">{{dto.overview}}</p>
+                    </div>
+                </div>
+
+                <div class="col-4 d-flex">
+                    <div class="shadow-sm w-100 rounded px-3 py-3">
+                    <!-- <div class="w-100 px-3 py-3"> -->
+                    <!-- <div class="shadow rounded w-100 px-3 py-3"> -->
+                        <div class="">
+                            <h5 class="h5 mb-3">Departure</h5>
+                            <div class="d-flex flex-column row-gap-2 fw-bold">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="border rounded py-1 px-2">July 03, 2025</span>
+                                    <i class="bi bi-arrows"></i>
+                                    <span class="border rounded py-1 px-2">July 08, 2025</span>
+                                </div>
+                                <div class="border rounded py-1 px-2 d-flex justify-content-between align-items-center">
+                                    <span class="text-secondary">Duration</span>
+                                    <span class="">5 days</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <h5 class="mb-3">Ticket</h5>
+                            <div class="d-flex flex-column row-gap-2 fw-bold">
+                                <div class="border rounded py-1 px-2 d-flex justify-content-between align-items-center">
+                                    <span class="text-secondary">Available</span>
+                                    <span class="">12</span>
+                                </div>
+                                <div class="border rounded py-1 px-2 d-flex justify-content-between align-items-center">
+                                    <span class="text-secondary">Price</span>
+                                    <span class="">50,000 MMK</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button class="df-btn w-100">Book Now</button>
+                        </div>
+                        <div class="mt-4 df-badge badge-red text-end">
+                            End in - July 01, 2025
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <div>
+                <h4 class="h3 mb-4">Itinery</h4>
+                <div class="row row-cols-1 row-gap-3">
+                    <div class="col">
+                        <div class="shadow-sm d-flex row">
+                            <div class="ps-0 col-4">
+                                <img src="photos/h1.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="py-2 px-4 col-8">
+                                <div>
+                                    <h5>Day 1 - Arrival in Hpa-An</h5>
+                                    <span class="text-muted">July 03, 2025</span>
+                                </div>
+                                <div class="mt-3">
+                                    <p>Settle into the peaceful rhythms of Hpa-An, a charming town surrounded by
+                                        dramatic limestone mountains. Take a leisurely walk along the Thanlwin River and
+                                        soak in the serene atmosphere. Enjoy a local meal while getting a first glimpse
+                                        of the region’s unique culture and warm hospitality.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="shadow-sm d-flex row">
+                            <div class="ps-0 col-4">
+                                <img src="photos/h2.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="py-2 px-4 col-8">
+                                <div>
+                                    <h5>Day 2 - Caves & Cultural Wonders</h5>
+                                    <span class="text-muted">July 04, 2025</span>
+                                </div>
+                                <div class="mt-3">
+                                    <p>Explore the famous Sadan Cave, filled with Buddha images and natural rock
+                                        formations. Continue to Kawgun Cave, known for its ancient carvings and hidden
+                                        shrines. End the day at Yathaypyan Cave, catching panoramic views of the
+                                        surrounding countryside at sunset.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="shadow-sm d-flex row">
+                            <div class="ps-0 col-4">
+                                <img src="photos/h3.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="py-2 px-4 col-8">
+                                <div>
+                                    <h5>Day 3 - Mount Zwegabin Adventure</h5>
+                                    <span class="text-muted">July 05, 2025</span>
+                                </div>
+                                <div class="mt-3">
+                                    <p>Embark on a hike up Mount Zwegabin, one of Hpa-An’s most iconic landmarks. Pass
+                                        by monasteries, stairways, and monkeys as you ascend for sweeping views from the
+                                        top. Descend and relax at Lumbini Garden, where hundreds of Buddha statues line
+                                        the paths.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="shadow-sm d-flex row">
+                            <div class="ps-0 col-4">
+                                <img src="photos/h4.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="py-2 px-4 col-8">
+                                <div>
+                                    <h5>Day 4 - Village Life & Waterfalls</h5>
+                                    <span class="text-muted">July 06, 2025</span>
+                                </div>
+                                <div class="mt-3">
+                                    <p>Visit a nearby village to experience local life, traditions, and crafts. In the
+                                        afternoon, cool off at the refreshing Kyone Htaw Waterfall, a popular spot for
+                                        locals. Enjoy a quiet evening in Hpa-An town with street food or a riverside
+                                        dinner.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="shadow-sm d-flex row">
+                            <div class="ps-0 col-4">
+                                <img src="photos/h1.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="py-2 px-4 col-8">
+                                <div>
+                                    <h5>Day 5 - Relaxation & Departure</h5>
+                                    <span class="text-muted">July 07, 2025</span>
+                                </div>
+                                <div class="mt-3">
+                                    <p>Spend your final morning at leisure—perhaps browsing a local market or enjoying a
+                                        slow breakfast with mountain views. Reflect on the journey before departing with
+                                        unforgettable memories of Hpa-An’s nature and culture.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

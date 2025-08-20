@@ -14,6 +14,8 @@ class AuthMiddleWare:
         self.public_urls = [
             '/auth/sign-in',
             '/auth/sign-up',
+            '/public',
+            '/media/tours'
         ]
     
     def __call__(self, request:HttpRequest) -> HttpResponse:
@@ -24,6 +26,6 @@ class AuthMiddleWare:
             user = request.user
             if user.role == Account.Role.CUSTOMER and path.startswith('/admins/'):
                 return redirect('/authorization/fail')
-            if (user.role == Account.Role.ADMIN or user.role == Account.Role.MOD) and path.startswith('/customers/'):
+            if (user.role == Account.Role.ADMIN or user.role == Account.Role.MOD) and path.startswith('/customer/'):
                 return redirect('/authorization/fail')
         return self.get_response(request)

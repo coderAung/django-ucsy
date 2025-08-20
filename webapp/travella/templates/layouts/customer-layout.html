@@ -14,7 +14,10 @@
         crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="{% static 'css/customer.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    
+    {% block cssFile %}{% endblock cssFile %}
+        
 </head>
 <body>
     <div>
@@ -25,4 +28,6 @@
             
     </div>
 </body>
+
+{% block jsFile %}{% endblock jsFile %}
 </html>
