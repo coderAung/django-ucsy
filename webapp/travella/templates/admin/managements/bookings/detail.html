@@ -1,11 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Booking Detail</h1>
-</body>
-</html>
+{% extends 'layouts/admin-layout.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="card border-0 shadow-lg rounded-4" style="max-width: 800px; margin-left: 70px;">
+    
+    <!-- Fancy Header -->
+    
+ <div class="card-header bg-gradient bg-info text-center py-2 rounded-top-4">
+  <h4 class="mb-1 fw-semibold" style="color:#393B4D;">📋 Booking Info</h4> <!-- Tailwind blue-500 as example -->
+  <p class="mb-0 small" style="color: #6c757d;">Overview of the traveler's booking information</p>
+</div>
+
+
+    <!-- Card Body -->
+    <div class="card-body bg-light px-5 py-4 rounded-bottom-4">
+
+      <!-- First Section -->
+      <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">📦 Package Name:</div>
+        <div class="col-sm-7">{{ booking.package.title }}</div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">🔖 Booking ID:</div>
+        <div class="col-sm-7">{{ booking.id }}</div>
+      </div>
+
+       <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">📌 Status:</div>
+        <div class="col-sm-7">
+          {% if booking.status == Status.RESERVED %}
+            <span class="badge bg-success px-3 py-2 rounded-pill">Reserved at {{ booking.statusUpdatedAt|time:"g:i A" }}</span>
+          {% elif booking.status == Status.CANCELLED %}
+            <span class="badge bg-danger px-3 py-2 rounded-pill">Cancelled at {{ booking.statusUpdatedAt|time:"g:i A" }}</span>
+          {% else %}
+            <span class="badge bg-primary px-3 py-2 rounded-pill">Pending at {{ booking.statusUpdatedAt|time:"g:i A" }}</span>
+          {% endif %}
+        </div>
+      </div>
+       <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">🗓️ Departure Time:</div>
+        <div class="col-sm-7">{{ booking.package.departure|date:"F j, Y" }}</div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">⏳ Duration:</div>
+        <div class="col-sm-7">{{ booking.package.duration }} days</div>
+      </div>
+
+       <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">👥 Number of People:</div>
+        <div class="col-sm-7">{{ booking.ticketCount }}</div>
+      </div>
+     <div class="row mb-3">
+     <div class="col-sm-5 text-muted fw-semibold">💵 Unit Price (per ticket):</div>
+     <div class="col-sm-7">{{ booking.unitPrice|floatformat:2 }} MMK</div>
+     </div>
+     
+
+       <div class="row">
+        <div class="col-sm-5 text-muted fw-semibold">💰 Total Cost:</div>
+        <div class="col-sm-7">{{ total_cost|floatformat:2 }} MMK</div>
+      </div>
+
+      <!-- Decorative Divider -->
+      <hr class="border border-info border-2 opacity-50 rounded-pill my-4">
+
+      <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">👤 Traveler Name:</div>
+        <div class="col-sm-7">{{ booking.customer.accountdetail.name }}</div>
+      </div>
+
+      
+
+      <div class="row mb-4">
+        <div class="col-sm-5 text-muted fw-semibold">✉️ Email:</div>
+        <div class="col-sm-7">{{ booking.customer.email }}</div>
+      </div>
+
+     
+
+     
+      <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">📞 Phone:</div>
+        <div class="col-sm-7">{{ booking.customer.accountdetail.phone }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+
+     
+
+     
+
+      
+
+     
+{% endblock %}

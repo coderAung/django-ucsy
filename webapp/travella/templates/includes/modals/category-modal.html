@@ -1,0 +1,28 @@
+<!-- category modal -->
+
+<div class="modal fade df-fs-sm" id="categoryModal" tabindex="-1">
+    <div class="modal-dialog py-4 mt-5 d-flex justify-content-center">
+        <div class="modal-content w-75 py-3 glass-card shadow">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <div class="d-flex">
+                        <input id="categorySearch" placeholder="Search" type="text" class="form-control w-auto">
+                    </div>
+                </div>
+                <div id="categoryContainer" class="row row-cols-3 row-gap-3">
+                    {% for c in categories %}
+                    <div class="col">
+                        <div class="rounded-5 categoryItem text-center glass-item border px-2 py-2" data-ci="ci1" id="ci1"><span>{{c.name}}</span></div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="d-flex mt-3 justify-content-end">
+                    <button class="btn df-btn-glass-purple" id="continueBtn" data-category-id="ci0">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- category modal end -->
+

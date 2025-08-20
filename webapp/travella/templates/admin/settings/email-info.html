@@ -1,11 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Setting email</h1>
-</body>
-</html>
+{% extends 'layouts/setting-layout.html' %}
+
+{% block setting_content %}
+
+<h4 class="fw-bold mb-4">Change your Email</h4>
+<form method="POST">
+    {% csrf_token %}
+    <div class="row mb-4">
+        <div class="col-lg-9">
+           <div class="alert alert-warning d-flex align-items-center" role="alert">
+               <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"></i>
+               <div>
+                   A verification link will be sent to your new email address.
+               </div>
+           </div>
+        </div>
+    </div>
+   <div class="row mb-3">
+       <div class="col-lg-9">
+           <label for="newEmailInput" class="form-label">New Email</label>
+           <input type="email" class="form-control form-control-custom" id="newEmailInput" name="new_email" placeholder="Enter new email address">
+       </div>
+   </div>
+   <div class="row mb-4">
+       <div class="col-lg-9">
+           <label for="currentPasswordEmail" class="form-label">Current Password</label>
+           <input type="password" class="form-control form-control-custom" id="currentPasswordEmail" name="current_password" placeholder="Enter current password">
+       </div>
+   </div>
+   <button type="submit" class="btn btn-custom-primary">Confirm</button>
+</form>
+
+{% endblock %}

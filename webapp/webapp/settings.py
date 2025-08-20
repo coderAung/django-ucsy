@@ -46,9 +46,18 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+
+    'travella.middlewares.auth_middleware.AuthMiddleWare',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTH_USER_MODEL = 'travella.Account'
+
+LOGIN_URL = '/auth/sign-in/'                # Where @login_required will redirect
+LOGIN_REDIRECT_URL = '/'  # Where to go after successful login
+LOGOUT_REDIRECT_URL = '/auth/sign-in/'     # Where to go after logout
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 ROOT_URLCONF = 'webapp.urls'
 
@@ -105,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Yangon'
 
 USE_I18N = True
 
