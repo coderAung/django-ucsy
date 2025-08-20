@@ -28,152 +28,152 @@
 </div>
 <!-- modal end -->
 <div class="d-flex">
-<div class="px-3 mt-3 df-fs-sm">
-    <div class="d-flex justify-content-between">
-        <h4 class="df-text-primary">All Packages</h4>
-    </div>
-
-    {% comment %} <div>
-        <div class="">
-            <h5>Static</h5>
+    <div class="px-3 mt-3 df-fs-sm w-100">
+        <div class="d-flex justify-content-between">
+            <h4 class="df-text-primary">All Packages</h4>
         </div>
-        <div class="bg-white rounded">
-            <div>
-                <div class="d-flex px-2 py-2 column-gap-3 rounded">
-                    <div class="col-2 df-alert df-alert-blue text-center">
-                        <h3>65</h3>
-                        <small>Total</small>
-                    </div>    
-                    <div class="col-2 df-alert df-alert-green text-center">
-                        <h3>61</h3>
-                        <small>Available</small>
-                    </div>    
-                    <div class="col-2 df-alert df-alert-red text-center">
-                        <h3>4</h3>
-                        <small>Unavailable</small>
-                    </div>    
-                    <div class="col-2 df-alert df-alert-yellow text-center">
-                        <h3>0</h3>
-                        <small>Finished</small>
-                    </div>    
+
+        {% comment %} <div>
+            <div class="">
+                <h5>Static</h5>
+            </div>
+            <div class="bg-white rounded">
+                <div>
+                    <div class="d-flex px-2 py-2 column-gap-3 rounded">
+                        <div class="col-2 df-alert df-alert-blue text-center">
+                            <h3>65</h3>
+                            <small>Total</small>
+                        </div>    
+                        <div class="col-2 df-alert df-alert-green text-center">
+                            <h3>61</h3>
+                            <small>Available</small>
+                        </div>    
+                        <div class="col-2 df-alert df-alert-red text-center">
+                            <h3>4</h3>
+                            <small>Unavailable</small>
+                        </div>    
+                        <div class="col-2 df-alert df-alert-yellow text-center">
+                            <h3>0</h3>
+                            <small>Finished</small>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div> {% endcomment %}
+
+        <div class="mt-3">
+            <div class="d-flex justify-content-between">
+                <form action="">
+                        <div class="d-flex column-gap-2">
+                            <div>
+                                <select class="form-select df-fs-sm" name="category">
+                                    <option value="">All Category</option>
+                                    {% for c in categories %}
+                                    <option value="{{c.name}}" {% if request.GET.category == c.name%}selected{%endif%}>{{c.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div>
+                                <select class="form-select df-fs-sm" name="status">
+                                    <option value="">Status</option>
+                                    {% for label,value in status %}
+                                    <option value="{{value}}" {% if request.GET.status == value %}selected{%endif%}>{{value}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div>
+                                <select class="form-select df-fs-sm" name="month">
+                                    <option value="">Departure</option>
+                                    <option value="thisMonth" {% if request.GET.month == 'thisMonth'%}selected{%endif%}>This Month</option>
+                                    <option value="lastMonth" {% if request.GET.month == 'thisMonth'%}selected{%endif%}>Last Month</option>
+                                </select>
+                            </div>
+                            <div class="d-flex column-gap-2">
+                                <input type="text" class="form-control df-fs-sm w-auto" placeholder="Code or Name" name="q" value="{%if request.GET.q != ''%}{{request.GET.q}}{%endif%}">
+                                <button class="btn df-btn-glass-purple" type="submit">Search</button>
+                            </div>
+                        </div>
+                </form>
+                <div>
+                <button class="btn btn-admin-blue align-self-end" data-bs-toggle="modal"
+                data-bs-target="#addForm">Add a pacakge</button>
                 </div>
             </div>
         </div>
-    </div> {% endcomment %}
 
-    <div class="mt-3">
-        <div class="d-flex justify-content-between">
-            <form action="">
-                    <div class="d-flex column-gap-2">
-                        <div>
-                            <select class="form-select df-fs-sm" name="category">
-                                <option value="">All Category</option>
-                                {% for c in categories %}
-                                <option value="{{c.name}}" {% if request.GET.category == c.name%}selected{%endif%}>{{c.name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div>
-                            <select class="form-select df-fs-sm" name="status">
-                                <option value="">Status</option>
-                                {% for label,value in status %}
-                                <option value="{{value}}" {% if request.GET.status == value %}selected{%endif%}>{{value}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div>
-                            <select class="form-select df-fs-sm" name="month">
-                                <option value="">Departure</option>
-                                <option value="thisMonth" {% if request.GET.month == 'thisMonth'%}selected{%endif%}>This Month</option>
-                                <option value="lastMonth" {% if request.GET.month == 'thisMonth'%}selected{%endif%}>Last Month</option>
-                            </select>
-                        </div>
-                        <div class="d-flex column-gap-2">
-                            <input type="text" class="form-control df-fs-sm w-auto" placeholder="Code or Name" name="q" value="{%if request.GET.q != ''%}{{request.GET.q}}{%endif%}">
-                            <button class="btn df-btn-glass-purple" type="submit">Search</button>
-                        </div>
-                    </div>
-            </form>
+        <div class="shadow-sm mt-3">
             <div>
-            <button class="btn btn-admin-blue align-self-end" data-bs-toggle="modal"
-            data-bs-target="#addForm">Add a pacakge</button>
+                <form action="{% url 'packages_delete' %}" id="deletePackageForm" method="post">
+                {% csrf_token %}
+                    <input type="text" name="code" id="codeInput" class="d-none">
+                </form>
+                {% include 'includes/modals/delete-package-modal.html' %}
+                <script src="{% static 'js/package-delete.js' %}"></script>
+                <table class="table table-hover table-striped df-fs-sm">
+                    <thead class="table-light">
+                        <tr class="align-middle position-sticky sticky-top">
+                            <th>No.</th>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Duration</th>
+                            <th>Departure</th>
+                            <th class="text-end">Tickets</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-end">Price</th>
+                            <th class="text-end">Bookings</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    
+                    {% if list|length > 0 %}
+                    <tbody>
+                        {% for item in list %}
+                        <tr class="align-middle">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{item.code}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.category}}</td>
+                            <td><div class="d-flex align-items-center column-gap-3"><span>{{item.duration}}</span><span>Days</span></div></td>
+                            <td>{{item.departure}}</td>
+                            <td class="text-end">{{item.tickets}}</td>
+                            <td class="text-center">
+                                {% if item.status == 'Available' %}
+                                <span class="df-badge badge-green">{{item.status}}</span>
+                                {% else %}
+                                    {% if item.status == 'Finished' %}
+                                    <span class="df-badge badge-blue">{{item.status}}</span>
+                                    {% else %}
+                                    <span class="df-badge badge-red">{{item.status}}</span>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            <td class="text-end">{{item.price}} MMK</td>
+                            <td class="text-center">{{item.bookings}}</td>
+                            <td class="text-end">
+                                <div class="d-flex column-gap-2 align-items-center px-2">
+                                    <a href="{% url 'packages_detail' item.code %}" class="btn btn-sm df-btn-glass-blue"><i class="bi bi-eye fs-6"></i></a>
+                                    {% if item.bookings == 0 %}
+                                        <button class="btn btn-sm df-btn-glass-red deleteBtn" data-code="{{item.code}}"><i class="bi bi-trash"></i></button>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <!-- Add any more rows as needed -->
+                    </tbody>
+                    {% endif %}
+                </table>
+                
             </div>
         </div>
+        {% if not list|length > 0 %}
+            <div class="df-alert df-alert-gray mt-3">
+                There is no record.
+            </div>
+        {% endif %}
+        
     </div>
-
-    <div class="shadow-sm mt-3">
-        <div>
-            <form action="{% url 'packages_delete' %}" id="deletePackageForm" method="post">
-               {% csrf_token %}
-                <input type="text" name="code" id="codeInput" class="d-none">
-            </form>
-            {% include 'includes/modals/delete-package-modal.html' %}
-            <script src="{% static 'js/package-delete.js' %}"></script>
-            <table class="table table-hover table-striped df-fs-sm">
-                <thead class="table-light">
-                    <tr class="align-middle position-sticky sticky-top">
-                        <th>No.</th>
-                        <th>Code</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Duration</th>
-                        <th>Departure</th>
-                        <th class="text-end">Tickets</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-end">Price</th>
-                        <th class="text-end">Bookings</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                
-                {% if list|length > 0 %}
-                <tbody>
-                    {% for item in list %}
-                    <tr class="align-middle">
-                        <td>{{forloop.counter}}</td>
-                        <td>{{item.code}}</td>
-                        <td>{{item.name}}</td>
-                        <td>{{item.category}}</td>
-                        <td><div class="d-flex align-items-center column-gap-3"><span>{{item.duration}}</span><span>Days</span></div></td>
-                        <td>{{item.departure}}</td>
-                        <td class="text-end">{{item.tickets}}</td>
-                        <td class="text-center">
-                            {% if item.status == 'Available' %}
-                            <span class="df-badge badge-green">{{item.status}}</span>
-                            {% else %}
-                                {% if item.status == 'Finished' %}
-                                <span class="df-badge badge-blue">{{item.status}}</span>
-                                {% else %}
-                                <span class="df-badge badge-red">{{item.status}}</span>
-                                {% endif %}
-                            {% endif %}
-                        </td>
-                        <td class="text-end">{{item.price}} MMK</td>
-                        <td class="text-center">{{item.bookings}}</td>
-                        <td class="text-end">
-                            <div class="d-flex column-gap-2 align-items-center px-2">
-                                <a href="{% url 'packages_detail' item.code %}" class="btn btn-sm df-btn-glass-blue"><i class="bi bi-eye fs-6"></i></a>
-                                {% if item.bookings == 0 %}
-                                    <button class="btn btn-sm df-btn-glass-red deleteBtn" data-code="{{item.code}}"><i class="bi bi-trash"></i></button>
-                                {% endif %}
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    <!-- Add any more rows as needed -->
-                </tbody>
-                {% endif %}
-            </table>
-            
-        </div>
-    </div>
-    {% if not list|length > 0 %}
-        <div class="df-alert df-alert-gray mt-3">
-            There is no record.
-        </div>
-    {% endif %}
-    
-</div>
 </div>
 
 {% endblock content %}
