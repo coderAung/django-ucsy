@@ -11,10 +11,26 @@ from travella.utils.route_view import RouteView
 base = 'customer/reviews/'
 view = RouteView.get(base)
 
-def list(request:HttpRequest) -> HttpResponse:
-    page = request.GET.get('page',1)
-    reviews, page_obj = ReviewService.list_reviews(page)
-    return render(request, view('list'), {'reviews': page_obj})
+# def list(request:HttpRequest) -> HttpResponse:
+#     page = request.GET.get('page',1)
+#     reviews, page_obj = ReviewService.list_reviews(request.user, page)
+#     return render(request, view('list'), {'reviews': page_obj})
+
+def list(request: HttpRequest) -> HttpResponse:
+    page = request.GET.get('page', 1)
+    reviews, page_obj = ReviewService.list_reviews(request.user, page)
+
+    edit_review_id = request.GET.get('edit')
+    edit_review = None
+    if edit_review_id:
+        edit_review = ReviewService.get_review_for_edit(edit_review_id, request.user)
+
+    return render(request, view('list'), {
+        'reviews': page_obj,
+        'user': request.user,
+        'edit_review': edit_review
+    })
+
 
 def detail(request:HttpRequest, id:int) -> HttpResponse:
     return render(request, view('detail'))

@@ -16,7 +16,7 @@ urlpatterns = [
 
     path('reviews/', review_controller.list, name='review_list'),
     path('reviews/new/', review_controller.new, name='create_review'),
-    path('reviews/edit/<int:id>/', review_controller.edit, name='edit_review'),
     path('reviews/save/', review_controller.save, name='save_review'),
-    path('reviews/delete/<int:id>/', review_controller.delete, name='delete_review'),
+    path('customer/reviews/edit/<uuid:id>/', review_controller.edit, name='edit_review'),
+    path('customer/reviews/delete/<uuid:id>/', review_controller.delete, name='delete_review'),
 ]
