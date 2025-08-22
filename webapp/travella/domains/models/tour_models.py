@@ -41,6 +41,19 @@ class Package(AbstractModel):
     createdBy = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='packages')
     location = models.ForeignKey(Location, on_delete=models.PROTECT, related_name='packages', null=True)
+    status_value = models.TextField(choices=Status.choices, null=True, default=Status.AVAILABLE)
+
+    def update_status(self, status:Status):
+        self.status_value = status
+        self.save()
+    
+    def check_status(self):
+        if self.status == Package.Status.AVAILABLE:
+            if (self.availableTicket == self.booking_count or (self.departure - timedelta(10)) < date.today()) and self.status != Package.Status.UNAVAILABLE:
+                self.update_status(Package.Status.UNAVAILABLE)
+    
+            elif self.departure <= date.today() and self.status != Package.Status.FINISHED:
+                self.update_status(Package.Status.FINISHED)
 
     @property
     def booking_count(self) -> int:
@@ -49,13 +62,8 @@ class Package(AbstractModel):
     
     @property
     def status(self) -> 'Package.Status':
-        if date.today() >= self.departure:
-            return Package.Status.FINISHED
-        if self.booking_count < self.availableTicket:
-            return Package.Status.AVAILABLE
-        else:
-            return Package.Status.UNAVAILABLE
-        
+        return Package.Status(self.status_value)
+
 class Itinerary(models.Model):
     package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name='itineraries')
     day = models.IntegerField()

@@ -14,6 +14,7 @@ class PaginationResult(Generic[DTO, ITEM]):
     next_page:int = 0
     total_pages:int
     current_page:int
+    total_results:int
 
     def pages(self) -> list[int]:
         return [i+1 for i in range(self.total_pages)]
@@ -32,3 +33,4 @@ class PaginationResult(Generic[DTO, ITEM]):
 
         self.total_pages = pagination.num_pages
         self.current_page = page.number
+        self.total_results = pagination.count

@@ -152,9 +152,9 @@
                             <td class="text-center">{{item.bookings}}</td>
                             <td class="text-end">
                                 <div class="d-flex column-gap-2 align-items-center px-2">
-                                    <a href="{% url 'packages_detail' item.code %}" class="btn btn-sm df-btn-glass-blue"><i class="bi bi-eye fs-6"></i></a>
+                                    <a href="{% url 'packages_detail' item.code %}" class="btn btn-sm df-btn-glass-blue"><i class="bi bi-eye df-text-blue fs-6"></i></a>
                                     {% if item.bookings == 0 %}
-                                        <button class="btn btn-sm df-btn-glass-red deleteBtn" data-code="{{item.code}}"><i class="bi bi-trash"></i></button>
+                                        <button class="btn btn-sm df-btn-glass-red deleteBtn" data-code="{{item.code}}"><i class="bi bi-trash df-text-red"></i></button>
                                     {% endif %}
                                 </div>
                             </td>

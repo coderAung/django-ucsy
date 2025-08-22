@@ -25,6 +25,7 @@ class PackageItem:
 
     @staticmethod
     def of(package:Package) -> 'PackageItem':
+        package.check_status()
         return (PackageItem.Builder()
                 .id(package.id)
                 .code(package.code)

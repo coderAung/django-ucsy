@@ -92,7 +92,7 @@ class PackageService:
             package.delete()
 
     def search_for_customer(self, search:PublicPackageSearch)  -> PaginationResult:
-        packages = Package.objects.filter(search.filter()).order_by('-createdAt')
+        packages = Package.objects.filter(Q(status_value=Package.Status.AVAILABLE) & search.filter()).order_by('-createdAt')
         pagination = Paginator(packages, SIZE)
         paginationResult = PaginationResult(search.page, pagination, PackageCard.of)
         return paginationResult
