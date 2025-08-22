@@ -5,6 +5,8 @@ from travella.services.category_service import CategoryService
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from travella.domains.models.tour_models import Category
+from django.db.models import Count
+from ....dtos import package_dto
 
 base = 'admin/managements/categories/'
 
@@ -13,7 +15,7 @@ def view(name: str) -> str:
 
 @login_required
 def list(request: HttpRequest) -> HttpResponse:
-    categories = Category.objects.all().select_related('createdBy')
+    categories = Category.objects.all().select_related('createdBy').annotate(packages_count = Count(package_dto.Package))
     return render(request, view('list'), {'categories': categories})
 
 @login_required
