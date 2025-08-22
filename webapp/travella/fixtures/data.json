@@ -1,0 +1,802 @@
+[
+  {
+    "model": "travella.account",
+    "pk": "400799eb-e519-431a-b317-5499bce4d95c",
+    "fields": {
+      "email": "admin@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "admin",
+      "is_active": true,
+      "is_staff": true,
+      "is_superuser": true,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.accountdetail",
+    "pk": "7a68938d-258e-40d1-997b-e38850c7a612",
+    "fields": {
+      "name": "Admin",
+      "address": "Yangon, Myanmar",
+      "phone": "0911234567",
+      "account": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+    "fields": {
+      "email": "mod1@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "mod",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.accountdetail",
+    "pk": "d0a394d1-ecab-4328-8555-e1a976eae98a",
+    "fields": {
+      "name": "Mod1",
+      "address": "Yangon, Myanmar",
+      "phone": "0921234567",
+      "account": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "c59c27f5-de3d-4585-abde-fd82d6ac57de",
+    "fields": {
+      "email": "mod2@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "mod",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.accountdetail",
+    "pk": "31babd11-21fb-4495-b913-72de4d1a6140",
+    "fields": {
+      "name": "Mod2",
+      "address": "Yangon, Myanmar",
+      "phone": "0931234567",
+      "account": "c59c27f5-de3d-4585-abde-fd82d6ac57de",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+    "fields": {
+      "email": "cust1@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.accountdetail",
+    "pk": "05d4e96d-a073-4a19-82d4-53fe6e076783",
+    "fields": {
+      "name": "Cust1",
+      "address": "Yangon, Myanmar",
+      "phone": "0941234567",
+      "account": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+    "fields": {
+      "email": "cust2@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.accountdetail",
+    "pk": "e3f67b21-fdf7-4537-9e09-9bf1f9cc876c",
+    "fields": {
+      "name": "Cust2",
+      "address": "Yangon, Myanmar",
+      "phone": "0951234567",
+      "account": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": "1",
+    "fields": {
+      "name": "Yangon",
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": "2",
+    "fields": {
+      "name": "Mandalay",
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": "3",
+    "fields": {
+      "name": "Bagan",
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": "4",
+    "fields": {
+      "name": "Inle Lake",
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": "5",
+    "fields": {
+      "name": "Naypyidaw",
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": "6",
+    "fields": {
+      "name": "Kalaw",
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": "7",
+    "fields": {
+      "name": "Ngapali",
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": "8",
+    "fields": {
+      "name": "Pyin Oo Lwin",
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": "9",
+    "fields": {
+      "name": "Hsipaw",
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": "10",
+    "fields": {
+      "name": "Myeik",
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 1,
+    "fields": {
+      "name": "Relaxation",
+      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 2,
+    "fields": {
+      "name": "Adventure",
+      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 3,
+    "fields": {
+      "name": "Culture",
+      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 4,
+    "fields": {
+      "name": "History",
+      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 5,
+    "fields": {
+      "name": "Wildlife",
+      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 6,
+    "fields": {
+      "name": "Trekking",
+      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 7,
+    "fields": {
+      "name": "Beach",
+      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 8,
+    "fields": {
+      "name": "Festival",
+      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 9,
+    "fields": {
+      "name": "Culinary",
+      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.category",
+    "pk": 10,
+    "fields": {
+      "name": "Pilgrimage",
+      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "b22638f2-ca02-4b01-a35c-4bc8191c1da4",
+    "fields": {
+      "code": "REL-001",
+      "title": "Relaxation Tour 1",
+      "overview": "Enjoy the best of Relaxation in Myanmar.",
+      "departure": "2025-08-21",
+      "duration": 5,
+      "transportation": 1,
+      "price": "199.99",
+      "availableTicket": 20,
+      "cover_photo": null,
+      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "category": 1,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "d1aa7587-3acd-4aad-9d4a-041c04fbe4cf",
+    "fields": {
+      "code": "ADV-002",
+      "title": "Adventure Tour 2",
+      "overview": "Enjoy the best of Adventure in Myanmar.",
+      "departure": "2025-08-22",
+      "duration": 6,
+      "transportation": 2,
+      "price": "199.99",
+      "availableTicket": 20,
+      "cover_photo": null,
+      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "category": 2,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "ee294760-a615-40fe-928d-a1243a850fe2",
+    "fields": {
+      "code": "CUL-003",
+      "title": "Culture Tour 3",
+      "overview": "Enjoy the best of Culture in Myanmar.",
+      "departure": "2025-08-23",
+      "duration": 7,
+      "transportation": 1,
+      "price": "199.99",
+      "availableTicket": 20,
+      "cover_photo": null,
+      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "category": 3,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "6a1e72e9-3044-4345-81b4-3f7f7dd8f2f6",
+    "fields": {
+      "code": "HIS-004",
+      "title": "History Tour 4",
+      "overview": "Enjoy the best of History in Myanmar.",
+      "departure": "2025-08-24",
+      "duration": 8,
+      "transportation": 2,
+      "price": "199.99",
+      "availableTicket": 20,
+      "cover_photo": null,
+      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "category": 4,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "14da981b-7b2b-49b5-84d9-35e8142efcd9",
+    "fields": {
+      "code": "WIL-005",
+      "title": "Wildlife Tour 5",
+      "overview": "Enjoy the best of Wildlife in Myanmar.",
+      "departure": "2025-08-25",
+      "duration": 9,
+      "transportation": 1,
+      "price": "199.99",
+      "availableTicket": 20,
+      "cover_photo": null,
+      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "category": 5,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "b91ee423-7786-445a-bf14-749f01a80f86",
+    "fields": {
+      "code": "TRE-006",
+      "title": "Trekking Tour 6",
+      "overview": "Enjoy the best of Trekking in Myanmar.",
+      "departure": "2025-08-26",
+      "duration": 10,
+      "transportation": 2,
+      "price": "199.99",
+      "availableTicket": 20,
+      "cover_photo": null,
+      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "category": 6,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "301ba32c-f785-4cbd-9f3a-bfd671301e06",
+    "fields": {
+      "code": "BEA-007",
+      "title": "Beach Tour 7",
+      "overview": "Enjoy the best of Beach in Myanmar.",
+      "departure": "2025-08-27",
+      "duration": 11,
+      "transportation": 1,
+      "price": "199.99",
+      "availableTicket": 20,
+      "cover_photo": null,
+      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "category": 7,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "4e2b34c3-db0a-41b1-b392-838000e40c55",
+    "fields": {
+      "code": "FES-008",
+      "title": "Festival Tour 8",
+      "overview": "Enjoy the best of Festival in Myanmar.",
+      "departure": "2025-08-28",
+      "duration": 12,
+      "transportation": 2,
+      "price": "199.99",
+      "availableTicket": 20,
+      "cover_photo": null,
+      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "category": 8,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "19ce2b3b-cdae-4bd6-84c4-df7da94566c0",
+    "fields": {
+      "code": "CUL-009",
+      "title": "Culinary Tour 9",
+      "overview": "Enjoy the best of Culinary in Myanmar.",
+      "departure": "2025-08-29",
+      "duration": 13,
+      "transportation": 1,
+      "price": "199.99",
+      "availableTicket": 20,
+      "cover_photo": null,
+      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "category": 9,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.package",
+    "pk": "5a1d80cb-cf48-44e2-9327-e4968ff903bc",
+    "fields": {
+      "code": "PIL-010",
+      "title": "Pilgrimage Tour 10",
+      "overview": "Enjoy the best of Pilgrimage in Myanmar.",
+      "departure": "2025-08-30",
+      "duration": 14,
+      "transportation": 2,
+      "price": "199.99",
+      "availableTicket": 20,
+      "cover_photo": null,
+      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "category": 10,
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "5f1d3996-6002-47f3-a5b9-91ebe6d2c330",
+    "fields": {
+      "status": 1,
+      "ticketCount": 1,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "b22638f2-ca02-4b01-a35c-4bc8191c1da4",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "6aa552e0-a3f7-4f9b-9f12-836809a5fac4",
+    "fields": {
+      "status": 2,
+      "ticketCount": 2,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "d1aa7587-3acd-4aad-9d4a-041c04fbe4cf",
+      "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "84669e8e-f77b-4396-8955-38a93ae0a522",
+    "fields": {
+      "status": 3,
+      "ticketCount": 3,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "ee294760-a615-40fe-928d-a1243a850fe2",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "e0137e9d-bb19-42a3-9ba3-194fce99a907",
+    "fields": {
+      "status": 1,
+      "ticketCount": 4,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "6a1e72e9-3044-4345-81b4-3f7f7dd8f2f6",
+      "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "b18986a2-473c-4530-af29-1cd98cd9c6c9",
+    "fields": {
+      "status": 2,
+      "ticketCount": 5,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "14da981b-7b2b-49b5-84d9-35e8142efcd9",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "4bfc4ce8-61c4-4b7d-8399-f728f1ed4835",
+    "fields": {
+      "status": 3,
+      "ticketCount": 1,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "b91ee423-7786-445a-bf14-749f01a80f86",
+      "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "b9dbbd4f-616b-4aae-b6d1-f99de7efef03",
+    "fields": {
+      "status": 1,
+      "ticketCount": 2,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "301ba32c-f785-4cbd-9f3a-bfd671301e06",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "3db4dea4-16b6-4871-8523-3e9e3a3f9254",
+    "fields": {
+      "status": 2,
+      "ticketCount": 3,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "4e2b34c3-db0a-41b1-b392-838000e40c55",
+      "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "afa62d1f-080d-42fd-9d99-4cbc4b1b74ce",
+    "fields": {
+      "status": 3,
+      "ticketCount": 4,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "19ce2b3b-cdae-4bd6-84c4-df7da94566c0",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "4020f0ca-3d58-48d6-a389-36df4680d55f",
+    "fields": {
+      "status": 1,
+      "ticketCount": 5,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "5a1d80cb-cf48-44e2-9327-e4968ff903bc",
+      "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "5defd85e-eca1-4ee4-b671-81f04e77a114",
+    "fields": {
+      "status": 2,
+      "ticketCount": 1,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "b22638f2-ca02-4b01-a35c-4bc8191c1da4",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "f09b7e68-ef61-465d-b71e-ef4027d887cb",
+    "fields": {
+      "status": 3,
+      "ticketCount": 2,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "d1aa7587-3acd-4aad-9d4a-041c04fbe4cf",
+      "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "74ec2314-9304-4727-8001-8d7c8c7f05f2",
+    "fields": {
+      "status": 1,
+      "ticketCount": 3,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "ee294760-a615-40fe-928d-a1243a850fe2",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "e837b3dc-3ba9-4adf-87a6-473c9c04cb43",
+    "fields": {
+      "status": 2,
+      "ticketCount": 4,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "6a1e72e9-3044-4345-81b4-3f7f7dd8f2f6",
+      "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "dae2584d-2c81-486a-921d-98e0c130af65",
+    "fields": {
+      "status": 3,
+      "ticketCount": 5,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "14da981b-7b2b-49b5-84d9-35e8142efcd9",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "511d1766-3033-4de9-85ca-adbd0c289a55",
+    "fields": {
+      "status": 1,
+      "ticketCount": 1,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "b91ee423-7786-445a-bf14-749f01a80f86",
+      "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "1473f831-9aa9-4d94-9f4e-c7ed9d17a44a",
+    "fields": {
+      "status": 2,
+      "ticketCount": 2,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "301ba32c-f785-4cbd-9f3a-bfd671301e06",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "18ea789c-c802-4af0-9121-232ff959428a",
+    "fields": {
+      "status": 3,
+      "ticketCount": 3,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "4e2b34c3-db0a-41b1-b392-838000e40c55",
+      "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "a38b6296-c651-4329-87ff-214e7f185fb9",
+    "fields": {
+      "status": 1,
+      "ticketCount": 4,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "19ce2b3b-cdae-4bd6-84c4-df7da94566c0",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "19cc07f0-ceb6-410a-9d8e-65324f092cbf",
+    "fields": {
+      "status": 2,
+      "ticketCount": 5,
+      "unitPrice": "199.99",
+      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "package": "5a1d80cb-cf48-44e2-9327-e4968ff903bc",
+      "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+      "createdAt": "2025-08-15T09:00:00Z",
+      "updatedAt": "2025-08-16T09:00:00Z"
+    }
+  }
+]

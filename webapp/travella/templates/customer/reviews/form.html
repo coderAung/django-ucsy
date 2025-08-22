@@ -1,11 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traveler Reviews</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2ecc71;
+      --accent-color: #f39c12;
+      --dark-color: #2c3e50;
+      --light-color: #ecf0f1;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-section {
+      background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      color: white;
+      padding: 80px 0;
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 40px;
+    }
+
+    .review-form {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+
+    .review-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-content {
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .review-content.expanded {
+      -webkit-line-clamp: unset;
+    }
+
+    .user-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+    }
+
+    .rating {
+      color: var(--accent-color);
+      font-size: 1.1rem;
+    }
+
+    .stats-box {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .stats-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .stats-label {
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .btn-primary {
+      background: var(--primary-color);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-secondary {
+      border: 2px solid #ddd;
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-weight: 600;
+    }
+
+    .read-more-btn {
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      padding: 0;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+
+    .section-title {
+      position: relative;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    footer {
+      background: var(--dark-color);
+      color: white;
+      padding: 40px 0 20px;
+      margin-top: 60px;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Review Form</h1>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">
+        <i class="fas fa-globe-americas me-2 text-primary"></i>TravelExplorer
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Destinations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Tours</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Reviews</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section text-center">
+    <div class="container">
+      <h1 class="display-4 fw-bold mb-3">Traveler Reviews</h1>
+      <p class="lead mb-4">See what our community of travelers is saying about their experiences</p>
+      <a href="#reviewForm" class="btn btn-lg btn-primary px-4 py-2">
+        <i class="fas fa-pen me-2"></i>Write a Review
+      </a>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="container mb-5">
+    <div class="row">
+      <!-- Review Form and Stats -->
+      <div class="col-lg-4">
+        <div class="review-form sticky-top" style="top: 20px;">
+          <h3 class="section-title">Share Your Experience</h3>
+          <form id="reviewForm" method="post" action="{% url 'save_review' %}">
+            {% csrf_token %}
+            <input type="hidden" name="review_id" id="review_id" value="{{ edit_review.id|default:'' }}">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Your Review</label>
+              <textarea name="content" class="form-control" rows="5"
+                placeholder="Share your experience...">{% if edit_review %}{{ edit_review.content }}{% endif %}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">{% if edit_review %}Update Review{% else %}Submit
+              Review{% endif %}</button>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Reviews List -->
+    <div class="col-lg-8">
+      <h3 class="section-title">Recent Traveler Reviews</h3>
+
+      <div class="row g-4">
+        {% for review in reviews %}
+        <div class="col-md-6">
+          <div class="review-card p-4">
+            <div class="d-flex align-items-center mb-3">
+              <img src="{{ review.account_photo }}" alt="User" class="user-avatar me-3">
+              <div>
+                <h5 class="mb-0">{{ review.account_name }}</h5>
+              </div>
+            </div>
+            <p class="text-muted small">Posted on: {{ review.created_at|date:"F j, Y" }}</p>
+            <div class="review-content">
+              <p>{{ review.content }}</p>
+            </div>
+
+            <button class="read-more-btn">Read more</button>
+
+            {% if review.owned_by_user %}
+            <div class="mt-2 d-flex gap-2">
+              <a href="?edit={{ review.id }}" class="btn btn-sm btn-outline-primary">Edit</a>
+              <form action="{% url 'delete_review' review.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-danger"
+                  onclick="return confirm('Are you sure?')">Delete</button>
+              </form>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+          <h5 class="text-muted">No reviews yet. Be the first to share!</h5>
+        </div>
+        {% endfor %}
+      </div>
+
+
+      <!-- Pagination -->
+      <nav class="mt-5">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Previous</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h5>TravelExplorer</h5>
+          <p>Discover the world's wonders with our curated travel experiences.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white">About Us</a></li>
+            <li><a href="#" class="text-white">Destinations</a></li>
+            <li><a href="#" class="text-white">Write a Review</a></li>
+            <li><a href="#" class="text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>Connect With Us</h5>
+          <div class="d-flex justify-content-center gap-3">
+            <a href="#" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-pinterest fa-lg"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4 bg-light">
+      <p class="mb-0">&copy; 2023 TravelExplorer. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Rating stars
+      const stars = document.querySelectorAll('.rating i');
+      stars.forEach(star => {
+        star.addEventListener('click', function () {
+          const value = this.getAttribute('data-value');
+          const parent = this.parentElement;
+
+          // Reset all stars
+          parent.querySelectorAll('i').forEach(s => {
+            s.classList.remove('fas');
+            s.classList.add('far');
+          });
+
+          // Fill stars up to the clicked one
+          parent.querySelectorAll('i').forEach(s => {
+            if (s.getAttribute('data-value') <= value) {
+              s.classList.remove('far');
+              s.classList.add('fas');
+            }
+          });
+        });
+      });
+
+      // Read more functionality
+      document.querySelectorAll('.read-more-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const content = this.previousElementSibling;
+          content.classList.toggle('expanded');
+          this.textContent = content.classList.contains('expanded') ? 'Show less' : 'Read more';
+        });
+      });
+
+      // Form submission
+      document.getElementById('reviewForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        alert('Thank you for your review! It will be published after moderation.');
+        this.reset();
+
+        // Reset stars
+        document.querySelectorAll('.rating i').forEach(star => {
+          star.classList.remove('fas');
+          star.classList.add('far');
+        });
+      });
+    });
+  </script>
 </body>
+
 </html>

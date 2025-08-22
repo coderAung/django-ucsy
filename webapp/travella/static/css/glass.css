@@ -45,9 +45,23 @@
 
 .glass-item.active {
   background-color: rgba(107, 147, 233, 0.4);
-  color: #ffffff;
 }
 
 .glass-item.active::before {
   display: none;
+}
+.glass-remove:hover {
+  background-color: rgba(51, 50, 50, 0.595);
+}
+.glass-remove {
+  background-color: rgba(51, 50, 50, 0.378);
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+  margin-top: -10px;
+  border: 0.5px solid rgba(255, 255, 255, 0.421);
+}
+
+.glass-remove > i {
+  color: white;
+  font-weight: bolder;
 }

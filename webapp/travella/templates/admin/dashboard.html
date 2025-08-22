@@ -115,21 +115,6 @@
 
             {% for pkg in dashboard_data.top_packages %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
-<<<<<<< Updated upstream
-              Paris Escape <span class="badge bg-primary rounded-pill">120</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Rome Adventure <span class="df-badge badge-green rounded-pill">95</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Bali Relax <span class="df-badge badge-cyan rounded-pill">80</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Kyoto Culture <span class="df-badge badge-yellow rounded-pill">70</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Maldives Luxury <span class="badge bg-danger rounded-pill">65</span>
-=======
               {{ pkg.name }}
               <span class="badge 
           {% if forloop.counter == 1 %}bg-primary
@@ -139,7 +124,6 @@
           {% else %}bg-danger
           {% endif %}
           rounded-pill">{{ pkg.count }}</span>
->>>>>>> Stashed changes
             </li>
             {% endfor %}
           </ul>

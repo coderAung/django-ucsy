@@ -1,14 +1,15 @@
 from dataclasses import dataclass
 
-from ..domains.models.tour_models import Category, Package
+from ..domains.models.tour_models import Category, Location, Package
 
 @dataclass
 class CategoryItem:
+    id:int
     name:str
 
     @staticmethod
     def of(category:Category) -> 'CategoryItem':
-        return CategoryItem(category.name)
+        return CategoryItem(category.id, category.name)
 
 def load_categories() -> list[CategoryItem]:
     return [CategoryItem.of(c) for c in Category.objects.all()]
@@ -20,3 +21,15 @@ def is_empty(value:str) -> bool:
     if value == None or value == '' or value == 'null':
         return True
     return False
+
+@dataclass
+class LocationItem:
+    id:int
+    name:str
+
+    @staticmethod
+    def of(l:Location) -> 'LocationItem':
+        return LocationItem(l.id, l.name)
+
+def load_locations():
+    return [LocationItem.of(l) for l in Location.objects.all()]

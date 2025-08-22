@@ -2958,5 +2958,222 @@
       "createdAt": "2025-07-31T05:07:00Z",
       "updatedAt": "2025-07-31T05:07:00Z"
     }
+  },
+  {
+    "model": "travella.location",
+    "pk": 1,
+    "fields": {
+      "name": "Yangon",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 2,
+    "fields": {
+      "name": "Mandalay",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 3,
+    "fields": {
+      "name": "Naypyidaw",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 4,
+    "fields": {
+      "name": "Bagan",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 5,
+    "fields": {
+      "name": "Mawlamyine",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 6,
+    "fields": {
+      "name": "Pathein",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 7,
+    "fields": {
+      "name": "Monywa",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 8,
+    "fields": {
+      "name": "Meiktila",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 9,
+    "fields": {
+      "name": "Sittwe",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 10,
+    "fields": {
+      "name": "Hpa-An",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 11,
+    "fields": {
+      "name": "Loikaw",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 12,
+    "fields": {
+      "name": "Taunggyi",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 13,
+    "fields": {
+      "name": "Kalaw",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 14,
+    "fields": {
+      "name": "Pyin Oo Lwin",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 15,
+    "fields": {
+      "name": "Hsipaw",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 16,
+    "fields": {
+      "name": "Kyaiktiyo",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 17,
+    "fields": {
+      "name": "Pyay",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 18,
+    "fields": {
+      "name": "Magway",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.location",
+    "pk": 19,
+    "fields": {
+      "name": "Myitkyina",
+      "created_by": "cbf44850-92c6-4e2c-b655-27632e8b3562",
+      "createdAt": "2025-08-14T21:00:00",
+      "updatedAt": "2025-08-14T21:00:00"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "44444444-4444-4444-8444-444444444444",
+    "fields": {
+      "email": "user1@example.com",
+      "password": "pbkdf2_sha256$1000000$b0jTdW3KnYWo4KnjlffxSl$mjFsP8a3UR7L+pOazekueL1fpgKUjaEBLDsbGAge9Vo=",
+      "role": "customer",
+      "is_active": true,
+      "is_staff": false,
+      "created_at": "2025-08-02T19:01:00Z",
+      "updated_at": "2025-08-02T19:01:00Z"
+    }
+  },
+  {
+    "model": "travella.accountdetail",
+    "pk": "54444444-4444-4444-4444-444444444444",
+    "fields": {
+      "name": "User One",
+      "photo": "",
+      "address": "123 User Street",
+      "phone": "1234567890",
+      "account": "44444444-4444-4444-8444-444444444444",
+      "created_at": "2025-08-02T19:01:00Z",
+      "updated_at": "2025-08-02T19:01:00Z"
+    }
   }
 ]
+

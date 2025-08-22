@@ -1,243 +1,177 @@
 {% extends 'layouts/admin-layout.html' %}
 {% load static %}
 
+{% block cssFile %}
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .total-categories {
+    font-weight: 500;
+    margin-bottom: 15px;
+    text-align: right;
+  }
+
+  .toast-container {
+    z-index: 1100;
+  }
+
+  .bg-success {
+    background-color: #198754 !important;
+  }
+
+  .bg-danger {
+    background-color: #dc3545 !important;
+  }
+
+  .borderless-table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .borderless-table th,
+  .borderless-table td {
+    border: none;
+  }
+</style>
+{% endblock cssFile %}
+
 {% block content %}
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f8f9fa;
-      margin: 0;
-      padding: 0;
-    }
 
-    .layout {
-      display: flex;
-      height: 100vh;
-    }
+<body data-categories-url="{% url 'categories' %}">
+  <div class="">
+    <div class="ps-3 pt-2">
+      <h3 class="page-title">Categories</h3>
+    </div>
+    <div class="container">
+      <div class="px-3 py-2 rounded shadow bg-white">
 
-    .left-space {
-      width: 25%;
-      background-color: transparent;
-    }
-
-    .right-content {
-      width: 75%;
-      padding: 30px;
-    }
-
-    .table-container {
-      background-color: #fff;
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      max-width: 100%;
-      margin: auto;
-    }
-
-    .page-title {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    .btn-add {
-      float: right;
-      margin-bottom: 10px;
-    }
-
-    .search-box {
-      max-width: 300px;
-      margin-bottom: 25px;
-    }
-
-    th {
-      background-color: #f1f1f1;
-    }
-
-    td, th {
-      vertical-align: middle;
-    }
-
-    .form-inline {
-      display: none;
-    }
-
-    .borderless-table th,
-    .borderless-table td {
-      border: none !important;
-    }
-
-    .borderless-table tr {
-      border-bottom: 1px solid #dee2e6;
-    }
-  </style>
-</head>
-<body>
-
-<div class="layout">
-
-  <div class="right-content">
-    <div class="table-container">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        {% block title %} Categories {% endblock title %}
-        <button id="toggleFormBtn" class="btn btn-primary btn-add">+ Add Category</button>
-      </div>
-
-      <input type="text" class="form-control search-box" id="searchInput" placeholder="Search category..." />
-
-      <!-- Add Category Form -->
-      <form id="categoryForm" class="form-inline row g-2 mb-4">
-        <div class="col-md-6">
-          <input type="text" id="categoryInput" class="form-control" placeholder="Enter category name" required />
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <input type="text" class="form-control w-auto" placeholder="Search category..." />
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+            <i class="bi bi-plus-circle"></i> Add Category
+          </button>
         </div>
-        <div class="col-md-2">
-          <button type="submit" class="btn btn-success w-100">Add</button>
-        </div>
-      </form>
 
-      <!-- Category Table -->
-      <div class="table-responsive">
-        <table class="table table-hover borderless-table">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th class="text-center">Bookings</th>
-              <th class="text-center">Packages</th>
-              <th class="text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody id="categoryTable">
-            <tr><td>Beach</td><td class="text-center">20</td><td class="text-center">8</td>
-              <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary edit-btn"><i class="bi bi-pencil"></i></button>
-                <button class="btn btn-sm btn-outline-danger delete-btn"><i class="bi bi-trash"></i></button>
-              </td>
-            </tr>
-            <tr><td>Mountain</td><td class="text-center">12</td><td class="text-center">5</td>
-              <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary edit-btn"><i class="bi bi-pencil"></i></button>
-                <button class="btn btn-sm btn-outline-danger delete-btn"><i class="bi bi-trash"></i></button>
-              </td>
-            </tr>
-            <tr><td>Hiking</td><td class="text-center">18</td><td class="text-center">6</td>
-              <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary edit-btn"><i class="bi bi-pencil"></i></button>
-                <button class="btn btn-sm btn-outline-danger delete-btn"><i class="bi bi-trash"></i></button>
-              </td>
-            </tr>
-            <tr><td>Resort</td><td class="text-center">25</td><td class="text-center">9</td>
-              <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary edit-btn"><i class="bi bi-pencil"></i></button>
-                <button class="btn btn-sm btn-outline-danger delete-btn"><i class="bi bi-trash"></i></button>
-              </td>
-            </tr>
-            <tr><td>Lake</td><td class="text-center">10</td><td class="text-center">4</td>
-              <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary edit-btn"><i class="bi bi-pencil"></i></button>
-                <button class="btn btn-sm btn-outline-danger delete-btn"><i class="bi bi-trash"></i></button>
-              </td>
-            </tr>
-            <tr><td>Waterfall</td><td class="text-center">14</td><td class="text-center">7</td>
-              <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary edit-btn"><i class="bi bi-pencil"></i></button>
-                <button class="btn btn-sm btn-outline-danger delete-btn"><i class="bi bi-trash"></i></button>
-              </td>
-            </tr>
-            <tr><td>Pagoda</td><td class="text-center">16</td><td class="text-center">5</td>
-              <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary edit-btn"><i class="bi bi-pencil"></i></button>
-                <button class="btn btn-sm btn-outline-danger delete-btn"><i class="bi bi-trash"></i></button>
-              </td>
-            </tr>
-            <tr><td>Temple</td><td class="text-center">22</td><td class="text-center">6</td>
-              <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary edit-btn"><i class="bi bi-pencil"></i></button>
-                <button class="btn btn-sm btn-outline-danger delete-btn"><i class="bi bi-trash"></i></button>
-              </td>
-            </tr>
-            <tr><td>Festival</td><td class="text-center">30</td><td class="text-center">10</td>
-              <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary edit-btn"><i class="bi bi-pencil"></i></button>
-                <button class="btn btn-sm btn-outline-danger delete-btn"><i class="bi bi-trash"></i></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- Show Total Categories on Right -->
+        <div class="total-categories">
+          Total Categories: <strong>{{ categories|length }}</strong>
+        </div>
+
+        <!-- Category Table -->
+        <div class="table-responsive mt-3">
+          <table class="table table-hover borderless-table">
+            <thead>
+              <tr class="align-middle">
+                <th>No</th>
+                <th>Category</th>
+                <th class="text-center">Packages</th>
+                <th class="text-center">Created By</th>
+                <th class="text-center">Created Date</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for category in categories %}
+              <tr class="align-middle" data-category-id="{{ category.id }}">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ category.name }}</td>
+                <td class="text-center">
+                  {% if category.packages_count %}
+                  {{ category.packages_count }}
+                  {% else %}
+                  0
+                  {% endif %}
+                </td>
+                <td class="text-center">{{ category.createdBy.email }}</td>
+                <td class="text-center">
+                  {% firstof category.createdAt|date:"Y-m-d H:i" category.created_at|date:"Y-m-d H:i"%}
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-sm btn-outline-primary edit-category-btn" data-bs-toggle="modal"
+                    data-bs-target="#editCategoryModal" data-category-id="{{ category.id }}"
+                    data-category-name="{{ category.name }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Edit category">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger delete-category-btn" data-category-id="{{ category.id }}"
+                    data-category-name="{{ category.name }}" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Delete category">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  $('#toggleFormBtn').click(function () {
-    $('#categoryForm').slideToggle();
-  });
+  <!-- Add Category Modal -->
+  <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addCategoryModalLabel">Add Category</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addCategoryForm" method="POST" action="{% url 'create_category' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="categoryName" class="form-label">Enter Category Name</label>
+              <input type="text" class="form-control" id="categoryName" name="name" required>
+            </div>
+            <button type="submit" class="btn btn-success" id="submitBtn">
+              <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+              Add Category
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  $('#categoryForm').submit(function (e) {
-    e.preventDefault();
-    const name = $('#categoryInput').val().trim();
-    const bookings = '';
-    const packages = '';
-
-    if (name) {
-      if (confirm(`Add new category "${name}"?`)) {
-        $('#categoryTable').append(`
-          <tr>
-            <td>${name}</td>
-            <td class="text-center">${bookings}</td>
-            <td class="text-center">${packages}</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-outline-primary edit-btn"><i class="bi bi-pencil"></i></button>
-              <button class="btn btn-sm btn-outline-danger delete-btn"><i class="bi bi-trash"></i></button>
-            </td>
-          </tr>
-        `);
-        $('#categoryInput').val('');
-        $('#categoryForm').slideUp();
-      }
-    }
-  });
-
-  $('#categoryTable').on('click', '.delete-btn', function () {
-    const $row = $(this).closest('tr');
-    const categoryName = $row.find('td').eq(0).text();
-    if (confirm(`Are you sure you want to delete "${categoryName}"?`)) {
-      $row.remove();
-    }
-  });
-
-  $('#categoryTable').on('click', '.edit-btn', function () {
-    const $row = $(this).closest('tr');
-    const $editBtn = $(this);
-
-    if ($editBtn.hasClass('editing')) {
-      const newName = $row.find('td').eq(0).find('input').val().trim();
-      if (newName === '') {
-        alert('Category name cannot be empty.');
-        return;
-      }
-      if (confirm(`Save changes for "${newName}"?`)) {
-        $row.find('td').eq(0).text(newName);
-        $editBtn.removeClass('btn-success editing').addClass('btn-outline-primary')
-                 .html('<i class="bi bi-pencil"></i>');
-      }
-    } else {
-      const name = $row.find('td').eq(0).text();
-      const bookings = $row.find('td').eq(1).text();
-      const packages = $row.find('td').eq(2).text();
-
-      $row.find('td').eq(0).html(`<input type="text" class="form-control form-control-sm" value="${name}">`);
-      $editBtn.removeClass('btn-outline-primary').addClass('btn-success editing')
-              .html('<i class="bi bi-check-lg"></i>');
-    }
-  });
-
-  $('#searchInput').on('keyup', function () {
-    const value = $(this).val().toLowerCase();
-    $('#categoryTable tr').filter(function () {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-    });
-  });
-</script>
+  <!-- Edit Category Modal -->
+  <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editCategoryForm" method="POST" action="">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="editCategoryName" class="form-label">Category Name</label>
+              <input type="text" class="form-control" id="editCategoryName" name="name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+              Save Changes
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 
 {% endblock content %}
+
+{% block jsFile %}
+<script src="{% static 'js/category.js' %}"></script>
+{% endblock jsFile %}
