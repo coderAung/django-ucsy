@@ -3,5 +3,13 @@
 {% block main %}
     <div>
         <h1>Hello Setting</h1>
+
+        <ul>
+            
+            {% for d in datas %}
+                <li>{{d.code}} | {{d.remaining_tickets}}</li>
+            {% endfor %}
+                
+        </ul>
     </div>
 {% endblock %}

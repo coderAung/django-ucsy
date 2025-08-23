@@ -48,10 +48,10 @@ def get_booking_list_dtos_from_queryset(bookings_queryset):
             customer_name=customer_name,
             package_title=b.package.title,
             status_display=b.get_status_display(),
-            created_date=b.createdAt.date(),
-            created_time=b.createdAt.strftime('%I:%M %p').lstrip("0"),
-            status_updated_date=b.statusUpdatedAt.date(),
-            status_updated_time=b.statusUpdatedAt.strftime('%I:%M %p').lstrip("0"),
+            created_date=b.created_at.date(),
+            created_time=b.created_at.strftime('%I:%M %p').lstrip("0"),
+            status_updated_date=b.status_updated_at.date(),
+            status_updated_time=b.status_updated_at.strftime('%I:%M %p').lstrip("0"),
         ))
     return dtos
 
@@ -69,8 +69,8 @@ def get_booking_detail_dto(booking_id):
     return BookingDetailDTO(
         id=b.id,
         status=b.get_status_display(),
-        ticket_count=b.ticketCount,
-        unit_price=b.unitPrice,
+        ticket_count=b.ticket_count,
+        unit_price=b.unit_price,
         customer_name=customer_name,
         customer_email=b.customer.email,
         customer_phone=customer_phone,

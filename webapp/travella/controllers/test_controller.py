@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+from travella.domains.models.tour_models import PackageData
+from travella.tests.tests import load_package_data
+
 from ..domains.models.account_models import Account
 
 
@@ -8,4 +11,5 @@ def home(request):
     return render(request, 'test/home.html', {'list': accounts})
 
 def setting(request):
-    return render(request, 'test/setting.html')
+    load_package_data()
+    return render(request, 'test/setting.html', {'datas': PackageData.objects.all()})

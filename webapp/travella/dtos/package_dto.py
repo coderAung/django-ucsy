@@ -7,7 +7,7 @@ from typing import List, Optional
 from travella.utils.constants import BOOK_BEFORE
 
 from ..domains.models.booking_models import Booking
-from ..domains.models.tour_models import Itinerary, Package
+from ..domains.models.tour_models import Itinerary, Package, PackageData
 
 
 @dataclass(frozen=True)
@@ -19,13 +19,13 @@ class PackageItem:
     duration: int
     departure: datetime.datetime
     tickets: int
-    status: Package.Status
+    status: PackageData.Status
     price: decimal.Decimal
     bookings: int
 
     @staticmethod
     def of(package:Package) -> 'PackageItem':
-        package.check_status()
+        package.data.check_status()
         return (PackageItem.Builder()
                 .id(package.id)
                 .code(package.code)
@@ -33,9 +33,9 @@ class PackageItem:
                 .category(package.category.name)
                 .duration(package.duration)
                 .departure(package.departure)
-                .tickets(package.availableTicket)
+                .tickets(package.total_tickets)
                 .price(package.price)
-                .status(package.status)
+                .status(package.data.status)
                 .bookings(package.booking_count) #not include CANCELLED bookings
                 .build())
 
@@ -48,7 +48,7 @@ class PackageItem:
             self._duration: Optional[int] = None
             self._departure: Optional[datetime.datetime] = None
             self._ticket: Optional[int] = None
-            self._status: Optional[Package.Status] = None
+            self._status: Optional[PackageData.Status] = None
             self._price: Optional[decimal.Decimal] = None
             self._bookings: Optional[int] = None
 
@@ -80,7 +80,7 @@ class PackageItem:
             self._ticket = value
             return self
 
-        def status(self, value: Package.Status) -> "PackageItem.Builder":
+        def status(self, value: PackageData.Status) -> "PackageItem.Builder":
             self._status = value
             return self
 
@@ -151,8 +151,8 @@ class BookingStatus:
                 .id(booking.id)
                 .email(booking.customer.email)
                 .status(booking.get_status_display())
-                .ticket_count(booking.ticketCount)
-                .booked_at(booking.createdAt)
+                .ticket_count(booking.ticket_count)
+                .booked_at(booking.created_at)
                 .build())
 
     class Builder:
@@ -192,9 +192,9 @@ class BookingStatus:
             if self._status is None:
                 missing.append('status')
             if self._ticket_count is None:
-                missing.append('ticketCount')
+                missing.append('ticket_count')
             if self._booked_at is None:
-                missing.append('bookedAt')
+                missing.append('booked_at')
             if missing:
                 raise ValueError(f'Missing fields for BookingStatus: {", ".join(missing)}')
 
@@ -235,7 +235,7 @@ class PackageItemDetail(PackageItem):
         return (PackageItemDetail.Builder()
                 .item(PackageItem.of(package))
                 .overview(package.overview)
-                .remaining_ticket(package.availableTicket - package.booking_count)
+                .remaining_ticket(package.total_tickets - package.booking_count)
                 .booking_status_items([BookingStatus.of(b) for b in package.bookings.all()])  # Initialize empty list or some default
                 .itineraries([ItineraryDto.of(i) for i in package.itineraries.all()])
                 .build())

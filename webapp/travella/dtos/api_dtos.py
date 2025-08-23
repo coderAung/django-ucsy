@@ -23,10 +23,10 @@ class BookingOverview:
         return (BookingOverview.Builder()
                 .id(booking.id)
                 .user(booking.customer.email)
-                .tickets(booking.ticketCount)
+                .tickets(booking.ticket_count)
                 .status(booking.get_status_display())
-                .bookedDate(booking.createdAt.date())
-                .bookedTime(booking.createdAt.time())
+                .bookedDate(booking.created_at.date())
+                .bookedTime(booking.created_at.time())
                 .build())
 
     class Builder:

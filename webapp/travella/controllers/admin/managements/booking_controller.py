@@ -47,7 +47,7 @@ def detail(request: HttpRequest, id: str) -> HttpResponse:
     if booking is None:
         raise Http404("Booking not found")
 
-    total_cost = booking.ticketCount * booking.unitPrice
+    total_cost = booking.ticket_count * booking.unit_price
 
     context = {
         'booking': booking,
@@ -60,21 +60,21 @@ def detail(request: HttpRequest, id: str) -> HttpResponse:
     }
 
     if booking.status == Booking.Status.PENDING:
-        context['pending_date'] = booking.createdAt.date()
-        context['pending_time'] = booking.createdAt.strftime('%I:%M %p').lstrip("0")
+        context['pending_date'] = booking.created_at.date()
+        context['pending_time'] = booking.created_at.strftime('%I:%M %p').lstrip("0")
         context['reserved_or_cancelled_date'] = "-"
         context['reserved_or_cancelled_time'] = "-"
 
     elif booking.status == Booking.Status.RESERVED:
-        context['reserved_or_cancelled_date'] = booking.statusUpdatedAt.date()
-        context['reserved_or_cancelled_time'] = booking.statusUpdatedAt.strftime('%I:%M %p').lstrip("0")
+        context['reserved_or_cancelled_date'] = booking.status_updated_at.date()
+        context['reserved_or_cancelled_time'] = booking.status_updated_at.strftime('%I:%M %p').lstrip("0")
         try:
             context['reserved_by_name'] = booking.history.reservedBy.accountdetail.name
         except Exception:
             context['reserved_by_name'] = "-"
 
     elif booking.status == Booking.Status.CANCELLED:
-        context['reserved_or_cancelled_date'] = booking.statusUpdatedAt.date()
-        context['reserved_or_cancelled_time'] = booking.statusUpdatedAt.strftime('%I:%M %p').lstrip("0")
+        context['reserved_or_cancelled_date'] = booking.status_updated_at.date()
+        context['reserved_or_cancelled_time'] = booking.status_updated_at.strftime('%I:%M %p').lstrip("0")
 
     return render(request, view('detail'), context)

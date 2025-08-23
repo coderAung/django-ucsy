@@ -12,8 +12,8 @@ def get_dashboard_data():
   
   one_mth_ago = timezone.now() - timedelta(days=30)
   one_yr_ago = timezone.now() - timedelta(days = 365)
-  new_customers = Account.objects.filter(createdAt__gte = one_mth_ago).count()
-  active_customers = Account.objects.filter(createdAt__gte = one_yr_ago).count()
+  new_customers = Account.objects.filter(created_at__gte = one_mth_ago).count()
+  active_customers = Account.objects.filter(created_at__gte = one_yr_ago).count()
 
   top_packages = Package.objects.annotate(total_bookings_1pkg=Count('bookings')).order_by('-total_bookings_1pkg')[:5]
 
@@ -27,7 +27,7 @@ def get_dashboard_data():
   pending_payment = Booking.objects.filter(status=Booking.Status.RESERVED).aggregate(
     total=Sum(
         ExpressionWrapper(
-            F('ticketCount') * F('unitPrice'),
+            F('ticket_count') * F('unit_price'),
             output_field=DecimalField()
         )
     )

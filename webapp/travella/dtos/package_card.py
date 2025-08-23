@@ -32,7 +32,7 @@ class PackageCard:
 
     @staticmethod
     def of(p:Package) -> 'PackageCard':
-        p.check_status()
+        p.data.check_status()
         return PackageCard(
             code=p.code,
             duration=p.duration,
@@ -71,11 +71,11 @@ class PackageDetail(PackageCard):
         self.category = p.category.name
         self.transportation = Package.Transportation(p.transportation)
 
-        self.tickets = p.availableTicket
+        self.tickets = p.total_tickets
         self.overview = p.overview
         self.departure = p.departure
         self.photos = [photo.path.url for photo in p.photos.all()]
-        self.status = p.status.label
+        self.status = p.status_value.label
     
     @staticmethod
     def of(p:Package) -> 'PackageDetail':

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from ..domains.models.tour_models import Category, Location, Package
+from ..domains.models.tour_models import Category, Location, Package, PackageData
 
 @dataclass
 class CategoryItem:
@@ -14,8 +14,8 @@ class CategoryItem:
 def load_categories() -> list[CategoryItem]:
     return [CategoryItem.of(c) for c in Category.objects.all()]
 
-def load_status() -> dict[Package.Status]:
-    return {s.label : s.value for s in Package.Status}.items()
+def load_status() -> dict[PackageData.Status]:
+    return {s.label : s.value for s in PackageData.Status}.items()
 
 def is_empty(value:str) -> bool:
     if value == None or value == '' or value == 'null':
