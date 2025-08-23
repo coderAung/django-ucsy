@@ -73,7 +73,7 @@ def save(request):
     try:
         # Get form data
         package_id = request.POST.get('package_id')
-        ticket_count = int(request.POST.get('ticket_count', 1))
+        ticket_count = int(request.POST.get('ticketCount', 1))
         full_name = request.POST.get('fullName', '').strip()
         email = request.POST.get('email', '').strip()
         phone = request.POST.get('phone', '').strip()
