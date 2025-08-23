@@ -1,16 +1,15 @@
 {% extends 'layouts/admin-layout.html' %}
+{% load tz %}
 
 {% block content %}
 <div class="container my-5">
   <div class="card border-0 shadow-lg rounded-4" style="max-width: 800px; margin-left: 20px;">
     
     <!-- Fancy Header -->
-    
- <div class="card-header text-center py-2 rounded-top-4" style="background: #BBF6FC;">
-  <h4 class="mb-1 fw-semibold" style="color:#393B4D;">📋 Booking Info</h4>
-  <p class="mb-0 small" style="color: #6c757d;">Overview of the traveler's booking information</p>
-</div>
-
+    <div class="card-header text-center py-2 rounded-top-4" style="background: #BBF6FC;">
+      <h4 class="mb-1 fw-semibold" style="color:#393B4D;">📋 Booking Info</h4>
+      <p class="mb-0 small" style="color: #6c757d;">Overview of the traveler's booking information</p>
+    </div>
 
     <!-- Card Body -->
     <div class="card-body bg-light px-5 py-4 rounded-bottom-4">
@@ -26,53 +25,51 @@
         <div class="col-sm-7">{{ booking.id }}</div>
       </div>
 
-       <!-- Booking Date & Time Section -->
-{% if booking.status == 1 %}
-  <div class="row mb-3">
-    <div class="col-sm-5 text-muted fw-semibold">⏳ Pending Date:</div>
-    <div class="col-sm-7">{{ pending_date }}</div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-sm-5 text-muted fw-semibold">🕒 Pending Time:</div>
-    <div class="col-sm-7">{{ pending_time }}</div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-sm-5 text-muted fw-semibold">📅 Reserved/Cancelled Date:</div>
-    <div class="col-sm-7">{{ reserved_or_cancelled_date }}</div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-sm-5 text-muted fw-semibold">⏰ Reserved/Cancelled Time:</div>
-    <div class="col-sm-7">{{ reserved_or_cancelled_time }}</div>
-  </div>
+      <!-- Booking Date & Time Section -->
+      {% if booking.status == 1 %}
+        <div class="row mb-3">
+          <div class="col-sm-5 text-muted fw-semibold">⏳ Pending Date:</div>
+          <div class="col-sm-7">{{ booking.createdAt|date:"F j, Y" }}</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-5 text-muted fw-semibold">🕒 Pending Time:</div>
+          <div class="col-sm-7">{{ booking.createdAt|time:"g:i A" }}</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-5 text-muted fw-semibold">📅 Reserved/Cancelled Date:</div>
+          <div class="col-sm-7">-</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-5 text-muted fw-semibold">⏰ Reserved/Cancelled Time:</div>
+          <div class="col-sm-7">-</div>
+        </div>
 
-{% elif booking.status == 2 %}
-  <div class="row mb-3">
-    <div class="col-sm-5 text-muted fw-semibold">📅 Reserved Date:</div>
-    <div class="col-sm-7">{{ reserved_or_cancelled_date }}</div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-sm-5 text-muted fw-semibold">⏰ Reserved Time:</div>
-    <div class="col-sm-7">{{ reserved_or_cancelled_time }}</div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-sm-5 text-muted fw-semibold">🙍 Reserved By:</div>
-    <div class="col-sm-7">{{ reserved_by_name }}</div>
-  </div>
+      {% elif booking.status == 2 %}
+        <div class="row mb-3">
+          <div class="col-sm-5 text-muted fw-semibold">📅 Reserved Date:</div>
+          <div class="col-sm-7">{{ booking.statusUpdatedAt|date:"F j, Y" }}</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-5 text-muted fw-semibold">⏰ Reserved Time:</div>
+          <div class="col-sm-7">{{ booking.statusUpdatedAt|time:"g:i A" }}</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-5 text-muted fw-semibold">🙍 Reserved By:</div>
+          <div class="col-sm-7">{{ reserved_by_name }}</div>
+        </div>
 
-{% elif booking.status == 3 %}
-  <div class="row mb-3">
-    <div class="col-sm-5 text-muted fw-semibold">❌ Cancelled Date:</div>
-    <div class="col-sm-7">{{ reserved_or_cancelled_date }}</div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-sm-5 text-muted fw-semibold">⏰ Cancelled Time:</div>
-    <div class="col-sm-7">{{ reserved_or_cancelled_time }}</div>
-  </div>
-{% endif %}
+      {% elif booking.status == 3 %}
+        <div class="row mb-3">
+          <div class="col-sm-5 text-muted fw-semibold">❌ Cancelled Date:</div>
+          <div class="col-sm-7">{{ booking.statusUpdatedAt|date:"F j, Y" }}</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-5 text-muted fw-semibold">⏰ Cancelled Time:</div>
+          <div class="col-sm-7">{{ booking.statusUpdatedAt|time:"g:i A" }}</div>
+        </div>
+      {% endif %}
 
-
-
-       <div class="row mb-3">
+      <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">🗓️ Departure Time:</div>
         <div class="col-sm-7">{{ booking.package.departure|date:"F j, Y" }}</div>
       </div>
@@ -82,17 +79,17 @@
         <div class="col-sm-7">{{ booking.package.duration }} days</div>
       </div>
 
-       <div class="row mb-3">
+      <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">👥 Number of People:</div>
         <div class="col-sm-7">{{ booking.ticketCount }}</div>
       </div>
-     <div class="row mb-3">
-     <div class="col-sm-5 text-muted fw-semibold">💵 Unit Price (per ticket):</div>
-     <div class="col-sm-7">{{ booking.unitPrice|floatformat:2 }} MMK</div>
-     </div>
-     
+      
+      <div class="row mb-3">
+        <div class="col-sm-5 text-muted fw-semibold">💵 Unit Price (per ticket):</div>
+        <div class="col-sm-7">{{ booking.unitPrice|floatformat:2 }} MMK</div>
+      </div>
 
-       <div class="row">
+      <div class="row">
         <div class="col-sm-5 text-muted fw-semibold">💰 Total Cost:</div>
         <div class="col-sm-7">{{ total_cost|floatformat:2 }} MMK</div>
       </div>
@@ -102,22 +99,17 @@
 
       <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">👤 Traveler Name:</div>
-        <div class="col-sm-7">{{ booking.customer.accountdetail.name }}</div>
+        <div class="col-sm-7">{{ customer_name }}</div>
       </div>
-
-      
 
       <div class="row mb-4">
         <div class="col-sm-5 text-muted fw-semibold">✉️ Email:</div>
-        <div class="col-sm-7">{{ booking.customer.email }}</div>
+        <div class="col-sm-7">{{ customer_email }}</div>
       </div>
 
-     
-
-     
       <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">📞 Phone:</div>
-        <div class="col-sm-7">{{ booking.customer.accountdetail.phone }}</div>
+        <div class="col-sm-7">{{ customer_phone }}</div>
       </div>
     </div>
   </div>

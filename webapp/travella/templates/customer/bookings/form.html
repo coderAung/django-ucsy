@@ -14,21 +14,21 @@
   <div class="row">
     
     <!-- Tour Details -->
-    <div class="col-md-6 mb-4">
-      <div class="p-4 border rounded"
-           style="background-color:#fff; border-radius:8px; border:1px solid #ddd; box-shadow:0 4px 15px rgba(0, 123, 255, 0.2);">
-        <h4 class="mb-3">Tour Details</h4>
-        <p><strong style="display:inline-block; width:160px;">Trip Name:</strong> {{ package.title }}</p>
-        <p><strong style="display:inline-block; width:160px;">Departure Date:</strong> <span id="tourDate">{{ departure_date }}</span></p>
-        <p><strong style="display:inline-block; width:160px;">Duration:</strong> {{ package.duration }} days</p>
-        <p><strong style="display:inline-block; width:160px;">Transportation:</strong>
-           {% if package.transportation == 1 %}Bus{% elif package.transportation == 2 %}Plane{% else %}N/A{% endif %}
-        </p>
-        <p><strong style="display:inline-block; width:160px;">Total Seats:</strong> {{ package.availableTicket }}</p>
-        <p><strong style="display:inline-block; width:160px;">Available Seats:</strong> {{ package.availableTicket }}</p>
-        <p><strong style="display:inline-block; width:160px;">Price per Seat:</strong> {{ price_per_seat }}</p>
-      </div>
-    </div>
+<div class="col-md-6 mb-4">
+  <div class="p-4 border rounded"
+       style="background-color:#fff; border-radius:8px; border:1px solid #ddd; box-shadow:0 4px 15px rgba(0, 123, 255, 0.2);">
+    <h4 class="mb-3">Tour Details</h4>
+    <p><strong style="display:inline-block; width:160px;">Trip Name:</strong> {{ package.title }}</p>
+    <p><strong style="display:inline-block; width:160px;">Departure Date:</strong> <span id="tourDate">{{ departure_date }}</span></p>
+    <p><strong style="display:inline-block; width:160px;">Duration:</strong> {{ package.duration }} days</p>
+    <p><strong style="display:inline-block; width:160px;">Transportation:</strong>
+       {% if package.transportation == 1 %}Bus{% elif package.transportation == 2 %}Plane{% else %}N/A{% endif %}
+    </p>
+    <p><strong style="display:inline-block; width:160px;">Total Seats:</strong> {{ package.availableTicket }}</p>
+    <p><strong style="display:inline-block; width:160px;">Available Seats:</strong> {{ available_seats }}</p>
+    <p><strong style="display:inline-block; width:160px;">Price per Seat:</strong> {{ price_per_seat }}</p>
+  </div>
+</div>
 
     <!-- Booking Form -->
     <div class="col-md-6">
@@ -50,42 +50,45 @@
 <input type="hidden" id="pricePerSeat" value="{{ package.price }}">
 
 
-  <div class="mb-3">
+<!-- Auto-filled and read-only user info fields -->
+<div class="mb-3">
     <label class="form-label fw-medium text-dark">Full Name:</label>
     <input type="text" class="form-control" name="fullName" id="fullName"
-           placeholder="Enter your name"
-           style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px;" required />
-  </div>
+           value="{{ user_name }}" readonly
+           style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px; background-color: #f8f9fa;"
+           required />
+</div>
 
-  <div class="mb-3">
+<div class="mb-3">
     <label class="form-label fw-medium text-dark">Email:</label>
     <input type="email" class="form-control" name="email" id="email"
-           placeholder="Enter your email"
-           style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px;" required />
-  </div>
+           value="{{ user_email }}" readonly
+           style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px; background-color: #f8f9fa;"
+           required />
+</div>
 
-  <div class="mb-3">
+<div class="mb-3">
     <label class="form-label fw-medium text-dark">Phone Number:</label>
     <input type="tel" class="form-control" name="phone" id="phone"
-           placeholder="Enter your phone number"
-           style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px;" required />
-  </div>
+           value="{{ user_phone }}" readonly
+           style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px; background-color: #f8f9fa;"
+           required />
+</div>
 
-  <!-- Side by side row -->
-  <div class="row mb-3">
+<!-- Side by side row - Fixed to update on all input events -->
+<div class="row mb-3">
     <div class="col">
-      <label class="form-label fw-medium text-dark">Number of People:</label>
-      <input type="number" class="form-control" name="ticketCount" id="people" min="1" value="1"
-             style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px;"
-             required onchange="updatePrice()" />
+        <label class="form-label fw-medium text-dark">Number of People:</label>
+        <input type="number" class="form-control" name="ticketCount" id="people" min="1" value="1"
+               style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px;"
+               required oninput="updatePrice()" onchange="updatePrice()" />
     </div>
     <div class="col">
-      <label class="form-label fw-medium text-dark">Total Price:</label>
-      <input type="text" class="form-control" id="totalPrice"
-             style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px;" readonly />
+        <label class="form-label fw-medium text-dark">Total Price:</label>
+        <input type="text" class="form-control" id="totalPrice"
+               style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px;" readonly />
     </div>
-  </div>
-
+</div>
 <div class="text-center">
   <button type="button" id="showReceiptBtn"
           class="btn btn-primary text-white fw-bold rounded-pill px-4 py-2 shadow-sm"

@@ -7,7 +7,7 @@ urlpatterns = [
     path("test-form/", lambda request: render(request, "customer/bookings/form.html")),
     path('bookings/save/', booking_controller.save, name='booking_save'),
     
-    path('bookings/', booking_controller.history),
+    path('bookings/history/', booking_controller.history, name='customer_booking_history'),
     path('bookings/<uuid:id>', booking_controller.detail),
 
     path('bookings/reserve/<uuid:id>', reservation_controller.save),

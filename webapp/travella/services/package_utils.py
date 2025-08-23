@@ -1,6 +1,7 @@
 from dataclasses import dataclass
-
+from django.db.models import Sum
 from ..domains.models.tour_models import Category, Location, Package
+from ..domains.models.booking_models import Booking
 
 @dataclass
 class CategoryItem:
@@ -33,3 +34,5 @@ class LocationItem:
 
 def load_locations():
     return [LocationItem.of(l) for l in Location.objects.all()]
+
+# NEW FUNCTIONS FOR AVAILABLE TICKETS CALCULATION

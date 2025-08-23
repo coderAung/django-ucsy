@@ -1,10 +1,12 @@
-# travella/dtos/booking_dto.py
+from django.utils import timezone
+from datetime import datetime
 
 class BookingListDTO:
     def __init__(
         self, id, customer_name, package_title, status_display,
         created_date, created_time,
         status_updated_date, status_updated_time,
+        available_tickets, total_capacity  # Add these parameters
     ):
         self.id = id
         self.customer_name = customer_name
@@ -14,14 +16,16 @@ class BookingListDTO:
         self.created_time = created_time
         self.status_updated_date = status_updated_date
         self.status_updated_time = status_updated_time
-
-
-
+        self.available_tickets = available_tickets  # Available tickets
+        self.total_capacity = total_capacity  # Total capacity
 class BookingDetailDTO:
     def __init__(
         self, id, status, ticket_count, unit_price,
         customer_name, customer_email, customer_phone,
-        package_title, package_departure, package_duration
+        package_title, package_departure, package_duration,
+        created_date=None, created_time=None,
+        status_updated_date=None, status_updated_time=None,
+        available_tickets=None, total_capacity=None
     ):
         self.id = id
         self.status = status
@@ -33,6 +37,12 @@ class BookingDetailDTO:
         self.package_title = package_title
         self.package_departure = package_departure
         self.package_duration = package_duration
+        self.created_date = created_date
+        self.created_time = created_time
+        self.status_updated_date = status_updated_date
+        self.status_updated_time = status_updated_time
+        self.available_tickets = available_tickets
+        self.total_capacity = total_capacity
 
     @property
     def total_price(self):

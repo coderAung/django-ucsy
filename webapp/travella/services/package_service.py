@@ -5,7 +5,7 @@ from django.db import transaction
 from django.db.models import Q, QuerySet
 from django.core.files.uploadedfile import UploadedFile
 from django.core.paginator import Paginator, Page
-
+from django.db.models import Sum
 from travella.domains.models.account_models import Account
 from travella.dtos.package_card import PackageCard, PackageDetail
 from travella.dtos.package_form import PackageForm
@@ -104,3 +104,37 @@ class PackageService:
         package = Package.objects.get(code = code)
         dto = PackageDetail.of(package)
         return dto
+    
+    from django.db.models import Sum
+from travella.domains.models.booking_models import Booking
+
+def get_packages_with_availability():
+    packages = Package.objects.select_related('category').all()
+    
+    package_list = []
+    for package in packages:
+        # Calculate available tickets
+        booked_tickets = Booking.objects.filter(
+            package=package
+        ).exclude(
+            status=Booking.Status.CANCELLED
+        ).aggregate(
+            total=Sum('ticketCount')
+        )['total'] or 0
+        
+        available_tickets = max(0, package.availableTicket - booked_tickets)
+        
+        package_list.append({
+            'code': package.code,
+            'name': package.title,
+            'category': package.category.name,
+            'duration': package.duration,
+            'departure': package.departure,
+            'tickets': available_tickets,  # Show available tickets instead of total
+            'total_capacity': package.availableTicket,  # Keep total for reference if needed
+            'status': package.status,
+            'price': package.price,
+            'bookings': package.booking_count  # This should already be defined in your model
+        })
+    
+    return package_list

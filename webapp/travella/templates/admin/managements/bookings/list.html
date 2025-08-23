@@ -14,27 +14,39 @@
   <!-- Search and filter -->
   <form method="GET" class="row row-cols-lg-auto g-3 align-items-center mb-4" >
     <div class="col">
-     <select name="status" class="form-select">
-    <option value="">All</option>
-    <option value="pending" {% if request.GET.status == 'pending' %}selected{% endif %}>Pending</option>
-    <option value="reserved" {% if request.GET.status == 'reserved' %}selected{% endif %}>Reserved</option>
-    <option value="cancelled" {% if request.GET.status == 'cancelled' %}selected{% endif %}>Cancelled</option>
-</select>
-
-
+      <select name="status" class="form-select">
+        <option value="">All</option>
+        <option value="pending" {% if request.GET.status == 'pending' %}selected{% endif %}>Pending</option>
+        <option value="reserved" {% if request.GET.status == 'reserved' %}selected{% endif %}>Reserved</option>
+        <option value="cancelled" {% if request.GET.status == 'cancelled' %}selected{% endif %}>Cancelled</option>
+      </select>
     </div>
 
     <div class="col">
-      <input type="text" class="form-control" name="query"  placeholder="Username or Booking ID">
+      <input type="text" class="form-control" name="query" value="{{ query }}" placeholder="Username or Booking ID">
     </div>
 
     <div class="col">
       <button type="submit" class="btn btn-primary px-4">
         <i class="bi bi-search"></i> Search
       </button>
+      {% if query or status %}
+      <a href="{% url 'admin_booking_list' %}" class="btn btn-outline-secondary ms-2">
+        Clear
+      </a>
+      {% endif %}
     </div>
   </form>
 
+  <!-- Timezone info -->
+  <div class="alert alert-info d-flex align-items-center mb-3" role="alert">
+    <i class="bi bi-info-circle me-2"></i>
+    <div>
+      All times are displayed in your local timezone. 
+      {% now "P" as current_tz %}
+      Current timezone: <strong>{{ current_tz }}</strong>
+    </div>
+  </div>
   <!-- Booking table -->
   <div class="">
     <table class="table table-hover align-middle df-fs-sm">
@@ -49,50 +61,80 @@
         </tr>
       </thead>
       <tbody>
- {% for booking in bookings %}
-  <tr>
-    <td>{{ booking.customer_name }}</td>
-    <td>{{ booking.package_title }}</td>
-   
-    <td>
-      <span class="df-badge
-        {% if booking.status_display == 'Reserved' %}
-          badge-green
-        {% elif booking.status_display == 'Cancelled' %}
-          badge-red
-        {% else %}
-          badge-blue
-        {% endif %}
-      ">
-      {{ booking.status_display }}
-      </span>
-    </td>
-   <td>
-  {% if booking.status_display == "Pending" %}
-    {{ booking.created_date|date:"F j, Y" }}
-  {% else %}
-    {{ booking.status_updated_date|date:"F j, Y" }}
-  {% endif %}
-</td>
-<td>
-  {% if booking.status_display == "Pending" %}
-    {{ booking.created_time }}
-  {% else %}
-    {{ booking.status_updated_time }}
-  {% endif %}
-</td>
-
-
-    <td>
-      <a href="{% url 'booking_detail' booking.id %}" class="btn btn-info btn-sm text-white px-3">Details</a>
-    </td>
-  </tr>
-  {% empty %}
-  <tr><td colspan="6">No bookings found.</td></tr>
-  {% endfor %}
-</tbody>
-
+        {% for booking in bookings %}
+        <tr>
+          <td>{{ booking.customer_name }}</td>
+          <td>{{ booking.package_title }}</td>
+          <td>
+            <span class="df-badge
+              {% if booking.status_display == 'Reserved' %}
+                badge-green
+              {% elif booking.status_display == 'CANCELLED' %}
+                badge-red
+              {% else %}
+                badge-blue
+              {% endif %}
+            ">
+            {{ booking.status_display }}
+            </span>
+          </td>
+        <td>
+            {% if booking.status_display == "Pending" %}
+              {{ booking.created_date|date:"F j, Y" }}
+            {% else %}
+              {{ booking.status_updated_date|date:"F j, Y" }}
+            {% endif %}
+          </td>
+          <td>
+            {% if booking.status_display == "Pending" %}
+              {{ booking.created_time }}
+            {% else %}
+              {{ booking.status_updated_time }}
+            {% endif %}
+            <br>
+            <small class="text-muted">
+              {% if booking.status_display == "Pending" %}
+                UTC: {{ booking.created_time_utc }}
+              {% else %}
+                UTC: {{ booking.status_updated_time_utc }}
+              {% endif %}
+            </small>
+          </td>
+          <td>
+            <a href="{% url 'booking_detail' booking.id %}" class="btn btn-info btn-sm text-white px-3">Details</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">No bookings found.</td></tr>
+        {% endfor %}
+      </tbody>
     </table>
   </div>
+
+  <!-- Pagination -->
+  {% if result.has_prev or result.has_next %}
+    {% include 'includes/pagination.html' %}
+  {% endif %}
 </div>
+
+<script>
+// Add JavaScript to handle pagination with filters
+document.addEventListener('DOMContentLoaded', function() {
+    const paginationButtons = document.querySelectorAll('.paginationBtn');
+    
+    paginationButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const page = this.getAttribute('data-page');
+            const url = new URL(window.location.href);
+            
+            // Keep existing query parameters
+            const params = new URLSearchParams(url.search);
+            params.set('page', page);
+            
+            // Redirect to the new page with preserved filters
+            window.location.href = `${url.pathname}?${params.toString()}`;
+        });
+    });
+});
+</script>
 {% endblock %}

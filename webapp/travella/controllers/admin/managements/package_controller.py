@@ -2,12 +2,17 @@ import uuid
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET, require_POST
-
+from django.db.models import Sum
+from travella.domains.models.booking_models import Booking
 from travella.domains.models.tour_models import Package
 from travella.dtos.package_dto import PackageItem
 from travella.dtos.api_dtos import BookingOverview
 from travella.dtos.package_form import PackageForm
+from travella.domains.models.tour_models import Package, Category  
 from travella.services.auth_user import get_auth_user
+
+
+
 
 from ....services.package_service import PackageService
 from ....services.package_utils import is_empty, load_categories, load_locations, load_status
@@ -19,10 +24,14 @@ packageService = PackageService()
 def view(name: str) -> str:
     return base + name + '.html'
 
+
+
+
 @require_GET
 def booking_overview(requset:HttpRequest, id:uuid) -> JsonResponse:
     overview:BookingOverview = packageService.booking_overview(id)
     return JsonResponse(overview.json())
+
 
 # packages/ GET
 def list(request: HttpRequest) -> HttpResponse:

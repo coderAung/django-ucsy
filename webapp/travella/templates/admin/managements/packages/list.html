@@ -12,7 +12,6 @@
 
 {% block content %}
 
-
 <!-- modal start -->
 <div class="modal fade df-fs-sm" id="addForm" tabindex="-1">
     <div class="modal-dialog py-4 mt-5 d-flex justify-content-center">
@@ -136,7 +135,12 @@
                             <td>{{item.category}}</td>
                             <td><div class="d-flex align-items-center column-gap-3"><span>{{item.duration}}</span><span>Days</span></div></td>
                             <td>{{item.departure}}</td>
-                            <td class="text-end">{{item.tickets}}</td>
+                            <td class="text-end">
+                                <!-- For packages, we need to calculate available tickets differently -->
+                                <span class="{% if item.tickets <= 5 %}text-danger fw-bold{% endif %}">
+                                    {{item.tickets}}/{{item.total_capacity}}
+                                </span>
+                            </td>
                             <td class="text-center">
                                 {% if item.status == 'Available' %}
                                 <span class="df-badge badge-green">{{item.status}}</span>
