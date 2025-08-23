@@ -40,9 +40,18 @@
               <i class="fa fa-suitcase-rolling"></i>
               <span class="ms-2 d-none d-md-inline">Bookings</span>
             </a>            
-            <a class="nav-link text-dark d-flex align-items-center" href="/admins/customers/">
-                <i class="fa fa-users"></i><span class="ms-2 d-none d-md-inline">Users</span>
-            </a>
+
+            <span class="nav-link text-dark d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#userManagement" role="button" aria-expanded="false" aria-controls="userManagement">
+                <i class="fa fa-users"></i><span class="ms-2 d-none d-md-inline">Users <i class="bi bi-caret-down ms-3"></i></span>
+            </span>
+            <div class="collapse px-3" id="userManagement">
+              <a class="nav-link bg-transparent text-dark d-flex align-items-center" href="/admins/staffs/">
+                  <i class="fa fa-users"></i><span class="ms-2 d-none d-md-inline">Staffs</span>
+              </a>
+              <a class="nav-link bg-transparent text-dark d-flex align-items-center" href="/admins/customers/">
+                  <i class="fa fa-users"></i><span class="ms-2 d-none d-md-inline">Customers</span>
+              </a>
+            </div>
             <a class="nav-link text-dark d-flex align-items-center" href="/admins/settings/account">
                 <i class="fa fa-gear"></i><span class="ms-2 d-none d-md-inline">Setting</span>
             </a>
