@@ -70,7 +70,7 @@ def detail(request: HttpRequest, id: str) -> HttpResponse:
     if booking is None:
         raise Http404("Booking not found")
 
-    total_cost = booking.ticketCount * booking.unitPrice
+    total_cost = booking.ticket_count * booking.unit_price
 
     # Get customer details with fallbacks
     try:
@@ -94,7 +94,7 @@ def detail(request: HttpRequest, id: str) -> HttpResponse:
             reserved_by_name = "Unknown admin"
 
     # Convert UTC times to local timezone
-    created_at_local = timezone.localtime(booking.createdAt)
+    created_at_local = timezone.localtime(booking.created_at)
     status_updated_at_local = timezone.localtime(booking.statusUpdatedAt) if booking.status != Booking.Status.PENDING else None
 
     # Initialize context with basic info

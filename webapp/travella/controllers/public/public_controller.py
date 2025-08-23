@@ -18,12 +18,10 @@ def packages(request:HttpRequest) -> HttpResponse:
     paginationResult = packageService.search_for_customer(PublicPackageSearch.of(request.GET))
     categories = load_categories()
     locations = load_locations()
-    total = packageService.count()
     return render(request, view('packages/list'), {
         'categories': categories,
         'locations': locations,
         'result': paginationResult,
-        'total': total,
     })
 
 def package_detail(request:HttpRequest, code:str) -> HttpResponse:

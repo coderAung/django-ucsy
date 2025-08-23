@@ -9,8 +9,8 @@
       "is_active": true,
       "is_staff": true,
       "is_superuser": true,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -21,8 +21,8 @@
       "address": "Yangon, Myanmar",
       "phone": "0911234567",
       "account": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -35,8 +35,8 @@
       "is_active": true,
       "is_staff": false,
       "is_superuser": false,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -47,8 +47,8 @@
       "address": "Yangon, Myanmar",
       "phone": "0921234567",
       "account": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -61,8 +61,8 @@
       "is_active": true,
       "is_staff": false,
       "is_superuser": false,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -73,8 +73,8 @@
       "address": "Yangon, Myanmar",
       "phone": "0931234567",
       "account": "c59c27f5-de3d-4585-abde-fd82d6ac57de",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -87,8 +87,8 @@
       "is_active": true,
       "is_staff": false,
       "is_superuser": false,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -99,8 +99,8 @@
       "address": "Yangon, Myanmar",
       "phone": "0941234567",
       "account": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -113,8 +113,8 @@
       "is_active": true,
       "is_staff": false,
       "is_superuser": false,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -125,8 +125,8 @@
       "address": "Yangon, Myanmar",
       "phone": "0951234567",
       "account": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -135,8 +135,8 @@
     "fields": {
       "name": "Yangon",
       "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -145,8 +145,8 @@
     "fields": {
       "name": "Mandalay",
       "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -155,8 +155,8 @@
     "fields": {
       "name": "Bagan",
       "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -165,8 +165,8 @@
     "fields": {
       "name": "Inle Lake",
       "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -175,8 +175,8 @@
     "fields": {
       "name": "Naypyidaw",
       "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -185,8 +185,8 @@
     "fields": {
       "name": "Kalaw",
       "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -195,8 +195,8 @@
     "fields": {
       "name": "Ngapali",
       "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -205,8 +205,8 @@
     "fields": {
       "name": "Pyin Oo Lwin",
       "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -215,8 +215,8 @@
     "fields": {
       "name": "Hsipaw",
       "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -225,8 +225,8 @@
     "fields": {
       "name": "Myeik",
       "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -234,9 +234,9 @@
     "pk": 1,
     "fields": {
       "name": "Relaxation",
-      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -244,9 +244,9 @@
     "pk": 2,
     "fields": {
       "name": "Adventure",
-      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -254,9 +254,9 @@
     "pk": 3,
     "fields": {
       "name": "Culture",
-      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -264,9 +264,9 @@
     "pk": 4,
     "fields": {
       "name": "History",
-      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -274,9 +274,9 @@
     "pk": 5,
     "fields": {
       "name": "Wildlife",
-      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -284,9 +284,9 @@
     "pk": 6,
     "fields": {
       "name": "Trekking",
-      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -294,9 +294,9 @@
     "pk": 7,
     "fields": {
       "name": "Beach",
-      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -304,9 +304,9 @@
     "pk": 8,
     "fields": {
       "name": "Festival",
-      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -314,9 +314,9 @@
     "pk": 9,
     "fields": {
       "name": "Culinary",
-      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -324,9 +324,9 @@
     "pk": 10,
     "fields": {
       "name": "Pilgrimage",
-      "createdBy": "400799eb-e519-431a-b317-5499bce4d95c",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_by": "400799eb-e519-431a-b317-5499bce4d95c",
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -340,12 +340,12 @@
       "duration": 5,
       "transportation": 1,
       "price": "199.99",
-      "availableTicket": 20,
+      "total_tickets": 20,
       "cover_photo": null,
-      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "created_by": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
       "category": 1,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -359,12 +359,12 @@
       "duration": 6,
       "transportation": 2,
       "price": "199.99",
-      "availableTicket": 20,
+      "total_tickets": 20,
       "cover_photo": null,
-      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "created_by": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
       "category": 2,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -378,12 +378,12 @@
       "duration": 7,
       "transportation": 1,
       "price": "199.99",
-      "availableTicket": 20,
+      "total_tickets": 20,
       "cover_photo": null,
-      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "created_by": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
       "category": 3,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -397,12 +397,12 @@
       "duration": 8,
       "transportation": 2,
       "price": "199.99",
-      "availableTicket": 20,
+      "total_tickets": 20,
       "cover_photo": null,
-      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "created_by": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
       "category": 4,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -416,12 +416,12 @@
       "duration": 9,
       "transportation": 1,
       "price": "199.99",
-      "availableTicket": 20,
+      "total_tickets": 20,
       "cover_photo": null,
-      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "created_by": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
       "category": 5,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -435,12 +435,12 @@
       "duration": 10,
       "transportation": 2,
       "price": "199.99",
-      "availableTicket": 20,
+      "total_tickets": 20,
       "cover_photo": null,
-      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "created_by": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
       "category": 6,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -454,12 +454,12 @@
       "duration": 11,
       "transportation": 1,
       "price": "199.99",
-      "availableTicket": 20,
+      "total_tickets": 20,
       "cover_photo": null,
-      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "created_by": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
       "category": 7,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -473,12 +473,12 @@
       "duration": 12,
       "transportation": 2,
       "price": "199.99",
-      "availableTicket": 20,
+      "total_tickets": 20,
       "cover_photo": null,
-      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "created_by": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
       "category": 8,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -492,12 +492,12 @@
       "duration": 13,
       "transportation": 1,
       "price": "199.99",
-      "availableTicket": 20,
+      "total_tickets": 20,
       "cover_photo": null,
-      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "created_by": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
       "category": 9,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -511,12 +511,12 @@
       "duration": 14,
       "transportation": 2,
       "price": "199.99",
-      "availableTicket": 20,
+      "total_tickets": 20,
       "cover_photo": null,
-      "createdBy": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+      "created_by": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
       "category": 10,
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -524,13 +524,13 @@
     "pk": "5f1d3996-6002-47f3-a5b9-91ebe6d2c330",
     "fields": {
       "status": 1,
-      "ticketCount": 1,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 1,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "b22638f2-ca02-4b01-a35c-4bc8191c1da4",
       "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -538,13 +538,13 @@
     "pk": "6aa552e0-a3f7-4f9b-9f12-836809a5fac4",
     "fields": {
       "status": 2,
-      "ticketCount": 2,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 2,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "d1aa7587-3acd-4aad-9d4a-041c04fbe4cf",
       "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -552,13 +552,13 @@
     "pk": "84669e8e-f77b-4396-8955-38a93ae0a522",
     "fields": {
       "status": 3,
-      "ticketCount": 3,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 3,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "ee294760-a615-40fe-928d-a1243a850fe2",
       "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -566,13 +566,13 @@
     "pk": "e0137e9d-bb19-42a3-9ba3-194fce99a907",
     "fields": {
       "status": 1,
-      "ticketCount": 4,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 4,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "6a1e72e9-3044-4345-81b4-3f7f7dd8f2f6",
       "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -580,13 +580,13 @@
     "pk": "b18986a2-473c-4530-af29-1cd98cd9c6c9",
     "fields": {
       "status": 2,
-      "ticketCount": 5,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 5,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "14da981b-7b2b-49b5-84d9-35e8142efcd9",
       "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -594,13 +594,13 @@
     "pk": "4bfc4ce8-61c4-4b7d-8399-f728f1ed4835",
     "fields": {
       "status": 3,
-      "ticketCount": 1,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 1,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "b91ee423-7786-445a-bf14-749f01a80f86",
       "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -608,13 +608,13 @@
     "pk": "b9dbbd4f-616b-4aae-b6d1-f99de7efef03",
     "fields": {
       "status": 1,
-      "ticketCount": 2,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 2,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "301ba32c-f785-4cbd-9f3a-bfd671301e06",
       "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -622,13 +622,13 @@
     "pk": "3db4dea4-16b6-4871-8523-3e9e3a3f9254",
     "fields": {
       "status": 2,
-      "ticketCount": 3,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 3,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "4e2b34c3-db0a-41b1-b392-838000e40c55",
       "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -636,13 +636,13 @@
     "pk": "afa62d1f-080d-42fd-9d99-4cbc4b1b74ce",
     "fields": {
       "status": 3,
-      "ticketCount": 4,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 4,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "19ce2b3b-cdae-4bd6-84c4-df7da94566c0",
       "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -650,13 +650,13 @@
     "pk": "4020f0ca-3d58-48d6-a389-36df4680d55f",
     "fields": {
       "status": 1,
-      "ticketCount": 5,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 5,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "5a1d80cb-cf48-44e2-9327-e4968ff903bc",
       "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -664,13 +664,13 @@
     "pk": "5defd85e-eca1-4ee4-b671-81f04e77a114",
     "fields": {
       "status": 2,
-      "ticketCount": 1,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 1,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "b22638f2-ca02-4b01-a35c-4bc8191c1da4",
       "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -678,13 +678,13 @@
     "pk": "f09b7e68-ef61-465d-b71e-ef4027d887cb",
     "fields": {
       "status": 3,
-      "ticketCount": 2,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 2,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "d1aa7587-3acd-4aad-9d4a-041c04fbe4cf",
       "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -692,13 +692,13 @@
     "pk": "74ec2314-9304-4727-8001-8d7c8c7f05f2",
     "fields": {
       "status": 1,
-      "ticketCount": 3,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 3,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "ee294760-a615-40fe-928d-a1243a850fe2",
       "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -706,13 +706,13 @@
     "pk": "e837b3dc-3ba9-4adf-87a6-473c9c04cb43",
     "fields": {
       "status": 2,
-      "ticketCount": 4,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 4,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "6a1e72e9-3044-4345-81b4-3f7f7dd8f2f6",
       "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -720,13 +720,13 @@
     "pk": "dae2584d-2c81-486a-921d-98e0c130af65",
     "fields": {
       "status": 3,
-      "ticketCount": 5,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 5,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "14da981b-7b2b-49b5-84d9-35e8142efcd9",
       "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -734,13 +734,13 @@
     "pk": "511d1766-3033-4de9-85ca-adbd0c289a55",
     "fields": {
       "status": 1,
-      "ticketCount": 1,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 1,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "b91ee423-7786-445a-bf14-749f01a80f86",
       "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -748,13 +748,13 @@
     "pk": "1473f831-9aa9-4d94-9f4e-c7ed9d17a44a",
     "fields": {
       "status": 2,
-      "ticketCount": 2,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 2,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "301ba32c-f785-4cbd-9f3a-bfd671301e06",
       "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -762,13 +762,13 @@
     "pk": "18ea789c-c802-4af0-9121-232ff959428a",
     "fields": {
       "status": 3,
-      "ticketCount": 3,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 3,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "4e2b34c3-db0a-41b1-b392-838000e40c55",
       "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -776,13 +776,13 @@
     "pk": "a38b6296-c651-4329-87ff-214e7f185fb9",
     "fields": {
       "status": 1,
-      "ticketCount": 4,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 4,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "19ce2b3b-cdae-4bd6-84c4-df7da94566c0",
       "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   },
   {
@@ -790,13 +790,13 @@
     "pk": "19cc07f0-ceb6-410a-9d8e-65324f092cbf",
     "fields": {
       "status": 2,
-      "ticketCount": 5,
-      "unitPrice": "199.99",
-      "statusUpdatedAt": "2025-08-16T09:00:00Z",
+      "ticket_count": 5,
+      "unit_price": "199.99",
+      "status_updated_at": "2025-08-16T09:00:00Z",
       "package": "5a1d80cb-cf48-44e2-9327-e4968ff903bc",
       "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
-      "createdAt": "2025-08-15T09:00:00Z",
-      "updatedAt": "2025-08-16T09:00:00Z"
+      "created_at": "2025-08-15T09:00:00Z",
+      "updated_at": "2025-08-16T09:00:00Z"
     }
   }
 ]

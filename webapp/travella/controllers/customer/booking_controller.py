@@ -4,7 +4,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
-from travella.domains.models.tour_models import Package
+from travella.domains.models.tour_models import Package, PackageData
 from travella.domains.models.booking_models import Booking
 from travella.domains.models.account_models import AccountDetail
 
@@ -18,7 +18,7 @@ def new(request, code: str):
     """Display the booking form for a package."""
     package = get_object_or_404(Package, code=code)
 
-    if package.status != Package.Status.AVAILABLE:
+    if package.data.status != PackageData.Status.AVAILABLE:
         messages.error(request, "This tour is no longer available for booking.")
         return redirect('customer_booking_history')
 
@@ -49,7 +49,7 @@ def new(request, code: str):
 @login_required
 def history(request):
     """Show all bookings for the current user."""
-    bookings = Booking.objects.filter(customer=request.user).select_related('package').order_by('-createdAt')
+    bookings = Booking.objects.filter(customer=request.user).select_related('package').order_by('-created_at')
     return render(request, BASE_TEMPLATE_PATH + 'history.html', {
         "bookings": bookings,
         "status_labels": dict(Booking.Status.choices)
@@ -59,7 +59,7 @@ def history(request):
 def detail(request, id):
     """Show details for a specific booking."""
     booking = get_object_or_404(Booking, id=id, customer=request.user)
-    total_cost = booking.ticketCount * booking.unitPrice
+    total_cost = booking.ticket_count * booking.unit_price
     return render(request, BASE_TEMPLATE_PATH + 'detail.html', {
         "booking": booking,
         "total_cost": total_cost,
@@ -73,7 +73,7 @@ def save(request):
     try:
         # Get form data
         package_id = request.POST.get('package_id')
-        ticket_count = int(request.POST.get('ticketCount', 1))
+        ticket_count = int(request.POST.get('ticket_count', 1))
         full_name = request.POST.get('fullName', '').strip()
         email = request.POST.get('email', '').strip()
         phone = request.POST.get('phone', '').strip()
@@ -96,8 +96,8 @@ def save(request):
         booking = Booking.objects.create(
             package=package,
             customer=request.user,
-            ticketCount=ticket_count,
-            unitPrice=Decimal(str(package.price)),
+            ticket_count=ticket_count,
+            unit_price=Decimal(str(package.price)),
             status=Booking.Status.PENDING
         )
 
@@ -113,8 +113,8 @@ def save(request):
         return JsonResponse({
             'success': True,
             'booking_id': str(booking.id),
-            'booking_date': booking.createdAt.isoformat(),
-            'booking_time': booking.createdAt.strftime('%I:%M %p').lstrip("0"),
+            'booking_date': booking.created_at.isoformat(),
+            'booking_time': booking.created_at.strftime('%I:%M %p').lstrip("0"),
             'message': 'Booking created successfully'
         })
 

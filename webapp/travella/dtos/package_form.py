@@ -27,12 +27,12 @@ class PackageForm:
             departure=self.departure,
             duration=self.duration,
             transportation=self.transportation,
-            availableTicket=self.ticket,
+            total_tickets=self.ticket,
             price=self.price,
             overview=self.overview,
             category=Category.objects.get(id=self.cid),
             location=Location.objects.filter(name=self.location).get(),
-            createdBy=account
+            created_by=account
             )
         return package
 

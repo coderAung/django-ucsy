@@ -14,7 +14,7 @@ from travella.services.package_utils import is_empty
 from travella.dtos.api_dtos import BookingOverview
 from travella.utils.pagination import SIZE, PaginationResult
 from ..domains.models.booking_models import Booking
-from ..domains.models.tour_models import Category, Package, Photo
+from ..domains.models.tour_models import Category, Package, PackageData, Photo
 from ..dtos.package_dto import PackageItem, PackageItemDetail
 
 
@@ -67,9 +67,9 @@ class PackageService:
                 qf &= Q(createdAt__gte = last_month_start, createdAt__lte = last_month_end)
         if not is_empty(q):
             qf &= Q(code__startswith=q.lower()) | Q(title__startswith=q.lower())
-        qs = Package.objects.filter(qf).order_by('-createdAt')
+        qs = Package.objects.filter(qf).order_by('-created_at')
         if not is_empty(status):
-            qs = [q for q in qs if q.status == status]        
+            qs = [q for q in qs if q.data.status == status]        
         return [PackageItem.of(p) for p in qs]
     
     def booking_overview(self, id:uuid) -> BookingOverview:
@@ -77,9 +77,9 @@ class PackageService:
         return BookingOverview.of(booking)
     
     def save(self, account:Account, form:PackageForm, images:list[UploadedFile]) -> bool:
-        print(form.departure)
         package:Package = form.to_model(account)
         package.save()
+        PackageData(code=package.code, remaining_tickets=package.total_tickets, package=package).save()
         for i in images:
             Photo.objects.create(package=package, path=i)
         return True
@@ -92,7 +92,7 @@ class PackageService:
             package.delete()
 
     def search_for_customer(self, search:PublicPackageSearch)  -> PaginationResult:
-        packages = Package.objects.filter(search.filter()).order_by('-createdAt')
+        packages = Package.objects.filter(Q(data__status=PackageData.Status.AVAILABLE) & search.filter()).order_by('-created_at')
         pagination = Paginator(packages, SIZE)
         paginationResult = PaginationResult(search.page, pagination, PackageCard.of)
         return paginationResult

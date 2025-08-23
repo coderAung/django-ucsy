@@ -32,7 +32,7 @@ class ReviewService:
             id=review.id,
             content=review.content,
             account_name=account_name,
-            created_at=review.createdAt,
+            created_at=review.created_at,
             owned_by_user=True
         )
 
