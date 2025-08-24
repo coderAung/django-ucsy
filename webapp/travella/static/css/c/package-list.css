@@ -49,15 +49,6 @@
     color: white;
 }
 
-.packagePhoto {
-    transition: transform 0.3s ease; /* smooth animation */
-    cursor: pointer;
-}
-
-.packagePhoto:hover {
-    transform: scale(1.1); /* zoom in 10% */
-}
-
 .dropdown-item:hover {
     background-color: rgba(12, 236, 218, 0.548);
 }
@@ -104,4 +95,24 @@
     animation: scrollEffect linear;
     animation-timeline: view();
     animation-range: entry 0% cover 40%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;    
+}
+
+.packageCard:hover {
+  transform: translateY(-10px); /* lifts up */
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15); /* stronger shadow */
+}
+
+.packagePhotoWrapper {
+    max-height: 250px;
+    min-height: 250px;
+    background-color: red;
+    position: relative;
+}
+
+.packagePhotoWrapper > img {
+    width: 100%;
+    min-height: 250px;
+    object-fit: cover;
+    display: block;
 }
