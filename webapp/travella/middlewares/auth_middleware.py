@@ -21,7 +21,7 @@ class AuthMiddleWare:
     def __call__(self, request:HttpRequest) -> HttpResponse:
         path = request.path_info
         if not request.user.is_authenticated and not any(path.startswith(url) for url in self.public_urls):
-            return redirect(settings.LOGIN_URL)
+            return redirect(f'{settings.LOGIN_URL}?next={request.path}')
         if request.user.is_authenticated:
             user = request.user
             if user.role == Account.Role.CUSTOMER and path.startswith('/admins/'):
