@@ -35,16 +35,15 @@ class Account(AbstractBaseUser, PermissionsMixin, AbstractModel):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)  # Add max_length
+    password = models.CharField(max_length=128)
     role = models.CharField(max_length=10, choices=Role.choices, default=Role.CUSTOMER)
 
-    # Required fields for Django admin and permissions
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
     objects = AccountManager()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []  # email is required, no others needed here
+    REQUIRED_FIELDS = []
 
     def __str__(self):
             return self.email

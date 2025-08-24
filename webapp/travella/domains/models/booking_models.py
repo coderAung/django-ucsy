@@ -4,6 +4,8 @@ from .abstract_models import AbstractModel
 
 class Booking(AbstractModel):
 
+    objects = None
+
     class Status(models.IntegerChoices):
         PENDING = 1, 'Pending'
         RESERVED = 2, 'Reserved'

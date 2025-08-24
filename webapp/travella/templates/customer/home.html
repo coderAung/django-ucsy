@@ -1,7 +1,269 @@
 {% extends 'layouts/customer-layout.html' %}
+{% block title %}Home{% endblock %}
 
+{% block cssFile %}
+<style>
+        :root {
+            --brand-primary: #00B0A4; /* Vibrant Teal */
+            --page-bg: #F8F9FA;
+            --white-bg: #FFFFFF;
+            --dark-text: #212529;
+            --muted-text: #6c757d;
+            --bs-body-font-family: 'Poppins', sans-serif;
+        }
+
+        body { background-color: var(--page-bg); }
+        .section-padding { padding: 6rem 0; }
+        .btn-primary-main { background-color: var(--brand-primary); border-color: var(--brand-primary); color: white; font-weight: 600; transition: all 0.3s ease; }
+        .btn-primary-main:hover { background-color: #008D83; border-color: #008D83; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        /* Hero-Integrated Navbar */
+        .navbar { transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out; }
+        .navbar-brand .logo-icon { background-color: var(--brand-primary); width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; margin-right: 0.5rem;}
+        .navbar.scrolled { background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
+
+        /* Hero Section */
+        .hero-section { background-color: var(--white-bg); padding-top: 10rem; padding-bottom: 6rem; }
+        .hero-section h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.2; }
+        .hero-image-wrapper { position: relative; }
+        .hero-image-clipper { -webkit-clip-path: path("M452.5,416H40c-22.1,0-40-17.9-40-40V40C0,17.9,17.9,0,40,0h320c15.2,0,29.1,8.5,35.9,22.1c0,0,0,0,0,0l0,0C401.5,32,400.9,41.9,400.9,52c0,44.2,35.8,80,80,80c9.9,0,19.5-1.9,28.4-5.2c15.2-5.7,32.4,1.8,38.1,17c0.6,1.6,0.9,3.3,0.9,5V376c0,22.1-17.9,40-40,40H452.5z"); clip-path: path("M452.5,416H40c-22.1,0-40-17.9-40-40V40C0,17.9,17.9,0,40,0h320c15.2,0,29.1,8.5,35.9,22.1c0,0,0,0,0,0l0,0C401.5,32,400.9,41.9,400.9,52c0,44.2,35.8,80,80,80c9.9,0,19.5-1.9,28.4-5.2c15.2-5.7,32.4,1.8,38.1,17c0.6,1.6,0.9,3.3,0.9,5V376c0,22.1-17.9,40-40,40H452.5z"); box-shadow: 0 15px 40px rgba(0,0,0,0.1); border-radius: 20px; }
+        .location-tag { position: absolute; bottom: -1rem; left: 2rem; background-color: #fff; color: var(--dark-text); padding: 0.6rem 1.25rem; border-radius: 50px; font-weight: 500; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .search-bar-container { background: white; border-radius: 50px; padding: 0.75rem; border: 1px solid #eee; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .search-bar-container .search-btn { background-color: var(--brand-primary); color: white; width: 52px; height: 52px; border-radius: 50%; }
+
+        /* "Why Book With Us" Section */
+        .why-us-section { background-color: var(--white-bg); padding-top: 4rem; padding-bottom: 4rem; position: relative; z-index: 5; }
+        .feature-box { text-align: center; padding: 2rem; background-color: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.07); transition: all 0.3s ease; height: 100%; }
+
+.feature-box:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
+        .feature-icon { background-color: var(--brand-primary); color: white; width: 70px; height: 70px; border-radius: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 1rem; box-shadow: 0 10px 20px rgba(0, 176, 164, 0.2); }
+
+        /* Downward Curve */
+        .package-section { position: relative; }
+        .package-section::before { content: ''; position: absolute; top: -80px; left: 0; width: 100%; height: 80px; background-color: var(--white-bg); border-bottom-left-radius: 50%; border-bottom-right-radius: 50%; }
+
+        /* Package Categories Pills Style */
+        .adventure-pills .nav-link { color: var(--muted-text); background-color: transparent; border: 1px solid #ddd; border-radius: 50px; padding: 0.5rem 1.5rem; margin: 0 0.5rem; font-weight: 500; transition: all 0.3s ease; }
+        .adventure-pills .nav-link:hover { background-color: #e9f7f6; border-color: var(--brand-primary); color: var(--brand-primary); }
+        .adventure-pills .nav-link.active { background-color: var(--brand-primary); border-color: var(--brand-primary); color: white; }
+
+
+        .adventure-card { border-radius: 1rem; transition: all 0.4s ease; border: none; box-shadow: 0 5px 25px rgba(0,0,0,0.07); overflow: hidden; }
+        .adventure-card:hover { transform: translateY(-12px); box-shadow: 0 15px 40px rgba(0,0,0,0.15) !important; }
+        .adventure-card .card-img-top { aspect-ratio: 4 / 3; object-fit: cover; }
+
+        /* Expertise & Epic Spots Section Styling */
+        .stats-number { font-size: 2.5rem; font-weight: 700; color: var(--brand-primary); }
+        .expertise-section .image-card { position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.07); max-height: 220px; }
+        .expertise-section .image-card img { width: 100%; height: 100%; object-fit: cover; }
+        .image-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem 1.5rem 1rem; background: linear-gradient(to top, rgba(0,0,0,0.75), transparent); color: white; }
+        .spot-card { border: none; background: transparent; }
+        .spot-card .img-container { position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.07); transition: all 0.3s ease; }
+        .spot-card:hover .img-container { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
+        .spot-card img { aspect-ratio: 1/1; object-fit: cover; width: 100%; }
+        .spot-card .spot-caption { position: absolute; bottom: 10px; left: 10px; right: 10px; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: white; border-radius: 10px; padding: 0.5rem; font-size: 0.8rem; text-align: center; }
+        .spot-card .card-body { padding-left: 0; padding-right: 0; }
+        .spot-card .card-title { font-weight: 600; margin-top: 1rem; }
+
+        /* Testimonials Section */
+        .testimonials-section { background-color: var(--page-bg); }
+        .testimonial-card { text-align: center; padding: 2rem; background-color: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.07); transition: all 0.3s ease; height: 100%; }
+        .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
+        .testimonial-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 4px solid var(--brand-primary); }
+        .testimonial-quote { font-style: italic; color: var(--muted-text); }
+        .star-rating i { color: #ffc107; }
+
+        /* Footer & FIXED Link Hover */
+        .footer { background-color: #1a202c; color: #a0aec0; }
+
+.footer h5 { color: white; }
+        .footer a:hover { color: white; }
+        .footer .social-icons a { margin-right: 1.5rem; }
+    </style>
+{%endblock%}
 
 {% block content %}
-  <h1>Welcome customers</h1>
+    <nav class="navbar navbar-expand-lg fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}"><div class="logo-icon"><i class="bi bi-compass-fill text-white"></i></div><span class="fw-bold">XploreHub</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'packages_list' %}">Packages</a></li>
+                    {# Add more dynamic links as needed #}
+                </ul>
+                <div class="d-flex align-items-center"><a href="#" class="text-decoration-none text-dark fw-medium me-3">Login</a><a href="#" class="btn btn-primary-main rounded-pill px-4">Sign Up</a></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h1 class="mb-4">Make Memories That Last a Lifetime</h1>
+                    <p class="lead text-muted mb-5">From sky-high thrills to deep-sea adventures, discover and book unforgettable experiences worldwide.</p>
+                    <div class="search-bar-container d-flex align-items-center">
+                        <div class="flex-grow-1 px-3"><label class="text-muted">Activity Type</label><p class="mb-0">Skydiving</p></div>
+                        <div class="vr"></div>
+                        <div class="flex-grow-1 px-3"><label class="text-muted">Season</label><p class="mb-0">Winter</p></div>
+                        <div class="vr"></div>
+                        <div class="flex-grow-1 px-3"><label class="text-muted">Group Size</label><p class="mb-0">Couple</p></div>
+                        <button class="btn search-btn d-flex align-items-center justify-content-center flex-shrink-0"><i class="bi bi-search fs-5"></i></button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image-wrapper">
+                        <div class="hero-image-clipper">
+                            <img src="https://images.pexels.com/photos/1631533/pexels-photo-1631533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid" alt="Paragliding">
+                        </div>
+                        <div class="location-tag"><i class="bi bi-geo-alt-fill"></i> Queenstown, New Zealand</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Book With Us Section -->
+    <section class="why-us-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4"><div class="feature-box"><div class="feature-icon"><i class="bi bi-cash-coin"></i></div><h5>Best Price Guarantee</h5><p class="text-muted">Find a lower price and we'll match it.</p></div></div>
+                <div class="col-md-4"><div class="feature-box"><div class="feature-icon"><i class="bi bi-headset"></i></div><h5>24/7 Customer Support</h5><p class="text-muted">Our team is here to help you around the clock.</p></div></div>
+                <div class="col-md-4"><div class="feature-box"><div class="feature-icon"><i class="bi bi-shield-check"></i></div><h5>Easy & Secure Booking</h5><p class="text-muted">Book your dream trip in minutes with our system.</p></div></div>
+
+</div>
+            <div class="text-center mt-5"><a href="#packages" class="btn btn-primary-main rounded-pill px-5 py-2">Find & Book Your Adventure Now</a></div>
+        </div>
+    </section>
+
+    <!-- Adrenaline Rush Section -->
+    <section class="section-padding package-section" id="packages">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="section-title-small mb-1" style="color: var(--brand-primary);">BEST PACKAGE</p>
+                <h2 class="section-title-large">Find Your Next Adrenaline Rush</h2>
+            </div>
+            <ul class="nav nav-pills justify-content-center mb-5 adventure-pills">
+                {# DYNAMIC CATEGORIES FROM DJANGO #}
+                {% for category in categories %}
+                    <li class="nav-item"><a class="nav-link {% if forloop.first %}active{% endif %}" href="#">{{ category.name }}</a></li>
+                {% empty %}
+                    <li class="nav-item"><a class="nav-link active" href="#">All Packages</a></li>
+                {% endfor %}
+            </ul>
+
+            <div class="row g-4 g-lg-5">
+                {# DYNAMIC PACKAGES FROM DJANGO #}
+                {% for package in packages %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card adventure-card h-100">
+                        <img src="{{ package.image.url }}" class="card-img-top" alt="{{ package.name }}">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between small">
+                                <span class="text-muted">{{ package.duration }}</span>
+                                <span class="fw-bold" style="color: var(--brand-primary);">${{ package.price }}/person</span>
+                            </div>
+                            <h5 class="card-title fw-bold my-2">{{ package.name }}</h5>
+                            <p class="card-text text-muted small mb-3"><i class="bi bi-geo-alt-fill"></i> {{ package.location }}</p>
+                            <a href="#" class="btn btn-primary-main rounded-pill px-4">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center">
+                    <p class="text-muted">No packages available at the moment. Please check back later!</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="text-center mt-5 pt-3">
+                <a href="#" class="btn btn-primary-main rounded-pill px-5 py-2">See More Packages <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="section-padding expertise-section" style="background-color: var(--page-bg);">
+        {# This section can be made dynamic later if needed #}
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <p class="section-title-small mb-2">WHY CHOOSE US</p>
+                    <h2 class="section-title-large display-6 mb-3">Your Next Thrills, Backed by Our Expertise</h2>
+                    <p class="text-muted mb-4">We create unforgettable experiences. Whether you're scaling mountains or diving into the deep blue, we ensure every adventure is thrilling.</p>
+                    <a href="#" class="btn btn-primary-main rounded-pill px-4 py-2 mb-5">Read More</a>
+                    <div class="row text-center">
+                        <div class="col-4"><h3 class="stats-number">232</h3><p class="text-muted small">Thrilled Adventurers</p></div>
+                        <div class="col-4"><h3 class="stats-number">125+</h3><p class="text-muted small">Handpicked Destinations</p></div>
+
+<div class="col-4"><h3 class="stats-number">150</h3><p class="text-muted small">Miles of Exploration</p></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-4">
+                        <div class="col-12"><div class="image-card"><img src="https://images.pexels.com/photos/3889855/pexels-photo-3889855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid" alt="Mountain"><div class="image-caption"><h5 class="fw-bold">Breathtaking Height</h5><p class="mb-0 small"><i class="bi bi-star-fill text-warning"></i> 4.0 (3,345 Reviews)</p></div></div></div>
+                        <div class="col-12"><div class="image-card"><img src="https://images.pexels.com/photos/1078983/pexels-photo-1078983.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="img-fluid" alt="Beach"><div class="image-caption"><h5 class="fw-bold">Golden Sand, Endless Waves</h5><p class="mb-0 small"><i class="bi bi-star-fill text-warning"></i> 3.2 (1,547 Reviews)</p></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Epic Spots Section -->
+    <section class="section-padding">
+        {# This section can be made dynamic with a loop for spots #}
+        <div class="container">
+            <div class="row align-items-end mb-5">
+                <div class="col-lg-8"><p class="section-title-small mb-1">THRILLS LOCATIONS</p><h2 class="section-title-large">Epic Spots for Your Next Thrill</h2></div>
+                <div class="col-lg-4"><p class="text-muted mb-0">The world is full of thrilling landscapes waiting to be explored!</p></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6"><div class="card spot-card"><div class="img-container"><img src="https://images.pexels.com/photos/1687675/pexels-photo-1687675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Mountains"><div class="spot-caption"><i class="bi bi-star-fill text-warning"></i> 4.8 (345)</div></div><div class="card-body"><h5 class="card-title">Majesty of the Moutains</h5><p class="card-text text-muted small"><i class="bi bi-geo-alt-fill text-primary"></i> Mount Cook, NZ</p></div></div></div>
+                <div class="col-lg-3 col-md-6"><div class="card spot-card"><div class="img-container"><img src="https://images.pexels.com/photos/848573/pexels-photo-848573.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Surfing"><div class="spot-caption"><i class="bi bi-star-fill text-warning"></i> 4.5 (542)</div></div><div class="card-body"><h5 class="card-title">Rides the Waves</h5><p class="card-text text-muted small"><i class="bi bi-geo-alt-fill text-primary"></i> Bali, Indonesia</p></div></div></div>
+                <div class="col-lg-3 col-md-6"><div class="card spot-card"><div class="img-container"><img src="https://images.pexels.com/photos/259508/pexels-photo-259508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Hiking"><div class="spot-caption"><i class="bi bi-star-fill text-warning"></i> 4.6 (189)</div></div><div class="card-body"><h5 class="card-title">Dare to Explore</h5><p class="card-text text-muted small"><i class="bi bi-geo-alt-fill text-primary"></i> Seoul, SK</p></div></div></div>
+                <div class="col-lg-3 col-md-6"><div class="card spot-card"><div class="img-container"><img src="https://images.pexels.com/photos/2413089/pexels-photo-2413089.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Diving"><div class="spot-caption"><i class="bi bi-star-fill text-warning"></i> 4.9 (721)</div></div><div class="card-body"><h5 class="card-title">Dive Deep, Explore</h5><p class="card-text text-muted small"><i class="bi bi-geo-alt-fill text-primary"></i> Los Angeles, USA</p></div></div></div>
+            </div>
+        </div>
+    </section>
+
+<!-- Testimonials Section -->
+    <section class="section-padding testimonials-section">
+        {# DYNAMIC REVIEWS FROM DJANGO #}
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="section-title-small mb-1">FROM OUR ADVENTURERS</p>
+                <h2 class="section-title-large">What Our Adventurers Say</h2>
+            </div>
+            <div class="row g-4">
+                 {% for review in reviews %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+<img src="{{ review.user_avatar.url }}" alt="{{ review.user_name }}">
+                        <h5 class="fw-bold mt-3 mb-0">{{ review.user_name }}</h5>
+                        <p class="text-muted small">{{ review.user_title }}</p>
+                        <div class="star-rating mb-3">
+                            {# You can create a custom template tag to display stars based on a rating field #}
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-quote">"{{ review.comment }}"</p>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center">
+                    <p class="text-muted">No reviews yet. Be the first to share your experience!</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer section-padding pb-4">
+        <div class="container"><div class="row gy-4"><div class="col-lg-4 col-md-6"><h5 class="d-flex align-items-center"><span class="logo-icon me-2"><i class="bi bi-compass-fill text-white"></i></span>XploreHub</h5><p class="pe-4 mt-3">We're more than travel—we're adventure, exploration, and unforgettable experiences waiting to happen.</p></div><div class="col-lg-2 col-6"><h5>Company</h5><ul class="list-unstyled"><li><a href="#">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Blog</a></li><li><a href="#">Press</a></li></ul></div><div class="col-lg-2 col-6"><h5>Support</h5><ul class="list-unstyled"><li><a href="#">Contact Us</a></li><li><a href="#">FAQ</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Use</a></li></ul></div><div class="col-lg-4 col-md-6"><h5>Stay Connected</h5><p>Join our newsletter for the latest deals!</p><div class="input-group mb-3"><input type="email" class="form-control" placeholder="Your email address" style="border-right:0;"><button class="btn btn-primary-main" type="button" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">Subscribe</button></div><div class="social-icons mt-4 fs-4"><a href="#"><i class="bi bi-facebook"></i></a><a href="#"><i class="bi bi-instagram"></i></a><a href="#"><i class="bi bi-twitter-x"></i></a><a href="#"><i class="bi bi-youtube"></i></a></div></div></div><div class="copyright text-center" style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1.5rem; margin-top: 3rem; color: rgba(255, 255, 255, 0.9); font-size: 0.9rem;">&copy; 2024 XploreHub. All Rights Reserved. Adventure Awaits.</div></div>
+    </footer>
 {% endblock %}
+
   
