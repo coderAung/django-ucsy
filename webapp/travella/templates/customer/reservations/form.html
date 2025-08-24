@@ -22,22 +22,23 @@
                                 <span>Select Payment</span>
                                 <div class="d-flex column-gap-2 mt-1">
                                     <div>
-                                        <select name="" id="" class="form-select">
-                                            <option value="">Kpay</option>
-                                            <option value="">Wave</option>
-                                            <option value="">Aya</option>
+                                        <select id="paymentSelect" class="form-select">
+                                            {% for p in payments %}
+                                            <option value="{{p.key}}">{{p.name}}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                     <div class="align-self-end flex-fill">
-                                        <input type="text" class="form-control" disabled>
+                                        <input id="paymentKeyInput" type="text" class="form-control" disabled value="{{payments.0.key}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="mt-4 flex-fill d-flex">
                                 <div class="mt-1 flex-fill">
+                                    <span id="paymentSlipError" class="df-text-red mt-1 df-fs-sm d-none">Payment Slip is required.</span>
                                     <div id="uploadSlipBtn" class="h-100 d-flex flex-column justify-content-center align-items-center btn df-btn-glass-green">
                                         <i class="bi bi-camera df-text-green fs-1"></i>
-                                        <span>Upload Payment Slip</span>
+                                        <span class="df-text-green">Upload Payment Slip</span>
                                     </div>
 
                                     <div id="slipImageWrapper" class="h-100 d-none d-flex justify-content-center align-items-center">
@@ -64,29 +65,31 @@
                         <div class="d-flex column-gap-2">
                             <div>
                                 <span>Code</span>
-                                <span class="mt-1 form-control" >Rel-349</span>
+                                <span class="mt-1 form-control" >{{package_info.code}}</span>
                             </div>
                             <div class="flex-fill">
                                 <span>Title</span>
-                                <span class="mt-1 form-control">Beach Tour for Relaxation</span>
+                                <span class="mt-1 form-control">{{package_info.title}}</span>
                             </div>
-                        </div>
-                        <div class="mt-4">
-                            <span>Category</span>
-                            <span class="mt-1 form-control">Relaxation</span>
                         </div>
                         <div class="mt-4 d-flex column-gap-2">
-                            <div>
-                                <span>From</span>
-                                <span class="mt-1 form-control">July 03, 2025</span>
-                            </div>
-                            <div>
-                                <span>To</span>
-                                <span class="mt-1 form-control">July 10, 2025</span>
-                            </div>
                             <div class="flex-fill">
+                                <span>Category</span>
+                                <span class="mt-1 form-control">{{package_info.category}}</span>
+                            </div>
+                            <div>
                                 <span>Duration</span>
-                                <span class="mt-1 form-control">6 - Days</span>
+                                <span class="mt-1 form-control">{{package_info.duration}} - Days</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 d-flex column-gap-2">
+                            <div class="w-50">
+                                <span>From</span>
+                                <span class="mt-1 form-control">{{package_info.departure_from}}</span>
+                            </div>
+                            <div class="w-50">
+                                <span>To</span>
+                                <span class="mt-1 form-control">{{package_info.departure_to}}</span>
                             </div>
                         </div>
                         <div class="mt-5">
@@ -94,7 +97,7 @@
                             <div class="mt-1 input-group">
                                 <span class="form-control d-flex justify-content-between">
                                     <span>~</span>
-                                    <span>30,000</span>
+                                    <span>{{package_info.unit_price}}</span>
                                 </span>
                                 <span class="input-group-text">MMK</span>
                             </div>
@@ -108,17 +111,17 @@
                     <div>
                         <div>
                             <span>Booking ID</span>
-                            <input class="mt-1 form-control" disabled value="5f1d3996-6002-47f3-a5b9-91ebe6d2c330"/>
+                            <input class="mt-1 form-control" disabled value="{{booking_info.id}}"/>
                         </div>
 
                         <div class="mt-4 d-flex column-gap-2">
                             <div>
                                 <span>Booking Date</span>
-                                <span class="mt-1 form-control">June 03, 2025</span>
+                                <span class="mt-1 form-control">{{booking_info.booking_date}}</span>
                             </div>
                             <div class="flex-fill">
                                 <span>Booking Time</span>
-                                <span class="mt-1 form-control">9 : 50 AM</span>
+                                <span class="mt-1 form-control">{{booking_info.booking_time}}</span>
                             </div>
                         </div>
 
@@ -127,11 +130,11 @@
                             <div class="d-flex column-gap-2 mt-1">
                                 <div>
                                     <span class="form-control">
-                                        Cust 1
+                                        {{booking_info.name}}
                                     </span>
                                 </div>
                                 <div class="flex-fill">
-                                    <input class="form-control" disabled value="cust1@gmail.com">
+                                    <input class="form-control" disabled value="{{booking_info.email}}">
                                 </div>
                             </div>
                         </div>
@@ -139,14 +142,14 @@
                         <div class="mt-5 d-flex column-gap-2">
                             <div>
                                 <span>Tickets</span>
-                                <span class="mt-1 form-control">5</span>
+                                <span class="mt-1 form-control">{{booking_info.ticket_count}}</span>
                             </div>
                             <div class="flex-fill">
                                 <span class="d-block text-end">Total Price</span>
                                 <div class="mt-1 input-group">
                                     <span class="form-control d-flex justify-content-between">
                                         <span>~</span>
-                                        <span>150,000</span>
+                                        <span>{{booking_info.total_price}}</span>
                                     </span>
                                     <span class="input-group-text">MMK</span>
                                 </div>
@@ -155,7 +158,7 @@
 
                         <div class="mt-4 d-flex justify-content-end column-gap-2">
                             <button class="btn df-btn-glass-red">Cancel</button>
-                            <button class="btn btn-purple">Request Payment</button>
+                            <button id="requestPaymentBtn" class="btn btn-purple">Request Payment</button>
                         </div>
 
                     </div>
@@ -163,11 +166,11 @@
             </div>
         </div>
     </div>
-<form id="paymentRequestForm" action="" class="d-none" enctype="multipart/form-data">
+<form id="paymentRequestForm" method="post" class="d-none" enctype="multipart/form-data">
     {% csrf_token %}
-    <input id="bookingIdInput" type="text" name="bookingId" value="something">
-    <input id="paymentInput" type="text" name="payment" value="kpay">
-    <input id="paymentSlipInput" type="file">
+    <input id="bookingIdInput" type="text" name="bookingId" value="{{booking_info.id}}">
+    <input id="paymentInput" type="text" name="payment">
+    <input id="paymentSlipInput" type="file" name="slipImage">
 </form>
 <script src="{% static 'js/c/reservation.js' %}"></script>
 </div>

@@ -6,5 +6,12 @@
 </head>
 <body>
   <h1>Booking Detail</h1>
+  
+  {% if messages %}    
+    {% for m in messages %}
+      <h4 style="color: red;">{{m}}</h4>
+    {% endfor %}
+  {% endif %}
+    
 </body>
 </html>

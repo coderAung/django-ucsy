@@ -85,5 +85,5 @@ class Itinerary(models.Model):
         ]
 
 class Photo(models.Model):
-    path = models.ImageField(upload_to='tours/')
+    path = models.ImageField(upload_to='public/tours/')
     package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name='photos')
