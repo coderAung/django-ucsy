@@ -29,5 +29,22 @@ def list(request):
     return render(request, view('customer-list'), context)
 
 
-def detail(request:HttpRequest, id:uuid) -> HttpResponse:
-    return render(request, view('customer-detail'))
+def detail(request: HttpRequest, id: uuid.UUID) -> HttpResponse:  # Changed 'account_id' to 'id'
+    """
+    Displays the details for a specific customer.
+    """
+    try:
+        # Get the specific customer from the service using the 'id' from the URL
+        customer = customer_service.get_customer_detail(account_id=id)  # Pass 'id' to the service
+
+        # Get the booking history for that customer from the service
+        customer_bookings = customer_service.get_bookings_for_customer(customer_account=customer)
+
+    except customer_service.Account.DoesNotExist:
+        return render(request, 'admin/error.html', {'message': 'Customer not found.'})
+
+    context = {
+        'customer': customer,
+        'customer_bookings': customer_bookings
+    }
+    return render(request, view('customer-detail'), context)

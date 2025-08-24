@@ -25,5 +25,23 @@ def list(request):
         'role_filter': role_filter,
     }
     return render(request, view('staff-list'),context)
-def detail(request:HttpRequest, id:uuid) -> HttpResponse:
-    return render(request, view('staff-detail'))
+
+
+def detail(request: HttpRequest, id: uuid.UUID) -> HttpResponse:
+
+    try:
+
+        staff_member = staff_service.get_staff_detail(account_id=id)
+
+
+        staff_access_logs = staff_member.access_logs.all()[:20]
+
+    except staff_service.Account.DoesNotExist:
+
+        return render(request, 'admin/error.html', {'message': 'Staff member not found.'})
+
+    context = {
+        'staff': staff_member,
+        'staff_access_logs': staff_access_logs
+    }
+    return render(request, view('staff-detail'),context)
