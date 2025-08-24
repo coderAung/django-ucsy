@@ -15,7 +15,7 @@ def view(name: str) -> str:
 
 @login_required
 def list(request: HttpRequest) -> HttpResponse:
-    categories = Category.objects.all().select_related('createdBy').annotate(packages_count = Count(package_dto.Package))
+    categories = Category.objects.all().select_related('created_by').annotate(packages_count = Count('packages'))
     return render(request, view('list'), {'categories': categories})
 
 @login_required
