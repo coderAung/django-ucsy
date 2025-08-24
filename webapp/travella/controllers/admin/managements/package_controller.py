@@ -10,6 +10,7 @@ from travella.dtos.api_dtos import BookingOverview
 from travella.dtos.package_form import PackageForm
 from travella.domains.models.tour_models import Package, Category  
 from travella.services.auth_user import get_auth_user
+from travella.tests.tests import load_package_data
 
 
 
@@ -25,16 +26,14 @@ def view(name: str) -> str:
     return base + name + '.html'
 
 
-
-
 @require_GET
 def booking_overview(requset:HttpRequest, id:uuid) -> JsonResponse:
     overview:BookingOverview = packageService.booking_overview(id)
     return JsonResponse(overview.json())
 
-
 # packages/ GET
 def list(request: HttpRequest) -> HttpResponse:
+    load_package_data()
     items = packageService.search(request.GET)
     categories = load_categories()
     status = load_status()

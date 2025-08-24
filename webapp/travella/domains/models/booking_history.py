@@ -4,6 +4,6 @@ from travella.domains.models.booking_models import Booking
 from travella.domains.models.account_models import Account
 
 
-class ReservedHistory(AbstractModel):
-    booking = models.OneToOneField(Booking, on_delete=models.CASCADE, related_name='history')
+class Reservation(AbstractModel):
+    booking = models.OneToOneField(Booking, on_delete=models.CASCADE, related_name='reservation')
     reserved_by = models.ForeignKey(Account, on_delete=models.PROTECT)

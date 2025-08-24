@@ -15,7 +15,7 @@ class AuthMiddleWare:
             '/auth/sign-in',
             '/auth/sign-up',
             '/public',
-            '/media/tours'
+            '/media/public'
         ]
     
     def __call__(self, request:HttpRequest) -> HttpResponse:

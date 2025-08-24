@@ -14,8 +14,17 @@
 {% endblock jsFile %}
         
 
+{% block mainTitle %}
+    Public
+{% endblock mainTitle %}
+
+{% block title %}
+    Packages   
+{% endblock title %}
+    
+
 {% block content %}
-    <div class="df-bg-soft-white">
+    <div class="df-bg-soft-white min-vh-100">
         <form id="filterForm" class="position-sticky sticky-top" action="">
         <div class="">
             <div class="mx-5 px-5 d-flex justify-content-center">
@@ -70,19 +79,19 @@
             </div>
             <div class="mt-3">
                 <div>
-                    <div class="row row-cols-3 row-gap-4 align-items-center">    
+                    <div class="row row-cols-3 row-gap-4">    
                         {% for item in result.items %}
                             <div class="col">
                                 <div class="bg-white rounded shadow packageCard">
                                     <div class="d-flex justify-content-center align-items-center overflow-hidden rounded-top position-relative">
                                         <span class="glass-badge rounded-pill position-absolute top-0 start-0 mt-1 ms-1 df-fs-sm">{{item.category}}</span>
-                                        <div>
+                                        <div class="packagePhotoWrapper">
                                             {% if item.cover_photo != '' %}
                                                 <img src="{{item.cover_photo}}"
-                                                alt="" class="img-fluid packagePhoto">
+                                                alt="" class="packagePhoto">
                                             {% else %}
                                                 <img src="https://images.pexels.com/photos/3930029/pexels-photo-3930029.jpeg?cs=srgb&dl=pexels-yogendras31-3930029.jpg&fm=jpg"
-                                                alt="" class="img-fluid packagePhoto">
+                                                alt="" class="packagePhoto">
                                             {% endif %}
                                         </div>
                                     </div>

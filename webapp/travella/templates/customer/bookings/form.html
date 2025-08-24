@@ -24,7 +24,7 @@
     <p><strong style="display:inline-block; width:160px;">Transportation:</strong>
        {% if package.transportation == 1 %}Bus{% elif package.transportation == 2 %}Plane{% else %}N/A{% endif %}
     </p>
-    <p><strong style="display:inline-block; width:160px;">Total Seats:</strong> {{ package.availableTicket }}</p>
+    <p><strong style="display:inline-block; width:160px;">Total Seats:</strong> {{ package.total_tickets }}</p>
     <p><strong style="display:inline-block; width:160px;">Available Seats:</strong> {{ available_seats }}</p>
     <p><strong style="display:inline-block; width:160px;">Price per Seat:</strong> {{ price_per_seat }}</p>
   </div>
