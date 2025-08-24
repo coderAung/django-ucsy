@@ -119,7 +119,7 @@
                         <div class="mt-4">
                             
                             {% if dto.status == 'Available' %}
-                                <button class="btn df-btn-soft-blue w-100">Book Now</button>
+                                <a href="{% url 'packages_book' dto.code %}" class="btn df-btn-soft-blue w-100">Book Now</a>
                             {% endif %}
                             {% if dto.status == 'Unavailable' %}
                                 <button class="btn df-btn-soft-red w-100 btn-disabled">Booking Unavailble</button>

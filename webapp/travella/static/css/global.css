@@ -84,6 +84,10 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--df-blue-light); /* soft cyan */
 }
 
+.df-bg-purple-soft {
+  background-color: rgba(111, 66, 193, 0.25);
+}
+
 .df-text-primary { color: var(--df-blue-primary); }
 .df-text-light   { color: var(--df-blue-light); }
 .df-text-softer  { color: var(--df-blue-softer); }

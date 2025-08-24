@@ -12,6 +12,51 @@
     <div class="container py-3">
         <h4 class="mb-4">Reservation Form</h4>
         <div class="row row-cols-3">
+
+            <div class="col">
+                <div class="h-100 d-flex flex-column justify-content-between">
+                    <h5 class="mb-4 px-2 py-2 rounded-top df-bg-purple text-white">Payment</h5>
+                    <div class="flex-fill d-flex flex-column justify-content-end">
+                        <div class="flex-fill d-flex flex-column">
+                            <div>
+                                <span>Select Payment</span>
+                                <div class="d-flex column-gap-2 mt-1">
+                                    <div>
+                                        <select name="" id="" class="form-select">
+                                            <option value="">Kpay</option>
+                                            <option value="">Wave</option>
+                                            <option value="">Aya</option>
+                                        </select>
+                                    </div>
+                                    <div class="align-self-end flex-fill">
+                                        <input type="text" class="form-control" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex-fill d-flex">
+                                <div class="mt-1 flex-fill">
+                                    <div id="uploadSlipBtn" class="h-100 d-flex flex-column justify-content-center align-items-center btn df-btn-glass-green">
+                                        <i class="bi bi-camera df-text-green fs-1"></i>
+                                        <span>Upload Payment Slip</span>
+                                    </div>
+
+                                    <div id="slipImageWrapper" class="h-100 d-none d-flex justify-content-center align-items-center">
+                                        <div class="w-75 position-relative shadow">
+                                            <button id="cancelSlipBtn" type="button" class="btn df-btn-glass-red d-flex justify-content-center align-items-center p-3 position-absolute top-0 end-0" style="width: 15px; height: 15px; border-radius: 100%; margin-top: -15px; margin-right: -15px;">
+                                                <i class="bi bi-x fs-4 text-danger"></i>
+                                            </button>
+                                            <img id="slipImage" src="https://newsvsinformation.com/wp-content/uploads/2021/09/236206163_355455026261008_526137930655568597_n-405x900.jpg"
+                                            class="img-fluid w-100" alt="" style="object-fit: cover">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="col">
                 <div>
                     <h5 class="mb-4 px-2 py-2 rounded-top df-bg-primary text-white">Package Info</h5>
@@ -77,18 +122,17 @@
                             </div>
                         </div>
 
-                        <div class="mt-4 d-flex column-gap-2">
-                            <div>
-                                <span>Status</span>
-                                <span class="mt-1 form-control">
-                                    <span class="df-text-blue fw-bold">PENDING</span>
-                                </span>
-                            </div>
-                            <div class="flex-fill">
-                                <span class="df-text-red">Auto Cancel At</span>
-                                <span class="mt-1 form-control border-danger">
-                                    <span class="df-text-red">July 04, 2025</span>
-                                </span>
+                        <div class="mt-4">
+                            <span>Customer Info</span>
+                            <div class="d-flex column-gap-2 mt-1">
+                                <div>
+                                    <span class="form-control">
+                                        Cust 1
+                                    </span>
+                                </div>
+                                <div class="flex-fill">
+                                    <input class="form-control" disabled value="cust1@gmail.com">
+                                </div>
                             </div>
                         </div>
 
@@ -109,45 +153,22 @@
                             </div>
                         </div>
 
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="h-100 d-flex flex-column justify-content-between">
-                    <h5 class="mb-4 px-2 py-2 rounded-top df-bg-purple text-white">Payment</h5>
-                    <div class="flex-fill d-flex flex-column justify-content-end">
-                        <div class="flex-fill d-flex flex-column">
-                            <span>Upload Payment Voucher</span>
-                            <div 
-                            class="flex-fill mt-2 rounded d-flex justify-content-center align-items-center"
-                            style="border: 2px dashed blue;">
-                                <span class="bi bi-plus-circle fs-1 df-text-blue"></span>
-                            </div>
+                        <div class="mt-4 d-flex justify-content-end column-gap-2">
+                            <button class="btn df-btn-glass-red">Cancel</button>
+                            <button class="btn btn-purple">Request Payment</button>
                         </div>
-                        {% comment %} <div class="mt-4">
-                            <h6>Customer Info</h6>
-                        </div> {% endcomment %}
-                        <div class="mt-5 d-flex column-gap-2">
-                            <div>
-                                <span>Customer</span>
-                                <span class="mt-1 form-control">Cust 1</span>
-                            </div>
-                            <div class="flex-fill align-self-end">
-                                <input class="mt-1 form-control" disabled value="cust1@gmail.com">
-                            </div>
-                        </div>
+
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-12">
-                <div class="d-flex justify-content-end column-gap-2">
-                    <button class="btn btn-red">Cancel</button>
-                    <button class="btn btn-purple">Request Payment</button>
                 </div>
             </div>
         </div>
     </div>
+<form id="paymentRequestForm" action="" class="d-none" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input id="bookingIdInput" type="text" name="bookingId" value="something">
+    <input id="paymentInput" type="text" name="payment" value="kpay">
+    <input id="paymentSlipInput" type="file">
+</form>
+<script src="{% static 'js/c/reservation.js' %}"></script>
 </div>
 {% endblock content %}
