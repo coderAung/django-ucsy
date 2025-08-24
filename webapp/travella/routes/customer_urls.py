@@ -10,7 +10,7 @@ urlpatterns = [
     path('bookings/history/', booking_controller.history, name='customer_booking_history'),
     path('bookings/<uuid:id>', booking_controller.detail),
 
-    path('bookings/reserve/<uuid:id>', reservation_controller.save),
+    path('bookings/reserve/<uuid:id>', reservation_controller.new),
 
     path('reservations/', reservation_controller.history),
     path('reservations/<int:id>/', reservation_controller.voucher),

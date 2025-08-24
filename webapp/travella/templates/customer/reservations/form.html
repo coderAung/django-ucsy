@@ -1,0 +1,153 @@
+{% extends 'layouts/customer-layout.html' %}
+
+{% load static %}
+
+{% block cssFile %}
+    <link rel="stylesheet" href="{% static 'css/c/reservation-form.css' %}">
+{% endblock cssFile %}
+    
+
+{% block content %}
+<div class="df-bg-soft-white min-vh-100">
+    <div class="container py-3">
+        <h4 class="mb-4">Reservation Form</h4>
+        <div class="row row-cols-3">
+            <div class="col">
+                <div>
+                    <h5 class="mb-4 px-2 py-2 rounded-top df-bg-primary text-white">Package Info</h5>
+                    <div>
+                        <div class="d-flex column-gap-2">
+                            <div>
+                                <span>Code</span>
+                                <span class="mt-1 form-control" >Rel-349</span>
+                            </div>
+                            <div class="flex-fill">
+                                <span>Title</span>
+                                <span class="mt-1 form-control">Beach Tour for Relaxation</span>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span>Category</span>
+                            <span class="mt-1 form-control">Relaxation</span>
+                        </div>
+                        <div class="mt-4 d-flex column-gap-2">
+                            <div>
+                                <span>From</span>
+                                <span class="mt-1 form-control">July 03, 2025</span>
+                            </div>
+                            <div>
+                                <span>To</span>
+                                <span class="mt-1 form-control">July 10, 2025</span>
+                            </div>
+                            <div class="flex-fill">
+                                <span>Duration</span>
+                                <span class="mt-1 form-control">6 - Days</span>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <span>Unit Price</span>
+                            <div class="mt-1 input-group">
+                                <span class="form-control d-flex justify-content-between">
+                                    <span>~</span>
+                                    <span>30,000</span>
+                                </span>
+                                <span class="input-group-text">MMK</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="">
+                    <h5 class="mb-4 px-2 py-2 rounded-top df-bg-cyan">Booking Info</h5>
+                    <div>
+                        <div>
+                            <span>Booking ID</span>
+                            <input class="mt-1 form-control" disabled value="5f1d3996-6002-47f3-a5b9-91ebe6d2c330"/>
+                        </div>
+
+                        <div class="mt-4 d-flex column-gap-2">
+                            <div>
+                                <span>Booking Date</span>
+                                <span class="mt-1 form-control">June 03, 2025</span>
+                            </div>
+                            <div class="flex-fill">
+                                <span>Booking Time</span>
+                                <span class="mt-1 form-control">9 : 50 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 d-flex column-gap-2">
+                            <div>
+                                <span>Status</span>
+                                <span class="mt-1 form-control">
+                                    <span class="df-text-blue fw-bold">PENDING</span>
+                                </span>
+                            </div>
+                            <div class="flex-fill">
+                                <span class="df-text-red">Auto Cancel At</span>
+                                <span class="mt-1 form-control border-danger">
+                                    <span class="df-text-red">July 04, 2025</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 d-flex column-gap-2">
+                            <div>
+                                <span>Tickets</span>
+                                <span class="mt-1 form-control">5</span>
+                            </div>
+                            <div class="flex-fill">
+                                <span class="d-block text-end">Total Price</span>
+                                <div class="mt-1 input-group">
+                                    <span class="form-control d-flex justify-content-between">
+                                        <span>~</span>
+                                        <span>150,000</span>
+                                    </span>
+                                    <span class="input-group-text">MMK</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="h-100 d-flex flex-column justify-content-between">
+                    <h5 class="mb-4 px-2 py-2 rounded-top df-bg-purple text-white">Payment</h5>
+                    <div class="flex-fill d-flex flex-column justify-content-end">
+                        <div class="flex-fill d-flex flex-column">
+                            <span>Upload Payment Voucher</span>
+                            <div 
+                            class="flex-fill mt-2 rounded d-flex justify-content-center align-items-center"
+                            style="border: 2px dashed blue;">
+                                <span class="bi bi-plus-circle fs-1 df-text-blue"></span>
+                            </div>
+                        </div>
+                        {% comment %} <div class="mt-4">
+                            <h6>Customer Info</h6>
+                        </div> {% endcomment %}
+                        <div class="mt-5 d-flex column-gap-2">
+                            <div>
+                                <span>Customer</span>
+                                <span class="mt-1 form-control">Cust 1</span>
+                            </div>
+                            <div class="flex-fill align-self-end">
+                                <input class="mt-1 form-control" disabled value="cust1@gmail.com">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-end column-gap-2">
+                    <button class="btn btn-red">Cancel</button>
+                    <button class="btn btn-purple">Request Payment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

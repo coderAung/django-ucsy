@@ -1,0 +1,61 @@
+/* ==========================================
+   Gradient Buttons - Stable Color
+   Fully Bootstrap-Compatible
+========================================== */
+
+/* Purple */
+.btn.btn-purple {
+  background: linear-gradient(135deg, #7b5eb1, #a020f0) !important;
+  border-color: #7b5eb1 !important;
+  color: #fff !important;
+}
+
+/* Red */
+.btn.btn-red {
+  background: linear-gradient(135deg, #e53935, #d32f2f) !important;
+  border-color: #e53935 !important;
+  color: #fff !important;
+}
+
+/* Green */
+.btn.btn-green {
+  background: linear-gradient(135deg, #43a047, #2e7d32) !important;
+  border-color: #43a047 !important;
+  color: #fff !important;
+}
+
+/* Blue */
+.btn.btn-blue {
+  background: linear-gradient(135deg, #1e88e5, #1565c0) !important;
+  border-color: #1e88e5 !important;
+  color: #fff !important;
+}
+
+/* Yellow */
+.btn.btn-yellow {
+  background: linear-gradient(135deg, #fbc02d, #f9a825) !important;
+  border-color: #fbc02d !important;
+  color: #222 !important;
+}
+
+/* Hover / Focus / Active — Keep exact same colors */
+.btn.btn-purple:hover,
+.btn.btn-purple:focus,
+.btn.btn-purple:active,
+.btn.btn-red:hover,
+.btn.btn-red:focus,
+.btn.btn-red:active,
+.btn.btn-green:hover,
+.btn.btn-green:focus,
+.btn.btn-green:active,
+.btn.btn-blue:hover,
+.btn.btn-blue:focus,
+.btn.btn-blue:active,
+.btn.btn-yellow:hover,
+.btn.btn-yellow:focus,
+.btn.btn-yellow:active {
+  background: linear-gradient(135deg, inherit, inherit) !important; /* retain gradient */
+  border-color: inherit !important;
+  color: white !important;
+  box-shadow: none !important;  /* remove Bootstrap hover shadow */
+}

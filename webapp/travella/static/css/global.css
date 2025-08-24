@@ -67,6 +67,23 @@ h1, h2, h3, h4, h5, h6 {
   background-color: rgb(244, 244, 244);
 }
 
+/* Soft / pastel background colors */
+.df-bg-primary {
+    background-color: var(--df-blue-primary)
+}
+
+.df-bg-success {
+    background-color: var(--df-text-green); /* soft green */
+}
+
+.df-bg-purple {
+    background-color: var(--df-text-purple); /* soft green */
+}
+
+.df-bg-cyan {
+    background-color: var(--df-blue-light); /* soft cyan */
+}
+
 .df-text-primary { color: var(--df-blue-primary); }
 .df-text-light   { color: var(--df-blue-light); }
 .df-text-softer  { color: var(--df-blue-softer); }
