@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             altInput: true,
             altFormat: 'F j, Y',
             dateformat: '',
-            minDate: new Date().fp_incr(10),
+            minDate: new Date().fp_incr(20),
             position: 'above'
         })
     }

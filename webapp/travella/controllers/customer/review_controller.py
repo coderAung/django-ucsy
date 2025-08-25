@@ -51,7 +51,7 @@ def save(request:HttpRequest) -> HttpResponse:
         form = ReviewForm(request.POST)
         if form.is_valid():
             ReviewService.save_review(form.cleaned_data, request.user)
-            messages.success(request, "Your review has been submitted successfully")
+            # messages.success(request, "Your review has been submitted successfully")
             return redirect('review_list')
         return render(request, view('form'), {'form': form})
     return redirect('review_list')

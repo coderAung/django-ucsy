@@ -18,11 +18,11 @@
         style="background-color:#fff; border-radius:8px; border:1px solid #ddd; box-shadow:0 4px 15px rgba(0, 123, 255, 0.2);">
         <h4 class="mb-3">Tour Details</h4>
         <p><strong style="display:inline-block; width:160px;">Trip Name:</strong> {{ package.title }}</p>
-        <p><strong style="display:inline-block; width:160px;">Departure Date:</strong> <span id="tourDate">{{
-            departure_date }}</span></p>
+        <p><strong style="display:inline-block; width:160px;">Departure Date:</strong> <span
+            id="tourDate">{{departure_date}}</span></p>
         <p><strong style="display:inline-block; width:160px;">Duration:</strong> {{ package.duration }} days</p>
         <p><strong style="display:inline-block; width:160px;">Transportation:</strong>
-          {% if package.transportation == 1 %}Bus{% elif package.transportation == 2 %}Plane{% else %}N/A{% endif %}
+          {{package.get_transportation_display}}
         </p>
         <p><strong style="display:inline-block; width:160px;">Total Seats:</strong> {{ package.total_tickets }}</p>
         <p><strong style="display:inline-block; width:160px;">Available Seats:</strong> {{ available_seats }}</p>
