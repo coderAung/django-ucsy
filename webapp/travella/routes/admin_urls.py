@@ -44,10 +44,10 @@ urlpatterns = [
     path('settings/account/info/', account_controller.info),
 
     path('customers/', customer_controller.list, name='customers'),
-    path('customers/<uuid:id>/', customer_controller.detail),
+    path('customers/<uuid:id>/', customer_controller.detail, name='customers_detail'),
 
     path('staffs/', staff_controller.list, name='staffs'),
-    path('staffs/<uuid:id>/', staff_controller.detail),
+    path('staffs/<uuid:id>/', staff_controller.detail, name='staffs_detail'),
 
 
 

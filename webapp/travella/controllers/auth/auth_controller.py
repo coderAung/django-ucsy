@@ -5,6 +5,7 @@ from django.contrib.auth import login, logout
 
 from travella.dtos.auth_forms import SignInForm
 from travella.domains.models.account_models import Account
+from travella.services.package_utils import is_empty
 
 
 def sign_in(request:HttpRequest) -> HttpResponse:
@@ -18,7 +19,9 @@ def sign_in(request:HttpRequest) -> HttpResponse:
                 if user.role == Account.Role.ADMIN or user.role == Account.Role.MOD:
                     path = '/admins/dashboard'
                 else:
-                    path = '/customers/home'
+                    path = '/public/discover'
+                if not is_empty(request.GET.get('next')):
+                    path = request.GET.get('next')
                 return redirect(path)
             else:
                 return render(request, 'auth/sign-in.html', {'form': form})

@@ -5,7 +5,7 @@ from django.db.models import Q, Count
 from django.utils import timezone
 from travella.domains.models.booking_models import Booking  
 from travella.domains.models.account_models import AccountDetail
-from travella.domains.models.booking_history import ReservedHistory
+from travella.domains.models.booking_history import Reservation
 from travella.services.booking_service import (
     get_booking_by_id,
     get_filtered_bookings,
@@ -85,17 +85,17 @@ def detail(request: HttpRequest, id: str) -> HttpResponse:
     reserved_by_name = None
     if booking.status == Booking.Status.RESERVED:
         try:
-            history = ReservedHistory.objects.get(booking=booking)
+            history = Reservation.objects.get(booking=booking)
             try:
                 reserved_by_name = history.reservedBy.accountdetail.name
             except AttributeError:
                 reserved_by_name = history.reservedBy.email  # Fallback to email
-        except ReservedHistory.DoesNotExist:
+        except Reservation.DoesNotExist:
             reserved_by_name = "Unknown admin"
 
     # Convert UTC times to local timezone
     created_at_local = timezone.localtime(booking.created_at)
-    status_updated_at_local = timezone.localtime(booking.statusUpdatedAt) if booking.status != Booking.Status.PENDING else None
+    status_updated_at_local = timezone.localtime(booking.status_updated_at) if booking.status != Booking.Status.PENDING else None
 
     # Initialize context with basic info
     context = {

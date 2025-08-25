@@ -7,7 +7,7 @@ class CategoryService:
     @staticmethod
     def add_category(name: str, created_by) -> CategoryDTO:
         try:
-            category = Category(name=name, createdBy=created_by)
+            category = Category(name=name, created_by=created_by)
             category.save()
             return CategoryDTO.from_model(category)
         except IntegrityError:

@@ -1,0 +1,19 @@
+{% extends 'layouts/test-layout.html' %}
+
+
+{% block main %}
+    <h2>Payment Request</h2>
+
+    
+    {% for d in data %}
+        <div class="d-flex">
+            <img src="{{d.slip_image.url}}" alt="" class="img-fluid w-25">
+            <div>
+                <div>{{d.booking.id}}</div>
+                <div>{{d.payment_type.name}}</div>
+                <div>{{d.customer.email}}</div>
+            </div>
+        </div>
+    {% endfor %}
+        
+{% endblock main %}

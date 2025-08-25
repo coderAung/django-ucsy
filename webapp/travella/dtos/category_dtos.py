@@ -14,7 +14,7 @@ class CategoryDTO:
         return cls(
             id=model_instance.id,
             name=model_instance.name,
-            created_by=model_instance.createdBy.email,
+            created_by=model_instance.created_by.email,
             packages_count=packages_count,
             created_at=getattr(model_instance, 'created_at', None)
         )

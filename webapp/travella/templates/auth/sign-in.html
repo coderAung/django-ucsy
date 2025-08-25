@@ -25,7 +25,7 @@
                             </li>
                         </ul>
 
-                        <form action="/auth/sign-in/" method="POST">
+                        <form method="POST">
                             {% csrf_token %}
                             {% for field in form %}
                             <div class="mb-3">
