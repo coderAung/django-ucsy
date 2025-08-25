@@ -55,97 +55,216 @@
     </div>
   </div>
 
-  <!-- chart and pie -->
-  <div class="row g-3 mb-4">
-    <div class="col-lg-6">
-      <div class="card shadow-sm border-0">
+  <!-- Stats Cards -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-6 col-lg-3">
+      <div class="card stat-card border-0 bg-primary bg-opacity-10">
         <div class="card-body">
-          <h6 class="card-title text-muted">Revenue Trends</h6>
-          <div style="width: 100%; height: 280px;">
-            <canvas id="revenueChart" height="200"></canvas>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-title text-muted mb-1">Total Bookings</h6>
+              <h3 class="fw-bold text-primary">{{ data.total_bookings }}</h3>
+            </div>
+            <div class="bg-primary p-3 rounded-circle">
+              <i class="fas fa-calendar-check fa-2x text-white"></i>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-6">
-      <div class="card border-0">
+    <div class="col-md-6 col-lg-3">
+      <div class="card stat-card border-0 bg-success bg-opacity-10">
         <div class="card-body">
-          <h6 class="card-title text-muted">Top 5 Destinations</h6>
-          <div style="width: 100%; height: 280px;" class="text-center">
-            <canvas id="pieChart"></canvas>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-title text-muted mb-1">Total Packages</h6>
+              <h3 class="fw-bold text-success">{{data.total_packages}}</h3>
+            </div>
+            <div class="bg-success p-3 rounded-circle">
+              <i class="fas fa-suitcase fa-2x text-white"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="card stat-card border-0 bg-info bg-opacity-10">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-title text-muted mb-1">Active Customers</h6>
+              <h3 class="fw-bold text-info">{{data.active_customers}}</h3>
+            </div>
+            <div class="bg-info p-3 rounded-circle">
+              <i class="fas fa-users fa-2x text-white"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="card stat-card border-0 bg-warning bg-opacity-10">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-title text-muted mb-1">New Customers</h6>
+              <h3 class="fw-bold text-warning">{{ data.new_customers }}</h3>
+            </div>
+            <div class="bg-warning p-3 rounded-circle">
+              <i class="fas fa-user-plus fa-2x text-white"></i>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row g-3 mb-4">
-
-    <!-- Left: Action Required (50%) -->
-    <div class="col-lg-6">
-      <div class="row g-3">
-        <h6 class="card-title text-muted mb-2">Actions</h6>
-        <div class="col-6">
-          <div class="card border-0 shadow-sm rounded-4 bg-warning-subtle h-100">
-            <div class="card-body">
-              <h6 class="card-title text-muted">Pending Bookings</h6>
-              <h4 class="fw-semibold">{{data.pending_bookings}}</h4>
-            </div>
-          </div>
+  <!-- Charts Section -->
+  <div class="row g-4 mb-4">
+    <div class="col-lg-7">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-0 pt-4">
+          <h5 class="card-title mb-0">Revenue Trends</h5>
         </div>
-        <div class="col-6">
-          <div class="card border-0 shadow-sm rounded-4 bg-danger-subtle h-100">
-            <div class="card-body">
-              <h6 class="card-title text-muted">Cancelled Bookings</h6>
-              <h4 class="fw-semibold">{{data.cancel_bookings}}</h4>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 mb-3">
-          <div class="card border-0 shadow-sm rounded-4 bg-info-subtle h-100">
-            <div class="card-body">
-              <h6 class="card-title text-muted">Pending Payments</h6>
-              <h4 class="fw-semibold">{{data.pending_payment}}</h4>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 mb-3">
-          <div class="card border-0 shadow-sm rounded-4 bg-success-subtle h-100">
-            <div class="card-body">
-              <h6 class="card-title text-muted">Feedback</h6>
-              <h4 class="fw-semibold">{{data.total_feedbacks}}</h4>
-            </div>
+        <div class="card-body">
+          <div style="width: 100%; height: 300px;">
+            <canvas id="revenueChart" height="300"></canvas>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Right: Top 5 Tour Packages (50%)) -->
-    <div class="col-lg-6">
-      <div class="card shadow-sm border-0 h-100">
+    <div class="col-lg-5">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-0 pt-4">
+          <h5 class="card-title mb-0">Top 5 Destinations</h5>
+        </div>
         <div class="card-body">
-          <h6 class="card-title text-muted mb-3">Top 5 Most Recent Packages</h6>
-          <ul class="list-group list-group-flush">
-
-            {% for pkg in dashboard_data.top_packages %}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              {{ pkg.name }}
-              <span class="badge 
-          {% if forloop.counter == 1 %}bg-primary
-          {% elif forloop.counter == 2 %}bg-success
-          {% elif forloop.counter == 3 %}bg-info
-          {% elif forloop.counter == 4 %}bg-warning text-dark
-          {% else %}bg-danger
-          {% endif %}
-          rounded-pill">{{ pkg.count }}</span>
-            </li>
-            {% endfor %}
-          </ul>
+          <div style="width: 100%; height: 300px;">
+            <canvas id="barChart"></canvas>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Action Cards and Top Packages -->
+  <div class="row g-4 mb-4">
+    <!-- Action Cards -->
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-0 pt-4">
+          <h5 class="card-title mb-0">Quick Actions</h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="card action-card bg-warning bg-opacity-10 border-0 h-100">
+                <div class="card-body text-center p-4">
+                  <div class="bg-warning p-3 rounded-circle d-inline-flex mb-3">
+                    <i class="fas fa-clock fa-2x text-white"></i>
+                  </div>
+                  <h6 class="text-muted mb-1">Pending Bookings</h6>
+                  <h4 class="fw-bold text-warning">{{data.pending_bookings}}</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card action-card bg-danger bg-opacity-10 border-0 h-100">
+                <div class="card-body text-center p-4">
+                  <div class="bg-danger p-3 rounded-circle d-inline-flex mb-3">
+                    <i class="fas fa-times-circle fa-2x text-white"></i>
+                  </div>
+                  <h6 class="text-muted mb-1">Cancelled Bookings</h6>
+                  <h4 class="fw-bold text-danger">{{data.cancel_bookings}}</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card action-card bg-info bg-opacity-10 border-0 h-100">
+                <div class="card-body text-center p-4">
+                  <div class="bg-info p-3 rounded-circle d-inline-flex mb-3">
+                    <i class="fas fa-money-bill-wave fa-2x text-white"></i>
+                  </div>
+                  <h6 class="text-muted mb-1">Pending Payments</h6>
+                  <h4 class="fw-bold text-info">{{ data.pending_payment }}</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card action-card bg-success bg-opacity-10 border-0 h-100">
+                <div class="card-body text-center p-4">
+                  <div class="bg-success p-3 rounded-circle d-inline-flex mb-3">
+                    <i class="fas fa-comments fa-2x text-white"></i>
+                  </div>
+                  <h6 class="text-muted mb-1">Feedback</h6>
+                  <h4 class="fw-bold text-success">{{data.total_feedbacks}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Packages -->
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center pt-4">
+          <h5 class="card-title mb-0">Top 5 Most Booked Packages</h5>
+          <button class="btn btn-sm btn-outline-primary">View All</button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Package</th>
+                  <th scope="col">Bookings</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for pkg in data.top_packages %}
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="avatar avatar-sm bg-primary bg-opacity-10 rounded-circle me-3">
+                        <i class="fas fa-suitcase-rolling text-primary"></i>
+                      </div>
+                      <div>
+                        <h6 class="mb-0">{{ pkg.name }}</h6>
+                        <small class="text-muted">7 days, 6 nights</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="fw-bold">{{ pkg.count }} bookings</span>
+                  </td>
+                  <td>
+                    <span class="badge 
+                      {% if forloop.counter == 1 %}bg-primary
+                      {% elif forloop.counter == 2 %}bg-success
+                      {% elif forloop.counter == 3 %}bg-info
+                      {% elif forloop.counter == 4 %}bg-warning
+                      {% else %}bg-danger
+                      {% endif %}">
+                      {% if forloop.counter == 1 %}Most Popular
+                      {% elif forloop.counter == 2 %}Trending
+                      {% elif forloop.counter == 3 %}Popular
+                      {% elif forloop.counter == 4 %}Growing
+                      {% else %}Active
+                      {% endif %}
+                    </span>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
