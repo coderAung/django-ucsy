@@ -5,6 +5,7 @@ from django.utils import timezone
 from datetime import timedelta
 from django.db.models import Count
 from django.db.models import F, Sum, ExpressionWrapper, DecimalField
+from decimal import Decimal
 
 def get_dashboard_data():
   total_bookings = Booking.objects.count()
@@ -24,23 +25,31 @@ def get_dashboard_data():
 
   pending_bookings = Booking.objects.filter(status = Booking.Status.PENDING).count()
   cancel_bookings = Booking.objects.filter(status = Booking.Status.CANCELLED).count()
-  pending_payment = Booking.objects.filter(status=Booking.Status.RESERVED).aggregate(
+  pending_payment = Booking.objects.filter(
+    status=Booking.Status.RESERVED
+    ).aggregate(
     total=Sum(
         ExpressionWrapper(
-            F('ticket_count') * F('unit_price'),
-            output_field=DecimalField()
+            F('ticketCount') * F('unitPrice'),
+            output_field=DecimalField(max_digits=12, decimal_places=2)
         )
     )
-)['total'] or 0
+  )['total'] or Decimal('0')
+
+  pending_payment = "{:,.2f}".format(Decimal(pending_payment).quantize(Decimal('0.01')))
   
   total_feedbacks = Review.objects.count()
+
+  print(total_feedbacks)
+  for pkg in top_packages_data:
+    print(pkg)
 
   return DashboardDTO(
     total_bookings = total_bookings,
     total_packages= total_packages,
     new_customers = new_customers,
     active_customers = active_customers,
-    top_packages = top_packages,
+    top_packages = top_packages_data,
     pending_bookings = pending_bookings,
     cancel_bookings = cancel_bookings,
     pending_payment = pending_payment,
