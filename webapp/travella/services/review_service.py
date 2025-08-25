@@ -6,7 +6,7 @@ from ..dtos.review_dto import ReviewDTO
 class ReviewService:
     @staticmethod
     def list_reviews(user, page=1, per_page=6):
-        reviews = Review.objects.all().order_by('-createdAt')
+        reviews = Review.objects.all().order_by('-created_at')
         paginator = Paginator(reviews, per_page)
         page_obj = paginator.get_page(page)
     
@@ -15,7 +15,7 @@ class ReviewService:
                 id=r.id,
                 content=r.content,
                 account_name=getattr(getattr(r.account, 'accountdetail', None), 'name', getattr(r.account, 'email', 'Anonymous')),
-                created_at=r.createdAt,
+                created_at=r.created_at,
                 owned_by_user=(user.is_authenticated and r.account.id == user.id)
             ) for r in page_obj
         ]
