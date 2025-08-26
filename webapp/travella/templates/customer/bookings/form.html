@@ -3,8 +3,7 @@
 {% block content %}
 
 <!-- Notice bar -->
-<div class="fw-bold text-center"
-     style="background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+<div class="fw-bold text-center" style="background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
             color:#fff; padding:20px 10px; font-size:1.2rem;">
   Bookings must be reserved before one hour taking off.
 </div>
@@ -12,92 +11,89 @@
 <!-- Two boxes: Tour Details & Booking Form -->
 <div class="container mt-2">
   <div class="row">
-    
+
     <!-- Tour Details -->
-<div class="col-md-6 mb-4">
-  <div class="p-4 border rounded"
-       style="background-color:#fff; border-radius:8px; border:1px solid #ddd; box-shadow:0 4px 15px rgba(0, 123, 255, 0.2);">
-    <h4 class="mb-3">Tour Details</h4>
-    <p><strong style="display:inline-block; width:160px;">Trip Name:</strong> {{ package.title }}</p>
-    <p><strong style="display:inline-block; width:160px;">Departure Date:</strong> <span id="tourDate">{{ departure_date }}</span></p>
-    <p><strong style="display:inline-block; width:160px;">Duration:</strong> {{ package.duration }} days</p>
-    <p><strong style="display:inline-block; width:160px;">Transportation:</strong>
-       {% if package.transportation == 1 %}Bus{% elif package.transportation == 2 %}Plane{% else %}N/A{% endif %}
-    </p>
-    <p><strong style="display:inline-block; width:160px;">Total Seats:</strong> {{ package.total_tickets }}</p>
-    <p><strong style="display:inline-block; width:160px;">Available Seats:</strong> {{ available_seats }}</p>
-    <p><strong style="display:inline-block; width:160px;">Price per Seat:</strong> {{ price_per_seat }}</p>
-  </div>
-</div>
+    <div class="col-md-6 mb-4">
+      <div class="p-4 border rounded"
+        style="background-color:#fff; border-radius:8px; border:1px solid #ddd; box-shadow:0 4px 15px rgba(0, 123, 255, 0.2);">
+        <h4 class="mb-3">Tour Details</h4>
+        <p><strong style="display:inline-block; width:160px;">Trip Name:</strong> {{ package.title }}</p>
+        <p><strong style="display:inline-block; width:160px;">Departure Date:</strong> <span
+            id="tourDate">{{departure_date}}</span></p>
+        <p><strong style="display:inline-block; width:160px;">Duration:</strong> {{ package.duration }} days</p>
+        <p><strong style="display:inline-block; width:160px;">Transportation:</strong>
+          {{package.get_transportation_display}}
+        </p>
+        <p><strong style="display:inline-block; width:160px;">Total Seats:</strong> {{ package.total_tickets }}</p>
+        <p><strong style="display:inline-block; width:160px;">Available Seats:</strong> {{ available_seats }}</p>
+        <p><strong style="display:inline-block; width:160px;">Price per Seat:</strong> {{ price_per_seat }}</p>
+      </div>
+    </div>
 
     <!-- Booking Form -->
     <div class="col-md-6">
-      <div class="p-4 border rounded"
-           style="background-color:#fff; box-shadow:0 4px 15px rgba(0, 123, 255, 0.2);
+      <div class="p-4 border rounded" style="background-color:#fff; box-shadow:0 4px 15px rgba(0, 123, 255, 0.2);
                   border-radius:12px; padding:30px 25px;">
         <h4 class="mb-3 text-center fw-semibold">Booking Form</h4>
 
         <!-- Form posts to your save view -->
         <!-- Form posts to your save view -->
-<form id="bookingForm" method="post" action="{% url 'booking_save' %}">
-  {% csrf_token %}
+        <form id="bookingForm" method="post" action="{% url 'booking_save' %}">
+          {% csrf_token %}
 
-  <input type="hidden" name="package_id" value="{{ package.id }}">
-  <!-- Change this -->
-<input type="hidden" id="pricePerSeat" value="{{ price_per_seat_value }}">
+          <input type="hidden" name="package_id" value="{{ package.id }}">
+          <!-- Change this -->
+          <input type="hidden" id="pricePerSeat" value="{{ price_per_seat_value }}">
 
-<!-- To this for better precision -->
-<input type="hidden" id="pricePerSeat" value="{{ package.price }}">
+          <!-- To this for better precision -->
+          <input type="hidden" id="pricePerSeat" value="{{ package.price }}">
 
 
-<!-- Auto-filled and read-only user info fields -->
-<div class="mb-3">
-    <label class="form-label fw-medium text-dark">Full Name:</label>
-    <input type="text" class="form-control" name="fullName" id="fullName"
-           value="{{ user_name }}" readonly
-           style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px; background-color: #f8f9fa;"
-           required />
-</div>
+          <!-- Auto-filled and read-only user info fields -->
+          <div class="mb-3">
+            <label class="form-label fw-medium text-dark">Full Name:</label>
+            <input type="text" class="form-control" name="fullName" id="fullName" value="{{ user_name }}" readonly
+              style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px; background-color: #f8f9fa;"
+              required />
+          </div>
 
-<div class="mb-3">
-    <label class="form-label fw-medium text-dark">Email:</label>
-    <input type="email" class="form-control" name="email" id="email"
-           value="{{ user_email }}" readonly
-           style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px; background-color: #f8f9fa;"
-           required />
-</div>
+          <div class="mb-3">
+            <label class="form-label fw-medium text-dark">Email:</label>
+            <input type="email" class="form-control" name="email" id="email" value="{{ user_email }}" readonly
+              style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px; background-color: #f8f9fa;"
+              required />
+          </div>
 
-<div class="mb-3">
-    <label class="form-label fw-medium text-dark">Phone Number:</label>
-    <input type="tel" class="form-control" name="phone" id="phone"
-           value="{{ user_phone }}" readonly
-           style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px; background-color: #f8f9fa;"
-           required />
-</div>
+          <div class="mb-3">
+            <label class="form-label fw-medium text-dark">Phone Number:</label>
+            <input type="tel" class="form-control" name="phone" id="phone" value="{{ user_phone }}" readonly
+              style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px; background-color: #f8f9fa;"
+              required />
+          </div>
 
-<!-- Side by side row - Fixed to update on all input events -->
-<div class="row mb-3">
-    <div class="col">
-        <label class="form-label fw-medium text-dark">Number of People:</label>
-        <input type="number" class="form-control" name="ticketCount" id="people" min="1" value="1"
-               style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px;"
-               required oninput="updatePrice()" onchange="updatePrice()" />
-    </div>
-    <div class="col">
-        <label class="form-label fw-medium text-dark">Total Price:</label>
-        <input type="text" class="form-control" id="totalPrice"
-               style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px;" readonly />
-    </div>
-</div>
-<div class="text-center">
-  <button type="button" id="showReceiptBtn"
-          class="btn btn-primary text-white fw-bold rounded-pill px-4 py-2 shadow-sm"
-          style="background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%)">
-    Confirm Booking
-  </button>
-</div>
+          <!-- Side by side row - Fixed to update on all input events -->
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label fw-medium text-dark">Number of People:</label>
+              <input type="number" class="form-control" name="ticket_count" id="people" min="1" value="1"
+                style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px;" required
+                oninput="updatePrice()" onchange="updatePrice()" />
+            </div>
+            <div class="col">
+              <label class="form-label fw-medium text-dark">Total Price:</label>
+              <input type="text" class="form-control" id="totalPrice"
+                style="border:1.8px solid #ced4da; border-radius:8px; padding:9px 12px;" readonly />
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="button" id="showReceiptBtn"
+              class="btn btn-primary text-white fw-bold rounded-pill px-4 py-2 shadow-sm"
+              style="background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%)">
+              Confirm Booking
+            </button>
+          </div>
 
-</form>
+        </form>
 
       </div>
     </div>
@@ -118,7 +114,7 @@
             <h4 class="fw-bold text-primary">TRAVELLA</h4>
             <p class="mb-0">Booking Receipt</p>
           </div>
-          
+
           <div class="row mb-3">
             <div class="col-md-6">
               <p class="mb-1"><strong>Booking ID:</strong> <span id="receiptBookingId">--</span></p>
@@ -128,25 +124,25 @@
               <p class="mb-1"><strong>Status:</strong> <span class="badge bg-warning text-dark">Pending</span></p>
             </div>
           </div>
-          
+
           <hr>
-          
+
           <div class="mb-3">
             <h6 class="fw-bold">Customer Information</h6>
             <p class="mb-1"><strong>Name:</strong> <span id="receiptName"></span></p>
             <p class="mb-1"><strong>Email:</strong> <span id="receiptEmail"></span></p>
             <p class="mb-1"><strong>Phone:</strong> <span id="receiptPhone"></span></p>
           </div>
-          
+
           <div class="mb-3">
             <h6 class="fw-bold">Tour Details</h6>
             <p class="mb-1"><strong>Package:</strong> <span id="receiptPackage"></span></p>
             <p class="mb-1"><strong>Departure:</strong> <span id="receiptDeparture"></span></p>
             <p class="mb-1"><strong>Travelers:</strong> <span id="receiptTravelers"></span></p>
           </div>
-          
+
           <hr>
-          
+
           <div class="text-end">
             <h5 class="fw-bold">Total: <span id="receiptTotal" class="text-primary"></span></h5>
           </div>

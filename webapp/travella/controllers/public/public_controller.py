@@ -11,9 +11,6 @@ view = RouteView.get('public')
 
 packageService = PackageService()
 
-def discover(request:HttpRequest) -> HttpResponse:
-    return render(request, view('discover/index'))
-
 def packages(request:HttpRequest) -> HttpResponse:
     paginationResult = packageService.search_for_customer(PublicPackageSearch.of(request.GET))
     categories = load_categories()
