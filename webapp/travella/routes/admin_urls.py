@@ -2,6 +2,8 @@ from tkinter.font import names
 
 from django.urls import path
 
+from travella.controllers.admin.managements import reservation_controller
+
 from ..controllers.admin.managements import booking_controller, category_controller, package_controller, \
     customer_controller, staff_controller, package_form_api
 
@@ -49,6 +51,8 @@ urlpatterns = [
     path('staffs/', staff_controller.list, name='staffs'),
     path('staffs/<uuid:id>/', staff_controller.detail, name='staffs_detail'),
 
+    path('reservations/', reservation_controller.get_list, name='reservations'),
+    path('reservations/<uuid:id>', reservation_controller.detail, name='reservations_detail'),
 
 
 ]

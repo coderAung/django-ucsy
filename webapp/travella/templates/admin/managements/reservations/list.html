@@ -1,0 +1,54 @@
+{% extends 'layouts/admin-layout.html' %}
+
+
+{% block content %}
+<div class="container">
+    <div>
+        <h5>Payment Requests</h5>
+    </div>
+    <div>
+        <div>
+            <table class="table table-striped table-hover df-fs-sm">
+                <thead>
+                    <tr class="align-middle table-secondary">
+                        <th>No.</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Booking Code</th>
+
+                        <th>Booking Date</th>
+                        <th>Request Date</th>
+                        <th>Status</th>
+                        <th>Type</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    
+                    {% for item in list %}
+                        <tr class="align-middle">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.phone}}</td>
+
+                            <td>{{item.booking_code}}</td>
+                            <td>{{item.booking_date}}</td>
+                            <td>{{item.request_date}}</td>
+                            <td><span class="df-badge badge-purple">{{item.status}}</span></td>
+                            <td>{{item.payment_type}}</td>
+                            <td>
+                                <a href="{% url 'reservations_detail' item.reservation_id %}" class="btn btn-sm df-btn-glass-blue">
+                                    <i class="bi bi-eye df-text-blue"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
