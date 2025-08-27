@@ -72,6 +72,7 @@ class PaymentRequestInfo:
     total_price:float
     slip_image:str
     is_reserved:bool
+    status:str
 
 @dataclass
 class PaymentRequestForm:
@@ -113,3 +114,9 @@ class PaymentRequestItem:
             payment_type=p.payment_type.name,
             reservation_id=p.id,
         )
+    
+@dataclass
+class Reserver:
+    id:uuid
+    name:str
+    email:str

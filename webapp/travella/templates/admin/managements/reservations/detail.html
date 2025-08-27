@@ -17,7 +17,12 @@
 <div class="container">
     {% include 'includes/modals/slip-image-modal.html' %}
     <div class="mb-3 pt-3 py-2 border-bottom">
-        <h4 class="df-text-green">Payment Request Detail</h4>
+        
+        {% if payment_request_info.is_reserved %}
+            <h4 class="df-text-green">Reservation Detail</h4>
+        {% else %}
+            <h4 class="df-text-green">Payment Request Detail</h4>
+        {% endif %}
     </div>
     <div class="container-fluid">
         <div class="row">
@@ -35,8 +40,27 @@
                     <div>
                         <div>
                             <div class="container">
-                                <div class="w-100">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                    <div class="df-alert df-alert-green mb-4">
+                                        {{message}}
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+                                <div class="w-100 d-flex column-gap-3">
+                                    
+                                    {% if payment_request_info.is_reserved %}
+                                    <h5>Payment Info</h5>
+                                    {% else %}                                        
                                     <h5>Payment Request Info</h5>
+                                    {% endif %}
+                                    <span class="df-badge 
+                                        {% if payment_request_info.status == 'Requesting' %}
+                                            badge-purple
+                                        {% else %}
+                                            badge-green
+                                        {% endif %}
+                                        align-self-start">{{payment_request_info.status}}</span>
                                 </div>
 
                                 <div class="mb-3 mt-4">
@@ -57,7 +81,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="col"></div>
+                                    <div class="col">
+                                    </div>
                                     <div class="col">
                                         <div>
                                             <span>To Pay <span class="df-text-red">*</span></span>
@@ -67,6 +92,20 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {% if reserver %}
+                                    <div class="col">
+                                        <div>
+                                            <span>Reserver Name</span>
+                                            <span class="mt-2 form-control">{{reserver.name}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Reserver Email</span>
+                                            <span class="mt-2 form-control">{{reserver.email}}</span>
+                                        </div>
+                                    </div>
+                                    {% endif %}
 
                                 </div>
                                 <div class="mt-5 row row-cols-2 row-gap-3">
