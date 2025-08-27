@@ -71,6 +71,7 @@ class PaymentRequestInfo:
     request_datetime:datetime
     total_price:float
     slip_image:str
+    is_reserved:bool
 
 @dataclass
 class PaymentRequestForm:

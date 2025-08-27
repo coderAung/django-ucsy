@@ -183,27 +183,31 @@
                                     </div>
                                 </div>
 
-                                <div class="position-sticky bottom-0 py-2">
-                                    <div class="d-flex justify-content-end align-items-center column-gap-3 rounded-pill py-2 px-3 shadow border border-white"
-                                        style="backdrop-filter: blur(3px) brightness(0.95);">
-                                        <button class="btn btn-admin-red rounded-pill">Denie</button>
-                                        <button class="btn btn-admin-green rounded-pill">Confirm Payment</button>
+                                
+                                {% if payment_request_info.is_reserved %}
+                                    
+                                {% else %}
+                                    <div class="position-sticky bottom-0 py-2">
+                                        <div class="d-flex justify-content-end align-items-center column-gap-3 rounded-pill py-2 px-3 shadow border border-white"
+                                            style="backdrop-filter: blur(3px) brightness(0.95);">
+                                            <button class="btn btn-admin-red rounded-pill">Denie</button>
+                                            <button id="confirmBtn" class="btn btn-admin-green rounded-pill">Confirm Payment</button>
+                                        </div>
                                     </div>
-                                </div>
 
+                                    <form id="reservationForm" action="{% url 'reservations_reserve' %}" method="post" class="d-none">
+                                        {% csrf_token %}
+                                        <input type="text" name="reservationId" value="{{payment_request_info.reservation_id}}">
+                                    </form>
+                                    <script src="{% static 'js/reservation.js' %}"></script>
+                                {% endif %}
+                                    
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
-
-
         </div>
     </div>
-
-    
 </div>
 {% endblock content %}

@@ -5,7 +5,7 @@ from django.db.models import Q, Count
 from django.utils import timezone
 from travella.domains.models.booking_models import Booking  
 from travella.domains.models.account_models import AccountDetail
-from travella.domains.models.booking_history import Reservation
+from travella.domains.models.booking_history_model import Reservation
 from travella.services.booking_service import (
     get_booking_by_id,
     get_filtered_bookings,

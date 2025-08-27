@@ -52,7 +52,7 @@ urlpatterns = [
     path('staffs/<uuid:id>/', staff_controller.detail, name='staffs_detail'),
 
     path('reservations/', reservation_controller.get_list, name='reservations'),
-    path('reservations/<uuid:id>', reservation_controller.detail, name='reservations_detail'),
-
+    path('reservations/reserve/', reservation_controller.save, name='reservations_reserve'),
+    path('reservations/<uuid:id>/', reservation_controller.detail, name='reservations_detail'),
 
 ]
