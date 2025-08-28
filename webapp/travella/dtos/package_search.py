@@ -38,9 +38,9 @@ class PublicPackageSearch:
     
     def filter(self) -> Q:
         qf = Q()
-        if not is_empty(self.categoryId) and self.categoryId != 0:
+        if None != self.categoryId and self.categoryId != 0:
             qf &= Q(category__id = self.categoryId)
-        if not is_empty(self.locationId) and self.locationId != 0:
+        if None != self.locationId and self.locationId != 0:
             qf &= Q(location__id = self.locationId)
         if not is_empty(self.q):
             qf &= Q(title__startswith = self.q.lower())

@@ -10,3 +10,4 @@ class Reservation(AbstractModel):
     payment_request = models.OneToOneField(PaymentRequest, null=True, on_delete=models.CASCADE, related_name='reservation')
     booking = models.OneToOneField(Booking, null=True, on_delete=models.CASCADE, related_name='reservation')
     reserved_by = models.ForeignKey(Account, on_delete=models.PROTECT)
+    refund_cover_date = models.DateField(null=True)

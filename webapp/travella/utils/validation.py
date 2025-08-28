@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import uuid
 
 from django.http import QueryDict
 
@@ -32,3 +33,11 @@ class FormValidator:
         def build(self) -> 'FormValidator':
             v = FormValidator(keys=self._keys, rules=self._rules)
             return v
+        
+
+def is_valid_uuid(value:str, message:str = '') -> tuple[bool, str]:
+    try:
+        uuid.UUID(value)
+        return True, f'Valid UUID Value : {value}' if message == '' else message
+    except ValueError as e:
+        return False, f'Invalid UUID value : {value}' if message == '' else message

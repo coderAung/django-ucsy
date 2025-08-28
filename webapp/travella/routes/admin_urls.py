@@ -53,6 +53,7 @@ urlpatterns = [
 
     path('reservations/', reservation_controller.get_list, name='reservations'),
     path('reservations/reserve/', reservation_controller.save, name='reservations_reserve'),
+    path('reservations/reject/', reservation_controller.reject, name='reservations_reject'),
     path('reservations/<uuid:id>/', reservation_controller.detail, name='reservations_detail'),
 
 ]

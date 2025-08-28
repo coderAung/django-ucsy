@@ -120,3 +120,4 @@ class Reserver:
     id:uuid
     name:str
     email:str
+    reserved_at:datetime

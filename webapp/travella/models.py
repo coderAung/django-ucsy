@@ -1,3 +1,4 @@
+from travella.domains.models.notification_models import CustomerNotification
 from travella.domains.models.payment_models import PaymentType, PaymentRequest
 from .domains.models.abstract_models import AbstractModel
 from .domains.models.account_models import Account, AccountDetail

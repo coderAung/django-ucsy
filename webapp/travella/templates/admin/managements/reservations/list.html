@@ -4,7 +4,7 @@
 
 
 {% block cssFile %}
-    <link rel="stylesheet" href="{% static 'css/pagination3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pagination2.css' %}">
 {% endblock cssFile %}
 
 {% block content %}
@@ -54,6 +54,13 @@
                 <script src="{% static 'js/reservation-list.js' %}"></script>
             </form>
         </div>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="df-alert df-alert-red mb-3">{{message}}</div>
+            {% endfor %}
+        {% endif %}
+
         <div>
             <table class="table table-striped table-hover df-fs-sm">
                 <thead>
@@ -103,7 +110,7 @@
         </div>
         <div>
             <div class="d-flex justify-content-end">
-                {% include 'includes/pagination.html' %}
+                {% include 'includes/pagination2.html' %}
             </div>
         </div>
     </div>

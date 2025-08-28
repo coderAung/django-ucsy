@@ -16,8 +16,8 @@
 {% block content %}
 <div class="container">
     {% include 'includes/modals/slip-image-modal.html' %}
-    <div class="mb-3 pt-3 py-2 border-bottom">
-        
+    <div class="mb-3 pt-3 py-2 border-bottom d-flex">
+        <a href="{% url 'reservations' %}" class="btn btn-sm df-btn-glass-gray align-self-center me-3 px-3"><i class="bi bi-arrow-left"></i></a>
         {% if payment_request_info.is_reserved %}
             <h4 class="df-text-green">Reservation Detail</h4>
         {% else %}
@@ -96,13 +96,20 @@
                                     <div class="col">
                                         <div>
                                             <span>Reserver Name</span>
-                                            <span class="mt-2 form-control">{{reserver.name}}</span>
+                                            <span class="mt-2 form-control border border-primary">{{reserver.name}}</span>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div>
                                             <span>Reserver Email</span>
-                                            <span class="mt-2 form-control">{{reserver.email}}</span>
+                                            <span class="mt-2 form-control border border-primary">{{reserver.email}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col"></div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Reserved At</span>
+                                            <span class="mt-2 form-control border border-primary">{{reserver.reserved_at}}</span>
                                         </div>
                                     </div>
                                     {% endif %}
@@ -196,13 +203,13 @@
                                     </div>
                                 </div>
                                 <div class="row mb-5">
-                                    <div class="col">
+                                    <div class="col-3">
                                         <div>
                                             <span>Ticket Count</span>
                                             <span class="mt-2 form-control">{{booking_info.ticket_count}}</span>
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-4">
                                         <div>
                                             <span>Unit Price</span>
                                             <div class="mt-2 input-group">
@@ -211,7 +218,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <div>
                                             <span>Total Price <span class="df-text-red">*</span> </span>
                                             <div class="mt-2 input-group">
@@ -226,11 +233,13 @@
                                 {% if payment_request_info.is_reserved %}
                                     
                                 {% else %}
+                                    {% include 'includes/modals/payment-reject-modal.html' %}
+                                    {% include 'includes/modals/payment-confirm-modal.html' %}
                                     <div class="position-sticky bottom-0 py-2">
                                         <div class="d-flex justify-content-end align-items-center column-gap-3 rounded-pill py-2 px-3 shadow border border-white"
                                             style="backdrop-filter: blur(3px) brightness(0.95);">
-                                            <button class="btn btn-admin-red rounded-pill">Denie</button>
-                                            <button id="confirmBtn" class="btn btn-admin-green rounded-pill">Confirm Payment</button>
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#rejectPayment" class="btn btn-admin-red rounded-pill">Reject</button>
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#confirmPayment" class="btn btn-admin-green rounded-pill">Confirm Payment</button>
                                         </div>
                                     </div>
 

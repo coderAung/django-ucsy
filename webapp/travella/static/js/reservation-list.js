@@ -19,9 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if(paginationBtns && pageInput) {
         Array.from(paginationBtns).forEach(btn => {
             btn.addEventListener('click', () => {
-                const page = btn.dataset['page']
-                pageInput.value = page
-                searchBtn.click()
+                if(!btn.classList.contains('active')) {
+                    const page = btn.dataset['page']
+                    pageInput.value = page
+                    searchBtn.click()
+                }
             })
         })
     }
