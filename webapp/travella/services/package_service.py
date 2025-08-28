@@ -9,7 +9,7 @@ from django.db.models import Sum
 from travella.domains.models.account_models import Account
 from travella.dtos.package_card import PackageCard, PackageDetail
 from travella.dtos.package_form import PackageForm
-from travella.dtos.package_search import PublicPackageSearch
+from travella.dtos.package_search import PackageSearch, PublicPackageSearch
 from travella.services.package_utils import is_empty
 from travella.dtos.api_dtos import BookingOverview
 from travella.utils.pagination import SIZE, PaginationResult
@@ -46,6 +46,11 @@ class PackageService:
     def get_gallery(self, code:str) -> list[str]:
         photos:QuerySet[Photo] = Package.objects.get(code = code).photos.all()
         return [p.path.url for p in photos]
+
+    def search_list(self, search:PackageSearch) -> PaginationResult:
+        packages = Package.objects.filter(search.filter()).order_by('-created_at')
+        paginator = Paginator(packages, SIZE)
+        return PaginationResult(search.page, paginator, PackageItem.of)
 
     def search(self, query:QueryDict) -> list[PackageItem]:
         category = query.get('category')

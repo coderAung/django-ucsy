@@ -9,6 +9,7 @@ from travella.dtos.package_dto import PackageItem
 from travella.dtos.api_dtos import BookingOverview
 from travella.dtos.package_form import PackageForm
 from travella.domains.models.tour_models import Package, Category  
+from travella.dtos.package_search import PackageSearch
 from travella.services.auth_user import get_auth_user
 from travella.tests.tests import load_package_data
 
@@ -34,10 +35,13 @@ def booking_overview(requset:HttpRequest, id:uuid) -> JsonResponse:
 # packages/ GET
 def list(request: HttpRequest) -> HttpResponse:
     load_package_data()
-    items = packageService.search(request.GET)
+
+    result = packageService.search_list(PackageSearch(request))
+    # items = packageService.search(request.GET)
+    items = result.items
     categories = load_categories()
     status = load_status()
-    return render(request, view('list'), {'list': items, 'categories': categories, 'status': status})
+    return render(request, view('list'), {'list': items, 'categories': categories, 'status': status, 'result': result})
 
 # packages/<id> GET
 def detail(request: HttpRequest, code:str) -> HttpResponse:

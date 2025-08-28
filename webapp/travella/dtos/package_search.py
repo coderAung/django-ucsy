@@ -1,8 +1,9 @@
 from datetime import date, datetime
 
-from django.http import QueryDict
+from django.http import HttpRequest, QueryDict
 from django.db.models import Q
 
+from travella.domains.models.tour_models import PackageData
 from travella.services.package_utils import is_empty
 
 
@@ -48,4 +49,34 @@ class PublicPackageSearch:
             qf &= Q(departure__gte = self.departureFrom, departure__lte = self.departureTo)
         return qf
 
-    
+
+class PackageSearch:
+    category:str
+    locationId:int = 0
+    status:str = ''
+    departureFrom:date = None
+    departureTo:date = None
+    q:str = ''
+    page:int = 1
+
+    def __init__(self, request:HttpRequest):
+        query = request.GET
+        self.category = query.get('category')
+        self.status = query.get('status')
+        self.q = query.get('q')
+        if not is_empty(query.get('page')):
+            self.page = int(query.get('page'))
+
+    def filter(self) -> Q:
+        q = Q()
+        if not is_empty(self.category):
+            q &= Q(category__name = self.category)
+        if not is_empty(self.status):
+            try:
+                q &= Q(data__status = PackageData.Status(self.status))
+            except ValueError as e:
+                pass
+        if not is_empty(self.q):
+            q &= Q(code__startswith = self.q.lower()) | Q(title__startswith = self.q.lower())
+        
+        return q

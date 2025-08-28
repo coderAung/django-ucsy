@@ -1,12 +1,11 @@
 {% extends 'layouts/admin-layout.html' %}
 {% load static %}
 
-
 {% block title %} Packages {% endblock title %}
-
 
 {% block cssFile %}
 <link rel="stylesheet" href="{% static 'css/glass.css' %}">
+<link rel="stylesheet" href="{% static 'css/pagination2.css' %}">
 {% endblock cssFile %}
         
 
@@ -89,7 +88,8 @@
                             </div>
                             <div class="d-flex column-gap-2">
                                 <input type="text" class="form-control df-fs-sm w-auto" placeholder="Code or Name" name="q" value="{%if request.GET.q != ''%}{{request.GET.q}}{%endif%}">
-                                <button class="btn df-btn-glass-purple" type="submit">Search</button>
+                                <input id="pageInput" name="page" type="number" class="d-none" value='1'>
+                                <button id="searchBtn" class="btn df-btn-glass-purple" type="submit">Search</button>
                             </div>
                         </div>
                 </form>
@@ -111,15 +111,15 @@
                 <table class="table table-hover table-striped df-fs-sm">
                     <thead class="table-light">
                         <tr class="align-middle position-sticky sticky-top">
-                            <th>No.</th>
                             <th>Code</th>
                             <th>Name</th>
                             <th>Category</th>
                             <th>Duration</th>
                             <th>Departure</th>
-                            <th class="text-end">Tickets</th>
                             <th class="text-center">Status</th>
                             <th class="text-end">Price</th>
+                            <th class="text-end">Tickets</th>
+                            <th class="text-end">Available</th>
                             <th class="text-end">Bookings</th>
                             <th></th>
                         </tr>
@@ -129,18 +129,11 @@
                     <tbody>
                         {% for item in list %}
                         <tr class="align-middle">
-                            <td>{{forloop.counter}}</td>
                             <td>{{item.code}}</td>
                             <td>{{item.name}}</td>
                             <td>{{item.category}}</td>
                             <td><div class="d-flex align-items-center column-gap-3"><span>{{item.duration}}</span><span>Days</span></div></td>
                             <td>{{item.departure}}</td>
-                            <td class="text-end">
-                                <!-- For packages, we need to calculate available tickets differently -->
-                                <span class="">
-                                    {{item.tickets}}
-                                </span>
-                            </td>
                             <td class="text-center">
                                 {% if item.status == 'Available' %}
                                 <span class="df-badge badge-green">{{item.status}}</span>
@@ -153,6 +146,12 @@
                                 {% endif %}
                             </td>
                             <td class="text-end">{{item.price}} MMK</td>
+                            <td class="text-end">
+                                <span class="">
+                                    {{item.tickets}}
+                                </span>
+                            </td>
+                            <td class="text-end">0</td>
                             <td class="text-center">{{item.bookings}}</td>
                             <td class="text-end">
                                 <div class="d-flex column-gap-2 align-items-center px-2">
@@ -168,9 +167,14 @@
                     </tbody>
                     {% endif %}
                 </table>
-                
             </div>
         </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            {% include 'includes/pagination2.html' %}
+        </div>
+        <script src="{% static 'js/package-list.js' %}"></script>
+
         {% if not list|length > 0 %}
             <div class="df-alert df-alert-gray mt-3">
                 There is no record.

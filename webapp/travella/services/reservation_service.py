@@ -19,7 +19,7 @@ from travella.utils.pagination import PaginationResult
 def search_payment_requests(reservation_search:ReservationSearch, page:int) -> PaginationResult:
     _list = PaymentRequest.objects.filter(reservation_search.search()).order_by('-created_at')
     pagination = Paginator(_list, PAGINATION_SIZE)
-    result = PaginationResult(page_number=page, pagination=pagination, mapFunc=PaymentRequestItem.of)
+    result = PaginationResult(page_number=page, paginator=pagination, mapFunc=PaymentRequestItem.of)
     return result
 
 def get_dtos(id:uuid) -> tuple[PaymentRequestInfo, BookingInfo, PackageInfo]:
