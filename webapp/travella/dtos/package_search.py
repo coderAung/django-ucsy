@@ -45,7 +45,7 @@ class PublicPackageSearch:
             qf &= Q(location__id = self.locationId)
         if not is_empty(self.q):
             qf &= Q(title__startswith = self.q.lower())
-        if not is_empty(self.departureFrom) and not is_empty(self.departureTo):
+        if self.departureFrom and self.departureTo:
             qf &= Q(departure__gte = self.departureFrom, departure__lte = self.departureTo)
         return qf
 

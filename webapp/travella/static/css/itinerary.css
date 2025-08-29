@@ -1,0 +1,23 @@
+#imgRemoveBtn:hover {
+    background-color: rgba(255, 33, 33, 0.241);
+}
+
+#imgRemoveBtn:hover > span {
+    color: red !important;
+}
+
+#imgChangeBtn:hover {
+    background-color: rgba(33, 129, 255, 0.26);
+}
+
+.imgBtn {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    backdrop-filter: blur(3px);
+}

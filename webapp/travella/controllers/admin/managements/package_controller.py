@@ -5,11 +5,13 @@ from django.views.decorators.http import require_GET, require_POST
 from django.db.models import Sum
 from travella.domains.models.booking_models import Booking
 from travella.domains.models.tour_models import Package
+from travella.dtos.itinerary_forms import ItineraryForm
 from travella.dtos.package_dto import PackageItem
 from travella.dtos.api_dtos import BookingOverview
 from travella.dtos.package_form import PackageForm
 from travella.domains.models.tour_models import Package, Category  
 from travella.dtos.package_search import PackageSearch
+from travella.services import itinerary_service
 from travella.services.auth_user import get_auth_user
 from travella.tests.tests import load_package_data
 
@@ -18,6 +20,7 @@ from travella.tests.tests import load_package_data
 
 from ....services.package_service import PackageService
 from ....services.package_utils import is_empty, load_categories, load_locations, load_status
+from travella.services import package_service
 
 base = 'admin/managements/packages/'
 
@@ -79,11 +82,23 @@ def edit(request: HttpRequest, code: str) -> HttpResponse:
 
 def edit_itinerary(request: HttpRequest, code: str) -> HttpResponse:
     if request.method == 'POST':
-        save_itinerary(request, code)
-    return render(request, view('itinerary-form'))
+        return save_itinerary(request, code)
+    _list = itinerary_service.get_by_package_code(code)
+    duration = package_service.duration_by_code(code)
+    days = [i+1 for i in range(duration)]
+    if _list:
+        days = [d for d in days if d not in [i.day for i in _list]]
+    
+    return render(request, view('itinerary-form'), {
+        'list': _list,
+        'days': days,
+        'code': code,
+    })
 
 def save_itinerary(request: HttpRequest, code:str) -> HttpResponse:
-    pass
+    form = ItineraryForm(request)
+    itinerary_service.save(form=form, package_code=code)
+    return redirect('edit_itinerary', code=code)
 
 
 @require_POST

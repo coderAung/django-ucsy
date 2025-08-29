@@ -2,7 +2,7 @@ from tkinter.font import names
 
 from django.urls import path
 
-from travella.controllers.admin.managements import reservation_controller
+from travella.controllers.admin.managements import itinerary_controller, reservation_controller
 
 from ..controllers.admin.managements import booking_controller, category_controller, package_controller, \
     customer_controller, staff_controller, package_form_api
@@ -31,6 +31,7 @@ urlpatterns = [
     path('packages/<str:code>/', package_controller.detail, name='packages_detail'),
     path('packages/edit/<str:code>/', package_controller.edit),
     path('packages/edit-itinerary/<str:code>/', package_controller.edit_itinerary, name='edit_itinerary'),
+    path('packages/delete-itinerary/<str:code>/', itinerary_controller.delete, name='delete_itinerary'),
 
     # GET method only
     path('settings/', setting_controller.list, name = 'settings'),

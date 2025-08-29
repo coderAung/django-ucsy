@@ -110,8 +110,12 @@ class PackageService:
         dto = PackageDetail.of(package)
         return dto
     
-    from django.db.models import Sum
+from django.db.models import Sum
 from travella.domains.models.booking_models import Booking
+
+def duration_by_code(code:str) -> int:
+    result = Package.objects.filter(code = code).values('duration').first()
+    return result['duration']
 
 def get_packages_with_availability():
     packages = Package.objects.select_related('category').all()
@@ -143,3 +147,4 @@ def get_packages_with_availability():
         })
     
     return package_list
+
