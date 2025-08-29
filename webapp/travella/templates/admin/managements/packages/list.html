@@ -6,10 +6,17 @@
 {% block cssFile %}
 <link rel="stylesheet" href="{% static 'css/glass.css' %}">
 <link rel="stylesheet" href="{% static 'css/pagination2.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<style>
+.dateInput {
+    max-width: 120px;
+    cursor: pointer;
+}
+</style>
 {% endblock cssFile %}
-        
 
 {% block content %}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script></head>
 
 <!-- modal start -->
 <div class="modal fade df-fs-sm" id="addForm" tabindex="-1">
@@ -29,73 +36,50 @@
     <div class="px-3 mt-3 df-fs-sm w-100">
         <div class="d-flex justify-content-between">
             <h4 class="df-text-primary">All Packages</h4>
-        </div>
-
-        {% comment %} <div>
-            <div class="">
-                <h5>Static</h5>
-            </div>
-            <div class="bg-white rounded">
-                <div>
-                    <div class="d-flex px-2 py-2 column-gap-3 rounded">
-                        <div class="col-2 df-alert df-alert-blue text-center">
-                            <h3>65</h3>
-                            <small>Total</small>
-                        </div>    
-                        <div class="col-2 df-alert df-alert-green text-center">
-                            <h3>61</h3>
-                            <small>Available</small>
-                        </div>    
-                        <div class="col-2 df-alert df-alert-red text-center">
-                            <h3>4</h3>
-                            <small>Unavailable</small>
-                        </div>    
-                        <div class="col-2 df-alert df-alert-yellow text-center">
-                            <h3>0</h3>
-                            <small>Finished</small>
-                        </div>    
-                    </div>
-                </div>
-            </div>
-        </div> {% endcomment %}
-
-        <div class="mt-3">
-            <div class="d-flex justify-content-between">
-                <form action="">
-                        <div class="d-flex column-gap-2">
-                            <div>
-                                <select class="form-select df-fs-sm" name="category">
-                                    <option value="">All Category</option>
-                                    {% for c in categories %}
-                                    <option value="{{c.name}}" {% if request.GET.category == c.name%}selected{%endif%}>{{c.name}}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div>
-                                <select class="form-select df-fs-sm" name="status">
-                                    <option value="">Status</option>
-                                    {% for label,value in status %}
-                                    <option value="{{value}}" {% if request.GET.status == value %}selected{%endif%}>{{value}}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div>
-                                <select class="form-select df-fs-sm" name="month">
-                                    <option value="">Departure</option>
-                                    <option value="thisMonth" {% if request.GET.month == 'thisMonth'%}selected{%endif%}>This Month</option>
-                                    <option value="lastMonth" {% if request.GET.month == 'thisMonth'%}selected{%endif%}>Last Month</option>
-                                </select>
-                            </div>
-                            <div class="d-flex column-gap-2">
-                                <input type="text" class="form-control df-fs-sm w-auto" placeholder="Code or Name" name="q" value="{%if request.GET.q != ''%}{{request.GET.q}}{%endif%}">
-                                <input id="pageInput" name="page" type="number" class="d-none" value='1'>
-                                <button id="searchBtn" class="btn df-btn-glass-purple" type="submit">Search</button>
-                            </div>
-                        </div>
-                </form>
-                <div>
+            <div>
                 <button class="btn btn-admin-blue align-self-end" data-bs-toggle="modal"
                 data-bs-target="#addForm">Add a pacakge</button>
+            </div>
+        </div>
+        <div class="mt-3">
+            <div class="d-flex justify-content-between">
+                <form id="searchForm">
+                    <div class="d-flex column-gap-2 flex-fill">
+                        <div>
+                            <span class="df-fs-sm">Category</span>
+                            <select class="form-select df-fs-sm" name="category">
+                                <option class="df-fs-sm" value="">All Category</option>
+                                {% for c in categories %}
+                                <option class="df-fs-sm" value="{{c.name}}" {% if request.GET.category == c.name%}selected{%endif%}>{{c.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <input type="text" class="d-none" name="status" id="statusInput" value="{{request.GET.status}}">
+                        <div>
+                            <span class="df-fs-sm">Departure Date</span>
+                            <div class="input-group">
+                                <input type="date" id="fromDateInput" class="form-control df-fs-sm rounded-start dateInput" name="from" placeholder="From"  value="{{request.GET.from}}">
+                                <input type="date" id="toDateInput" class="form-control df-fs-sm rounded-end dateInput" name="to" placeholder="To" value="{{request.GET.to}}">
+                            </div>
+                        </div>
+                        <div class="d-flex column-gap-2 align-self-end">
+                            <div>
+                                <span class="df-fs-sm">Search</span>
+                                <input type="text" class="form-control df-fs-sm w-auto" placeholder="Code or Name" name="q" value="{%if request.GET.q != ''%}{{request.GET.q}}{%endif%}">
+                            </div>
+                            <input id="pageInput" name="page" type="number" class="d-none" value='1'>
+                            <button id="searchBtn" class="btn df-fs-sm df-btn-glass-purple align-self-end" type="submit">Search</button>
+                            <button id="clearBtn" class="btn df-fs-sm df-btn-glass-red align-self-end" type="button">Clear</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="align-self-end flex-fill d-flex justify-content-end">
+                    <div class="btn-group">
+                        <button class="btn btn-outline-primary df-fs-sm statusBtn {% if request.GET.status == None or request.GET.status == 'undefined' or request.GET.status == ''%}active{%endif%}" type="button"">All</button>
+                        {% for label,value in status %}
+                        <button class="btn btn-outline-primary df-fs-sm statusBtn {% if request.GET.status == value %}active{%endif%}" type="button" data-status="{{value}}">{{value}}</button>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

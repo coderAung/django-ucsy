@@ -54,8 +54,8 @@ class PackageSearch:
     category:str
     locationId:int = 0
     status:str = ''
-    departureFrom:date = None
-    departureTo:date = None
+    departure_from:date = None
+    departure_to:date = None
     q:str = ''
     page:int = 1
 
@@ -64,7 +64,11 @@ class PackageSearch:
         self.category = query.get('category')
         self.status = query.get('status')
         self.q = query.get('q')
-        if not is_empty(query.get('page')):
+        if not is_empty(query.get('from')):
+            self.departure_from = datetime.strptime(query.get('from'), "%Y-%m-%d").date() 
+        if query.get('to'):
+            self.departure_to = datetime.strptime(query.get('to'), "%Y-%m-%d").date() 
+        if query.get('page'):
             self.page = int(query.get('page'))
 
     def filter(self) -> Q:
@@ -78,5 +82,9 @@ class PackageSearch:
                 pass
         if not is_empty(self.q):
             q &= Q(code__startswith = self.q.lower()) | Q(title__startswith = self.q.lower())
-        
+        if self.departure_from:
+            q &= Q(departure__gte = self.departure_from)
+        if self.departure_to:
+            q &= Q(departure__lte = self.departure_to)
+
         return q

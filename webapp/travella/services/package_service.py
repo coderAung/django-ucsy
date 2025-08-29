@@ -49,7 +49,7 @@ class PackageService:
 
     def search_list(self, search:PackageSearch) -> PaginationResult:
         packages = Package.objects.filter(search.filter()).order_by('-created_at')
-        paginator = Paginator(packages, SIZE)
+        paginator = Paginator(packages, 6)
         return PaginationResult(search.page, paginator, PackageItem.of)
 
     def search(self, query:QueryDict) -> list[PackageItem]:
@@ -81,13 +81,13 @@ class PackageService:
         booking = Booking.objects.filter(id = id).first()
         return BookingOverview.of(booking)
     
-    def save(self, account:Account, form:PackageForm, images:list[UploadedFile]) -> bool:
+    def save(self, account:Account, form:PackageForm, images:list[UploadedFile]) -> str:
         package:Package = form.to_model(account)
         package.save()
         PackageData(code=package.code, remaining_tickets=package.total_tickets, package=package).save()
         for i in images:
             Photo.objects.create(package=package, path=i)
-        return True
+        return package.code
     
     def delete(self, code:str):
         package = Package.objects.get(code = code)

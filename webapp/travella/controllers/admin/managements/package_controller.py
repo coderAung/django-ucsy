@@ -70,14 +70,21 @@ def save(request: HttpRequest) -> HttpResponse:
         return render(request, view('form'), {'categories': categories})
 
     images = request.FILES.getlist('images[]')
-    packageService.save(get_auth_user(request), form, images)
-    for i in images:
-        print(f'file : {i.name}')
-    return redirect('packages')
+    code:str = packageService.save(get_auth_user(request), form, images)
+    return redirect('edit_itinerary', code = code)
 
 # packages/<id>/edit/ GET and POST
-def edit(request: HttpRequest, id: int) -> HttpResponse:
+def edit(request: HttpRequest, code: str) -> HttpResponse:
     return render(request, view('form'))
+
+def edit_itinerary(request: HttpRequest, code: str) -> HttpResponse:
+    if request.method == 'POST':
+        save_itinerary(request, code)
+    return render(request, view('itinerary-form'))
+
+def save_itinerary(request: HttpRequest, code:str) -> HttpResponse:
+    pass
+
 
 @require_POST
 def delete(request: HttpRequest) -> HttpResponse:

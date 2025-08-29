@@ -29,8 +29,8 @@ urlpatterns = [
     path('packages/new-code/', package_form_api.new_package_code),
     path('packages/delete/', package_controller.delete, name='packages_delete'),
     path('packages/<str:code>/', package_controller.detail, name='packages_detail'),
-    path('packages/<uuid:id>/edit', package_controller.edit),
-
+    path('packages/edit/<str:code>/', package_controller.edit),
+    path('packages/edit-itinerary/<str:code>/', package_controller.edit_itinerary, name='edit_itinerary'),
 
     # GET method only
     path('settings/', setting_controller.list, name = 'settings'),
