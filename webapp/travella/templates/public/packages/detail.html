@@ -1,5 +1,5 @@
 {% extends 'layouts/customer-layout.html' %}
-
+{% load static %}
 
 {% block mainTitle %}
     Public
@@ -17,10 +17,47 @@
             max-height: 200px;
             min-height: 200px;
         }
+
+        .packageImageWrapper {
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;    
+        }
+
+        .packageImageWrapper:hover {
+            transform: translateY(-20px); /* lifts up */
+        }
+
+        .packageImageWrapper:hover img {
+            filter: brightness(0.9);
+        }
+
+        .carouselBtn {
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            outline: none;
+            background-color: transparent;
+            backdrop-filter: blur(4px);
+            color: white;
+            padding: 0;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carouselBtn:hover {
+            backdrop-filter: blur(4px) brightness(0.7);
+        }
     </style>
 {% endblock cssFile %}    
 
 {% block content %}
+    {% if dto.photos %}
+        {% include 'includes/modals/package-detail-images-modal.html' %}
+        <script src="{% static 'js/c/package-detail.js' %}"></script>
+    {% endif %}
+
     <div class="container py-2">
         <div class="mb-3">
             <span class="df-badge badge-blue">{{dto.category}}</span>
@@ -69,27 +106,29 @@
 
         {% if dto.photos %}
         <div class="mt-4">
-            <div class="row row-cols-2">
-                <div class="col d-flex align-items-center">
-                    <div class="overflow-hidden rounded" style="max-height: 350px">
-                        <img src="{{dto.cover_photo}}" alt="" class="img-fluid rounded">
+            <div class="container py-4">
+                <div class="row row-cols-2">
+                    <div class="col" style="max-height: 450px;">
+                        <div class="h-100 packageImageWrapper overflow-hidden shadow">
+                            <img data-num="1" src="{{dto.cover_photo}}" alt="" class="w-100 h-100" style="object-fit: cover;">
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="container-fluid d-flex align-items-center h-100">
-                        <div class="row row-cols-2 row-gap-3">
-                            {% for p in dto.photos %}
-                                {% if forloop.counter > 1 and forloop.counter <= 5 %}
-                                    <div class="col">
-                                        <div class="w-100 h-100 d-flex justify-content-center align-items-center position-relative rounded" style="max-height: 180px; overflow: hidden;">
-                                            <img src="{{p}}" alt="" class="img-fluid rounded w-100" style="object-fit:cover">
-                                            {% if forloop.counter == 5 %}
-                                                <a href="#" class="position-absolute btn btn-sm df-btn-glass-black rounded-pill px-3 end-0 bottom-0 mb-3 me-3">+ {{dto.remaining_photos}}</a>
-                                            {% endif %}
+                    <div class="col" style="max-height: 450px;">
+                        <div class="container-fluid d-flex align-items-center h-100">
+                            <div class="row row-cols-2 row-gap-3">
+                                {% for p in dto.photos %}
+                                    {% if forloop.counter > 1 and forloop.counter <= 5 %}
+                                        <div class="col" style="max-height: 225px;">
+                                            <div class="w-100 h-100 position-relative packageImageWrapper shadow overflow-hidden">
+                                                <img data-num="{{forloop.counter}}" src="{{p}}" alt="" class="w-100 h-100" style="object-fit:cover">
+                                                {% if forloop.counter == 5 %}
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#imagesModal" class="position-absolute btn btn-sm df-btn-glass-black rounded-pill px-3 end-0 bottom-0 mb-3 me-3">+ {{dto.remaining_photos}}</button>
+                                                {% endif %}
+                                            </div>
                                         </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>

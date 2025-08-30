@@ -80,7 +80,7 @@
     background-color: rgba(128, 126, 126, 0.8) !important;
 }
 
-/* @keyframes scrollEffect {
+@keyframes scrollEffect {
     from {
         opacity: 0;
         scale: 0.7;
@@ -89,12 +89,12 @@
         opacity: 1;
         scale: 1;
     }
-} */
+}
 
 .packageCard {
-    /* animation: scrollEffect linear;
+    animation: scrollEffect linear;
     animation-timeline: view();
-    animation-range: entry 0% cover 40%; */
+    animation-range: entry 0% cover 40%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;    
 }
 
