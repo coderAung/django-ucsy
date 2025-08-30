@@ -5,4 +5,4 @@ from .domains.models.tour_models import Category, Package, Itinerary, Photo, Pac
 from .domains.models.booking_models import Booking
 from .domains.models.booking_history import Reservation
 from .domains.models.review_models import Review
-from .domains.models.log_models import AccessLog, ProfileEditLog
+from .domains.models.log_models import AccessLog

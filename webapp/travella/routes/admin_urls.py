@@ -39,7 +39,7 @@ urlpatterns = [
 
     # POST method only
     path('settings/account/email/change/', account_controller.email),
-    path('settings/account/password/change/', account_controller.password),
+    path('settings/account/password/change/', account_controller.password_change),
     path('settings/account/photo/', account_controller.photo),
     path('settings/account/info/', account_controller.info),
 
