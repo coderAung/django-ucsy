@@ -28,6 +28,9 @@ def list(request: HttpRequest) -> HttpResponse:
     else:
         bookings_qs = get_all_bookings()
 
+    # SORT BY LATEST BOOKINGS FIRST - ADD THIS LINE
+    bookings_qs = bookings_qs.order_by('-created_at')
+
     # Create paginator - 20 items per page
     paginator = Paginator(bookings_qs, 20)
     page_obj = paginator.get_page(page_number)
@@ -35,12 +38,13 @@ def list(request: HttpRequest) -> HttpResponse:
     # This function internally uses calculate_available_tickets
     bookings_dtos = get_booking_list_dtos_from_queryset(page_obj.object_list)
     
-    # Get counts for each status
+    # Get counts for each status - ADDED REQUESTING COUNT
     status_counts = Booking.objects.aggregate(
         total=Count('id'),
         pending=Count('id', filter=Q(status=Booking.Status.PENDING)),
         reserved=Count('id', filter=Q(status=Booking.Status.RESERVED)),
         cancelled=Count('id', filter=Q(status=Booking.Status.CANCELLED)),
+        requesting=Count('id', filter=Q(status=Booking.Status.REQUESTING)),
     )
 
     # Prepare pagination context
@@ -62,30 +66,30 @@ def list(request: HttpRequest) -> HttpResponse:
         'pending_count': status_counts['pending'],
         'reserved_count': status_counts['reserved'],
         'cancelled_count': status_counts['cancelled'],
+        'requesting_count': status_counts['requesting'],
         'page_obj': page_obj,
     })
-
 def detail(request: HttpRequest, id: str) -> HttpResponse:
-    booking = get_booking_by_id(id)
-    if booking is None:
+    booking_obj = get_booking_by_id(id)  # Renamed to avoid conflict
+    if booking_obj is None:
         raise Http404("Booking not found")
 
-    total_cost = booking.ticket_count * booking.unit_price
+    total_cost = booking_obj.ticket_count * booking_obj.unit_price
 
     # Get customer details with fallbacks
     try:
-        account_detail = AccountDetail.objects.get(account=booking.customer)
+        account_detail = AccountDetail.objects.get(account=booking_obj.customer)
         customer_name = account_detail.name
         customer_phone = account_detail.phone
     except AccountDetail.DoesNotExist:
-        customer_name = booking.customer.email
+        customer_name = booking_obj.customer.email
         customer_phone = "Not provided"
 
     # Get reservation history with fallback to admin email
     reserved_by_name = None
-    if booking.status == Booking.Status.RESERVED:
+    if booking_obj.status == Booking.Status.RESERVED:
         try:
-            history = Reservation.objects.get(booking=booking)
+            history = Reservation.objects.get(booking=booking_obj)
             try:
                 reserved_by_name = history.reservedBy.accountdetail.name
             except AttributeError:
@@ -94,21 +98,44 @@ def detail(request: HttpRequest, id: str) -> HttpResponse:
             reserved_by_name = "Unknown admin"
 
     # Convert UTC times to local timezone
-    created_at_local = timezone.localtime(booking.created_at)
-    status_updated_at_local = timezone.localtime(booking.status_updated_at) if booking.status != Booking.Status.PENDING else None
+    created_at_local = timezone.localtime(booking_obj.created_at)
+    status_updated_at_local = timezone.localtime(booking_obj.status_updated_at) if booking_obj.status_updated_at else None
+
+    # Handle different statuses for date/time display
+    if booking_obj.status == Booking.Status.PENDING:
+        # For Pending, show created date/time
+        status_date = created_at_local.date()
+        status_time = created_at_local.strftime('%I:%M %p').lstrip("0")
+        status_date_label = "Pending Date"
+        status_time_label = "Pending Time"
+    elif booking_obj.status == Booking.Status.REQUESTING:
+        # For Requesting, show status updated date/time (when payment was requested)
+        status_date = status_updated_at_local.date() if status_updated_at_local else created_at_local.date()
+        status_time = status_updated_at_local.strftime('%I:%M %p').lstrip("0") if status_updated_at_local else created_at_local.strftime('%I:%M %p').lstrip("0")
+        status_date_label = "Requested Date"
+        status_time_label = "Requested Time"
+    else:
+        # For Reserved and Cancelled, show status updated date/time
+        status_date = status_updated_at_local.date() if status_updated_at_local else "-"
+        status_time = status_updated_at_local.strftime('%I:%M %p').lstrip("0") if status_updated_at_local else "-"
+        status_date_label = "Reserved Date" if booking_obj.status == Booking.Status.RESERVED else "Cancelled Date"
+        status_time_label = "Reserved Time" if booking_obj.status == Booking.Status.RESERVED else "Cancelled Time"
 
     # Initialize context with basic info
     context = {
-        'booking': booking,
+        'booking': booking_obj,  # Pass the booking object to template
         'total_cost': total_cost,
         'customer_name': customer_name,
-        'customer_email': booking.customer.email,
+        'customer_email': booking_obj.customer.email,
         'customer_phone': customer_phone,
-        'pending_date': created_at_local.date(),
-        'pending_time': created_at_local.strftime('%I:%M %p').lstrip("0"),
-        'reserved_or_cancelled_date': status_updated_at_local.date() if status_updated_at_local else "-",
-        'reserved_or_cancelled_time': status_updated_at_local.strftime('%I:%M %p').lstrip("0") if status_updated_at_local else "-",
+        'created_date': created_at_local.date(),
+        'created_time': created_at_local.strftime('%I:%M %p').lstrip("0"),
+        'status_date': status_date,
+        'status_time': status_time,
+        'status_date_label': status_date_label,
+        'status_time_label': status_time_label,
         'reserved_by_name': reserved_by_name,
+        'booking_status': booking_obj.status,  # Add raw status for template logic
     }
 
     return render(request, view('detail'), context)

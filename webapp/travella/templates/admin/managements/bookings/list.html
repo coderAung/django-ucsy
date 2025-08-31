@@ -9,6 +9,7 @@
     <div style="margin-bottom:4px;">Pending Bookings: <span style="color:#1847c9;">{{ pending_count }}</span></div>
     <div style="margin-bottom:4px;">Reserved Bookings: <span style="color:#198754;">{{ reserved_count }}</span></div>
     <div style="margin-bottom:4px;">Cancelled Bookings: <span style="color:#dc3545;">{{ cancelled_count }}</span></div>
+    <div style="margin-bottom:4px;">Requesting Bookings: <span style="color:#6f42c1;">{{ requesting_count }}</span></div>
   </div>
     
   <!-- Search and filter -->
@@ -19,6 +20,7 @@
         <option value="pending" {% if request.GET.status == 'pending' %}selected{% endif %}>Pending</option>
         <option value="reserved" {% if request.GET.status == 'reserved' %}selected{% endif %}>Reserved</option>
         <option value="cancelled" {% if request.GET.status == 'cancelled' %}selected{% endif %}>Cancelled</option>
+        <option value="requesting" {% if request.GET.status == 'requesting' %}selected{% endif %}>Requesting</option>
       </select>
     </div>
 
@@ -69,8 +71,10 @@
             <span class="df-badge
               {% if booking.status_display == 'Reserved' %}
                 badge-green
-              {% elif booking.status_display == 'CANCELLED' %}
+              {% elif booking.status_display == 'Cancelled' %}
                 badge-red
+              {% elif booking.status_display == 'Requesting' %}
+                badge-purple
               {% else %}
                 badge-blue
               {% endif %}
@@ -79,21 +83,21 @@
             </span>
           </td>
         <td>
-            {% if booking.status_display == "Pending" %}
+            {% if booking.status_display == "Pending" or booking.status_display == "Requesting" %}
               {{ booking.created_date|date:"F j, Y" }}
             {% else %}
               {{ booking.status_updated_date|date:"F j, Y" }}
             {% endif %}
           </td>
           <td>
-            {% if booking.status_display == "Pending" %}
+            {% if booking.status_display == "Pending" or booking.status_display == "Requesting" %}
               {{ booking.created_time }}
             {% else %}
               {{ booking.status_updated_time }}
             {% endif %}
             <br>
             <small class="text-muted">
-              {% if booking.status_display == "Pending" %}
+              {% if booking.status_display == "Pending" or booking.status_display == "Requesting" %}
                 UTC: {{ booking.created_time_utc }}
               {% else %}
                 UTC: {{ booking.status_updated_time_utc }}
@@ -116,6 +120,8 @@
     {% include 'includes/pagination.html' %}
   {% endif %}
 </div>
+
+
 
 <script>
 // Add JavaScript to handle pagination with filters

@@ -4,6 +4,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
+from datetime import timedelta
 from travella.domains.models.tour_models import Package, PackageData
 from travella.domains.models.booking_models import Booking
 from travella.domains.models.account_models import AccountDetail
@@ -33,12 +34,18 @@ def new(request, code: str):
 
     # Use the imported function to calculate available seats
     available_seats = calculate_available_tickets(package)
+    
+    # Calculate tour end date (departure date + duration)
+    tour_end_date = None
+    if package.departure and package.duration:
+        tour_end_date = package.departure + timedelta(days=package.duration)
 
     context = {
         'package': package,
         'price_per_seat': f"{package.price:.2f} MMK",
         'price_per_seat_value': float(package.price),
         'departure_date': package.departure.strftime("%B %d, %Y") if package.departure else "N/A",
+        'tour_end_date': tour_end_date.strftime("%B %d, %Y") if tour_end_date else "N/A",
         'user_name': user_name,
         'user_email': request.user.email,
         'user_phone': user_phone,
@@ -60,10 +67,17 @@ def detail(request, id):
     """Show details for a specific booking."""
     booking = get_object_or_404(Booking, id=id, customer=request.user)
     total_cost = booking.ticket_count * booking.unit_price
+    
+    # Calculate tour end date for the booking's package
+    tour_end_date = None
+    if booking.package.departure and booking.package.duration:
+        tour_end_date = booking.package.departure + timedelta(days=booking.package.duration)
+    
     return render(request, BASE_TEMPLATE_PATH + 'detail.html', {
         "booking": booking,
         "total_cost": total_cost,
-        "status_label": booking.get_status_display()
+        "status_label": booking.get_status_display(),
+        "tour_end_date": tour_end_date.strftime("%B %d, %Y") if tour_end_date else "N/A",
     })
 
 @require_POST
@@ -73,7 +87,7 @@ def save(request):
     try:
         # Get form data
         package_id = request.POST.get('package_id')
-        ticket_count = int(request.POST.get('ticketCount', 1))
+        ticket_count = int(request.POST.get('ticket_count', 1))
         full_name = request.POST.get('fullName', '').strip()
         email = request.POST.get('email', '').strip()
         phone = request.POST.get('phone', '').strip()

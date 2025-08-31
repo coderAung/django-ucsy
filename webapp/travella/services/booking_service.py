@@ -4,7 +4,7 @@ from travella.dtos.booking_dto import BookingListDTO, BookingDetailDTO
 from django.utils import timezone
 
 def calculate_available_tickets(package):
-    """Calculate available tickets for a package without modifying the model"""
+    """Calculate available tickets for a package and update the remaining_tickets"""
     booked_count = Booking.objects.filter(
         package=package
     ).exclude(
@@ -12,7 +12,15 @@ def calculate_available_tickets(package):
     ).aggregate(
         total=Sum('ticket_count')
     )['total'] or 0
-    return max(0, package.total_tickets - booked_count)
+    
+    available_tickets = max(0, package.total_tickets - booked_count)
+    
+    # Update the remaining_tickets in the package data
+    if hasattr(package, 'data'):
+        package.data.remaining_tickets = available_tickets
+        package.data.save()
+    
+    return available_tickets
 
 def get_all_bookings():
     return Booking.objects.select_related('customer__accountdetail', 'package').all()
@@ -35,6 +43,7 @@ def get_filtered_bookings(query=None, status=None):
             'pending': Booking.Status.PENDING,
             'reserved': Booking.Status.RESERVED,
             'cancelled': Booking.Status.CANCELLED,
+            'requesting': Booking.Status.REQUESTING,  # ADDED REQUESTING STATUS
         }
         status_value = status_map.get(status.lower())
         if status_value is not None:
@@ -51,12 +60,12 @@ def get_booking_list_dtos_from_queryset(bookings_queryset):
             else booking.customer.email
         )
         
-        # Calculate available tickets
+        # Calculate available tickets and update remaining_tickets
         available_tickets = calculate_available_tickets(booking.package)
         
         # Convert UTC times to local timezone
         created_at_local = timezone.localtime(booking.created_at)
-        status_updated_at_local = timezone.localtime(booking.status_updated_at)
+        status_updated_at_local = timezone.localtime(booking.status_updated_at) if booking.status_updated_at else None
         
         dtos.append(BookingListDTO(
             id=booking.id,
@@ -65,8 +74,8 @@ def get_booking_list_dtos_from_queryset(bookings_queryset):
             status_display=booking.get_status_display(),
             created_date=created_at_local.date(),
             created_time=created_at_local.strftime('%I:%M %p').lstrip("0"),
-            status_updated_date=status_updated_at_local.date(),
-            status_updated_time=status_updated_at_local.strftime('%I:%M %p').lstrip("0"),
+            status_updated_date=status_updated_at_local.date() if status_updated_at_local else None,
+            status_updated_time=status_updated_at_local.strftime('%I:%M %p').lstrip("0") if status_updated_at_local else None,
             available_tickets=available_tickets,
             total_capacity=booking.package.total_tickets
         ))
@@ -76,7 +85,7 @@ def get_booking_detail_dto(booking_id):
     booking = Booking.objects.select_related('customer__accountdetail', 'package').get(id=booking_id)
     account_detail = getattr(booking.customer, 'accountdetail', None)
     
-    # Calculate available tickets
+    # Calculate available tickets and update remaining_tickets
     available_tickets = calculate_available_tickets(booking.package)
     
     customer_name = account_detail.name if account_detail else booking.customer.email
@@ -84,13 +93,13 @@ def get_booking_detail_dto(booking_id):
     
     # Convert UTC times to local timezone
     created_at_local = timezone.localtime(booking.created_at)
-    status_updated_at_local = timezone.localtime(booking.status_updated_at)
+    status_updated_at_local = timezone.localtime(booking.status_updated_at) if booking.status_updated_at else None
     
     return BookingDetailDTO(
         id=booking.id,
         status=booking.get_status_display(),
         ticket_count=booking.ticket_count,
-        unit_price=float(booking.unitPrice),
+        unit_price=float(booking.unit_price),  # FIXED: changed unitPrice to unit_price
         customer_name=customer_name,
         customer_email=booking.customer.email,
         customer_phone=customer_phone,
@@ -99,8 +108,8 @@ def get_booking_detail_dto(booking_id):
         package_duration=booking.package.duration,
         created_date=created_at_local.date(),
         created_time=created_at_local.strftime('%I:%M %p').lstrip("0"),
-        status_updated_date=status_updated_at_local.date(),
-        status_updated_time=status_updated_at_local.strftime('%I:%M %p').lstrip("0"),
+        status_updated_date=status_updated_at_local.date() if status_updated_at_local else None,
+        status_updated_time=status_updated_at_local.strftime('%I:%M %p').lstrip("0") if status_updated_at_local else None,
         available_tickets=available_tickets,
         total_capacity=booking.package.total_tickets
     )
