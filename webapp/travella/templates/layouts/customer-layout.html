@@ -21,10 +21,11 @@
 </head>
 <body>
     <div>
-        
+        {% include 'layouts/navbar-layout.html' %}
         {% block content %}
             
         {% endblock %}
+        {% include 'layouts/footer-layout.html'%}
             
     </div>
 </body>

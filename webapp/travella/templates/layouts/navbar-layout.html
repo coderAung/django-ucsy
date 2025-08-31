@@ -1,0 +1,43 @@
+
+<nav class="navbar navbar-expand-lg fixed-top py-3">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <div class="logo-icon"><i class="bi bi-compass-fill text-white"></i></div><span
+                class="fw-bold">Travella</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{%url 'customer_packages'%}">Packages</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="#">Settings</a></li> -->
+                <!-- <li class="nav-item"><a class="nav-link" href="#">Booking</a></li> -->
+                <li class="nav-item"><a class="nav-link" href="#">Categories</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'review_list'%}">Review</a></li>
+            </ul>
+
+            {%if request.user.is_authenticated%}
+            <div>
+                <form id="signOutForm" action="{% url 'sign_out' %}" method="post" class="">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary-main rounded-pill px-4">Sign Out</button>
+
+                </form>
+            </div>
+            {% else %}
+            <div class="d-flex align-items-center"><a href="{% url 'sign_in'%}"
+                    class="nav-login-link text-decoration-none text-dark fw-medium me-3">Sign In</a>
+                <a href="#" class="btn btn-primary-main rounded-pill px-4">Sign Up</a>
+            </div>
+            {%endif%}
+
+        </div>
+    </div>
+</nav>
+{% block jsFile %}
+<script>
+    const nav = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => { if (window.scrollY > 50) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); } });
+</script>
+{% endblock jsFile %}
