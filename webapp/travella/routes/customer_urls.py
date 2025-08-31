@@ -1,5 +1,7 @@
 from django.urls import path
 from django.shortcuts import render
+
+from travella.controllers.customer import booking_cancel_controller
 from ..controllers.customer import payment_request_controller, review_controller, booking_controller
 
 urlpatterns = [
@@ -8,6 +10,7 @@ urlpatterns = [
     path('bookings/save/', booking_controller.save, name='booking_save'),
     
     path('bookings/history/', booking_controller.history, name='customer_booking_history'),
+    path('bookings/cancel/<uuid:id>/', booking_cancel_controller.cancel_booking, name='customer_bookings_cancel'),
     path('bookings/<uuid:id>/', booking_controller.detail, name='customer_bookings_detail'),
 
     path('bookings/reserve/<uuid:id>', payment_request_controller.new),

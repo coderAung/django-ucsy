@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 import uuid
 
 from django.db import transaction
@@ -12,6 +12,7 @@ from travella.dtos.reservation_dtos import BookingInfo, PackageInfo, PaymentRequ
 from travella.dtos.reservation_search import ReservationSearch
 from travella.exceptions.business_exception import BusinessException
 from travella.services import customer_notification_service, payment_request_service
+from travella.utils import constants
 from travella.utils.constants import BOOKING_AUTO_CANCEL, PAGINATION_SIZE
 from travella.utils.pagination import PaginationResult
 
@@ -45,8 +46,9 @@ def reserve(id:uuid, account_id:uuid):
         reservation = Reservation(
             id=payment_request.id,
             payment_request=payment_request,
-            reserved_by_id=account_id
+            reserved_by_id=account_id,
         )
+        reservation.refund_cover_date = reservation.created_at + timedelta(constants.REFUNDABLE_TIME)
         reservation.save()
         # update payment_request is reserved
         payment_request.is_reserved = True
@@ -73,7 +75,7 @@ def reject(id:uuid, account_id:uuid, reject_message:str):
             customer_notification_service.save_payment_reject_notification(payment_request, reject_message, account_id)
             booking = payment_request.booking
             booking.status = Booking.Status.PENDING
-            booking.auto_cancel_date = date.today() + timedelta(BOOKING_AUTO_CANCEL)
+            booking.auto_cancel_date = datetime.today() + timedelta(hours=BOOKING_AUTO_CANCEL)
             booking.save()
 
             payment_request.delete()
