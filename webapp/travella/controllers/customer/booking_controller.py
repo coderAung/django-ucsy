@@ -55,28 +55,69 @@ def new(request, code: str):
 
 @login_required
 def history(request):
-    """Show all bookings for the current user."""
-    bookings = Booking.objects.filter(customer=request.user).select_related('package').order_by('-created_at')
-    return render(request, BASE_TEMPLATE_PATH + 'history.html', {
+    bookings = Booking.objects.filter(customer=request.user) \
+        .select_related('package', 'customer').order_by('-created_at')
+
+    status_labels = dict(Booking.Status.choices)
+    status_classes = {
+        Booking.Status.PENDING: "badge-blue",     
+        Booking.Status.RESERVED: "badge-green",    
+        Booking.Status.CANCELLED: "badge-red",      
+        Booking.Status.REQUESTING: "badge-purple",   
+    }
+
+    for booking in bookings:
+        try:
+            customer_name = booking.customer.accountdetail.name
+        except AttributeError:
+            customer_name = booking.customer.email
+        booking.customer_name = customer_name
+
+        booking.status_class = status_classes.get(booking.status, "badge-gray")
+        booking.status_label = status_labels.get(booking.status, "Unknown")
+        booking.total_price = booking.ticket_count * booking.unit_price 
+
+    return render(request, 'customer/bookings/history.html', {
         "bookings": bookings,
-        "status_labels": dict(Booking.Status.choices)
     })
+
+
 
 @login_required
 def detail(request, id):
     """Show details for a specific booking."""
     booking = get_object_or_404(Booking, id=id, customer=request.user)
-    total_cost = booking.ticket_count * booking.unit_price
-    
-    # Calculate tour end date for the booking's package
+
+    # Total cost
+    booking.total_price = booking.ticket_count * booking.unit_price
+
+    # Tour end date
     tour_end_date = None
     if booking.package.departure and booking.package.duration:
         tour_end_date = booking.package.departure + timedelta(days=booking.package.duration)
-    
+
+    # Customer name
+    try:
+        booking.customer_name = booking.customer.accountdetail.name
+    except AttributeError:
+        booking.customer_name = booking.customer.email
+
+    # Status label & badge class
+    status_labels = dict(Booking.Status.choices)
+    status_classes = {
+        Booking.Status.PENDING: "badge-blue",
+        Booking.Status.RESERVED: "badge-green",
+        Booking.Status.CANCELLED: "badge-red",
+        Booking.Status.REQUESTING: "badge-purple",
+    }
+    booking.status_label = status_labels.get(booking.status, "Unknown")
+    booking.status_class = status_classes.get(booking.status, "badge-gray")
+
+    # Transportation (default if not set)
+    booking.package.transportation = getattr(booking.package, 'transportation', 'N/A')
+
     return render(request, BASE_TEMPLATE_PATH + 'detail.html', {
         "booking": booking,
-        "total_cost": total_cost,
-        "status_label": booking.get_status_display(),
         "tour_end_date": tour_end_date.strftime("%B %d, %Y") if tour_end_date else "N/A",
     })
 
