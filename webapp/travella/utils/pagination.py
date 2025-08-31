@@ -19,8 +19,8 @@ class PaginationResult(Generic[DTO, ITEM]):
     def pages(self) -> list[int]:
         return [i+1 for i in range(self.total_pages)]
 
-    def __init__(self, page_number:int, pagination:Paginator, mapFunc:Callable[[ITEM], DTO]):
-        page = pagination.get_page(page_number)
+    def __init__(self, page_number:int, paginator:Paginator, mapFunc:Callable[[ITEM], DTO]):
+        page = paginator.get_page(page_number)
         self.items = [mapFunc(p) for p in page.object_list]
 
         self.has_prev = page.has_previous()
@@ -31,6 +31,6 @@ class PaginationResult(Generic[DTO, ITEM]):
         if self.has_next:
             self.next_page = page.next_page_number()
 
-        self.total_pages = pagination.num_pages
+        self.total_pages = paginator.num_pages
         self.current_page = page.number
-        self.total_results = pagination.count
+        self.total_results = paginator.count

@@ -1,0 +1,261 @@
+{% extends 'layouts/admin-layout.html' %}
+
+{% load static %}
+
+
+{% block cssFile %}
+    <link rel="stylesheet" href="{% static 'css/glass.css' %}">
+    <style>
+        #slipImage:hover {
+            filter: brightness(90%);
+        }
+    </style>
+{% endblock cssFile %}
+    
+
+{% block content %}
+<div class="container">
+    {% include 'includes/modals/slip-image-modal.html' %}
+    <div class="mb-3 pt-3 py-2 border-bottom d-flex">
+        <a href="{% url 'reservations' %}" class="btn btn-sm df-btn-glass-gray align-self-center me-3 px-3"><i class="bi bi-arrow-left"></i></a>
+        {% if payment_request_info.is_reserved %}
+            <h4 class="df-text-green">Reservation Detail</h4>
+        {% else %}
+            <h4 class="df-text-green">Payment Request Detail</h4>
+        {% endif %}
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <div class="py-3 position-sticky sticky-top">
+                    <img id="slipImage"
+                        data-bs-toggle="modal"
+                        data-bs-target="#slipImageModal"
+                        class="img-fluid shadow pointer w-100"
+                        src="{{payment_request_info.slip_image}}" alt="Slip Image">
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="py-3">
+                    <div>
+                        <div>
+                            <div class="container">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                    <div class="df-alert df-alert-green mb-4">
+                                        {{message}}
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+                                <div class="w-100 d-flex column-gap-3">
+                                    
+                                    {% if payment_request_info.is_reserved %}
+                                    <h5>Payment Info</h5>
+                                    {% else %}                                        
+                                    <h5>Payment Request Info</h5>
+                                    {% endif %}
+                                    <span class="df-badge 
+                                        {% if payment_request_info.status == 'Requesting' %}
+                                            badge-purple
+                                        {% else %}
+                                            badge-green
+                                        {% endif %}
+                                        align-self-start">{{payment_request_info.status}}</span>
+                                </div>
+
+                                <div class="mb-3 mt-4">
+                                    <span>Reservation ID</span>
+                                    <span class="mt-2 form-control">{{payment_request_info.reservation_id}}</span>
+                                </div>
+                                <div class="row row-cols-2 row-gap-3">
+                                    <div class="col">
+                                        <div>
+                                            <span>Payment Type</span>
+                                            <span class="mt-2 form-control">{{payment_request_info.payment_type}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Request At</span>
+                                            <span class="mt-2 form-control">{{payment_request_info.request_datetime}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>To Pay <span class="df-text-red">*</span></span>
+                                            <div class="mt-2 input-group">
+                                                <span class="form-control">{{payment_request_info.total_price}}</span>
+                                                <span class="input-group-text">MMK</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% if reserver %}
+                                    <div class="col">
+                                        <div>
+                                            <span>Reserver Name</span>
+                                            <span class="mt-2 form-control border border-primary">{{reserver.name}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Reserver Email</span>
+                                            <span class="mt-2 form-control border border-primary">{{reserver.email}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col"></div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Reserved At</span>
+                                            <span class="mt-2 form-control border border-primary">{{reserver.reserved_at}}</span>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                </div>
+                                <div class="mt-5 row row-cols-2 row-gap-3">
+                                    <div class="w-100">
+                                        <h5>Booking Info</h5>
+                                    </div>
+
+                                    <div class="col">
+                                        <div>
+                                            <span>Booking Code</span>
+                                            <span class="mt-2 form-control">{{booking_info.id}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Booking Date</span>
+                                            <span class="mt-2 form-control">{{booking_info.booking_date}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Customer Email</span>
+                                            <span class="mt-2 form-control">{{booking_info.email}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Customer Name</span>
+                                            <span class="mt-2 form-control">{{booking_info.name}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-5 row row-cols-3 row-gap-3">
+                                    <div class="w-100">
+                                        <h5>Package Info</h5>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Package Code</span>
+                                            <span class="mt-2 form-control">{{package_info.code}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Package Title</span>
+                                            <span class="mt-2 form-control">{{package_info.title}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Category</span>
+                                            <span class="mt-2 form-control">{{package_info.category}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3 mb-5 row row-cols-3 row-gap-3">
+                                    <div class="col">
+                                        <div>
+                                            <span>Duration</span>
+                                            <span class="mt-2 form-control">{{package_info.duration}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>From</span>
+                                            <span class="mt-2 form-control">{{package_info.departure_from}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>To</span>
+                                            <span class="mt-2 form-control">{{package_info.departure_to}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col"></div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Location</span>
+                                            <span class="mt-2 form-control">{{package_info.location}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <span>Transportation</span>
+                                            <span class="mt-2 form-control">{{package_info.transportation}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-3">
+                                        <div>
+                                            <span>Ticket Count</span>
+                                            <span class="mt-2 form-control">{{booking_info.ticket_count}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div>
+                                            <span>Unit Price</span>
+                                            <div class="mt-2 input-group">
+                                                <span class="form-control">{{package_info.unit_price}}</span>
+                                                <span class="input-group-text">MMK</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <div>
+                                            <span>Total Price <span class="df-text-red">*</span> </span>
+                                            <div class="mt-2 input-group">
+                                                <span class="form-control">{{booking_info.total_price}}</span>
+                                                <span class="input-group-text">MMK</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                {% if payment_request_info.is_reserved %}
+                                    
+                                {% else %}
+                                    {% include 'includes/modals/payment-reject-modal.html' %}
+                                    {% include 'includes/modals/payment-confirm-modal.html' %}
+                                    <div class="position-sticky bottom-0 py-2">
+                                        <div class="d-flex justify-content-end align-items-center column-gap-3 rounded-pill py-2 px-3 shadow border border-white"
+                                            style="backdrop-filter: blur(3px) brightness(0.95);">
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#rejectPayment" class="btn btn-admin-red rounded-pill">Reject</button>
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#confirmPayment" class="btn btn-admin-green rounded-pill">Confirm Payment</button>
+                                        </div>
+                                    </div>
+
+                                    <form id="reservationForm" action="{% url 'reservations_reserve' %}" method="post" class="d-none">
+                                        {% csrf_token %}
+                                        <input type="text" name="reservationId" value="{{payment_request_info.reservation_id}}">
+                                    </form>
+                                    <script src="{% static 'js/reservation.js' %}"></script>
+                                {% endif %}
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

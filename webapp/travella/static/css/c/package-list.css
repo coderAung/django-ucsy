@@ -53,10 +53,10 @@
     background-color: rgba(12, 236, 218, 0.548);
 }
 
-.custom.glass-card {
+/* .custom.glass-card {
   background-color: rgba(255, 255, 255, 0.55) !important;
   backdrop-filter: blur(8px) brightness(0.76);
-}
+} */
 
 .miniCloseBtn {
     position: absolute;

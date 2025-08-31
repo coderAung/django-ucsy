@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import date, time, timedelta
+from datetime import date, datetime, time, timedelta
 import uuid
 
 from django.http import HttpRequest, QueryDict
@@ -18,6 +18,8 @@ class PackageInfo:
     category:str
     departure_from:date
     departure_to:date
+    location:str
+    transportation:str
     duration:int
     unit_price:float
 
@@ -30,6 +32,8 @@ class PackageInfo:
             departure_from=p.departure,
             duration=p.duration,
             departure_to=(p.departure + timedelta(p.duration)),
+            location=p.location.name if not p.location == None else 'Not defined',
+            transportation=p.get_transportation_display(),
             unit_price=p.price
         )
     
@@ -42,6 +46,7 @@ class BookingInfo:
     unit_price:float
     email:str
     name:str
+    phone:str
 
     def total_price(self) -> float:
         return self.unit_price * self.ticket_count
@@ -56,7 +61,18 @@ class BookingInfo:
             unit_price=b.unit_price,
             email=b.customer.email,
             name=b.customer.accountdetail.name,
+            phone=b.customer.accountdetail.phone,
         )
+
+@dataclass
+class PaymentRequestInfo:
+    reservation_id:uuid
+    payment_type:str
+    request_datetime:datetime
+    total_price:float
+    slip_image:str
+    is_reserved:bool
+    status:str
 
 @dataclass
 class PaymentRequestForm:
@@ -72,3 +88,36 @@ class PaymentRequestForm:
             slip_image=files.get('slipImage')
         )
         return form
+
+@dataclass
+class PaymentRequestItem:
+    email:str
+    name:str
+    phone:str
+    booking_code:str
+    booking_date:date
+    request_date:date
+    status:str
+    payment_type:str
+    reservation_id:uuid
+
+    @staticmethod
+    def of(p:PaymentRequest) -> 'PaymentRequestItem':
+        return PaymentRequestItem(
+            email=p.customer.email,
+            name=p.customer.accountdetail.name,
+            phone=p.customer.accountdetail.phone,
+            booking_code=p.booking.id,
+            booking_date=p.booking.created_at.date,
+            request_date=p.created_at.date,
+            status=p.booking.get_status_display(),
+            payment_type=p.payment_type.name,
+            reservation_id=p.id,
+        )
+    
+@dataclass
+class Reserver:
+    id:uuid
+    name:str
+    email:str
+    reserved_at:datetime

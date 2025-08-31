@@ -22,6 +22,19 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script></head>
     <script src="{% static 'js/package-form.js' %}"></script>
 
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+        -moz-appearance: textfield;
+        }    
+    </style>
+
 <body>
     <div class="container py-3">
         <div class="">
@@ -63,7 +76,7 @@
                                             <smalll id="codeVal" class="df-fs-sm df-text-red d-none validationError">Code is required.</smalll>
                                         </div>
                                         <div>
-                                            <label for="categoryBtn" class="h6">Category<small class="df-fs-sm df-text-red">*</small></label>
+                                            <label for="categoryBtn" class="h6">Category <small class="df-fs-sm df-text-red">*</small></label>
                                             <input type="text" id="cidInput" class="d-none" name="cid" required>
                                             <div>
                                                 <button id="categoryBtn" type="button" class="btn df-btn-glass-blue"
@@ -95,15 +108,15 @@
                                     </div>
                                     <div class="mt-5">
                                         <div class="d-flex">
-                                            <div class="w-25 me-3">
+                                            <div class="me-3" style="width: 40%;">
                                                 <label for="ticketInput" class="h6">Tickets <small class="df-fs-sm df-text-red">*</small></label>
-                                                <input id="ticketInput" name="ticket" type="number" class="form-control" placeholder="0">
+                                                <input id="ticketInput" name="ticket" type="number" class="form-control text-end" placeholder="0">
                                                 <smalll class="df-fs-sm df-text-red d-none validationError">Ticket is required.</smalll>
                                             </div>
                                             <div>
                                                 <label for="priceInput" class="h6">Price per Person <small class="df-fs-sm df-text-red">*</small></label>
                                                 <div class="input-group">
-                                                    <input id="priceInput" name="price" type="number" class="form-control" placeholder="0">
+                                                    <input id="priceInput" name="price" type="number" class="form-control text-end" placeholder="0">
                                                     <span class="input-group-text">MMK</span>
                                                 </div>
                                                 <smalll class="df-fs-sm df-text-red d-none validationError">Price is required.</smalll>

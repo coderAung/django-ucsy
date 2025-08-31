@@ -92,6 +92,19 @@
                                 <span class="mt-1 form-control">{{package_info.departure_to}}</span>
                             </div>
                         </div>
+
+                        <div class="mt-4 d-flex column-gap-2">
+                            <div class="w-50">
+                                <span>Location</span>
+                                <span class="mt-1 form-control">{{package_info.location}}</span>
+                            </div>
+                            <div class="w-50">
+                                <span>Transportation</span>
+                                <span class="mt-1 form-control">{{package_info.transportation}}</span>
+                            </div>
+                        </div>
+
+
                         <div class="mt-5">
                             <span>Unit Price</span>
                             <div class="mt-1 input-group">
@@ -126,6 +139,13 @@
                         </div>
 
                         <div class="mt-4">
+                            <div>
+                                <span>Customer Email</span>
+                                <input class="mt-1 form-control" disabled value="{{booking_info.email}}">
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
                             <span>Customer Info</span>
                             <div class="d-flex column-gap-2 mt-1">
                                 <div>
@@ -134,7 +154,9 @@
                                     </span>
                                 </div>
                                 <div class="flex-fill">
-                                    <input class="form-control" disabled value="{{booking_info.email}}">
+                                    <span class="form-control">
+                                        {{booking_info.phone}}
+                                    </span>
                                 </div>
                             </div>
                         </div>

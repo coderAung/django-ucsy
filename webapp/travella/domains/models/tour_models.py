@@ -78,7 +78,7 @@ class Itinerary(models.Model):
     day = models.IntegerField()
     title = models.CharField(max_length=100)
     description = models.TextField()
-
+    image = models.ImageField(upload_to='public/itineraries/', null=True)
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['package', 'day'], name='unique_itinerary')

@@ -21,7 +21,7 @@ def load_status() -> dict[PackageData.Status]:
     return {s.label : s.value for s in PackageData.Status}.items()
 
 def is_empty(value:str) -> bool:
-    if value == None or value == '' or value == 'null':
+    if value == None or value.strip() == '' or value == 'null':
         return True
     return False
 

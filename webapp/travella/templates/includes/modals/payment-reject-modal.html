@@ -1,0 +1,27 @@
+<div class="modal" id="rejectPayment">
+    <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+        <div class="modal-content border border-white glass-card shadow w-75" style="backdrop-filter: blur(3px) brightness(0.8) !important;">
+            <div class="modal-body">
+                <div>
+                    <div class="mb-3">
+                        <div class="df-alert df-alert-red fs-6 fw-bold">Rejecting the payment.</div>
+                    </div>
+                    <div>
+                        <form id="rejectForm" action="{% url 'reservations_reject' %}" method="post">
+                            {% csrf_token %}
+                            <input class="d-none" type="text" name="reservationId" value="{{payment_request_info.reservation_id}}">
+                            <textarea placeholder="Enter reject message" name="rejectMessage" id="rejectMessage" class="form-control" required></textarea>
+                            <div id="rejectMessageError" class="df-text-red fw-bold df-fs-sm mt-2 d-none">* Reject Message is required.</div>
+                        </form>
+                    </div>
+                    <div class="mt-3">
+                        <div class="d-flex justify-content-end column-gap-2">
+                            <button class="btn btn-admin-blue" data-bs-dismiss="modal">Cancle</button>
+                            <button class="btn btn-admin-red" id="rejectBtn">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

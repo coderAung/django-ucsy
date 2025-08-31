@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from travella.dtos.package_search import PublicPackageSearch
+from travella.services import itinerary_service
 from travella.services.package_service import PackageService
 from travella.services.package_utils import load_categories, load_locations
 from travella.utils.route_view import RouteView
@@ -23,4 +24,8 @@ def packages(request:HttpRequest) -> HttpResponse:
 
 def package_detail(request:HttpRequest, code:str) -> HttpResponse:
     package_detail = packageService.detail(code = code)
-    return render(request, view('packages/detail'), {'dto': package_detail})
+    itineraries = itinerary_service.get_by_package_code(code)
+    return render(request, view('packages/detail'), {
+        'dto': package_detail,
+        'itineraries': itineraries,
+    })
