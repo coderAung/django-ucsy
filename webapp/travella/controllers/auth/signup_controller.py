@@ -119,7 +119,7 @@ class SignUpView(View):
                     photo=final_data.get('profile_photo')
                 )
 
-                access_log_service.save_log(AccessLogForm.sing_up_success_form, new_account.id)
+                access_log_service.save_log(AccessLogForm.sing_up_success_form(), new_account.id)
 
                 print(f"Successfully created account for {email}")
 
