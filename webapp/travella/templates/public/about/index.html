@@ -1,0 +1,289 @@
+{% extends 'layouts/customer-layout.html' %}
+
+{% load static %}
+
+{% block cssFile %}
+<style>
+    /* About Us Page Styles */
+    .about-hero {
+        background: linear-gradient(rgba(98, 110, 97, 0.6), rgba(153, 246, 159, 0.6)), url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 100px 0;
+        text-align: center;
+        margin-bottom: 60px;
+        
+    }
+    
+    .section-title {
+        position: relative;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        font-weight: 700;
+    }
+    
+    .section-title:after {
+        content: '';
+        position: absolute;
+        width: 60px;
+        height: 3px;
+        background: #3a86ff;
+        bottom: 0;
+        left: 0;
+    }
+    
+    .section-title.center {
+        text-align: center;
+    }
+    
+    .section-title.center:after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .about-content {
+        padding: 60px 0;
+    }
+    
+    .value-card {
+        text-align: center;
+        padding: 30px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+        height: 100%;
+    }
+    
+    .value-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .value-icon {
+        font-size: 2.5rem;
+        color: #3a86ff;
+        margin-bottom: 20px;
+    }
+    
+    .team-member {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .team-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 20px;
+        border: 5px solid #f8f9fa;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .stats-section {
+        background-color: #f8f9fa;
+        padding: 60px 0;
+    }
+    
+    .stat-item {
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #3a86ff;
+        margin-bottom: 10px;
+    }
+    
+    .testimonial {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        margin-bottom: 30px;
+        position: relative;
+    }
+    
+    .testimonial:after {
+        content: '"';
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 4rem;
+        color: #f8f9fa;
+        font-family: Georgia, serif;
+    }
+    
+    .testimonial-text {
+        font-style: italic;
+        margin-bottom: 20px;
+    }
+    
+    .client-info {
+        display: flex;
+        align-items: center;
+    }
+    
+    .client-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 15px;
+    }
+    
+    .cta-section {
+        background: linear-gradient(135deg, #3a86ff, #2a75f0);
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+    }
+</style>
+{% endblock cssFile %}
+
+{% block jsFile %}
+{% endblock jsFile %}
+
+{% block mainTitle %}
+    Public
+{% endblock mainTitle %}
+
+{% block title %}
+    About Us   
+{% endblock title %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="about-hero">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Our Story</h1>
+        <p class="lead">Discover the passion behind our journey to bring you unforgettable adventures</p>
+    </div>
+</section>
+
+<!-- About Content Section -->
+<section class="about-content">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="section-title">Who We Are</h2>
+                <p>Adventure Explorers was founded in 2010 with a simple mission: to create extraordinary travel experiences that connect people with the world's most beautiful destinations. What started as a small team of passionate travelers has grown into a company that has helped over 50,000 adventurers discover new horizons.</p>
+                <p>We believe that travel has the power to transform lives, broaden perspectives, and create lasting memories. Our carefully curated packages combine exciting activities, comfortable accommodations, and authentic cultural experiences to give you the perfect balance of adventure and relaxation.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80" alt="Our Team" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title center mb-5">Our Values</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="bi bi-globe"></i>
+                    </div>
+                    <h4>Sustainable Tourism</h4>
+                    <p>We're committed to responsible travel that minimizes environmental impact and supports local communities.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="bi bi-heart"></i>
+                    </div>
+                    <h4>Passionate Service</h4>
+                    <p>Our team lives and breathes travel, and we're dedicated to creating exceptional experiences for every customer.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h4>Safety First</h4>
+                    <p>Your wellbeing is our top priority. All our adventures meet rigorous safety standards.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-6">
+                <div class="stat-item">
+                    <div class="stat-number">13+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-item">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Happy Travelers</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-item">
+                    <div class="stat-number">120+</div>
+                    <div class="stat-label">Destinations</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-title center mb-5">Meet Our Team</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Team Member" class="team-img">
+                    <h4>Sarah Johnson</h4>
+                    <p class="text-muted">Founder & CEO</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="Team Member" class="team-img">
+                    <h4>Michael Chen</h4>
+                    <p class="text-muted">Adventure Director</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" alt="Team Member" class="team-img">
+                    <h4>Jessica Martinez</h4>
+                    <p class="text-muted">Customer Experience Manager</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <h2 class="display-5 fw-bold mb-4">Ready for Your Next Adventure?</h2>
+        <p class="lead mb-4">Join thousands of satisfied travelers who have experienced the world with us</p>
+        <a href="{% url 'customer_packages' %}" class="btn btn-light btn-lg rounded-pill px-4 py-2">Explore Our Packages</a>
+    </div>
+</section>
+{% endblock content %}
