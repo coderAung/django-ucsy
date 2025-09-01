@@ -1,79 +1,87 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Travel Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Sign In - Travella</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+    
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url("{% static 'images/ocean.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem 0;
+        }
+    </style>
 </head>
+<body>
 
-<body style="background: #a3d9f8; font-family: 'Segoe UI', sans-serif;">
+    <div class="glass-container">
+        <h2>Sign In to Travella</h2>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
 
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="d-flex rounded shadow-lg overflow-hidden bg-white">
-
-                    <!-- Form Section -->
-                    <div class="col-12 col-md-6 p-5 rounded">
-                        <h4 class="text-primary mb-4">Tracking</h4>
-                        <ul class="nav nav-tabs mb-4">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Sign In</a>
-                            </li>
-                        </ul>
-
-                        <form method="POST">
-                            {% csrf_token %}
-                            {% for field in form %}
-                            <div class="mb-3">
-                                {{ field.label_tag }}
-                                {{ field }}
-                                {% if field.errors %}
-                                <div class="text-danger small">{{ field.errors|striptags }}</div>
-                                {% endif %}
-                            </div>
-                            {% endfor %}
-                            <div class="form-check mb-3">
-                                <input type="checkbox" class="form-check-input" id="rememberMe">
-                                <label class="form-check-label" for="rememberMe">Remember me</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100"
-                                style="background-color: #0aa3d0; border: none;">
-                                Sign In
-                            </button>
-                            {% if messages %}
-                            <div class="mt-3">
-                                {% for message in messages %}
-                                <div class="alert alert-danger">{{ message }}</div>
-                                {% endfor %}
-                            </div>
-                            {% endif %}
-                        </form>
-
-                    </div>
-
-                    <!-- Image Section -->
-                    <div class="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center text-center text-white p-4"
-                        style="background-color: #0aa3d0;">
-                        <img src="https://heybus.com.ua/source/blog/problems_1.jpg" alt="Traveler" class="img-fluid rounded mb-4"
-                            style="max-height: 300px;" />
-                        <h2 class="fw-semibold" style="font-size: 24px;">
-                            Start your journey by<br />one click, explore<br />beautiful world!
-                        </h2>
-                    </div>
-
-                </div>
+                {{ field.as_widget.attrs.class }}
+                <input type="{{ field.field.widget.input_type }}"
+                       name="{{ field.html_name }}"
+                       id="{{ field.id_for_label }}"
+                       class="form-control"
+                       placeholder="Enter your {{ field.label|lower }}">
+                
+                {% if field.errors %}
+                    <div class="form-error mt-1">{{ field.errors|striptags }}</div>
+                {% endif %}
             </div>
-        </div>
+            {% endfor %}
+            
+
+<div class="d-flex justify-content-between align-items-center mb-3 form-options">
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="rememberMe" name="remember_me">
+        <label class="form-check-label" for="rememberMe">Remember me</label>
+    </div>
+    <a href="#" style="color: #aed9ff; font-size: 0.9em; text-decoration: none;">Forgot password?</a>
+</div>
+            
+            <button type="submit" class="btn btn-custom w-100">Sign In</button>
+
+            <!-- Server-side messages (e.g., "Invalid credentials") -->
+            {% if messages %}
+            <div class="mt-3">
+                {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Link to Sign Up Page -->
+            <div class="text-center mt-4">
+                <p>Don't have an account? <a href="{% url 'sign_up' %}" style="color: #fff; font-weight: 600;">Sign Up</a></p>
+            </div>
+        </form>
     </div>
 
 </body>
-
-</html>
-
-</body>
-
 </html>

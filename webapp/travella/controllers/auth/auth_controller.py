@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
@@ -24,6 +25,7 @@ def sign_in(request:HttpRequest) -> HttpResponse:
                     path = request.GET.get('next')
                 return redirect(path)
             else:
+                messages.error(request, "Invalid email or password. Please try again.")
                 return render(request, 'auth/sign-in.html', {'form': form})
     else:
         form = SignInForm()
