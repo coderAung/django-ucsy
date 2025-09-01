@@ -16,37 +16,103 @@ window.addEventListener('resize', toggleSidebar);
   new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       datasets: [{
         label: 'Revenue',
-        data: [12000, 14000, 18000, 16000, 19000, 22000],
-        borderColor: '#00A9FF',
-        tension: 0.3
+        data: [12000, 14000, 18000, 16000, 19000, 22000, 24000, 21000, 23000, 25000, 28000, 30000],
+        borderColor: '#4361ee',
+        backgroundColor: 'rgba(67, 97, 238, 0.1)',
+        fill: true,
+        tension: 0.3,
+        pointBackgroundColor: '#4361ee',
+        pointRadius: 4,
+        pointHoverRadius: 6
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: { legend: { display: false } }
-    }
-  });
-
-  // Pie Chart (Top Destinations)
-  const pie = document.getElementById('pieChart');
-  new Chart(pie, {
-    type: 'pie',
-    data: {
-      labels: ['Paris', 'Rome', 'Bali', 'Kyoto', 'Maldives'],
-      datasets: [{
-        label: 'Top Destinations',
-        data: [25, 20, 18, 15, 22],
-        backgroundColor: ['#0d6efd', '#00A9FF', '#89CFF3', '#CDF5FD', '#0dcaf0']
-      }],
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {legend: {position: 'right'}}
+      plugins: { 
+        legend: { display: false },
+        tooltip: {
+          mode: 'index',
+          intersect: false
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: {
+            drawBorder: false
+          }
+        },
+        x: {
+          grid: {
+            display: false
+          }
+        }
       }
-
     }
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+  const barCtx = document.getElementById('barChart').getContext('2d');
+
+  // Example: Months vs Revenue
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+  const revenue = [12000, 14000, 18000, 16000, 19000, 22000]; // Replace with your real data
+
+  const backgroundColors = [
+    'rgba(67, 97, 238, 0.8)',
+    'rgba(42, 157, 143, 0.8)',
+    'rgba(233, 196, 106, 0.8)',
+    'rgba(231, 111, 81, 0.8)',
+    'rgba(156, 82, 230, 0.8)',
+    'rgba(255, 159, 64, 0.8)' // Add as many colors as months
+  ];
+
+
+  //barChart
+  const barChart = new Chart(barCtx, {
+    type: 'bar',
+    data: {
+      labels: months,
+      datasets: [{
+        label: 'Number of Bookings',
+        data: noOfBookings,
+        backgroundColor: backgroundColors,
+        borderColor: backgroundColors.map(color => color.replace('0.8', '1')),
+        borderWidth: 1,
+        borderRadius: 6,
+        hoverBackgroundColor: backgroundColors.map(color => color.replace('0.8', '0.9'))
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: 'y', // Horizontal bars; remove this if you want vertical bars
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Number of Bookings'
+          },
+          grid: {
+            drawBorder: false
+          }
+        },
+        y: {
+          grid: {
+            display: false
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+});
