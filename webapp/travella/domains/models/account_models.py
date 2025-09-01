@@ -51,7 +51,7 @@ class Account(AbstractBaseUser, PermissionsMixin, AbstractModel):
 class AccountDetail(AbstractModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
-    photo = models.URLField(blank=True, null=True)  # Or ImageField if you use media storage
+    photo = models.URLField(blank=True, null=True) # Or ImageField if you use media storage
     address = models.CharField(max_length=255, blank=True, null=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
     account = models.OneToOneField('Account', on_delete=models.CASCADE)
