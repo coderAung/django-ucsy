@@ -1,5 +1,5 @@
 {% extends 'layouts/customer-layout.html' %}
-
+{% load static %}
 
 {% block mainTitle %}
     Public
@@ -9,10 +9,56 @@
 {% block title %}
     Package - {{dto.code}}
 {% endblock title %}
-    
+
+
+{% block cssFile %}
+    <style>
+        .dayCard {
+            max-height: 200px;
+            min-height: 200px;
+        }
+
+        .packageImageWrapper {
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;    
+        }
+
+        .packageImageWrapper:hover {
+            transform: translateY(-20px); /* lifts up */
+        }
+
+        .packageImageWrapper:hover img {
+            filter: brightness(0.9);
+        }
+
+        .carouselBtn {
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            outline: none;
+            background-color: transparent;
+            backdrop-filter: blur(4px);
+            color: white;
+            padding: 0;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carouselBtn:hover {
+            backdrop-filter: blur(4px) brightness(0.7);
+        }
+    </style>
+{% endblock cssFile %}    
 
 {% block content %}
-        <div class="container py-2">
+    {% if dto.photos %}
+        {% include 'includes/modals/package-detail-images-modal.html' %}
+        <script src="{% static 'js/c/package-detail.js' %}"></script>
+    {% endif %}
+
+    <div class="container py-2">
         <div class="mb-3">
             <span class="df-badge badge-blue">{{dto.category}}</span>
             <span class="df-badge
@@ -60,32 +106,32 @@
 
         {% if dto.photos %}
         <div class="mt-4">
-            <div class="row row-cols-2">
-                <div class="col d-flex align-items-center">
-                    <div class="overflow-hidden rounded" style="max-height: 350px">
-                        <img src="{{dto.cover_photo}}" alt="" class="img-fluid rounded">
+            <div class="container py-4">
+                <div class="row row-cols-2">
+                    <div class="col" style="max-height: 450px;">
+                        <div class="h-100 packageImageWrapper overflow-hidden shadow">
+                            <img data-num="1" src="{{dto.cover_photo}}" alt="" class="w-100 h-100" style="object-fit: cover;">
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="container-fluid d-flex align-items-center h-100">
-                        <div class="row row-cols-2 row-gap-3">
-                            {% for p in dto.photos %}
-                                {% if forloop.counter > 1 and forloop.counter <= 5 %}
-                                    <div class="col">
-                                        <div class="w-100 h-100 d-flex justify-content-center align-items-center position-relative rounded" style="max-height: 180px; overflow: hidden;">
-                                            <img src="{{p}}" alt="" class="img-fluid rounded w-100" style="object-fit:cover">
-                                            {% if forloop.counter == 5 %}
-                                                <a href="#" class="position-absolute btn btn-sm df-btn-glass-black rounded-pill px-3 end-0 bottom-0 mb-3 me-3">+ {{dto.remaining_photos}}</a>
-                                            {% endif %}
+                    <div class="col" style="max-height: 450px;">
+                        <div class="container-fluid d-flex align-items-center h-100">
+                            <div class="row row-cols-2 row-gap-3">
+                                {% for p in dto.photos %}
+                                    {% if forloop.counter > 1 and forloop.counter <= 5 %}
+                                        <div class="col" style="max-height: 225px;">
+                                            <div class="w-100 h-100 position-relative packageImageWrapper shadow overflow-hidden">
+                                                <img data-num="{{forloop.counter}}" src="{{p}}" alt="" class="w-100 h-100" style="object-fit:cover">
+                                                {% if forloop.counter == 5 %}
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#imagesModal" class="position-absolute btn btn-sm df-btn-glass-black rounded-pill px-3 end-0 bottom-0 mb-3 me-3">+ {{dto.remaining_photos}}</button>
+                                                {% endif %}
+                                            </div>
                                         </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
-                    
-
             </div>
         </div>
         {% endif %}
@@ -157,106 +203,32 @@
 
         <div class="mt-5">
             <div>
-                <h4 class="h3 mb-4">Itinery</h4>
+                <h4 class="h3 mb-4">Itinerary</h4>
                 <div class="row row-cols-1 row-gap-3">
+                {% if itineraries %}
+                    {% for i in itineraries %}
                     <div class="col">
-                        <div class="shadow-sm d-flex row">
-                            <div class="ps-0 col-4">
-                                <img src="photos/h1.png" alt="" class="img-fluid">
-                            </div>
-                            <div class="py-2 px-4 col-8">
-                                <div>
-                                    <h5>Day 1 - Arrival in Hpa-An</h5>
-                                    <span class="text-muted">July 03, 2025</span>
+                        <div class="container-fluid">
+                            <div class="shadow-sm row overflow-hidden dayCard">
+                                <div class="col-4 ps-0">
+                                    <div class="">
+                                        <img src="{{i.image}}" alt="" class="w-100 h-100" style="object-fit: cover;">
+                                    </div>
                                 </div>
-                                <div class="mt-3">
-                                    <p>Settle into the peaceful rhythms of Hpa-An, a charming town surrounded by
-                                        dramatic limestone mountains. Take a leisurely walk along the Thanlwin River and
-                                        soak in the serene atmosphere. Enjoy a local meal while getting a first glimpse
-                                        of the region’s unique culture and warm hospitality.</p>
+                                <div class="py-2 px-4 col-8">
+                                    <div>
+                                        <h5>Day {{i.day}} - {{i.title}}</h5>
+                                        {% comment %} <span class="text-muted">July 03, 2025</span> {% endcomment %}
+                                    </div>
+                                    <div class="mt-3">
+                                        <p>{{i.description}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col">
-                        <div class="shadow-sm d-flex row">
-                            <div class="ps-0 col-4">
-                                <img src="photos/h2.png" alt="" class="img-fluid">
-                            </div>
-                            <div class="py-2 px-4 col-8">
-                                <div>
-                                    <h5>Day 2 - Caves & Cultural Wonders</h5>
-                                    <span class="text-muted">July 04, 2025</span>
-                                </div>
-                                <div class="mt-3">
-                                    <p>Explore the famous Sadan Cave, filled with Buddha images and natural rock
-                                        formations. Continue to Kawgun Cave, known for its ancient carvings and hidden
-                                        shrines. End the day at Yathaypyan Cave, catching panoramic views of the
-                                        surrounding countryside at sunset.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="shadow-sm d-flex row">
-                            <div class="ps-0 col-4">
-                                <img src="photos/h3.png" alt="" class="img-fluid">
-                            </div>
-                            <div class="py-2 px-4 col-8">
-                                <div>
-                                    <h5>Day 3 - Mount Zwegabin Adventure</h5>
-                                    <span class="text-muted">July 05, 2025</span>
-                                </div>
-                                <div class="mt-3">
-                                    <p>Embark on a hike up Mount Zwegabin, one of Hpa-An’s most iconic landmarks. Pass
-                                        by monasteries, stairways, and monkeys as you ascend for sweeping views from the
-                                        top. Descend and relax at Lumbini Garden, where hundreds of Buddha statues line
-                                        the paths.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="shadow-sm d-flex row">
-                            <div class="ps-0 col-4">
-                                <img src="photos/h4.png" alt="" class="img-fluid">
-                            </div>
-                            <div class="py-2 px-4 col-8">
-                                <div>
-                                    <h5>Day 4 - Village Life & Waterfalls</h5>
-                                    <span class="text-muted">July 06, 2025</span>
-                                </div>
-                                <div class="mt-3">
-                                    <p>Visit a nearby village to experience local life, traditions, and crafts. In the
-                                        afternoon, cool off at the refreshing Kyone Htaw Waterfall, a popular spot for
-                                        locals. Enjoy a quiet evening in Hpa-An town with street food or a riverside
-                                        dinner.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="shadow-sm d-flex row">
-                            <div class="ps-0 col-4">
-                                <img src="photos/h1.png" alt="" class="img-fluid">
-                            </div>
-                            <div class="py-2 px-4 col-8">
-                                <div>
-                                    <h5>Day 5 - Relaxation & Departure</h5>
-                                    <span class="text-muted">July 07, 2025</span>
-                                </div>
-                                <div class="mt-3">
-                                    <p>Spend your final morning at leisure—perhaps browsing a local market or enjoying a
-                                        slow breakfast with mountain views. Reflect on the journey before departing with
-                                        unforgettable memories of Hpa-An’s nature and culture.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+                {% endif %}
                 </div>
             </div>
         </div>

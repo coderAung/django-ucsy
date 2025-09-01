@@ -2,6 +2,8 @@ from tkinter.font import names
 
 from django.urls import path
 
+from travella.controllers.admin.managements import itinerary_controller, reservation_controller
+
 from ..controllers.admin.managements import booking_controller, category_controller, package_controller, \
     customer_controller, staff_controller, package_form_api
 
@@ -27,8 +29,9 @@ urlpatterns = [
     path('packages/new-code/', package_form_api.new_package_code),
     path('packages/delete/', package_controller.delete, name='packages_delete'),
     path('packages/<str:code>/', package_controller.detail, name='packages_detail'),
-    path('packages/<uuid:id>/edit', package_controller.edit),
-
+    path('packages/edit/<str:code>/', package_controller.edit),
+    path('packages/edit-itinerary/<str:code>/', package_controller.edit_itinerary, name='edit_itinerary'),
+    path('packages/delete-itinerary/<str:code>/', itinerary_controller.delete, name='delete_itinerary'),
 
     # GET method only
     path('settings/', setting_controller.list, name = 'settings'),
@@ -49,6 +52,9 @@ urlpatterns = [
     path('staffs/', staff_controller.list, name='staffs'),
     path('staffs/<uuid:id>/', staff_controller.detail, name='staffs_detail'),
 
-
+    path('reservations/', reservation_controller.get_list, name='reservations'),
+    path('reservations/reserve/', reservation_controller.save, name='reservations_reserve'),
+    path('reservations/reject/', reservation_controller.reject, name='reservations_reject'),
+    path('reservations/<uuid:id>/', reservation_controller.detail, name='reservations_detail'),
 
 ]

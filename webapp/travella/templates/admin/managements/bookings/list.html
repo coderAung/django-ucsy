@@ -1,4 +1,12 @@
 {% extends 'layouts/admin-layout.html' %}
+
+{% load static %}
+
+
+{% block cssFile %}
+  <link rel="stylesheet" href="{% static 'css/pagination2.css' %}">
+{% endblock cssFile %}
+
 {% block content %}
 <div class="container">
   <h3 class="mb-4 mt-3 fw-semibold text-primary">Booking Management</h3>
@@ -33,7 +41,7 @@
         <i class="bi bi-search"></i> Search
       </button>
       {% if query or status %}
-      <a href="{% url 'admin_booking_list' %}" class="btn btn-outline-secondary ms-2">
+      <a href="{% url 'bookings' %}" class="btn btn-outline-secondary ms-2">
         Clear
       </a>
       {% endif %}
@@ -117,7 +125,7 @@
 
   <!-- Pagination -->
   {% if result.has_prev or result.has_next %}
-    {% include 'includes/pagination.html' %}
+    {% include 'includes/pagination3.html' %}
   {% endif %}
 </div>
 

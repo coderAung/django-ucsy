@@ -3,9 +3,6 @@ from django.db import models
 from .abstract_models import AbstractModel
 
 class Booking(AbstractModel):
-
-    objects = None
-
     class Status(models.IntegerChoices):
         PENDING = 1, 'Pending'
         RESERVED = 2, 'Reserved'
@@ -20,3 +17,4 @@ class Booking(AbstractModel):
     
     package = models.ForeignKey('Package', on_delete=models.PROTECT, related_name='bookings')
     customer = models.ForeignKey('Account', on_delete=models.PROTECT, related_name='bookings')
+    auto_cancel_date = models.DateTimeField(null=True)

@@ -9,7 +9,7 @@ from django.db.models import Sum
 from travella.domains.models.account_models import Account
 from travella.dtos.package_card import PackageCard, PackageDetail
 from travella.dtos.package_form import PackageForm
-from travella.dtos.package_search import PublicPackageSearch
+from travella.dtos.package_search import PackageSearch, PublicPackageSearch
 from travella.services.package_utils import is_empty
 from travella.dtos.api_dtos import BookingOverview
 from travella.utils.pagination import SIZE, PaginationResult
@@ -47,6 +47,11 @@ class PackageService:
         photos:QuerySet[Photo] = Package.objects.get(code = code).photos.all()
         return [p.path.url for p in photos]
 
+    def search_list(self, search:PackageSearch) -> PaginationResult:
+        packages = Package.objects.filter(search.filter()).order_by('-created_at')
+        paginator = Paginator(packages, 6)
+        return PaginationResult(search.page, paginator, PackageItem.of)
+
     def search(self, query:QueryDict) -> list[PackageItem]:
         category = query.get('category')
         month = query.get('month')
@@ -76,13 +81,13 @@ class PackageService:
         booking = Booking.objects.filter(id = id).first()
         return BookingOverview.of(booking)
     
-    def save(self, account:Account, form:PackageForm, images:list[UploadedFile]) -> bool:
+    def save(self, account:Account, form:PackageForm, images:list[UploadedFile]) -> str:
         package:Package = form.to_model(account)
         package.save()
         PackageData(code=package.code, remaining_tickets=package.total_tickets, package=package).save()
         for i in images:
             Photo.objects.create(package=package, path=i)
-        return True
+        return package.code
     
     def delete(self, code:str):
         package = Package.objects.get(code = code)
@@ -105,8 +110,12 @@ class PackageService:
         dto = PackageDetail.of(package)
         return dto
     
-    from django.db.models import Sum
+from django.db.models import Sum
 from travella.domains.models.booking_models import Booking
+
+def duration_by_code(code:str) -> int:
+    result = Package.objects.filter(code = code).values('duration').first()
+    return result['duration']
 
 def get_packages_with_availability():
     packages = Package.objects.select_related('category').all()
@@ -138,3 +147,4 @@ def get_packages_with_availability():
         })
     
     return package_list
+

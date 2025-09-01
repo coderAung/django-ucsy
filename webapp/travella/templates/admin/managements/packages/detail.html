@@ -52,9 +52,15 @@
                 <div class="mt-4">
                     <div class="d-flex column-gap-2">
                         {% include 'includes/modals/overview-modal.html' %}
-                        <button class="btn df-btn-soft-gray w-50" data-bs-toggle="modal" data-bs-target="#overview">Overview</button>
+                        <div class="btn-group w-50">
+                            <button class="btn df-btn-soft-gray" style="width: 90%;" data-bs-toggle="modal" data-bs-target="#overview">Overview</button>
+                            <buton class="btn df-btn-glass-blue"><i class="bi bi-pencil text-primary"></i></buton>
+                        </div>
                         {% include 'includes/modals/itinery-modal.html' %}
-                        <button class="btn df-btn-soft-gray w-50" data-bs-toggle="modal" data-bs-target="#itinery">Itinery</button>
+                        <div class="btn-group w-50">
+                            <button class="btn df-btn-soft-gray" style="width: 90%;" data-bs-toggle="modal" data-bs-target="#itinery">Itinery</button>
+                            <a href="{% url 'edit_itinerary' dto.code %}" class="btn df-btn-glass-blue"><i class="bi bi-pencil text-primary"></i></a>
+                        </div>
                     </div>
                 </div>
 

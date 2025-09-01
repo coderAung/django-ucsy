@@ -1,0 +1,39 @@
+<div class="modal fade" id="imagesModal">
+    <div class="modal-dialog" style="min-width: 1000px;">
+        <div class="modal-content border-0 bg-transparent">
+            <div class="modal-body">
+                <div class="d-flex column-gap-2" style="max-height: 550px; min-height: 550px;">
+                    
+                    {% if dto.photos|length > 1 %}
+                    <div class="align-self-center">
+                        <button data-bs-target="#imagesCarousel" data-bs-slide="prev" class="carouselBtn shadow" style="border: 1px solid rgba(255, 255, 255, 0.25);"><i class="bi bi-arrow-left text-white fs-4"></i></button>
+                    </div>
+                    {% endif %}
+                        
+                    <div class="flex-fill">
+                        <div class="carousel slide" id="imagesCarousel">
+                            <div class="carousel-inner">
+                                {% for p in dto.photos %}
+                                    <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
+                                        <div class="overflow-auto {% if forloop.counter == 1 %} active {% endif %} d-flex justify-content-center align-items-center" style="min-height: 550px; max-height: 550px;">
+                                            <img 
+                                                data-num="{{forloop.counter}}"
+                                                src="{{p}}" 
+                                                alt=""
+                                                class="w-100 h-100 my-auto" style="object-fit: cover;">
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% if dto.photos|length > 1 %}
+                    <div class="align-self-center">
+                        <button data-bs-target="#imagesCarousel" data-bs-slide="next" class="carouselBtn shadow" style="border: 1px solid rgba(255, 255, 255, 0.25);"><i class="bi bi-arrow-right text-white fs-4"></i></button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

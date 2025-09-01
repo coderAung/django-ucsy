@@ -22,3 +22,4 @@ class PaymentRequest(AbstractModel):
     payment_type = models.ForeignKey(PaymentType, on_delete=models.PROTECT, related_name='payment_requests')
     slip_image = models.ImageField(upload_to='slips/')
     customer = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='payment_requests')
+    is_reserved = models.BooleanField(default=False)

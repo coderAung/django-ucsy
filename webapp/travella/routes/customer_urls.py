@@ -1,6 +1,6 @@
 from django.urls import path
 from django.shortcuts import render
-from ..controllers.customer import review_controller, booking_controller, reservation_controller
+from ..controllers.customer import payment_request_controller, review_controller, booking_controller
 
 urlpatterns = [
     path('packages/book/<str:code>/', booking_controller.new, name='packages_book'),
@@ -10,10 +10,10 @@ urlpatterns = [
     path('bookings/history/', booking_controller.history, name='customer_booking_history'),
     path('bookings/<uuid:id>/', booking_controller.detail, name='customer_bookings_detail'),
 
-    path('bookings/reserve/<uuid:id>', reservation_controller.new, name='booking_reserve'),
+    path('bookings/reserve/<uuid:id>', payment_request_controller.new, name='booking_reserve'),
 
-    path('reservations/', reservation_controller.history),
-    path('reservations/<int:id>/', reservation_controller.voucher),
+    path('reservations/', payment_request_controller.history),
+    path('reservations/<int:id>/', payment_request_controller.voucher),
 
     path('reviews/', review_controller.list, name='review_list'),
     path('reviews/new/', review_controller.new, name='create_review'),

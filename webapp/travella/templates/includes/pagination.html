@@ -1,7 +1,8 @@
+{% comment %} {% if result.total_pages > 1 %} {% endcomment %}
 <div class="d-flex justify-content-center py-2">
     <div class="d-flex column-gap-3">
         
-        {% if result.has_prev %}
+        {% if result.has_prev and result.total_pages > 2 %}
             <div data-page="{{result.prev_page}}" class="paginationBtn shadow"><i class="bi bi-arrow-left"></i></div>
         {% endif %}
             
@@ -13,9 +14,11 @@
              shadow">{{i}}</div>
         {% endfor %}
 
-        {% if result.has_next %}
+        {% if result.has_next and result.total_pages > 2  %}
             <div data-page="{{result.next_page}}" class="paginationBtn shadow"><i class="bi bi-arrow-right"></i></div>
         {% endif %}
 
     </div>
 </div>
+{% comment %} {% endif %} {% endcomment %}
+
