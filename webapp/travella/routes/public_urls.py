@@ -12,4 +12,6 @@ urlpatterns = [
     path('reviews/', review_controller.list, name='review_list'),
     path('reviews/<int:id>/', review_controller.detail),
 
+    path('about-us/', public_controller.about, name='about_us')
+
 ]
