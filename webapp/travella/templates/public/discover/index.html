@@ -13,7 +13,7 @@
                 <h1 class="mb-4">Make Memories That Last a Lifetime</h1>
                 <p class="lead text-muted mb-5">From sky-high thrills to deep-sea adventures, discover and book
                     unforgettable experiences worldwide.</p>
-                <form class="search-bar-container d-flex align-items-center bg-white rounded shadow p-2" method="get" action="/search/">
+                <form class="search-bar-container d-flex align-items-center bg-white rounded shadow p-2" method="get" action="{% url 'customer_packages' %}">
                     <div class="flex-grow-1 px-3">
                         <label class="text-muted small">Choose Destination</label>
                         <select name="destination" class="form-select border-0 shadow-none p-0">
