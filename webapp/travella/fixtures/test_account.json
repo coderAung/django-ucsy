@@ -1,0 +1,30 @@
+[
+  {
+    "model": "travella.account",
+    "pk": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+    "fields": {
+      "email": "customer@example.com",
+      "password": "pbkdf2_sha256$260000$hG2y3fP8G5mR$5V8mB6nE7oP9qR0sT1uV2wX3yZ4aB5c",
+      "role": "customer",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false,
+      "created_at": "2024-01-15T09:00:00Z",
+      "updated_at": "2024-01-15T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.account",
+    "pk": "8d79a024-cfb4-42f1-8a8d-b9a4ff229a6b",
+    "fields": {
+      "email": "admin@example.com",
+      "password": "pbkdf2_sha256$260000$hG2y3fP8G5mR$5V8mB6nE7oP9qR0sT1uV2wX3yZ4aB5c",
+      "role": "admin",
+      "is_active": true,
+      "is_staff": true,
+      "is_superuser": true,
+      "created_at": "2024-01-10T09:00:00Z",
+      "updated_at": "2024-01-10T09:00:00Z"
+    }
+  }
+]

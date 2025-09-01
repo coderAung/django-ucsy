@@ -70,7 +70,7 @@
     </div>
   </div>
 
-  <!-- chart and pie -->
+  <!-- chart-->
   <div class="row g-3 mb-4">
     <div class="col-lg-6">
       <div class="card shadow-sm border-0">
@@ -215,6 +215,7 @@
 
 {% block jsFile %}
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  {{ data.monthly_revenue_data|json_script:"revenue-chart-data"}}
   {{ data.monthly_bookings_data|json_script:"monthly-bookings-data" }}
 {% endblock jsFile %}
   
