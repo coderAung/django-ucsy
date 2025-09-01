@@ -16,10 +16,17 @@ from travella.utils.pagination import SIZE, PaginationResult
 from ..domains.models.booking_models import Booking
 from ..domains.models.tour_models import Category, Package, PackageData, Photo
 from ..dtos.package_dto import PackageItem, PackageItemDetail
-
+from django.db.models import Count
 
 class PackageService:
+    def get_most_booked_packages(self, count=3):
+        packages = (Package.objects.exclude(data__status=PackageData.Status.FINISHED).annotate(bookings_total=Count('bookings', filter=~Q(bookings__status=Booking.Status.CANCELLED))).order_by('-bookings_total')[:count])
+        
+        for package in packages:
+            package.booking_total = package.bookings_total
 
+        return packages
+    
     def generate_code(self, cid:int) -> str:
         last_code_str:str = (Package.objects
                          .filter(category_id = cid)

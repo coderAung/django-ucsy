@@ -10,6 +10,8 @@ from travella.services.package_utils import is_empty
 class PublicPackageSearch:
     categoryId:int = 0
     locationId:int = 0
+    minPrice: int = 0
+    maxPrice: int = 0
     departureFrom:date = None
     departureTo:date = None
     q:str = ''
@@ -35,6 +37,15 @@ class PublicPackageSearch:
             form.page = query.get('q')
         if query.get('page') != '' and query.get('page') != None:
             form.page = int(query.get('page'))
+        if query.get('price') != '' and query.get('price') is not None:
+            price_range = query.get('price')
+            if '-' in price_range:
+                min_str, max_str = price_range.split('-')
+            
+                if min_str:
+                    form.minPrice = int(min_str)
+                if max_str:
+                    form.maxPrice = int(max_str)
         return form
     
     def filter(self) -> Q:
@@ -47,6 +58,13 @@ class PublicPackageSearch:
             qf &= Q(title__startswith = self.q.lower())
         if self.departureFrom and self.departureTo:
             qf &= Q(departure__gte = self.departureFrom, departure__lte = self.departureTo)
+        if self.minPrice > 0 and self.maxPrice > 0:
+            qf &= Q(price__gte=self.minPrice, price__lte=self.maxPrice)
+        elif self.minPrice > 0:
+            qf &= Q(price__gte=self.minPrice)
+        elif self.maxPrice > 0:
+            qf &= Q(price__lte=self.maxPrice)
+
         return qf
 
 

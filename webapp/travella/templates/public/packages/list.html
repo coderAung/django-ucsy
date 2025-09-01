@@ -1,19 +1,6 @@
 {% extends 'layouts/customer-layout.html' %}
 
 {% load static %}
-
-{% block cssFile %}
-<link rel="stylesheet" href="{% static 'css/glass.css' %}">
-<link rel="stylesheet" href="{% static 'css/c/package-list.css' %}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-{% endblock cssFile %}
-
-
-{% block jsFile %}
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script></head>
-{% endblock jsFile %}
-        
-
 {% block mainTitle %}
     Public
 {% endblock mainTitle %}
@@ -21,57 +8,77 @@
 {% block title %}
     Packages   
 {% endblock title %}
-    
+
+{% block cssFile %}
+<link rel="stylesheet" href="{% static 'css/glass.css' %}">
+<link rel="stylesheet" href="{% static 'css/c/package-list.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<style>
+    .toUp {
+        z-index: 2000;
+    }
+</style>
+{% endblock cssFile %}
+
+{% block jsFile %}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+{% endblock jsFile %}
+
+{% block navbar %}
+    {% include 'includes/custom-navbar.html' %}
+{% endblock navbar %}
+
 
 {% block content %}
-    <div class="df-bg-soft-white min-vh-100">
-        <form id="filterForm" class="position-sticky sticky-top" action="">
-        <div class="">
-            <div class="mx-5 px-5 d-flex justify-content-center">
-                <div class="w-100 d-flex justify-content-between align-items-center px-2 py-2 rounded-pill shadow-sm filterBar">
-                        <div class="w-auto d-flex align-items-center column-gap-3">
-                            <div class="dropdown">
-                                <input id="categoryInput" name="categoryId" type="number" class="d-none">
-                                <button id="categoryBtn" type="button" class="filterItem rounded-pill" data-bs-toggle="dropdown">Category</button>
-                                <ul class="dropdown-menu" style="backdrop-filter: blur(5px);">
-                                    {% for c in categories %}
-                                        <li data-filter-value="{{c.id}}" class="dropdown-item pointer categoryFilter">{{c.name}}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <div class="dropdown">
-                                <input id="locationInput" name="locationId" type="number" class="d-none">
-                                <button id="locationBtn" type="button" class="filterItem rounded-pill" data-bs-toggle="dropdown">Location</button>
-                                <ul class="dropdown-menu">
-                                    {% for l in locations %}
-                                        <li data-filter-value="{{l.id}}" class="dropdown-item pointer locationFilter">{{l.name}}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+    <div class="min-vh-100">
+        <form id="filterForm" class="position-sticky sticky-top pt-3" style="margin-top: 100px;" action="">
+            <div class="">
+                <div class="mx-5 px-5 d-flex justify-content-center">
+                    <div class="w-100 d-flex justify-content-between align-items-center px-2 py-2 rounded-pill shadow-sm filterBar">
+                            <div class="w-auto d-flex align-items-center column-gap-3">
+                                <div class="dropdown">
+                                    <input id="categoryInput" name="categoryId" type="number" class="d-none">
+                                    <button id="categoryBtn" type="button" class="filterItem rounded-pill" data-bs-toggle="dropdown">Category</button>
+                                    <ul class="dropdown-menu" style="backdrop-filter: blur(5px);">
+                                        {% for c in categories %}
+                                            <li data-filter-value="{{c.id}}" class="dropdown-item pointer categoryFilter">{{c.name}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="dropdown">
+                                    <input id="locationInput" name="locationId" type="number" class="d-none">
+                                    <button id="locationBtn" type="button" class="filterItem rounded-pill" data-bs-toggle="dropdown">Location</button>
+                                    <ul class="dropdown-menu">
+                                        {% for l in locations %}
+                                            <li data-filter-value="{{l.id}}" class="dropdown-item pointer locationFilter">{{l.name}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
 
-                            <div class="dropdown">
-                                <button id="departureDisplay" type="button" class="filterItem rounded-pill" data-bs-toggle="dropdown">Departure Date</button>
-                                <ul class="dropdown-menu">
-                                    <li><button id="thisMonthBtn" class="dropdown-item" type="button">This Month</button></li>
-                                    <li><button id="nextMonthBtn" class="dropdown-item" type="button">Next Month</button></li>
-                                    <li><button class="dropdown-item" id="dateChooseBtn" type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#dateChoose">Choose Date</button></li>
-                                </ul>
+                                <div class="dropdown">
+                                    <button id="departureDisplay" type="button" class="filterItem rounded-pill" data-bs-toggle="dropdown">Departure Date</button>
+                                    <ul class="dropdown-menu">
+                                        <li><button id="thisMonthBtn" class="dropdown-item" type="button">This Month</button></li>
+                                        <li><button id="nextMonthBtn" class="dropdown-item" type="button">Next Month</button></li>
+                                        <li><button class="dropdown-item" id="dateChooseBtn" type="button"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#dateChoose">Choose Date</button></li>
+                                    </ul>
+                                </div>
+                                <script src="{% static 'js/c/package-list.js' %}"></script>
+                                <input id="keyInput" name="q" type="text" class="form-control w-auto rounded-pill" placeholder="Search with key">
+                                <button type="submit" class="btn df-btn-glass-blue rounded-pill px-3">Search</button>
                             </div>
-                            <script src="{% static 'js/c/package-list.js' %}"></script>
-                            <input id="keyInput" name="q" type="text" class="form-control w-auto rounded-pill" placeholder="Search with key">
-                            <button type="submit" class="btn df-btn-glass-blue rounded-pill px-3">Search</button>
+                        <div class="d-flex align-items-center">
+                                <button id="clearFilterBtn" type="button" class="btn btn-sm df-btn-glass-red rounded-pill">Clear Filter</button>
                         </div>
-                    <div class="d-flex align-items-center">
-                            <button id="clearFilterBtn" type="button" class="btn btn-sm df-btn-glass-red rounded-pill">Clear Filter</button>
                     </div>
                 </div>
             </div>
-        </div>
-        {% include 'includes/modals/datechoose-modal.html' %}
-        <input type="number" name="page" id="pageInput" class="d-none">
+            {% include 'includes/modals/datechoose-modal.html' %}
+            <input type="number" name="page" id="pageInput" class="d-none">
         </form>
+
         <div class="container mt-5">
             <div class="d-flex justify-content-between">
                 <h5>All Packages</h5>

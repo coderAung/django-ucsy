@@ -29,3 +29,6 @@ def package_detail(request:HttpRequest, code:str) -> HttpResponse:
         'dto': package_detail,
         'itineraries': itineraries,
     })
+
+def about(request: HttpRequest) -> HttpResponse:
+    return render(request, view('about/index'), None)
