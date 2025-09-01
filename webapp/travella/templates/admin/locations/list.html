@@ -1,0 +1,188 @@
+{% extends 'layouts/setting-layout.html' %}
+{% block title %}Locations{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-4">
+    <!-- Header Section -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0 text-gray-800">Locations Management</h2>
+        <span class="fs-5">Total Locations: <span class="fw-bold">{{ total_locations }}</span></span>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Card & Table -->
+    <div class="card shadow-sm">
+
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+
+            <form method="get" action="{% url 'location_list' %}" class="col-md-5">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" placeholder="Search location..." value="{{ query }}">
+                    {% if query %}
+                    <a href="{% url 'location_list' %}" class="btn btn-outline-secondary" type="button" title="Clear search"><i class="fa fa-times"></i></a>
+                    {% endif %}
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addLocationModal">
+                <i class="fa fa-plus me-1"></i> Add Location
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 5%;">No</th>
+                            <th scope="col">Location Name</th>
+                            <th scope="col" style="width: 15%;">Packages Linked</th>
+                            <th scope="col" style="width: 15%;" class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for location in locations %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ location.name }}</td>
+                            <td>{{ location.package_count }}</td>
+                            <td class="text-end">
+                                <button type="button" class="btn btn-outline-primary btn-sm me-1" title="Edit"
+                                        data-bs-toggle="modal" data-bs-target="#editLocationModal"
+                                        data-location-pk="{{ location.pk }}"
+                                        data-location-name="{{ location.name }}">
+                                    <i class="fa fa-pencil-alt"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-danger btn-sm" title="Delete"
+                                        data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"
+                                        data-location-pk="{{ location.pk }}"
+                                        data-location-name="{{ location.name }}">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="4" class="text-center py-4">No locations found.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addLocationModal" tabindex="-1" aria-labelledby="addLocationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="{% url 'location_add' %}">
+                {% csrf_token %}
+                <div class="modal-header"><h5 class="modal-title" id="addLocationModalLabel">Add New Location</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="{{ form.name.id_for_label }}" class="form-label">Location Name</label>
+                        {{ form.name }}
+                        {% if form.name.errors %}<div class="text-danger small mt-1">{{ form.name.errors|striptags }}</div>{% endif %}
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary">Add Location</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editLocationModal" tabindex="-1" aria-labelledby="editLocationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="editLocationForm" method="post" action="">
+                {% csrf_token %}
+                <div class="modal-header"><h5 class="modal-title" id="editLocationModalLabel">Edit Location</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="id_edit_name" class="form-label">Location Name</label>
+                        <input type="text" name="name" class="form-control" id="id_edit_name" required>
+                        {% if edit_form.name.errors %}<div class="text-danger small mt-1">{{ edit_form.name.errors|striptags }}</div>{% endif %}
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary">Save Changes</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="deleteLocationForm" method="post" action="">
+                {% csrf_token %}
+                <div class="modal-header"><h5 class="modal-title" id="deleteConfirmModalLabel">Confirm Delete</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-body" id="deleteModalBody">Are you sure you want to delete this location?</div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-danger">Delete</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block jsFile %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const editLocationModal = document.getElementById('editLocationModal');
+    if(editLocationModal) {
+        editLocationModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const locationPk = button.getAttribute('data-location-pk');
+
+const locationName = button.getAttribute('data-location-name');
+            const modalForm = editLocationModal.querySelector('#editLocationForm');
+            const modalInput = editLocationModal.querySelector('#id_edit_name');
+
+
+            modalForm.action = '/admins/locations/edit/' + locationPk + '/';
+            modalInput.value = locationName;
+        });
+    }
+
+
+    const deleteConfirmModal = document.getElementById('deleteConfirmModal');
+    if(deleteConfirmModal) {
+        deleteConfirmModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const locationPk = button.getAttribute('data-location-pk');
+            const locationName = button.getAttribute('data-location-name');
+            const modalForm = deleteConfirmModal.querySelector('#deleteLocationForm');
+            const modalBody = deleteConfirmModal.querySelector('#deleteModalBody');
+
+
+            modalForm.action = '/admins/locations/delete/' + locationPk + '/';
+            modalBody.innerHTML = 'Are you sure you want to delete "<strong>' + locationName + '</strong>"? ';
+        });
+    }
+
+    {% if show_add_modal %}
+    var addModal = new bootstrap.Modal(document.getElementById('addLocationModal'));
+    addModal.show();
+    {% endif %}
+
+    {% if show_edit_modal %}
+    var editModal = new bootstrap.Modal(document.getElementById('editLocationModal'));
+    const editForm = document.getElementById('editLocationForm');
+    const editInput = document.getElementById('id_edit_name');
+
+    editForm.action = '/admins/locations/edit/' + '{{ edit_location_pk }}' + '/';
+    editInput.value = "{{ edit_form.name.value|default:'' }}";
+    editModal.show();
+    {% endif %}
+});
+</script>
+{% endblock jsFile %}

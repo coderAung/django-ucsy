@@ -7,7 +7,7 @@ from travella.controllers.admin.managements import itinerary_controller, reserva
 from ..controllers.admin.managements import booking_controller, category_controller, package_controller, \
     customer_controller, staff_controller, package_form_api
 
-from ..controllers.admin import dashboard_controller
+from ..controllers.admin import dashboard_controller, location_controller
 
 from ..controllers.admin.settings import setting_controller, account_controller
 
@@ -33,7 +33,12 @@ urlpatterns = [
     path('packages/edit-itinerary/<str:code>/', package_controller.edit_itinerary, name='edit_itinerary'),
     path('packages/delete-itinerary/<str:code>/', itinerary_controller.delete, name='delete_itinerary'),
 
-    # GET method only
+    path('locations/', location_controller.location_list, name='location_list'),
+    path('locations/add/', location_controller.location_add, name='location_add'),
+    path('locations/edit/<int:pk>/', location_controller.location_edit, name='location_edit'),
+    path('locations/delete/<int:pk>/', location_controller.location_delete, name='location_delete'),
+
+
     path('settings/', setting_controller.list, name = 'settings'),
     path('settings/access-logs/', setting_controller.logs),
     path('settings/account/', setting_controller.account),

@@ -20,6 +20,7 @@ class Package(AbstractModel):
     class Transportation(models.IntegerChoices):
         BUS = 1, 'Bus'
         TRAIN = 2, 'Train'
+
         PLANE = 3, 'Plane'
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
