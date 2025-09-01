@@ -2,8 +2,6 @@ from datetime import date, datetime
 import uuid
 from django.db import models
 
-from travella.domains.models.account_models import Account
-from travella.domains.models.tour_models import Package
 from travella.exceptions.business_exception import BusinessException
 from .abstract_models import AbstractModel
 
@@ -20,8 +18,8 @@ class Booking(AbstractModel):
     unit_price = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     status_updated_at = models.DateTimeField(auto_now=True)
     
-    package = models.ForeignKey(Package, on_delete=models.PROTECT, related_name='bookings')
-    customer = models.ForeignKey(Account, on_delete=models.PROTECT, related_name='bookings')
+    package = models.ForeignKey('Package', on_delete=models.PROTECT, related_name='bookings')
+    customer = models.ForeignKey('Account', on_delete=models.PROTECT, related_name='bookings')
     auto_cancel_date = models.DateTimeField(null=True)
 
     @property
