@@ -118,8 +118,8 @@
             <!-- Action Buttons -->
             <div class="d-flex justify-content-end mt-3 gap-2">
                 {% if booking.status == 1 %} {# Pending #}
-                    <a href="#" class="btn btn-success">Reserve</a>
                     <a href="#" class="btn btn-danger">Cancel</a>
+                    <a href="{% url 'booking_reserve' booking.id %}" class="btn btn-success">Reserve</a>
                 {% elif booking.status == 2 %} {# Reserved #}
                     <a href="#" class="btn btn-danger">Cancel</a>
                 {% endif %}
