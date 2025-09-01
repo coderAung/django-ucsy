@@ -13,3 +13,4 @@ class DashboardDTO:
   pending_payment: float
   total_feedbacks: int
   monthly_bookings_data: Dict[str, List]
+  monthly_revenue_data: Dict[str, List]

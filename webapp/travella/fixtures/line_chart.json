@@ -1,0 +1,72 @@
+[
+  {
+    "model": "travella.booking",
+    "pk": "4cfec981-1135-4aae-b6f1-8beba4288b58",
+    "fields": {
+      "status": 2,
+      "ticket_count": 2,
+      "unit_price": "1250.00",
+      "status_updated_at": "2024-01-16T09:00:00Z",
+      "package": "d132626e-4f16-419b-b5d2-06b2979203c9",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "created_at": "2024-01-15T09:00:00Z",
+      "updated_at": "2024-01-16T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "d5a8a1e2-b7e6-4d2d-9e3f-6a9c1c5a9d8b",
+    "fields": {
+      "status": 1,
+      "ticket_count": 1,
+      "unit_price": "1250.00",
+      "status_updated_at": "2024-01-18T09:00:00Z",
+      "package": "d132626e-4f16-419b-b5d2-06b2979203c9",
+      "customer": "a740f363-aa2d-4fa2-a9c2-09ae371f67c3",
+      "created_at": "2024-01-17T09:00:00Z",
+      "updated_at": "2024-01-18T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "e6f4a8b7-c9d2-4e1a-8b1a-2d3e4f5a6b7c",
+    "fields": {
+      "status": 2,
+      "ticket_count": 4,
+      "unit_price": "2500.00",
+      "status_updated_at": "2024-02-06T09:00:00Z",
+      "package": "48809a7b-e106-4441-a67b-1663f73752e2",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "created_at": "2024-02-05T09:00:00Z",
+      "updated_at": "2024-02-06T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "f7d3a9c2-a8b4-4c3e-8f2e-9d8b7a6c5d4e",
+    "fields": {
+      "status": 2,
+      "ticket_count": 3,
+      "unit_price": "1800.00",
+      "status_updated_at": "2024-03-02T09:00:00Z",
+      "package": "c7f9d8a3-e4f1-419b-b5d2-06b2979203c9",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "created_at": "2024-03-01T09:00:00Z",
+      "updated_at": "2024-03-02T09:00:00Z"
+    }
+  },
+  {
+    "model": "travella.booking",
+    "pk": "a1b2c3d4-e5f6-7a8b-9c0d-e1f2a3b4c5d6",
+    "fields": {
+      "status": 2,
+      "ticket_count": 2,
+      "unit_price": "2200.00",
+      "status_updated_at": "2024-04-12T09:00:00Z",
+      "package": "a1b2c3d4-e5f6-7a8b-9c0d-e1f2a3b4c5d6",
+      "customer": "49ad9809-9b8a-49f2-8bfe-4fea6daa36ff",
+      "created_at": "2024-04-11T09:00:00Z",
+      "updated_at": "2024-04-12T09:00:00Z"
+    }
+  }
+]

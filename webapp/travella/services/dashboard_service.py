@@ -5,9 +5,8 @@ from travella.dtos.dashboardDTO import DashboardDTO
 from django.utils import timezone
 from datetime import timedelta
 from django.db.models import Count
-from django.db.models import F, Sum, ExpressionWrapper, DecimalField
+from django.db.models import F, Sum, ExpressionWrapper, DecimalField, Q
 from django.db.models.functions import TruncMonth
-from django.db.models import F, Sum, ExpressionWrapper, DecimalField
 from decimal import Decimal
 
 def get_dashboard_data():
@@ -55,6 +54,29 @@ def get_dashboard_data():
         'monthly_bookings_labels': [item['month'].strftime("%b %Y") for item in monthly_bookings_data],
         'monthly_bookings_counts': [item['bookings'] for item in monthly_bookings_data]
     }
+  
+  # --- Monthly revenue for line chart ---
+  monthly_revenue_query = (
+        Booking.objects
+        .filter(Q(status=Booking.Status.RESERVED) | Q(status=Booking.Status.REQUESTING))
+        .annotate(month=TruncMonth('created_at'))
+        .values('month')
+        .annotate(
+            total_revenue=Sum(
+                ExpressionWrapper(
+                    F('ticket_count') * F('unit_price'),
+                    output_field=DecimalField(max_digits=12, decimal_places=2)
+                )
+            )
+        )
+        .order_by('month')
+    )
+    
+  revenue_data = {
+        'labels': [item['month'].strftime("%b %Y") for item in monthly_revenue_query],
+        'revenues': [float(item['total_revenue'] or 0) for item in monthly_revenue_query]
+    }
+  
   return DashboardDTO(
     total_bookings = total_bookings,
     total_packages= total_packages,
@@ -65,5 +87,6 @@ def get_dashboard_data():
     cancel_bookings = cancel_bookings,
     pending_payment = pending_payment,
     total_feedbacks = total_feedbacks,
-    monthly_bookings_data=chart_data
+    monthly_bookings_data=chart_data,
+    monthly_revenue_data=revenue_data,
     )
