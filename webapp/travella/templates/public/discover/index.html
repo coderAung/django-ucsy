@@ -92,15 +92,19 @@
 <section class="section-padding package-section" id="packages">
     <div class="container">
         <div class="text-center mb-5">
-            <p class="section-title-small mb-1" style="color: var(--brand-primary);">BEST PACKAGE</p>
+            <p class="section-title-small mb-1" style="color: var(--brand-primary);">THE MOST BOOKED PACKAGE</p>
             <h2 class="section-title-large">Find Your Next Adrenaline Rush</h2>
         </div>
         <ul class="nav nav-pills justify-content-center mb-5 adventure-pills">
-            <li class="nav-item"><a class="nav-link active" href="#">Hot deal 🔥</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Extreme Thrills 🎢</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Aqua Adventures 🌊</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Mountains & Trekking ⛰️</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">More ...</a></li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'customer_packages' %}">All</a>
+            </li>
+            {% for c in categories %}
+            <li class="nav-item mt-1">
+                <a class="nav-link" href="{% url 'customer_packages' %}?categoryId={{ c.id }}">{{ c.name }}</a>
+            </li>
+            {% endfor %}
+            
         </ul>
         <div class="row g-4 g-lg-5">
             <div class="col-lg-4 col-md-6">
