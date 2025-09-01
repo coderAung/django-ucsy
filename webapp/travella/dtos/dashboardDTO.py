@@ -12,4 +12,4 @@ class DashboardDTO:
   cancel_bookings: int
   pending_payment: float
   total_feedbacks: int
-  monthly_bookings: List[Dict[str, int]] 
+  monthly_bookings_data: Dict[str, List]
