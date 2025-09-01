@@ -21,7 +21,12 @@
 </head>
 <body>
     <div>
-        {% include 'layouts/navbar-layout.html' %}
+        
+        {% block navbar %}
+            {% include 'layouts/navbar-layout.html' %}
+            <script src="{% static 'js/discover.js' %}"></script>
+        {% endblock navbar %}
+            
         {% block content %}
             
         {% endblock %}

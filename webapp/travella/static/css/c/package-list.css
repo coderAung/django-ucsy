@@ -116,3 +116,13 @@
     object-fit: cover;
     display: block;
 }
+
+#navbar {
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+}
+
+#navbar.hidden {
+    transform: translateY(-100%);
+}
