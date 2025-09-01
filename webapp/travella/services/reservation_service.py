@@ -3,6 +3,7 @@ import uuid
 
 from django.db import transaction
 from django.core.paginator import Paginator
+from django.utils import timezone
 
 from travella.domains.models.booking_history_model import Reservation
 from travella.domains.models.booking_models import Booking
@@ -47,8 +48,13 @@ def reserve(id:uuid, account_id:uuid):
             id=payment_request.id,
             payment_request=payment_request,
             reserved_by_id=account_id,
+            booking=payment_request.booking,
+            created_at = timezone.now(),
         )
-        reservation.refund_cover_date = reservation.created_at + timedelta(constants.REFUNDABLE_TIME)
+        try:
+            reservation.refund_cover_date = reservation.created_at + timedelta(constants.REFUNDABLE_TIME)
+        except TypeError as e:
+            raise BusinessException('Reservation fails.')
         reservation.save()
         # update payment_request is reserved
         payment_request.is_reserved = True

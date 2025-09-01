@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
             receiptModal.hide();
             
             // Redirect to the booking detail page instead of showing alert
-            window.location.href = '/customer/bookings/history/';
+            window.location.href = `/customer/bookings/${data.booking_id}`;
             
         })
         .catch(error => {

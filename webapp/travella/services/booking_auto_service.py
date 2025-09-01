@@ -3,6 +3,7 @@ from datetime import date, datetime
 import uuid
 
 from django.db import transaction
+from django.db.models import Q
 from django.http import HttpRequest
 
 from travella.domains.models.booking_history_model import Refunding, Reservation
@@ -53,12 +54,12 @@ def update_remaing_tickets(booking:Booking):
 
 def cancel_pending_booking(booking:Booking):
     booking.status = Booking.Status.CANCELLED
-    booking.status_updated_at = date.now()
+    booking.status_updated_at = datetime.now()
     booking.save()
 
 def is_refundable(id:uuid) -> bool:
     try:
-        booking = Booking.objects.get(id)
+        booking = Booking.objects.get(id = id)
         booking_status = Booking.Status(booking.status)
         if booking_status == Booking.Status.RESERVED:
             reservation:Reservation = booking.reservation
@@ -85,18 +86,21 @@ class RefundForm:
 
     def __init__(self, booking_id:uuid, request:HttpRequest):
         self.booking_id = booking_id
-        self.refund_payment_type = request.POST.get('refund_payment_type')
-        self.refund_phone = request.POST.get('refund_phone')
+        self.refund_payment_type = request.POST.get('refundPaymentType')
+        self.refund_phone = request.POST.get('refundPaymentPhone')
     
     def get_model(self) -> Refunding:
         return Refunding(
             id=self.booking_id,
             booking_id=self.booking_id,
             refund_phone=self.refund_phone,
-            refund_payment_type=PaymentType.objects.get(name=self.refund_payment_type)
+            refund_payment_type=self.refund_payment_type
         )
 
 def auto_cancel_pending_bookings():
-    bookings_to_auto_cancel = Booking.objects.filter(status=Booking.Status.PENDING, auto_cancel_date__gte=datetime.today())
-    if bookings_to_auto_cancel:
+    q = Q(status=Booking.Status.PENDING, auto_cancel_date__gte=datetime.today())
+    q |= Q(auto_cancel_date = None)
+    bookings_to_auto_cancel = Booking.objects.filter(q)
+    if bookings_to_auto_cancel.count() > 0:
+        print('========== Auto Deleting Pending Bookings ============')
         bookings_to_auto_cancel.delete()

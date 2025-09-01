@@ -1,69 +1,82 @@
 {% extends 'layouts/customer-layout.html' %}
 {% load static %}
 
-{% block content %}
+{% block title %}
+  Booking List
+{% endblock title %}
 
+{% block content %}
 <div class="container py-4">
-  <div class="card shadow-sm border-0">
+  <div class="card border-0">
     <div class="card-body">
       <h2 class="card-title text-primary mb-4">
-    <i class="fas fa-calendar-alt me-2"></i> 🏖️ Tour Bookings
-</h2>
-
-      <!-- Search Bar -->
-      
+        <i class="fas fa-calendar-alt me-2"></i> 🏖️ Your Bookings
+      </h2>
 
       <!-- Status Filter -->
-      <div class="d-flex flex-wrap gap-2 mb-4">
-       <button class="btn btn-outline-primary active filter-btn" data-filter="all">All Bookings</button>
-<button class="btn btn-outline-primary filter-btn" data-filter="1">Pending</button>
-<button class="btn btn-outline-primary filter-btn" data-filter="2">Reserved</button>
-<button class="btn btn-outline-primary filter-btn" data-filter="3">Cancelled</button>
-<button class="btn btn-outline-primary filter-btn" data-filter="4">Requesting</button>
-
+      {% comment %} <div class="d-flex flex-wrap gap-2 mb-4"> {% endcomment %}
+      <div class="btn-group mb-4">
+          <button class="btn btn-outline-primary active filter-btn" data-filter="all">All Bookings</button>
+          <button class="btn btn-outline-primary filter-btn" data-filter="1">Pending</button>
+          <button class="btn btn-outline-primary filter-btn" data-filter="2">Reserved</button>
+          <button class="btn btn-outline-primary filter-btn" data-filter="3">Cancelled</button>
+          <button class="btn btn-outline-primary filter-btn" data-filter="4">Requesting</button>
       </div>
+      {% comment %} </div> {% endcomment %}
 
       <!-- Booking Cards -->
       <div class="row g-4" id="bookingCards">
         {% for booking in bookings %}
-        <div class="col-md-6 col-lg-4" data-status="{{ booking.status }}">
-          <div class="card h-100 hover-effect {% if booking.status == 'P' %}border border-primary border-2 border-opacity-25{% elif booking.status == 'C' %}border border-success border-2 border-opacity-25{% elif booking.status == 'A' %}border border-danger border-2 border-opacity-25{% endif %}">
-            <div class="card-header bg-light d-flex justify-content-between align-items-center">
-              <h5 class="card-title mb-0 text-dark">{{ booking.package.title }}</h5>
-            
-    <span class="badge {{ booking.status_class }}">
-        {{ booking.status_label }}
-    </span>
-
-
-            </div>
-            <div class="card-body text-dark">
-              <div class="d-flex mb-3">
-                <span class="text-muted me-2">Date:</span>
-                <span>{{ booking.created_at|date:"F d, Y" }}</span>
+          <div class="col-md-6 col-lg-4" data-status="{{ booking.status }}">
+            <div class="card h-100 hover-effect
+                        {% if booking.status == 1 %}border border-primary border-2 border-opacity-25
+                        {% elif booking.status == 2 %}border border-success border-2 border-opacity-25
+                        {% elif booking.status == 3 %}border border-danger border-2 border-opacity-25
+                        {% elif booking.status == 4 %}border border-purple border-2 border-opacity-25{% endif %}">
+              <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0 text-dark">{{ booking.package.title }}</h5>
+                <span class="badge {{ booking.status_class }}">
+                  {{ booking.status_label }}
+                </span>
               </div>
-              <div class="d-flex mb-3">
-                <span class="text-muted me-2">Time:</span>
-                <span>{{ booking.created_at|time:"h:i A" }}</span>
+              <div class="card-body text-dark">
+                <div class="d-flex mb-3">
+                  <span class="text-muted me-2">Date:</span>
+                  <span>{{ booking.created_at|date:"F d, Y" }}</span>
+                </div>
+                <div class="d-flex mb-3">
+                  <span class="text-muted me-2">Time:</span>
+                  <span>{{ booking.created_at|time:"h:i A" }}</span>
+                </div>
+                <div class="d-flex">
+                  <span class="text-muted me-2">Price:</span>
+                  <span class="fw-bold text-primary">{{ booking.total_price|floatformat:2 }} MMK</span>
+                </div>
               </div>
-             <div class="d-flex">
-    <span class="text-muted me-2">Price:</span>
-    <span class="fw-bold text-primary">{{ booking.total_price|floatformat:2 }} MMK</span>
-</div>
-
-            </div>
-            <div class="card-footer bg-light d-flex justify-content-end">
-              <a href="{% url 'customer_bookings_detail' booking.id %}" class="btn btn-sm btn-outline-secondary">
-                <i class="fas fa-ellipsis-v me-1"></i> Details
-              </a>
+              <div class="card-footer bg-light d-flex justify-content-end">
+                <a href="{% url 'customer_bookings_detail' booking.id %}" class="btn btn-sm
+                {% if booking.status == 1 %} df-btn-glass-blue
+                {% elif booking.status == 2 %} df-btn-glass-green
+                {% elif booking.status == 3 %} df-btn-glass-red
+                {% else %} df-btn-glass-purple
+                {% endif %}
+                  ">
+                  <i class="bi bi-eye me-1
+                  {% if booking.status == 1 %} df-text-blue
+                  {% elif booking.status == 2 %} df-text-green
+                  {% elif booking.status == 3 %} df-text-red
+                  {% else %} df-text-purple
+                  {% endif %}
+                  "></i> Details
+                </a>
+              </div>
             </div>
           </div>
-        </div>
         {% empty %}
-        <div class="col-12 text-center text-muted py-5">
-          <h4 class="mb-2">No bookings found.</h4>
-          <p class="mb-0">You haven't booked any tours yet. Head to the packages page to start your adventure!</p>
-        </div>
+          <div class="col-12 text-center text-muted py-5">
+            <h4 class="mb-2">No bookings found.</h4>
+            <p class="mb-0">You haven't booked any tours yet. Head to the packages page to start your adventure!</p>
+          </div>
         {% endfor %}
       </div>
     </div>
@@ -71,24 +84,17 @@
 </div>
 
 <style>
-    
-
-
-
   /* Hover effects */
   .hover-effect {
     transition: all 0.3s ease;
   }
-  
   .hover-effect:hover {
     transform: translateY(-5px);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
-  
   .hover-effect:hover .card-header {
     background-color: rgba(67, 97, 238, 0.05) !important;
   }
-  
   .hover-effect:hover .btn-outline-secondary {
     color: #4361ee;
     border-color: #4361ee;
@@ -115,21 +121,19 @@
         element.textContent = formatNumberWithCommas(value);
       }
     });
-    
-    // Search functionality
-    
 
     // Filter functionality
     const filterButtons = document.querySelectorAll('.filter-btn');
-    
+    const bookingCards = document.getElementById('bookingCards');
+
     filterButtons.forEach(button => {
       button.addEventListener('click', function() {
         filterButtons.forEach(btn => btn.classList.remove('active'));
         this.classList.add('active');
-        
+
         const filter = this.getAttribute('data-filter');
         const cards = bookingCards.getElementsByClassName('col-md-6');
-        
+
         for (let i = 0; i < cards.length; i++) {
           const status = cards[i].getAttribute('data-status');
           cards[i].style.display = (filter === 'all' || status === filter) ? "" : "none";
@@ -138,5 +142,4 @@
     });
   });
 </script>
-
 {% endblock content %}

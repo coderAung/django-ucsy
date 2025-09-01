@@ -1,6 +1,7 @@
 from datetime import date, datetime
 import uuid
 from django.db import models
+from django.utils import timezone
 
 from travella.exceptions.business_exception import BusinessException
 from .abstract_models import AbstractModel
@@ -25,5 +26,5 @@ class Booking(AbstractModel):
     @property
     def is_cancellable(self):
         if self.auto_cancel_date:
-            return datetime.today() <= self.auto_cancel_date
+            return timezone.now() <= self.auto_cancel_date
         raise BusinessException('Auto Cancel Date is None.')

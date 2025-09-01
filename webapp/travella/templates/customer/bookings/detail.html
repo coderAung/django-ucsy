@@ -1,46 +1,72 @@
 {% extends 'layouts/customer-layout.html' %}
 {% load static %}
 
+
+{% block cssFile %}
+<style>
+.paymentSuggestion:hover {
+    cursor: pointer;
+    border: 1px solid rgba(45, 186, 253, 0.8);
+    background-color: rgba(186, 249, 255, 0.8);
+}
+</style>
+{% endblock cssFile %}
+
+{% block title %}
+    Booking Detail
+{% endblock title %}
+
 {% block content %}
 <div class="container py-4">
     <div class="card shadow-sm">
 
         <!-- Header -->
-        <div class="card-header text-white d-flex justify-content-between align-items-center" 
-     style="background-image: linear-gradient(to left, #b2ebec, #a8eaf0, #9fe9f4, #96e8f9, #8de6ff);">
-    <div>
-        <h2 class="mb-1 fw-bold">🏖️ Booking Details</h2>
-        <p class="mb-0 opacity-30"><strong>Booking ID:{{ booking.id }}</strong></p>
-    </div>
-    <div>
-        <span class="badge {{ booking.status_class }} p-2">
-            {{ booking.status_label }}
-        </span>
-    </div>
-</div>
+        <div class="card-header text-white d-flex justify-content-between align-items-center"
+             style="background-image: linear-gradient(to left, #b2ebec, #a8eaf0, #9fe9f4, #96e8f9, #8de6ff);">
+            <div>
+                <h2 class="mb-1 fw-bold">🏖️ Booking Details</h2>
+                <p class="mb-0 opacity-30">
+                    <strong>Booking ID: {{ booking.id }}</strong>
+                </p>
+            </div>
+            <div>
+                <span class="badge {{ booking.status_class }} p-2">
+                    {{ booking.status_label }}
+                </span>
+            </div>
+        </div>
 
-
-
+        {% if messages %}
+            {% for message in messages %}
+                <div class="py-1 px-3">
+                    <div class="df-alert df-alert-green my-2">{{ message }}</div>
+                </div>
+            {% endfor %}
+        {% endif %}
 
         <!-- Body -->
         <div class="card-body p-4">
-            <div class="row">
 
+            <div class="row">
                 <!-- Booking Information -->
                 <div class="col-lg-4 mb-4">
                     <h5 class="text-primary fw-bold mb-3">Booking Information</h5>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <i class="fas fa-tag me-2"></i> Package: {{ booking.package.title }}
+                            <i class="fas fa-tag me-2"></i>
+                            Package: {{ booking.package.title }}
                         </li>
                         <li class="list-group-item">
-                            <i class="far fa-calendar-alt me-2"></i> Booking Date: {{ booking.created_at|date:"F d, Y" }}
+                            <i class="far fa-calendar-alt me-2"></i>
+                            Booking Date: {{ booking.created_at|date:"F d, Y" }}
                         </li>
                         <li class="list-group-item">
-                            <i class="far fa-clock me-2"></i> Booking Time: {{ booking.created_at|time:"h:i A" }}
+                            <i class="far fa-clock me-2"></i>
+                            Booking Time: {{ booking.created_at|time:"h:i A" }}
                         </li>
                         <li class="list-group-item">
-                            <i class="fas fa-hourglass-end me-2"></i> Payment Due: {{ booking.created_at|add:"1 day"|date:"F d, Y, h:i A" }}
+                            <i class="fas fa-hourglass-end me-2"></i>
+                            Payment Due: {{ booking.created_at|add:"1 day"|date:"F d, Y, h:i A" }}
                         </li>
                     </ul>
                 </div>
@@ -50,18 +76,21 @@
                     <h5 class="text-primary fw-bold mb-3">Tour Details</h5>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <i class="fas fa-calendar-day me-2"></i> Departure: {{ booking.package.departure|date:"F d, Y" }}
+                            <i class="fas fa-calendar-day me-2"></i>
+                            Departure: {{ booking.package.departure|date:"F d, Y" }}
                         </li>
                         <li class="list-group-item">
-                            <i class="fas fa-calendar-day me-2"></i> Tour End: {{ tour_end_date }}
+                            <i class="fas fa-calendar-day me-2"></i>
+                            Tour End: {{ tour_end_date }}
                         </li>
                         <li class="list-group-item">
-                            <i class="fas fa-hourglass-half me-2"></i> Duration: {{ booking.package.duration }} days
+                            <i class="fas fa-hourglass-half me-2"></i>
+                            Duration: {{ booking.package.duration }} days
                         </li>
                         <li class="list-group-item">
-    <i class="fas fa-bus me-2"></i> Transportation: {{ booking.package.get_transportation_display|default:"N/A" }}
-</li>
-
+                            <i class="fas fa-bus me-2"></i>
+                            Transportation: {{ booking.package.get_transportation_display|default:"N/A" }}
+                        </li>
                     </ul>
                 </div>
 
@@ -69,64 +98,153 @@
                 <div class="col-lg-4 mb-4">
                     <h5 class="text-primary fw-bold mb-3">Customer Information</h5>
                     <ul class="list-group list-group-flush">
-                       <li class="list-group-item">
-                      <i class="fas fa-user me-2"></i> Name: {{ booking.customer_name }}
-                      </li>
                         <li class="list-group-item">
-                            <i class="fas fa-envelope me-2"></i> Email: {{ booking.customer.email }}
+                            <i class="fas fa-user me-2"></i>
+                            Name: {{ booking.customer_name }}
                         </li>
                         <li class="list-group-item">
-                            <i class="fas fa-phone me-2"></i> Phone: {{ booking.customer.accountdetail.phone|default:"N/A" }}
+                            <i class="fas fa-envelope me-2"></i>
+                            Email: {{ booking.customer.email }}
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-phone me-2"></i>
+                            Phone: {{ booking.customer.accountdetail.phone|default:"N/A" }}
                         </li>
                     </ul>
                 </div>
-
             </div>
 
             <hr class="my-4">
 
             <!-- Price Section -->
-           <!-- Price Section -->
-<div class="bg-light p-3 rounded mb-4">
-    <div class="d-flex justify-content-between py-2 border-bottom">
-        <span class="text-muted">Unit Price</span>
-        <span class="fw-medium">{{ booking.unit_price|floatformat:2 }} MMK</span>
-    </div>
-    <div class="d-flex justify-content-between py-2 border-bottom">
-        <span class="text-muted">Number of Tickets</span>
-        <span class="fw-medium">{{ booking.ticket_count }}</span>
-    </div>
-   <div class="d-flex justify-content-between py-2">
-    <span class="text-muted">Total Price</span>
-    <span class="fw-bold text-primary">{{ booking.total_price|floatformat:2 }} MMK</span>
-</div>
-
-</div>
-
+            <div class="bg-light p-3 rounded mb-4">
+                <div class="d-flex justify-content-between py-2 border-bottom">
+                    <span class="text-muted">Unit Price</span>
+                    <span class="fw-medium">{{ booking.unit_price|floatformat:2 }} MMK</span>
+                </div>
+                <div class="d-flex justify-content-between py-2 border-bottom">
+                    <span class="text-muted">Number of Tickets</span>
+                    <span class="fw-medium">{{ booking.ticket_count }}</span>
+                </div>
+                <div class="d-flex justify-content-between py-2">
+                    <span class="text-muted">Total Price</span>
+                    <span class="fw-bold text-primary">{{ booking.total_price|floatformat:2 }} MMK</span>
+                </div>
+            </div>
 
             <!-- Note / Policy Section -->
             {% if booking.status == 1 %} {# Pending #}
-            <div class="alert alert-warning">
-                <strong>Note:</strong> If the payment is not made within 24 hours, it will be automatically canceled.
-            </div>
+                <div class="alert alert-warning">
+                    <strong>Note:</strong> If the payment is not made within 24 hours,
+                    it will be automatically canceled.
+                </div>
             {% elif booking.status == 2 %} {# Reserved #}
-           <div class="alert alert-warning">
-            <strong>Cancellation Policy:</strong> Refunds cannot be issued if the booking is not canceled within 3 days.
-         </div>
+                <div class="alert alert-warning">
+                    <strong>Cancellation Policy:</strong>
+                    Refunds cannot be issued if the booking is not canceled within 3 days.
+                </div>
             {% endif %}
 
             <!-- Action Buttons -->
             <div class="d-flex justify-content-end mt-3 gap-2">
-                {% if booking.status == 1 %} {# Pending #}
-                    <a href="#" class="btn btn-danger">Cancel</a>
+                {% if booking.status == 1 and booking.is_cancellable %} {# Pending #}
+                    <button type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#bookingCancelModal"
+                            class="btn btn-danger">
+                        Cancel
+                    </button>
                     <a href="{% url 'booking_reserve' booking.id %}" class="btn btn-success">Reserve</a>
                 {% elif booking.status == 2 %} {# Reserved #}
-                    <a href="#" class="btn btn-danger">Cancel</a>
+                    <button data-bs-toggle="modal" data-bs-target="#bookingCancelModal" type="button" class="btn btn-danger">Cancel</button>
                 {% endif %}
                 {# Cancelled (3) and Requesting (4) show no button #}
             </div>
-
         </div>
     </div>
 </div>
+
+{% if booking.status == 2 %} {# Reserved #}
+<div class="modal fade" id="bookingCancelModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                
+                {% if booking.reservation %}
+                    {% if booking.reservation.is_refundable %}
+                        <h5 class="mb-4">Fill the refund form</h5>
+                        <div class="px-4">
+                            <form action="{% url 'customer_bookings_cancel' booking.id %}" method="post">
+                                {% csrf_token %}
+                                <div>
+                                    <label>Refund Payment Type</label>
+                                    <div class="mt-2">
+                                        <input name="refundPaymentType" id="paymentTypeInput" type="text" class="form-control" placeholder="Select a payment type" required>
+                                    </div>
+                                    <div class="d-flex column-gap-2 mt-3">
+                                        <div class="w-auto">
+                                            <div class="form-control paymentSuggestion" data-value="Kpay">Kpay</div>
+                                        </div>
+                                        <div class="w-auto">
+                                            <div class="form-control paymentSuggestion" data-value="Aya Pay">Aya Pay</div>
+                                        </div>
+                                        <div class="w-auto">
+                                            <div class="form-control paymentSuggestion" data-value="Wave Pay">Wave Pay</div>
+                                        </div>
+                                        <div class="w-auto">
+                                            <div class="form-control paymentSuggestion" data-value="CB Pay">CB Pay</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <label>Refund Payment Phone</label>
+                                    <input name="refundPaymentPhone" type="tel" class="form-control mt-2" placeholder="Your phone to recive fund" required>
+                                </div>
+                                <div class="d-flex justify-content-end column-gap-2 py-2 mt-4">
+                                    <button type="button" class="btn df-btn-glass-gray" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-success">Continue</button>
+                                </div>
+                            </form>
+                        </div>
+                    {% else %}
+                        <h5 class="text-danger">Refund not available.</h5>
+                        <h6>Are you sure to continue?</h6>
+                        <form id="bookingCancelForm"
+                            action="{% url 'customer_bookings_cancel' booking.id %}"
+                            method="post">
+                            {% csrf_token %}
+                            <div class="py-2 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-success">Continue</button>
+                            </div>
+                        </form>
+                    {% endif %}
+                {% endif %}
+                    
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if booking.status == 1 and booking.is_cancellable %} {# Pending #}
+<div class="modal" id="bookingCancelModal">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h6 class="mb-3">You are cancelling the booking.</h6>
+                    
+                <form id="bookingCancelForm"
+                      action="{% url 'customer_bookings_cancel' booking.id %}"
+                      method="post">
+                    {% csrf_token %}
+                    <div class="py-2 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<script src="{% static 'js/c/booking-cancel.js' %}"></script>
 {% endblock content %}

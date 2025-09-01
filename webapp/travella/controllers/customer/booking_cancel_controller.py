@@ -10,6 +10,7 @@ from travella.services import booking_auto_service
 @require_POST
 def cancel_booking(request:HttpRequest, id:uuid) -> HttpResponse:
     if booking_auto_service.is_refundable(id):
+        print('============== Refundable booking cancellation ==============')
         return cancel_refundable_booking(request, id)
     else:
         booking_auto_service.cancel_booking(id)
@@ -19,5 +20,5 @@ def cancel_booking(request:HttpRequest, id:uuid) -> HttpResponse:
 def cancel_refundable_booking(request:HttpRequest, id:uuid) -> HttpResponse:
     form = booking_auto_service.RefundForm(id, request)
     booking_auto_service.cancel_refundable_booking(form)
-    messages.success(request, 'Booking is cancelled successfully.')
-    return redirect('customer_booking_detail', id=id)
+    messages.success(request, 'Booking is cancelled. Refunding is processing.')
+    return redirect('customer_bookings_detail', id=id)

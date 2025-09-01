@@ -53,7 +53,8 @@ def save(request:HttpRequest) -> HttpResponse:
         # if success => redirect to booking detail with success message
         messages.success(request, 'Booking is successfully reserved.')
         return redirect('reservations_detail', id=id)
-    except:
+    except BusinessException as e:
+        messages.error(request, e.get_message())
         # if fail => redirect to payment request detail with error message
         return redirect('reservations_detail', id=id)
 

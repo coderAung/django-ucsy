@@ -5,12 +5,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
 from datetime import timedelta
+from travella.domains.models.booking_history_model import Reservation
 from travella.domains.models.tour_models import Package, PackageData
 from travella.domains.models.booking_models import Booking
 from travella.domains.models.account_models import AccountDetail
 
 # Import the function from your admin service
+from travella.services import booking_auto_service
 from travella.services.booking_service import calculate_available_tickets
+from travella.utils import constants
 
 BASE_TEMPLATE_PATH = 'customer/bookings/'
 
@@ -55,6 +58,7 @@ def new(request, code: str):
 
 @login_required
 def history(request):
+    booking_auto_service.auto_cancel_pending_bookings()
     bookings = Booking.objects.filter(customer=request.user) \
         .select_related('package', 'customer').order_by('-created_at')
 
@@ -87,7 +91,6 @@ def history(request):
 def detail(request, id):
     """Show details for a specific booking."""
     booking = get_object_or_404(Booking, id=id, customer=request.user)
-
     # Total cost
     booking.total_price = booking.ticket_count * booking.unit_price
 
@@ -155,7 +158,8 @@ def save(request):
             unit_price=Decimal(str(package.price)),
             status=Booking.Status.PENDING
         )
-
+        booking.auto_cancel_date = booking.created_at + timedelta(hours=constants.BOOKING_AUTO_CANCEL)
+        booking.save()
         # Update user's account details
         AccountDetail.objects.update_or_create(
             account=request.user,
@@ -164,6 +168,8 @@ def save(request):
                 'phone': phone
             }
         )
+
+        messages.success(request, 'Booking success.')
 
         return JsonResponse({
             'success': True,

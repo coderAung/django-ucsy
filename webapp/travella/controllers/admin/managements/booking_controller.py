@@ -6,6 +6,7 @@ from django.utils import timezone
 from travella.domains.models.booking_models import Booking  
 from travella.domains.models.account_models import AccountDetail
 from travella.domains.models.booking_history_model import Reservation
+from travella.services import booking_auto_service
 from travella.services.booking_service import (
     get_booking_by_id,
     get_filtered_bookings,
@@ -19,6 +20,7 @@ def view(name: str) -> str:
     return base + name + '.html'
 
 def list(request: HttpRequest) -> HttpResponse:
+    booking_auto_service.auto_cancel_pending_bookings()
     query = request.GET.get("query", "").strip()
     status = request.GET.get("status", "").strip()
     page_number = request.GET.get('page', 1)

@@ -8,8 +8,8 @@ from travella.domains.models.payment_models import PaymentRequest, PaymentType
 
 class Reservation(AbstractModel):
     id = models.UUIDField(primary_key=True, editable=False, auto_created=False)
-    payment_request = models.OneToOneField(PaymentRequest, null=True, on_delete=models.CASCADE, related_name='reservation')
-    booking = models.OneToOneField(Booking, null=True, on_delete=models.CASCADE, related_name='reservation')
+    payment_request = models.OneToOneField(PaymentRequest, on_delete=models.CASCADE, related_name='reservation')
+    booking = models.OneToOneField(Booking, on_delete=models.CASCADE, related_name='reservation')
     reserved_by = models.ForeignKey(Account, on_delete=models.PROTECT)
     refund_cover_date = models.DateField(null=True)
 
@@ -22,4 +22,4 @@ class Refunding(AbstractModel):
     id = models.UUIDField(primary_key=True, editable=False, auto_created=False)
     booking = models.OneToOneField(Booking, null=True, on_delete=models.CASCADE, related_name='refund')
     refund_phone = models.CharField(max_length=15, null=False)
-    refund_payment_type = models.ForeignKey(PaymentType, on_delete=models.CASCADE, related_name='refundings')
+    refund_payment_type = models.CharField(max_length=150)

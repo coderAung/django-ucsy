@@ -35,6 +35,7 @@ def save(request:HttpRequest) -> HttpResponse:
     form = PaymentRequestForm.of(request.POST, request.FILES)
     customer_id = request.user.id
     payment_request_service.save(customer_id, form)
+    messages.success(request, 'Payment request sent successfully.')
     return redirect('customer_bookings_detail', id=form.booking_id)
 
 def history(request:HttpRequest) -> HttpResponse:
