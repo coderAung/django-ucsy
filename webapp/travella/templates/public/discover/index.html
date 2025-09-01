@@ -107,82 +107,30 @@
             
         </ul>
         <div class="row g-4 g-lg-5">
-            <div class="col-lg-4 col-md-6">
-                <div class="card adventure-card h-100"><img src="{% static 'images/ngwe.jpg' %}" class="card-img-top"
-                        alt="Surfing">
-                    <div class="card-body p-4">
-                        <div class="d-flex justify-content-between small"><span class="text-muted">3 Days</span><span
-                                class="fw-bold" style="color: var(--brand-primary);">$450/person</span></div>
-                        <h5 class="card-title fw-bold my-2">Ride the Best Wave</h5>
-                        <p class="card-text text-muted small mb-3"><i class="bi bi-geo-alt-fill"></i> Ngwe Saung,
-                            Pathein</p><a href="#" class="btn btn-primary-main rounded-pill px-4">Book Now</a>
+            {% for package in most_booked_packages %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card adventure-card h-100">
+                        <span class="booking-count">
+                            <i class="bi bi-people-fill"></i> {{ package.booking_total }} booked
+                        </span>
+                        <img src="{{ package.cover_photo }}" class="card-img-top" alt="{{ package.title }}">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between small">
+                                <span class="text-muted">{{ package.days }} Days</span>
+                                <span class="fw-bold" style="color: var(--brand-primary);">${{ package.price_display }}/person</span>
+                            </div>
+                            <h5 class="card-title fw-bold my-2">{{ package.title }}</h5>
+                            <p class="card-text text-muted small mb-3">
+                                <i class="bi bi-geo-alt-fill"></i> {{ package.location }}
+                            </p>
+                            <a href="{% url 'public_packages_code' package.code %}" class="btn btn-primary-main rounded-pill px-4">Book Now</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card adventure-card h-100"><img src="{% static 'images/bagan.jpg' %}" class="card-img-top"
-                        alt="Mountain Adventure">
-                    <div class="card-body p-4">
-                        <div class="d-flex justify-content-between small"><span class="text-muted">5 Days</span><span
-                                class="fw-bold" style="color: var(--brand-primary);">$600/person</span></div>
-                        <h5 class="card-title fw-bold my-2">Ancient Pagoda</h5>
-                        <p class="card-text text-muted small mb-3"><i class="bi bi-geo-alt-fill"></i> Bagan, Myanmar</p>
-                        <a href="#" class="btn btn-primary-main rounded-pill px-4">Book Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card adventure-card h-100"><img src="{% static 'images/mandalay.jpg' %}"
-                        class="card-img-top" alt="Kyoto Temple">
-                    <div class="card-body p-4">
-                        <div class="d-flex justify-content-between small"><span class="text-muted">4 Days</span><span
-                                class="fw-bold" style="color: var(--brand-primary);">$550/person</span></div>
-                        <h5 class="card-title fw-bold my-2">Discover Ancient Wonders</h5>
-                        <p class="card-text text-muted small mb-3"><i class="bi bi-geo-alt-fill"></i> Mandalay, Myanmar
-                        </p><a href="#" class="btn btn-primary-main rounded-pill px-4">Book Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card adventure-card h-100"><img src="{% static 'images/chaung.jpg' %}" class="card-img-top"
-                        alt="Desert Roadtrip">
-                    <div class="card-body p-4">
-                        <div class="d-flex justify-content-between small"><span class="text-muted">7 Days</span><span
-                                class="fw-bold" style="color: var(--brand-primary);">$850/person</span></div>
-                        <h5 class="card-title fw-bold my-2">Rides the Waves</h5>
-                        <p class="card-text
-
-text-muted small mb-3"><i class="bi bi-geo-alt-fill"></i> Chaung Thar, Pathein</p><a href="#"
-                            class="btn btn-primary-main rounded-pill px-4">Book Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card adventure-card h-100"><img src="{% static 'images/innlay.jpg' %}" class="card-img-top"
-                        alt="Tropical Escape">
-                    <div class="card-body p-4">
-                        <div class="d-flex justify-content-between small"><span class="text-muted">6 Days</span><span
-                                class="fw-bold" style="color: var(--brand-primary);">$950/person</span></div>
-                        <h5 class="card-title fw-bold my-2">Tropical Escape</h5>
-                        <p class="card-text text-muted small mb-3"><i class="bi bi-geo-alt-fill"></i> Inn Lay</p><a
-                            href="#" class="btn btn-primary-main rounded-pill px-4">Book Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card adventure-card h-100"><img src="{% static 'images/pha.jpg' %}" class="card-img-top"
-                        alt="Northern Lights">
-                    <div class="card-body p-4">
-                        <div class="d-flex justify-content-between small"><span class="text-muted">5 Days</span><span
-                                class="fw-bold" style="color: var(--brand-primary);">$1200/person</span></div>
-                        <h5 class="card-title fw-bold my-2">View Point</h5>
-                        <p class="card-text text-muted small mb-3"><i class="bi bi-geo-alt-fill"></i> Pha Ann</p><a
-                            href="#" class="btn btn-primary-main rounded-pill px-4">Book Now</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+   
         </div>
-        <div class="text-center mt-5 pt-3"><a href="#" class="btn btn-primary-main rounded-pill px-5 py-2">See More
+        <div class="text-center mt-5 pt-3"><a href="{% url 'customer_packages' %}" class="btn btn-primary-main rounded-pill px-5 py-2">See More
                 Packages <i class="bi bi-arrow-right-short"></i></a></div>
     </div>
 </section>
