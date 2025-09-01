@@ -51,15 +51,10 @@ def get_dashboard_data():
         .annotate(bookings=Count('id'))
         .order_by('month')
   )
-  chart_data = [
-          {"month": item['month'].strftime("%b %Y"), "bookings": item['bookings']}
-          for item in monthly_bookings_data
-  ]
-  return render(request, 'admin/dashboard.html', {
-        'data': data,
-        'chart_data': chart_data
-    })
-
+  chart_data = {
+        'monthly_bookings_labels': [item['month'].strftime("%b %Y") for item in monthly_bookings_data],
+        'monthly_bookings_counts': [item['bookings'] for item in monthly_bookings_data]
+    }
   return DashboardDTO(
     total_bookings = total_bookings,
     total_packages= total_packages,
@@ -70,5 +65,5 @@ def get_dashboard_data():
     cancel_bookings = cancel_bookings,
     pending_payment = pending_payment,
     total_feedbacks = total_feedbacks,
-    monthly_bookings= monthly_bookings_data
+    monthly_bookings_data=chart_data
     )
