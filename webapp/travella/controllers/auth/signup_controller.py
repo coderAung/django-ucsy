@@ -7,6 +7,8 @@ from django.contrib import messages  # <-- Import messages for feedback
 # Models and Forms
 from travella.domains.forms.signup_forms import Step1Form, Step2Form, Step3Form
 from travella.domains.models.account_models import Account, AccountDetail
+from travella.services import access_log_service
+from travella.services.access_log_service import AccessLogForm
 
 FORMS = [
     ("step1", Step1Form),
@@ -116,6 +118,8 @@ class SignUpView(View):
                     address=final_data.get('address'),
                     photo=final_data.get('profile_photo')
                 )
+
+                access_log_service.save_log(AccessLogForm.sing_up_success_form, new_account.id)
 
                 print(f"Successfully created account for {email}")
 

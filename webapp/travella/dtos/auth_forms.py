@@ -22,6 +22,6 @@ class SignInForm(forms.Form):
             else:
                 form = access_log_service.AccessLogForm.wrong_password_form(password)
                 access_log_service.save_log(form, account_service.get_id_by_email(email))
-                raise BusinessException(f'Password is wrong.')
+                raise BusinessException(f'Incorrect Password.')
         else:
             raise BusinessException(f'User \'{email}\' not found.')

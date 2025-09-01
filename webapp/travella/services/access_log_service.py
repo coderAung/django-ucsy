@@ -30,6 +30,13 @@ class AccessLogForm:
             message='Sign Out Sccess'
         )
     
+    def sing_up_success_form() -> 'AccessLogForm':
+        return AccessLogForm(
+            access_type=AccessLog.Type.SIGN_UP,
+            status=AccessLog.Status.SUCCESS,
+            message='Sing Up Successs'
+        )
+    
     @staticmethod
     def wrong_password_form(password:str) -> 'AccessLogForm':
         return AccessLogForm(
