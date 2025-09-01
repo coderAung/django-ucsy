@@ -17,23 +17,26 @@
                     <div class="flex-grow-1 px-3">
                         <label class="text-muted small">Choose Destination</label>
                         <select name="destination" class="form-select border-0 shadow-none p-0">
+                            <option value="">Any Destination</option>
                             {% for l in locations %}
-                                <option value="{{l.id}}">{{l.name}}</option>
+                                <option value="{{ l.id }}" {% if request.GET.destination == l.id|stringformat:"s" %}selected{% endif %}>
+                                    {{ l.name }}
+                                </option>
                             {% endfor %}
-                            
                         </select>
                     </div>
                     <div class="flex-grow-1 px-3">
                         <label class="text-muted small">Choose Price Range</label>
                         <select name="price" class="form-select border-0 shadow-none p-0">
                             <option value="">Any Price</option>
-                            <option value="0-300">50000 kyats – 100,000 kyats</option>
-                            <option value="300-600">100,000 kyats – 200,000 kyats</option>
-                            <option value="600+">200,000 kyats - 500,000kyats</option>
-                            <option value="600+">500,000 kyats to over</option>
+                            <option value="0-50000" {% if request.GET.price == "0-50000" %}selected{% endif %}>Under 50,000 kyats</option>
+                            <option value="50000-100000" {% if request.GET.price == "50000-100000" %}selected{% endif %}>50,000 – 100,000 kyats</option>
+                            <option value="100000-200000" {% if request.GET.price == "100000-200000" %}selected{% endif %}>100,000 – 200,000 kyats</option>
+                            <option value="200000-500000" {% if request.GET.price == "200000-500000" %}selected{% endif %}>200,000 – 500,000 kyats</option>
+                            <option value="500000-" {% if request.GET.price == "500000-" %}selected{% endif %}>500,000 kyats and above</option>
                         </select>
                     </div>
-                    <div class="vr"></div>
+                    
                     <button type="submit" class="btn search-btn d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle">
                         <i class="bi bi-search fs-5"></i>
                     </button>
@@ -52,7 +55,6 @@
         </div>
     </div>
 </section>
-
 
 <section class="why-us-section">
     <div class="container">
