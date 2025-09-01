@@ -5,5 +5,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def dashboard(request:HttpRequest) -> HttpResponse:
+    
     data = get_dashboard_data()
     return render(request, 'admin/dashboard.html', {'data': data})
