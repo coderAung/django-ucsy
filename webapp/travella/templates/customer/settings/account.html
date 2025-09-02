@@ -1,25 +1,28 @@
 <div class="rounded shadow py-3 px-3">
     <h6 class="mb-4">Account Info</h6>
+    <form action="{% url 'customer_update_profile' %}" method="post">
+    {% csrf_token %}
     <div class="d-flex flex-column row-gap-3">
         <div>
             <div class="mb-2">Email <span class="df-text-blue df-fs-sm ms-3">Cannot change</span></div>
-            <input type="text" class="form-control" disabled>
+            <input type="text" class="form-control" value="{{account_info.email}}" disabled>
         </div>
         <div>
             <div class="mb-2">Name</div>
-            <input type="text" class="form-control">
+            <input type="text" name="name" class="form-control" value="{{account_info.name}}">
         </div>
         <div>
             <div class="mb-2">Phone</div>
-            <input type="text" class="form-control">
+            <input pattern="\d{8,10}" type="tel" name="phone" class="form-control" value="{{account_info.phone}}" required>
         </div>
         <div>
             <div class="mb-2">Address</div>
-            <textarea name="" id="" class="form-control"></textarea>
+            <textarea name="address" id="" class="form-control">{{account_info.address}}</textarea>
         </div>
         <div class="d-flex justify-content-end column-gap-2">
-            <button type="button" class="btn df-btn-glass-blue">Reset</button>
-            <button type="button" class="btn df-btn-glass-purple">Save</button>
+            <button type="reset" class="btn df-btn-glass-blue">Reset</button>
+            <button type="submit" class="btn df-btn-glass-purple">Save</button>
         </div>
     </div>
+    </form>
 </div>

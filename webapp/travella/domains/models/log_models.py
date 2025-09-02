@@ -20,4 +20,4 @@ class AccessLog(AbstractModel):
     status = models.IntegerField(choices=Status.choices, null=False)
     message = models.TextField(null=True)
 
-    account = models.ForeignKey(Account, on_delete=models.PROTECT, related_name='access_logs')
+    account = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='access_logs')

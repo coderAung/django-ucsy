@@ -14,15 +14,8 @@ position-sticky sticky-top
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link active" href="{% url 'discover'%}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{%url 'customer_packages'%}">Packages</a></li>
-                <!-- <li class="nav-item"><a class="nav-link" href="#">Settings</a></li> -->
-                <!-- <li class="nav-item"><a class="nav-link" href="#">Booking</a></li> -->
-                <li class="nav-item"><a class="nav-link" href="#">Categories</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'review_list'%}">Review</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about_us'%}">About Us</a></li>
-                
-                {% comment %} {% if request.user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'notifications'%}">Notifications</a></li>
-                {% endif %}                     {% endcomment %}
             </ul>
 
             {%if request.user.is_authenticated%}

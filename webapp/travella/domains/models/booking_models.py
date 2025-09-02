@@ -20,7 +20,7 @@ class Booking(AbstractModel):
     status_updated_at = models.DateTimeField(auto_now=True)
     
     package = models.ForeignKey('Package', on_delete=models.PROTECT, related_name='bookings')
-    customer = models.ForeignKey('Account', on_delete=models.PROTECT, related_name='bookings')
+    customer = models.ForeignKey('Account', on_delete=models.CASCADE, related_name='bookings')
     auto_cancel_date = models.DateTimeField(null=True)
 
     @property

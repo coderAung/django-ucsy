@@ -65,3 +65,11 @@ class AccountDto:
     address:str
     id:uuid
     created_at:str
+
+
+def update(id:uuid, name:str, phone:str, address:str):
+    detail = AccountDetail.objects.get(account_id=id)
+    detail.name = name
+    detail.phone = phone
+    detail.address = address
+    detail.save()

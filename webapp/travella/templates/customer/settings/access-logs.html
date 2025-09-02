@@ -13,6 +13,20 @@
             <tbody>
                 
                 {% if logs %}
+                    
+                    {% for l in logs %}
+                        <tr>
+                            <td>{{l.type}}</td>
+                            <td><span class="df-badge 
+                            {% if l.status.lower == 'success' %} badge-green
+                            {% elif l.status.lower == 'fail' %} badge-red                              
+                            {% endif %}
+                                ">{{l.status}}</span></td>
+                            <td>{{l.message}}</td>
+                            <td>{{l.time}}</td>
+                        </tr>
+                    {% endfor %}
+                        
                 {% else %}
                     <tr>
                         <td colspan="4" class="text-center text-muted">

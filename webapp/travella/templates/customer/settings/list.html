@@ -27,11 +27,11 @@
                     <div id="accountSettingBtn" class="px-2 py-3 border-bottom settingBtn" data-setting-id="accountSetting">Account</div>
                     <div id="passwordSettingBtn" class="px-2 py-3 border-bottom settingBtn" data-setting-id="passwordSetting">Change Password</div>
                     <div id="accessLogSettingBtn" class="px-2 py-3 border-bottom settingBtn" data-setting-id="accessLogSetting">Access Log</div>
-                    <div class="px-2 py-3 border-bottom">Delete Account</div>
+                    <div id="deleteAccountSettingBtn" class="px-2 py-3 border-bottom settingBtn" data-setting-id="deleteAccountSetting">Delete Account</div>
                 </div>
             </div>
             <div class="col-7 mx-auto">
-                <div id="accountSetting" class="h-100">
+                <div id="accountSetting" class="h-100 d-none">
                     {% include 'customer/settings/account.html' %}
                 </div>
                 <div id="passwordSetting" class="h-100 d-none">
@@ -39,6 +39,9 @@
                 </div>
                 <div id="accessLogSetting" class="h-100 d-none">
                     {% include 'customer/settings/access-logs.html' %}
+                </div>
+                <div id="deleteAccountSetting" class="h-100 d-none">
+                    {% include 'customer/settings/delete-account.html' %}
                 </div>
             </div>
         </div>
