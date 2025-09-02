@@ -1,27 +1,47 @@
-# settings/account/photo POST
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
-
+from travella.dtos.settings.account_staff_dto import AccountDetailDTO
+from travella.services.account_service import update_account_detail, update_account_email, update_account_password
 
 base = 'admin/settings/'
 
-def view(name:str) -> str:
+def view(name: str) -> str:
     return base + name + '.html'
 
-# settings/account/photo POST
-def photo(request:HttpRequest) -> HttpResponse:
-    return redirect('/admins/settings/account')
-
-# settings/account/info POST
-def info(request:HttpRequest) -> HttpResponse:
-    return redirect('/admins/settings/account')
-
-# settings/account/email/chage POST
-def email(request:HttpRequest) -> HttpResponse:
-    return redirect('/admins/settings/account/email')
-
-# settings/account/password/change POST
 @require_POST
-def password(request:HttpRequest) -> HttpResponse:
-    return redirect('/admins/settings/account/password')
+def info(request: HttpRequest) -> HttpResponse:
+    account = request.user
+    
+    dto = AccountDetailDTO(
+        name=request.POST.get('name', ''),
+        phone=request.POST.get('phone', ''),
+        address=request.POST.get('address', ''),
+        profile_image=request.FILES.get('profile_image')
+    )
+    
+    update_account_detail(account, dto)
+    return redirect('/admins/settings/account')
+
+@require_POST
+def email(request: HttpRequest) -> HttpResponse:
+    account = request.user
+    new_email = request.POST.get('new_email', '')
+
+    try:
+        update_account_email(account, new_email)
+        return redirect('/admins/settings/account/email/')
+    except Exception as e:
+        return redirect('/admins/settings/account/email/')
+
+@require_POST
+def password(request: HttpRequest) -> HttpResponse:
+    account = request.user
+    old_password = request.POST.get('old_password', '')
+    new_password = request.POST.get('new_password', '')
+    
+    try:
+        update_account_password(account, old_password, new_password)
+        return redirect('/admins/settings/account/password/')
+    except Exception as e:
+        return redirect('/admins/settings/account/password/')
