@@ -1,0 +1,62 @@
+    <div id="sidebar" class="sidebar bg-white d-flex flex-column px-2 pt-3 position-sticky sticky-top"
+      style="width: 15%;">
+      <div class="mb-4 text-center">
+        <h2 class="fw-bold d-none d-md-inline">Travella</h2>
+      </div>
+      <nav class="nav nav-pills flex-column df-fs-nm">
+        <a class="nav-link d-flex align-items-center" href="{% url 'dashboard' %}">
+          <i class="fa fa-house"></i><span class="ms-2 d-none d-md-inline">Dashboard</span>
+        </a>
+
+        <a class="nav-link text-dark d-flex align-items-center" href="{% url 'reservations' %}">
+          <i class="fa fa-box-open"></i><span class="ms-2 d-none d-md-inline">Reservations</span>
+
+          <a class="nav-link text-dark d-flex align-items-center" href="{% url 'packages' %}">
+            <i class="fa fa-box-open"></i><span class="ms-2 d-none d-md-inline">Packages</span>
+          </a>
+          <a class="nav-link text-dark d-flex align-items-center" href="{% url 'categories' %}">
+            <i class="fa fa-layer-group"></i>
+            <span class="ms-2 d-none d-md-inline">Categories</span>
+          </a>
+
+            <a class="nav-link text-dark d-flex align-items-center" href="{% url 'location_list' %}">
+            <i class="fa fa-map-marker-alt"></i><span class="ms-2 d-none d-md-inline">Locations</span>
+          </a>
+
+          <a class="nav-link text-dark d-flex align-items-center" href="{% url 'bookings' %}">
+            <i class="fa fa-suitcase-rolling"></i>
+            <span class="ms-2 d-none d-md-inline">Bookings</span>
+          </a>
+
+          <span class="nav-link text-dark d-flex align-items-center" data-bs-toggle="collapse"
+            data-bs-target="#userManagement" role="button" aria-expanded="false" aria-controls="userManagement">
+            <i class="fa fa-users"></i><span class="ms-2 d-none d-md-inline">Users <i class="me-2 fa-solid fa-chevron-down ms-3"></i></span>
+          </span>
+          <div class="collapse px-3" id="userManagement">
+            <a class="nav-link bg-transparent text-dark d-flex align-items-center" href="/admins/staffs/">
+              <i class="fa fa-users"></i><span class="ms-2 d-none d-md-inline">Staffs</span>
+            </a>
+            <a class="nav-link bg-transparent text-dark d-flex align-items-center" href="/admins/customers/">
+              <i class="fa fa-users"></i><span class="ms-2 d-none d-md-inline">Customers</span>
+            </a>
+          </div>
+          <a class="nav-link text-dark d-flex align-items-center" href="/admins/settings/account">
+            <i class="fa fa-gear"></i><span class="ms-2 d-none d-md-inline">Setting</span>
+          </a>
+          <form id="signOutForm" action="{% url 'sign_out' %}" method="post"
+            class="nav-link text-dark d-flex align-items-center pointer">
+            {% csrf_token %}
+            <i class="bi bi-box-arrow-right"></i><span class="ms-2 d-none d-md-inline text-danger"
+              onclick='signout()'>Sign out</span>
+          </form>
+          <script>
+            const signout = () => document.getElementById('signOutForm').submit()
+          </script>
+
+      </nav>
+      <div class="mt-auto pt-3 pb-2">
+        <a class="nav-link text-muted d-flex align-items-center" href="#">
+          <i class="fa fa-circle-question ms-2"></i><span class="ms-2 d-none d-md-inline">Help & Support</span>
+        </a>
+      </div>
+    </div>

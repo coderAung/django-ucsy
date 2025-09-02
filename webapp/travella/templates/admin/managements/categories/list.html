@@ -1,181 +1,207 @@
 {% extends 'layouts/admin-layout.html' %}
 {% load static %}
 
-
-{% block title %}
-  Categories
-{% endblock title %}
-  
+{% block title %}Categories{% endblock %}
 
 {% block cssFile %}
 <style>
   body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f8f9fa;
+    background-color: #f1f3f6;
+    color: #1f2937;
   }
 
   .page-title {
     font-size: 1.8rem;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
+  }
+
+  .card-container {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+
+  .d-flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
   }
 
   .total-categories {
     font-weight: 500;
-    margin-bottom: 15px;
-    text-align: right;
+    color: #4b5563;
   }
 
-  .toast-container {
-    z-index: 1100;
+  .btn-add {
+    background-color: #3b82f6;
+    color: #fff;
   }
 
-  .bg-success {
-    background-color: #198754 !important;
+  .btn-add:hover {
+    background-color: #2563eb;
   }
 
-  .bg-danger {
-    background-color: #dc3545 !important;
+  .table th, .table td {
+    vertical-align: middle;
+    font-size: 0.95rem;
   }
 
-  .borderless-table {
-    border-collapse: separate;
-    border-spacing: 0;
+  .table-hover tbody tr:hover {
+    background-color: #f3f4f6;
   }
 
-  .borderless-table th,
-  .borderless-table td {
-    border: none;
+  .edit-category-btn, .delete-category-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .edit-category-btn i {
+    color: #0ea5e9;
+  }
+
+  .delete-category-btn i {
+    color: #ef4444;
+  }
+
+  .modal-header {
+    background-color: #f3f4f6;
+    border-bottom: none;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  /* Spinner in buttons */
+  .spinner-border {
+    margin-right: 0.5rem;
   }
 </style>
 {% endblock cssFile %}
 
 {% block content %}
-
 <body data-categories-url="{% url 'categories' %}">
-  <div class="">
-    <div class="ps-3 pt-2">
-      <h3 class="page-title">Categories</h3>
+  <div class="container py-3">
+    <div class="d-flex-between">
+      <div class="total-categories">
+        Total Categories: <strong>{{ categories|length }}</strong>
+      </div>
+      <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+        <i class="bi bi-plus-circle text-white"></i> Add Category
+      </button>
     </div>
-    <div class="container">
-      <div class="px-3 py-2 rounded shadow bg-white">
 
-        <div class="d-flex align-items-center justify-content-between mb-3">
-          <input type="text" class="form-control w-auto" placeholder="Search category..." />
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
-            <i class="bi bi-plus-circle"></i> Add Category
+    <div class="card-container">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>No</th>
+              <th>Category</th>
+              <th class="text-center">Packages</th>
+              <th class="text-center">Created By</th>
+              <th class="text-center">Created Date</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for category in categories %}
+            <tr data-category-id="{{ category.id }}">
+              <td>{{ forloop.counter }}</td>
+              <td>{{ category.name }}</td>
+              <td class="text-center">{{ category.packages_count|default:"0" }}</td>
+              <td class="text-center">{{ category.created_by.email }}</td>
+              <td class="text-center">
+                {% firstof category.createdAt|date:"Y-m-d H:i" category.created_at|date:"Y-m-d H:i" %}
+              </td>
+              <td class="text-end">
+                {% if category.packages_count|default:0 == 0 %}
+                <button class="btn btn-sm btn-outline-danger delete-category-btn" data-category-id="{{ category.id }}"
+                  data-category-name="{{ category.name }}" title="Delete category">
+                  <i class="bi bi-trash"></i>
+                </button>
+                {% endif %}
+                <button class="btn btn-sm btn-outline-primary edit-category-btn" data-bs-toggle="modal"
+                  data-bs-target="#editCategoryModal" data-category-id="{{ category.id }}"
+                  data-category-name="{{ category.name }}" title="Edit category">
+                  <i class="bi bi-pencil"></i>
+                </button>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="6" class="text-center text-muted">No categories available.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add & Edit Modals remain the same -->
+
+<!-- Add Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCategoryModalLabel">Add Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <form id="addCategoryForm" method="POST" action="{% url 'create_category' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="categoryName" class="form-label">Enter Category Name</label>
+            <input type="text" class="form-control" id="categoryName" name="name" required>
+          </div>
+          <button type="submit" class="btn btn-success" id="submitBtn">
+            <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+            Add Category
           </button>
-        </div>
-
-        <!-- Show Total Categories on Right -->
-        <div class="total-categories">
-          Total Categories: <strong>{{ categories|length }}</strong>
-        </div>
-
-        <!-- Category Table -->
-        <div class="table-responsive mt-3">
-          <table class="table table-hover borderless-table">
-            <thead>
-              <tr class="align-middle">
-                <th>No</th>
-                <th>Category</th>
-                <th class="text-center">Packages</th>
-                <th class="text-center">Created By</th>
-                <th class="text-center">Created Date</th>
-                <th class="text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for category in categories %}
-              <tr class="align-middle" data-category-id="{{ category.id }}">
-                <td>{{ forloop.counter }}</td>
-                <td>{{ category.name }}</td>
-                <td class="text-center">
-                  {% if category.packages_count %}
-                  {{ category.packages_count }}
-                  {% else %}
-                  0
-                  {% endif %}
-                </td>
-                <td class="text-center">{{ category.createdBy.email }}</td>
-                <td class="text-center">
-                  {% firstof category.createdAt|date:"Y-m-d H:i" category.created_at|date:"Y-m-d H:i"%}
-                </td>
-                <td class="text-center">
-                  <button class="btn btn-sm btn-outline-primary edit-category-btn" data-bs-toggle="modal"
-                    data-bs-target="#editCategoryModal" data-category-id="{{ category.id }}"
-                    data-category-name="{{ category.name }}" data-bs-toggle="tooltip" data-bs-placement="top"
-                    title="Edit category">
-                    <i class="bi bi-pencil"></i>
-                  </button>
-                  <button class="btn btn-sm btn-outline-danger delete-category-btn" data-category-id="{{ category.id }}"
-                    data-category-name="{{ category.name }}" data-bs-toggle="tooltip" data-bs-placement="top"
-                    title="Delete category">
-                    <i class="bi bi-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+        </form>
       </div>
+      
     </div>
   </div>
+</div>
 
-  <!-- Add Category Modal -->
-  <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addCategoryModalLabel">Add Category</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="addCategoryForm" method="POST" action="{% url 'create_category' %}">
-            {% csrf_token %}
-            <div class="mb-3">
-              <label for="categoryName" class="form-label">Enter Category Name</label>
-              <input type="text" class="form-control" id="categoryName" name="name" required>
-            </div>
-            <button type="submit" class="btn btn-success" id="submitBtn">
-              <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-              Add Category
-            </button>
-          </form>
-        </div>
+<!-- Edit Category Modal -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      
+      <div class="modal-body">
+        <form id="editCategoryForm" method="POST" action="">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="editCategoryName" class="form-label">Category Name</label>
+            <input type="text" class="form-control" id="editCategoryName" name="name" required>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+            Save Changes
+          </button>
+        </form>
+      </div>
+      
     </div>
   </div>
+</div>
 
-  <!-- Edit Category Modal -->
-  <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="editCategoryForm" method="POST" action="">
-            {% csrf_token %}
-            <div class="mb-3">
-              <label for="editCategoryName" class="form-label">Category Name</label>
-              <input type="text" class="form-control" id="editCategoryName" name="name" required>
-            </div>
-            <button type="submit" class="btn btn-primary">
-              <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-              Save Changes
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </body>
-
 {% endblock content %}
 
 {% block jsFile %}

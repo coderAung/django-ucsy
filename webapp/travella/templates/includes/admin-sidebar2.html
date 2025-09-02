@@ -1,0 +1,138 @@
+<!-- Sidebar -->
+<div id="sidebar" class="d-flex flex-column position-sticky sticky-top">
+  <!-- Brand -->
+  <div class="brand mb-4 text-center">
+    <h2 class="fw-bold text-dark">Travella</h2>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav flex-column">
+
+    <!-- Group 1: Dashboard / Reservations / Bookings -->
+    <div class="sidebar-group mb-3">
+      <div class="sidebar-group-title text-uppercase text-muted mb-2 px-3">Main</div>
+
+      <a class="nav-link d-flex align-items-center mb-1 sidebar-item {% if request.path == '/admins/dashboard/' %}active{% endif %}" href="{% url 'dashboard' %}">
+        <i class="bi bi-speedometer2 me-2"></i>
+        <span>Dashboard</span>
+      </a>
+      <a class="nav-link d-flex align-items-center mb-1 sidebar-item {% if request.path == '/admins/reservations/' %}active{% endif %}" href="{% url 'reservations' %}">
+        <i class="bi bi-calendar-check me-2"></i>
+        <span>Reservations</span>
+      </a>
+      <a class="nav-link d-flex align-items-center mb-1 sidebar-item {% if request.path == '/admins/bookings/' %}active{% endif %}" href="{% url 'bookings' %}">
+        <i class="bi bi-journal-check me-2"></i>
+        <span>Bookings</span>
+      </a>
+    </div>
+
+    <!-- Group 2: Packages / Categories / Locations -->
+    <div class="sidebar-group mb-3">
+      <div class="sidebar-group-title text-uppercase text-muted mb-2 px-3">Management</div>
+
+      <a class="nav-link d-flex align-items-center mb-1 sidebar-item {% if request.path == '/admins/packages/' %}active{% endif %}" href="{% url 'packages' %}">
+        <i class="bi bi-box-seam me-2"></i>
+        <span>Packages</span>
+      </a>
+      <a class="nav-link d-flex align-items-center mb-1 sidebar-item {% if request.path == '/admins/categories/' %}active{% endif %}" href="{% url 'categories' %}">
+        <i class="bi bi-tags me-2"></i>
+        <span>Categories</span>
+      </a>
+      <a class="nav-link d-flex align-items-center mb-1 sidebar-item {% if request.path == '/admins/location_list/' %}active{% endif %}" href="{% url 'location_list' %}">
+        <i class="bi bi-geo-alt me-2"></i>
+        <span>Locations</span>
+      </a>
+    </div>
+
+    <!-- Group 3: Users -->
+    <div class="sidebar-group mb-3">
+      <div class="sidebar-group-title text-uppercase text-muted mb-2 px-3">Users</div>
+
+      <a class="nav-link d-flex align-items-center mb-1 sidebar-subitem {% if '/admins/staffs/' in request.path %}active{% endif %}" href="/admins/staffs/">
+        <i class="bi bi-person-badge me-2"></i>
+        <span>Staffs</span>
+      </a>
+      <a class="nav-link d-flex align-items-center mb-1 sidebar-subitem {% if '/admins/customers/' in request.path %}active{% endif %}" href="/admins/customers/">
+        <i class="bi bi-person-circle me-2"></i>
+        <span>Customers</span>
+      </a>
+    </div>
+
+    <!-- Settings -->
+    <a class="nav-link d-flex align-items-center mb-1 sidebar-item
+    {% if request.path|slice:":16" == '/admins/settings/' %}active{% endif %}" 
+    href="/admins/settings/account">
+    <i class="bi bi-gear me-2"></i>
+    <span>Settings</span>
+    </a>
+
+    <!-- Sign out -->
+    <form id="signOutForm" action="{% url 'sign_out' %}" method="post">
+      {% csrf_token %}
+        <div
+          class="nav-link d-flex align-items-center mb-1 sidebar-item p-2">
+        <i class="bi bi-box-arrow-right me-2 text-danger"></i>
+        <span class="text-danger" onclick="document.getElementById('signOutForm').submit()">Sign out</span>
+        </div>
+    </form>
+
+  </nav>
+
+  <!-- Help -->
+  {% comment %} <div class="mt-auto pt-3 pb-2">
+    <a class="nav-link d-flex align-items-center sidebar-item text-secondary {% if '/admins/help/' in request.path %}active{% endif %}" href="#">
+      <i class="bi bi-question-circle me-2"></i>
+      <span>Help & Support</span>
+    </a>
+  </div> {% endcomment %}
+</div>
+
+<!-- CSS -->
+<style>
+  #sidebar {
+    width: 200px;
+    min-width: 200px;
+    height: 100vh;
+    background-color: #fff;
+    color: #1f2937;
+    padding: 1rem 0.5rem;
+    border-right: 1px solid #e2e8f0;
+  }
+
+  .sidebar-item, .sidebar-subitem {
+    color: #1f2937;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .sidebar-item:hover, .sidebar-subitem:hover {
+    background-color: #f1f5f9;
+    color: #1f2937;
+  }
+
+  .sidebar-item.active, .sidebar-subitem.active {
+    background-color: #3b82f6;
+    color: #fff !important;
+  }
+
+  .sidebar-subitem {
+    padding-left: 2rem;
+  }
+
+  .sidebar-item i, .sidebar-subitem i {
+    min-width: 1.5rem;
+    text-align: center;
+  }
+
+  .brand h2 {
+    font-size: 1.4rem;
+    color: #1f2937;
+  }
+
+  .sidebar-group-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+</style>
