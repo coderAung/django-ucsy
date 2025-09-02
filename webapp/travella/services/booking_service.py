@@ -69,6 +69,7 @@ def get_booking_list_dtos_from_queryset(bookings_queryset):
         
         dtos.append(BookingListDTO(
             id=booking.id,
+            booking_code=booking.booking_code,
             customer_name=customer_name,
             package_title=booking.package.title,
             status_display=booking.get_status_display(),

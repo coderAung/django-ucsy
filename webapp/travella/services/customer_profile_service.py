@@ -4,7 +4,7 @@ from django.http import HttpRequest
 
 from travella.domains.models.account_models import Account, AccountDetail
 from travella.domains.models.booking_models import Booking
-from travella.domains.models.tour_models import Package
+from travella.domains.models.tour_models import Package, PackageData
 
 
 def get_profile_data(request:HttpRequest) -> 'AccountDto':
@@ -21,7 +21,11 @@ def get_profile_data(request:HttpRequest) -> 'AccountDto':
     )
 
 def get_tour_reminders_by_account_id(id:uuid) -> list[str]:
-    return [reminder_message(b) for b in Booking.objects.filter(customer__id=id, status=Booking.Status.RESERVED)]
+    return [
+        reminder_message(b) 
+        for b in Booking.objects.filter(
+            customer__id=id, status=Booking.Status.RESERVED)
+            .exclude(package__data__status = PackageData.Status.FINISHED)]
 
 def reminder_message(b:Booking) -> str:
     package:Package = b.package

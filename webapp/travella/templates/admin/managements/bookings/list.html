@@ -67,6 +67,7 @@
     <table class="table table-hover align-middle df-fs-sm">
       <thead class="table-light">
         <tr class="postition-sticky sticky-top">
+          <th>Booking Code</th>
           <th>Username</th>
           <th>Package</th>
           <th>Status</th>
@@ -78,6 +79,7 @@
       <tbody>
         {% for booking in bookings %}
         <tr>
+          <td>{{ booking.booking_code }}</td>
           <td>{{ booking.customer_name }}</td>
           <td>{{ booking.package_title }}</td>
           <td>

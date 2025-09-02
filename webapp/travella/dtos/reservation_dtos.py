@@ -69,6 +69,7 @@ class BookingInfo:
 @dataclass
 class PaymentRequestInfo:
     reservation_id:uuid
+    code:str
     payment_type:str
     request_datetime:datetime
     total_price:float
@@ -103,6 +104,7 @@ class PaymentRequestItem:
     status:str
     payment_type:str
     reservation_id:uuid
+    code:str
 
     @staticmethod
     def of(p:PaymentRequest) -> 'PaymentRequestItem':
@@ -117,6 +119,7 @@ class PaymentRequestItem:
             status=p.booking.get_status_display(),
             payment_type=p.payment_type.name,
             reservation_id=p.id,
+            code=p.code,
         )
     
 @dataclass

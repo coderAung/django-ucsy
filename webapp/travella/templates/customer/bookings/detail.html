@@ -3,6 +3,7 @@
 
 
 {% block cssFile %}
+<link rel="stylesheet" href="{% static 'css/c/custom-navbar.css' %}">
 <style>
 .paymentSuggestion:hover {
     cursor: pointer;
@@ -39,7 +40,7 @@
 
 
 {% block navbar %}
-    
+    {% include 'includes/custom-navbar.html' %}
 {% endblock navbar %}
     
 

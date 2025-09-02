@@ -30,6 +30,7 @@ def get_dtos(id:uuid) -> tuple[PaymentRequestInfo, BookingInfo, PackageInfo]:
     package_info = PackageInfo.of(payment_request.booking.package)
     payment_request_info = PaymentRequestInfo(
         reservation_id=payment_request.id,
+        code=payment_request.code,
         payment_type=payment_request.payment_type.name,
         request_datetime=payment_request.created_at,
         total_price=booking_info.total_price,

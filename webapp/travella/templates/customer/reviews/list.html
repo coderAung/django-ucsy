@@ -131,7 +131,7 @@
 {% endblock mainTitle %}
 
 {% block title %}
-    our reviews  
+    Our Reviews  
 {% endblock title %}
     
 
@@ -154,7 +154,7 @@
     <div class="row">
       <!-- Review Form -->
       <div class="col-lg-4">
-        <div class="review-form sticky-top" style="top:20px;">
+        <div class="review-form position-sticky sticky-top" style="z-index: 2;">
           <h3 class="section-title">Share Your Experience</h3>
           <form id="reviewForm" method="post" action="{% url 'save_review' %}">
             {% csrf_token %}

@@ -108,5 +108,5 @@ class PackageItemDetail(PackageItem):
             remaining_tickets=package.data.remaining_tickets,
             overview=package.overview,
             bookingStatusItems=[BookingStatus.of(b) for b in package.bookings.all()],
-            itineraries=[ItineraryDto.of(i) for i in package.itineraries.all()],
+            itineraries=[ItineraryDto.of(i) for i in package.itineraries.all().order_by('day')],
         )

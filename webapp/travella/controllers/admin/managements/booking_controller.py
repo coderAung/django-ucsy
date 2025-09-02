@@ -34,7 +34,7 @@ def list(request: HttpRequest) -> HttpResponse:
     bookings_qs = bookings_qs.order_by('-created_at')
 
     # Create paginator - 20 items per page
-    paginator = Paginator(bookings_qs, 20)
+    paginator = Paginator(bookings_qs, 10)
     page_obj = paginator.get_page(page_number)
     
     # This function internally uses calculate_available_tickets

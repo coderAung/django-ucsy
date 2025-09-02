@@ -3,12 +3,13 @@ from datetime import datetime
 
 class BookingListDTO:
     def __init__(
-        self, id, customer_name, package_title, status_display,
+        self, id, booking_code, customer_name, package_title, status_display,
         created_date, created_time,
         status_updated_date, status_updated_time,
         available_tickets, total_capacity  # Add these parameters
     ):
         self.id = id
+        self.booking_code = booking_code
         self.customer_name = customer_name
         self.package_title = package_title
         self.status_display = status_display
