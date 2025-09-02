@@ -13,5 +13,6 @@ urlpatterns = [
     path('reviews/<int:id>/', review_controller.detail),
 
     path('about-us/', public_controller.about, name='about_us')
+    path('help-support/', public_controller.help_support, name='help_support'),
 
 ]
