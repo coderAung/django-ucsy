@@ -1,7 +1,7 @@
 from django.urls import path
 from django.shortcuts import render
 
-from travella.controllers.customer import booking_cancel_controller, notification_controller, profile_controller, refund_controller
+from travella.controllers.customer import booking_cancel_controller, notification_controller, profile_controller, refund_controller, setting_controller
 from ..controllers.customer import payment_request_controller, review_controller, booking_controller
 
 urlpatterns = [
@@ -29,5 +29,8 @@ urlpatterns = [
     path('notifications/', notification_controller.get_list, name='notifications'),
     path('notifications/delete/', notification_controller.delete, name='notification_delete'),
     path('notifications/<int:id>', notification_controller.detail, name='notification_detail'),
-    path('refunds/<uuid:id>', refund_controller.detail, name='refund_detail')
+    path('refunds/<uuid:id>', refund_controller.detail, name='refund_detail'),
+
+    path('settings/', setting_controller.settings, name='customer_settings')
+
 ]

@@ -1,10 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'layouts/customer-layout.html' %}
+{% load static %}
 
-</body>
-</html>
+
+{% block cssFile %}
+    <style>
+        .settingBtn {
+            cursor: pointer;
+        }
+        .settingBtn:hover {
+            backdrop-filter: brightness(0.8)
+        }
+        .settingBtn.active {
+            background-color: rgba(132, 241, 255, 1);
+        }
+    </style>
+{% endblock cssFile %}
+    
+
+{% block content %}
+    <script src="{% static 'js/c/setting.js' %}"></script>
+    <div class="container py-3 mt-4 mb-3">
+        <div class="row">
+            <div class="col-4">
+                <h5 class="mb-3">Settings</h5>
+                <div class="d-flex flex-column">
+                    <div id="accountSettingBtn" class="px-2 py-3 border-bottom settingBtn" data-setting-id="accountSetting">Account</div>
+                    <div id="passwordSettingBtn" class="px-2 py-3 border-bottom settingBtn" data-setting-id="passwordSetting">Change Password</div>
+                    <div id="accessLogSettingBtn" class="px-2 py-3 border-bottom settingBtn" data-setting-id="accessLogSetting">Access Log</div>
+                    <div class="px-2 py-3 border-bottom">Delete Account</div>
+                </div>
+            </div>
+            <div class="col-7 mx-auto">
+                <div id="accountSetting" class="h-100">
+                    {% include 'customer/settings/account.html' %}
+                </div>
+                <div id="passwordSetting" class="h-100 d-none">
+                    {% include 'customer/settings/password-info.html' %}
+                </div>
+                <div id="accessLogSetting" class="h-100 d-none">
+                    {% include 'customer/settings/access-logs.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+
+{% block footer %}
+    
+{% endblock footer %}
+    

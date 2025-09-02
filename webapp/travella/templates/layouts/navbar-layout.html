@@ -35,7 +35,7 @@ position-sticky sticky-top
                         <ul class="dropdown-menu shadow border-0">
                             <li><a class="dropdown-item text-brand" href="{% url 'customer_profile' %}"><i class="fa-solid fa-user me-3 text-brand"></i>Profile</a></li>
                             <li><a class="dropdown-item text-brand" href="{% url 'customer_booking_history' %}"><i class="fa-solid fa-list me-3 text-brand"></i>Bookings</a></li>
-                            <li><a class="dropdown-item text-brand" href="#"><i class="fa-solid fa-gear me-3 text-brand"></i>Settings</a></li>
+                            <li><a class="dropdown-item text-brand" href="{% url 'customer_settings' %}"><i class="fa-solid fa-gear me-3 text-brand"></i>Settings</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a type="button" class="dropdown-item text-danger" onclick="document.getElementById('signOutBtn').click()">
                             <i class="fa-solid fa-arrow-right-from-bracket me-3 text-danger"></i>Sign Out</a></li>
