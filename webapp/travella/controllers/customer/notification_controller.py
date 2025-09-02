@@ -16,13 +16,13 @@ def get_list(request:HttpRequest) -> HttpResponse:
         'list': _list,
     })
 
-def detail(request:HttpRequest, id:uuid) -> HttpResponse:
+def detail(request:HttpRequest, id:int) -> HttpResponse:
     noti = customer_notification_service.get_by_id(id)
     if noti.type == CustomerNotification.NotificationType.PAYMENT_RESERVED.value:
-        payment = payment_request_service.get_by_id(noti.id)
+        payment = payment_request_service.get_by_id(noti.related_id)
         return redirect('customer_bookings_detail', id=payment.booking.id)
     if noti.type == CustomerNotification.NotificationType.BOOKING_CANCELLED.value:
-        return redirect('refund_detail', id=noti.id)
+        return redirect('refund_detail', id=noti.related_id)
     if noti.type == CustomerNotification.NotificationType.PAYMENT_REJECTED.value:
         return render(request, view('rejection'), {
             'noti': noti

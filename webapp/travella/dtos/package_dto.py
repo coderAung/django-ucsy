@@ -80,7 +80,6 @@ class ItineraryDto:
 class PackageItemDetail(PackageItem):
     overview: str
     bookingStatusItems: List[BookingStatus]
-    remaining_ticket: int
     itineraries: List[ItineraryDto]
 
     def end_in(self) -> datetime.datetime:
@@ -103,7 +102,7 @@ class PackageItemDetail(PackageItem):
             status=base_item.status,
             price=base_item.price,
             bookings=base_item.bookings,
-            remaining_tickets=package.total_tickets - package.booking_count,
+            remaining_tickets=package.data.remaining_tickets,
             overview=package.overview,
             bookingStatusItems=[BookingStatus.of(b) for b in package.bookings.all()],
             itineraries=[ItineraryDto.of(i) for i in package.itineraries.all()],

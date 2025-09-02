@@ -11,7 +11,7 @@ class CustomerNotification(AbstractModel):
         PAYMENT_RESERVED = 2, 'Payment Reserved'
         BOOKING_CANCELLED = 3, 'Booking Cancelled'
 
-    id = models.UUIDField(primary_key=True, editable=False, auto_created=False)
+    related_id = models.UUIDField(null=True)
     message = models.TextField()
     customer = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='notifications')
     type = models.IntegerField(choices=NotificationType.choices, null=False)

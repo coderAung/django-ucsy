@@ -15,7 +15,8 @@ def get_list_by_id(id:uuid) -> list['CustomerNotificationItem']:
 
 @dataclass
 class CustomerNotificationItem:
-    id:uuid
+    id:int
+    related_id:uuid
     message:str
     type:str
     created_at:datetime
@@ -24,6 +25,7 @@ class CustomerNotificationItem:
     def of(n:CustomerNotification) -> 'CustomerNotificationItem':
         return CustomerNotificationItem(
             id=n.id,
+            related_id=n.related_id,
             message=n.message,
             type=n.get_type_display(),
             created_at=n.created_at
@@ -33,7 +35,7 @@ class CustomerNotificationItem:
 def save_payment_reject_notification(payment_request:PaymentRequest, reject_message:str, account_id:uuid):
     reject_content = f'Your payment request for booking : {payment_request.booking.id} is rejected. \nNote : {reject_message}'
     notification = CustomerNotification(
-                id = payment_request.id,
+                related_id = payment_request.id,
                 message = reject_content,
                 customer = payment_request.customer,
                 type = CustomerNotification.NotificationType.PAYMENT_REJECTED,
@@ -45,7 +47,7 @@ def save_payment_reject_notification(payment_request:PaymentRequest, reject_mess
 def save_payment_reserved_notification(payment_request:PaymentRequest, account_id:uuid):
     message = f'Your payment for booking : {payment_request.booking.id} is successfully reserved.'
     notification = CustomerNotification(
-        id=payment_request.id,
+        related_id=payment_request.id,
         message = message,
         customer = payment_request.customer,
         type = CustomerNotification.NotificationType.PAYMENT_RESERVED,
@@ -56,7 +58,7 @@ def save_payment_reserved_notification(payment_request:PaymentRequest, account_i
 def save_refund_notification(refund:Refunding):
     message = f'Your booking {refund.booking.id} is cancelled. Refunding is processing.'
     notification = CustomerNotification(
-        id = refund.id,
+        related_id = refund.id,
         message = message,
         customer = refund.booking.customer,
         type = CustomerNotification.NotificationType.BOOKING_CANCELLED,

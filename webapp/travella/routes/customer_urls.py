@@ -27,6 +27,7 @@ urlpatterns = [
     path('profile/', profile_controller.profile, name='customer_profile'),
     path('profile/image', profile_controller.upload_profile_image, name='profile_image_upload'),
     path('notifications/', notification_controller.get_list, name='notifications'),
-    path('notifications/<uuid:id>', notification_controller.detail, name='notification_detail'),
+    path('notifications/delete/', notification_controller.delete, name='notification_delete'),
+    path('notifications/<int:id>', notification_controller.detail, name='notification_detail'),
     path('refunds/<uuid:id>', refund_controller.detail, name='refund_detail')
 ]

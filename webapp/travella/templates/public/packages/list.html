@@ -87,7 +87,8 @@
             </div>
             <div class="mt-3">
                 <div class="pb-5">
-                    <div class="row row-cols-3 row-gap-4">    
+                    {% if result.total_results > 0 %}
+                    <div class="row row-cols-3 row-gap-4">
                         {% for item in result.items %}
                             <div class="col">
                                 <div class="bg-white rounded shadow packageCard">
@@ -119,11 +120,17 @@
                                 </div>
                             </div>
                         {% endfor %}
+                                
                     </div>
+                {% else %}
+                    <div class="df-bg-linen rounded py-3 px-3 h-full">
+                        No Packages
+                    </div>
+                {% endif %}
                 </div>
             </div>
             
-            {% if result.total_pages > 1 %}
+            {% if result.total_results > 1 %}
             <div class="mt-3 pb-3">
                 {% include 'includes/pagination.html' %}
             </div>
