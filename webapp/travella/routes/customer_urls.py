@@ -1,7 +1,7 @@
 from django.urls import path
 from django.shortcuts import render
 
-from travella.controllers.customer import booking_cancel_controller
+from travella.controllers.customer import booking_cancel_controller, notification_controller, profile_controller
 from ..controllers.customer import payment_request_controller, review_controller, booking_controller
 
 urlpatterns = [
@@ -23,4 +23,8 @@ urlpatterns = [
     path('reviews/save/', review_controller.save, name='save_review'),
     path('customer/reviews/edit/<uuid:id>/', review_controller.edit, name='edit_review'),
     path('customer/reviews/delete/<uuid:id>/', review_controller.delete, name='delete_review'),
+
+    path('profile/', profile_controller.profile, name='customer_profile'),
+    path('profile/image', profile_controller.upload_profile_image, name='profile_image_upload'),
+    path('notifications/', notification_controller.get_list, name='notifications'),
 ]

@@ -43,4 +43,4 @@ def sign_in(request:HttpRequest) -> HttpResponse:
 def sign_out(request:HttpRequest) -> HttpResponse:
     access_log_service.save_log(AccessLogForm.sign_out_success_form(), request.user.id)
     logout(request)
-    return redirect('/auth/sign-in')
+    return redirect('/')

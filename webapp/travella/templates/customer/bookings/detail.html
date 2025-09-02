@@ -9,6 +9,27 @@
     border: 1px solid rgba(45, 186, 253, 0.8);
     background-color: rgba(186, 249, 255, 0.8);
 }
+
+.cancelledBackground {
+    background: #ff2626;
+    background: linear-gradient(90deg, rgba(255, 38, 38, 0.83) 5%, rgba(255, 255, 255, 1) 100%);
+}
+
+.pendingBackground {
+    background: #39a6e6;
+    background: linear-gradient(90deg, rgba(57, 166, 230, 0.83) 5%, rgba(255, 255, 255, 1) 100%);
+}
+
+.reservedBackground {
+    background: #00cc41;
+    background: linear-gradient(90deg, rgba(0, 204, 65, 0.83) 5%, rgba(255, 255, 255, 1) 100%);    
+}
+
+.requestingBackground {
+    background: #5807a8;
+    background: linear-gradient(90deg, rgba(88, 7, 168, 0.9) 5%, rgba(255, 255, 255, 1) 100%);    
+}
+
 </style>
 {% endblock cssFile %}
 
@@ -16,18 +37,32 @@
     Booking Detail
 {% endblock title %}
 
+
+{% block navbar %}
+    
+{% endblock navbar %}
+    
+
 {% block content %}
 <div class="container py-4">
     <div class="card shadow-sm">
-
         <!-- Header -->
-        <div class="card-header text-white d-flex justify-content-between align-items-center"
-             style="background-image: linear-gradient(to left, #b2ebec, #a8eaf0, #9fe9f4, #96e8f9, #8de6ff);">
-            <div>
-                <h2 class="mb-1 fw-bold">🏖️ Booking Details</h2>
-                <p class="mb-0 opacity-30">
-                    <strong>Booking ID: {{ booking.id }}</strong>
-                </p>
+        <div class="card-header text-white d-flex justify-content-between align-items-center
+            {% if booking.status == 1 %} pendingBackground
+            {% elif booking.status == 2 %} reservedBackground
+            {% elif booking.status == 3 %} cancelledBackground
+            {% else %} requestingBackground
+            {% endif %}
+        ">
+            <div class="d-flex align-items-center column-gap-3">
+                <a href="{% url 'customer_booking_history' %}" class="text-decoration"><i class="bi bi-arrow-left fs-4 text-white"></i></a>
+                <span class="fs-4">🏖️</span> 
+                <div class="">
+                    <h4 class="mb-1 fw-bold text-white">Booking Details</h4>
+                    <p class="mb-0 opacity-30">
+                        <strong class="text-white">ID : {{ booking.id }}</strong>
+                    </p>
+                </div>
             </div>
             <div>
                 <span class="badge {{ booking.status_class }} p-2">
@@ -51,22 +86,22 @@
                 <!-- Booking Information -->
                 <div class="col-lg-4 mb-4">
                     <h5 class="text-primary fw-bold mb-3">Booking Information</h5>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush df-fs-sm">
                         <li class="list-group-item">
                             <i class="fas fa-tag me-2"></i>
                             Package: {{ booking.package.title }}
                         </li>
                         <li class="list-group-item">
                             <i class="far fa-calendar-alt me-2"></i>
-                            Booking Date: {{ booking.created_at|date:"F d, Y" }}
+                            Booking Date: {{ booking.created_at|date:"M d, Y" }}
                         </li>
                         <li class="list-group-item">
                             <i class="far fa-clock me-2"></i>
                             Booking Time: {{ booking.created_at|time:"h:i A" }}
                         </li>
-                        <li class="list-group-item">
+                        <li class="list-group-item text-danger">
                             <i class="fas fa-hourglass-end me-2"></i>
-                            Payment Due: {{ booking.created_at|add:"1 day"|date:"F d, Y, h:i A" }}
+                            Due Date: {{ booking.auto_cancel_date|date:"M d, Y, h:i A" }}
                         </li>
                     </ul>
                 </div>

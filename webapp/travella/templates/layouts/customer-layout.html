@@ -12,6 +12,7 @@
     <script src="http://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="{% static 'css/customer.css' %}">
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
@@ -30,7 +31,12 @@
         {% block content %}
             
         {% endblock %}
-        {% include 'layouts/footer-layout.html'%}
+
+        
+        {% block footer %}
+            {% include 'layouts/footer-layout.html'%}
+        {% endblock footer %}
+            
             
     </div>
 </body>

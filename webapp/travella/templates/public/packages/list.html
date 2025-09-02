@@ -12,6 +12,7 @@
 {% block cssFile %}
 <link rel="stylesheet" href="{% static 'css/glass.css' %}">
 <link rel="stylesheet" href="{% static 'css/c/package-list.css' %}">
+<link rel="stylesheet" href="{% static 'css/c/custom-navbar.css' %}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <style>
     .toUp {
@@ -31,7 +32,7 @@
 
 {% block content %}
     <div class="min-vh-100">
-        <form id="filterForm" class="position-sticky sticky-top pt-3" style="margin-top: 100px;" action="">
+        <form id="filterForm" class="position-sticky sticky-top pt-3" style="margin-top: 40px;" action="">
             <div class="">
                 <div class="mx-5 px-5 d-flex justify-content-center">
                     <div class="w-100 d-flex justify-content-between align-items-center px-2 py-2 rounded-pill shadow-sm filterBar">

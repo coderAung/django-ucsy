@@ -5,6 +5,7 @@ import uuid
 from django.db import transaction
 from django.db.models import Q
 from django.http import HttpRequest
+from django.utils import timezone
 
 from travella.domains.models.booking_history_model import Refunding, Reservation
 from travella.domains.models.booking_models import Booking
@@ -98,9 +99,11 @@ class RefundForm:
         )
 
 def auto_cancel_pending_bookings():
-    q = Q(status=Booking.Status.PENDING, auto_cancel_date__gte=datetime.today())
-    q |= Q(auto_cancel_date = None)
+    q = Q(status=Booking.Status.PENDING) & (
+            Q(auto_cancel_date__lte=timezone.now()) |
+            Q(auto_cancel_date__isnull=True))
     bookings_to_auto_cancel = Booking.objects.filter(q)
+    print(f'====== {bookings_to_auto_cancel.count()} ======')
     if bookings_to_auto_cancel.count() > 0:
         print('========== Auto Deleting Pending Bookings ============')
         bookings_to_auto_cancel.delete()

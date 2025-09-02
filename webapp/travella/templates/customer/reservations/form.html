@@ -4,18 +4,52 @@
 
 {% block cssFile %}
     <link rel="stylesheet" href="{% static 'css/c/reservation-form.css' %}">
+    <style>
+    .backBtn {
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        background-color: transparent;
+        backdrop-filter: blur(4px) brightness(0.7);
+        color: white;
+        width: 40px;
+        height: 40px;
+        padding: 2px;
+        border-radius: 50%;
+        font-size: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .backBtn:hover{
+        backdrop-filter: blur(4px) brightness(0.6);
+    }
+
+    .backBtn > i {
+        color: white;
+    }
+    </style>
 {% endblock cssFile %}
-    
+
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block footer %}
+{% endblock footer %}
 
 {% block content %}
 <div class="df-bg-soft-white min-vh-100">
-    <div class="container py-3">
-        <h4 class="mb-4">Reservation Form</h4>
+    <div class="container py-2">
+        <div class="d-flex mb-3 align-items-center">
+            <a href="{% url 'customer_bookings_detail' booking_info.id  %}" class="backBtn me-3"><i class="bi bi-arrow-left fs-5"></i></a>
+            <div class="fs-5 fw-bold">Reservation Form</div>
+        </div>
         <div class="row row-cols-3">
 
             <div class="col">
                 <div class="h-100 d-flex flex-column justify-content-between">
-                    <h5 class="mb-4 px-2 py-2 rounded-top df-bg-purple text-white">Payment</h5>
+                    <h6 class="mb-3 px-2 py-2 rounded-top df-bg-purple text-white">Payment</h6>
                     <div class="flex-fill d-flex flex-column justify-content-end">
                         <div class="flex-fill d-flex flex-column">
                             <div>
@@ -60,7 +94,7 @@
 
             <div class="col">
                 <div>
-                    <h5 class="mb-4 px-2 py-2 rounded-top df-bg-primary text-white">Package Info</h5>
+                    <h6 class="mb-3 px-2 py-2 rounded-top df-bg-primary text-white">Package Info</h6>
                     <div>
                         <div class="d-flex column-gap-2">
                             <div>
@@ -120,7 +154,7 @@
             </div>
             <div class="col">
                 <div class="">
-                    <h5 class="mb-4 px-2 py-2 rounded-top df-bg-cyan">Booking Info</h5>
+                    <h6 class="mb-3 px-2 py-2 rounded-top df-bg-cyan">Booking Info</h6>
                     <div>
                         <div>
                             <span>Booking ID</span>
@@ -179,7 +213,7 @@
                         </div>
 
                         <div class="mt-4 d-flex justify-content-end column-gap-2">
-                            <button class="btn df-btn-glass-red">Cancel</button>
+                            <a href="{% url 'customer_bookings_detail' booking_info.id  %}" class="btn df-btn-glass-red">Cancel</a>
                             <button id="requestPaymentBtn" class="btn btn-purple">Request Payment</button>
                         </div>
 

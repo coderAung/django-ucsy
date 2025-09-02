@@ -8,6 +8,10 @@
   --bs-body-font-family: 'Poppins', sans-serif;
 }
 
+.text-brand {
+  color: var(--brand-primary);
+}
+
 body {
   background-color: var(--page-bg);
 }
@@ -56,16 +60,20 @@ body {
 /* =================================
    NEW - Navbar & Link Highlight Styling
    ================================= */
-.navbar .nav-link {
+.navbar .nav-link, .nav-link {
   padding: 0.5rem 1rem;
   border-radius: 8px;
   font-weight: 500;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.navbar .nav-link:hover {
+.navbar .nav-link:hover, .nav-link:hover {
   background-color: rgba(0, 176, 164, 0.1);
   /* Light teal background on hover */
+  color: var(--brand-primary);
+}
+
+.nav-link:hover > i {
   color: var(--brand-primary);
 }
 

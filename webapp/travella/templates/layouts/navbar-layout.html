@@ -1,7 +1,6 @@
 {% load static %}
-
-<nav id="navbar" class="navbar navbar-expand-lg py-3
-fixed-top 
+<nav id="navbar" class="navbar navbar-expand-lg py-2
+position-sticky sticky-top
 {{cssClass}}
 ">
     <div class="container">
@@ -20,14 +19,35 @@ fixed-top
                 <li class="nav-item"><a class="nav-link" href="#">Categories</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'review_list'%}">Review</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about_us'%}">About Us</a></li>
+                
+                {% comment %} {% if request.user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'notifications'%}">Notifications</a></li>
+                {% endif %}                     {% endcomment %}
             </ul>
 
             {%if request.user.is_authenticated%}
             <div>
-                <form id="signOutForm" action="{% url 'sign_out' %}" method="post" class="">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-primary-main rounded-pill px-4">Sign Out</button>
+                <div class="d-flex align-items-center">
+                    <a class="nav-link" href="{% url 'notifications'%}"><i class="fa-regular fa-bell fs-5"></i></a>
 
+                    <div class="dropdown">
+                        <span class="nav-link pointer me-3" data-bs-toggle="dropdown"><i class="me-2 fa-solid fa-chevron-down"></i>{{request.user.accountdetail.name}}</span>
+                        <ul class="dropdown-menu shadow border-0">
+                            <li><a class="dropdown-item text-brand" href="{% url 'customer_profile' %}"><i class="fa-solid fa-user me-3 text-brand"></i>Profile</a></li>
+                            <li><a class="dropdown-item text-brand" href="{% url 'customer_booking_history' %}"><i class="fa-solid fa-list me-3 text-brand"></i>Bookings</a></li>
+                            <li><a class="dropdown-item text-brand" href="#"><i class="fa-solid fa-gear me-3 text-brand"></i>Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a type="button" class="dropdown-item text-danger" onclick="document.getElementById('signOutBtn').click()">
+                            <i class="fa-solid fa-arrow-right-from-bracket me-3 text-danger"></i>Sign Out</a></li>
+                        </ul>
+                    </div>
+                    <img src="https://cdn.pixabay.com/photo/2019/08/11/18/59/icon-4399701_1280.png"
+                        style="width: 45px; height: 45px; border-radius: 50%;"
+                        alt="">
+                </div>
+                <form id="signOutForm" action="{% url 'sign_out' %}" method="post" class="d-none">
+                    {% csrf_token %}
+                    <button id="signOutBtn" type="submit" class="btn btn-primary-main rounded-pill px-4">Sign Out</button>
                 </form>
             </div>
             {% else %}

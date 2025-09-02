@@ -1,0 +1,11 @@
+{% extends 'layouts/customer-layout.html' %}
+
+
+{% block content %}
+    <div>notifications</div>
+    
+    {% for i in list %}
+        <h4>{{i.type}}</h4>
+    {% endfor %}
+        
+{% endblock content %}

@@ -137,7 +137,7 @@ def save(request):
         phone = request.POST.get('phone', '').strip()
 
         # Validate required fields
-        if not all([package_id, ticket_count, full_name, email, phone]):
+        if not all([package_id, ticket_count, full_name, email]):
             return JsonResponse({'error': 'All fields are required'}, status=400)
 
         package = get_object_or_404(Package, id=package_id)

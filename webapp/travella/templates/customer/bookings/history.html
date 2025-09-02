@@ -5,11 +5,26 @@
   Booking List
 {% endblock title %}
 
+
+{% block cssFile %}
+  <link rel="stylesheet" href="{% static 'css/c/custom-navbar.css' %}">
+  <style>
+    .toUp {
+      z-index: 2000px;
+    }
+  </style>
+{% endblock cssFile %}
+  
+
+{% block navbar %}
+    {% include 'includes/custom-navbar.html' %}
+{% endblock navbar %}
+
 {% block content %}
 <div class="container py-4">
-  <div class="card border-0">
-    <div class="card-body">
-      <h2 class="card-title text-primary mb-4">
+  <div class="">
+    <div class="">
+      <h2 class="text-primary mb-5">
         <i class="fas fa-calendar-alt me-2"></i> 🏖️ Your Bookings
       </h2>
 
@@ -25,7 +40,7 @@
       {% comment %} </div> {% endcomment %}
 
       <!-- Booking Cards -->
-      <div class="row g-4" id="bookingCards">
+      <div class="row g-4 mb-5" id="bookingCards">
         {% for booking in bookings %}
           <div class="col-md-6 col-lg-4" data-status="{{ booking.status }}">
             <div class="card h-100 hover-effect
