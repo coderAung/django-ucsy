@@ -75,17 +75,25 @@
 {%endblock%}
 {% block content %}
     <div class="d-flex justify-content-between align-items-center mb-4 page-header">
-        <h2>Customer Management</h2>
+        <h2>Staff Management</h2>
+        <a href="#" class="btn btn-add-staff"><i class="bi bi-plus-lg me-2"></i>Add Staff</a>
     </div>
 
     <div class="content-card">
-        <form method="GET" action="{% url 'customers' %}">
-            <div class="row mb-4">
-                <div class="col-md-6">
+        <form method="GET" action="{% url 'staffs' %}">
+            <div class="row mb-4 justify-content-between">
+                <div class="col-md-3">
+                    <select class="form-select" name="role_filter" onchange="this.form.submit()">
+                        <option value="" {% if not role_filter %}selected{% endif %}>All Roles</option>
+                        <option value="admin" {% if role_filter == 'admin' %}selected{% endif %}>Admin</option>
+                        <option value="mod" {% if role_filter == 'mod' %}selected{% endif %}>Moderator</option>
+                    </select>
+                </div>
+                <div class="col-md-5">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="search_query" placeholder="Search by name, email, or phone..." value="{{ search_query|default:'' }}" aria-label="Search">
-                        <button class="btn btn-add-staff" type="submit" id="button-addon2">
-                            <i class="bi bi-search me-1"></i> Search
+                        <input type="text" class="form-control" name="search_query" placeholder="Search by name or email..." value="{{ search_query|default:'' }}">
+                        <button class="btn btn-add-staff" type="submit">
+                            <i class="bi bi-search"></i>
                         </button>
                     </div>
                 </div>
@@ -97,33 +105,51 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Contact</th>
+                        <th>Role</th>
                         <th>Account Created</th>
-                        <th>Status</th>
+                        <th>Access Logs</th>
                         <th></th>
                     </tr>
+
                 </thead>
                 <tbody>
-
-                {% for customer in customers %}
-                    <tr>
-                        <td>
+                    {% for staff in staff_members %}
+                        <tr>
+                            <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ customer.accountdetail.photo|default:'https://via.placeholder.com/45' }}" class="profile-pic-sm me-3" alt="{{ customer.accountdetail.name }}">
+                                    <img src="{{ staff.accountdetail.photo|default:'https://via.placeholder.com/45' }}" class="profile-pic-sm me-3" alt="{{ staff.accountdetail.name }}">
                                     <div>
-                                        <div class="user-name">{{ customer.accountdetail.name|default:'N/A' }}</div>
-                                        <div class="small text-muted">{{ customer.email }}</div>
+                                        <div class="user-name">{{ staff.accountdetail.name|default:'N/A' }}</div>
+                                        <div class="small text-muted">{{ staff.email }}</div>
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ customer.accountdetail.phone|default:"-" }}</td>
-                            <td>{{ customer.createdAt|date:"M d, Y" }}</td>
                             <td>
-                                <span class="badge bg-success">Active</span> {# Status logic to be added later #}
+                                {% if staff.role == 'admin' %}
+                                    <span class="badge bg-primary-subtle text-primary-emphasis">Admin</span>
+                                {% elif staff.role == 'mod' %}
+                                    <span class="badge bg-info-subtle text-info-emphasis">Moderator</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ staff.created_at|date:"M d, Y" }}</td>
+                            <td>
+                                {% for log in staff.accesslog_set.all %}
+                                    <div class="mb-2">
+                                        <small class="text-muted">{{ log.created_at|date:"M d, Y h:i A" }}</small><br>
+                                        <strong>{{ log.get_access_type_display }}</strong> - 
+                                        {% if log.get_status_display == 'Success' %}
+                                            <span class="badge rounded-pill bg-success">{{ log.get_status_display }}</span>
+                                        {% else %}
+                                            <span class="badge rounded-pill bg-danger">{{ log.get_status_display }}</span>
+                                        {% endif %}
+                                        <p class="text-sm mt-1 mb-0">{{ log.message|default:"-" }}</p>
+                                    </div>
+                                {% empty %}
+                                    <p class="text-muted">- No logs -</p>
+                                {% endfor %}
                             </td>
                             <td class="text-end">
-
-                                <a href="{% url 'customers_detail' customer.id %}" class="btn btn-light btn-sm border-0" title="View Details">
+                                <a href="{% url 'staffs_detail' staff.id %}" class="btn btn-light btn-sm border-0" title="View Profile">
                                     <i class="bi bi-eye"></i>
                                 </a>
                             </td>
@@ -131,11 +157,7 @@
                     {% empty %}
                         <tr>
                             <td colspan="5" class="text-center text-muted py-4">
-                                {% if search_query %}
-                                    No customers found matching your search for "{{ search_query }}".
-                                {% else %}
-                                    There are no customers to display.
-                                {% endif %}
+                                No staff members found.
                             </td>
                         </tr>
                     {% endfor %}

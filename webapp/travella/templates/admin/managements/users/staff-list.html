@@ -133,7 +133,7 @@
                                     <span class="badge bg-info-subtle text-info-emphasis">Moderator</span>
                                 {% endif %}
                             </td>
-                            <td>{{ staff.createdAt|date:"M d, Y" }}</td>
+                          <td>{{ staff.created_at|date:"M d, Y" }}</td>
                             <td>{{ staff.last_login|date:"M d, Y, P"|default:"-" }}</td> {# Assumes you have a 'last_login' field #}
                             <td class="text-end">
                                 <a href="{% url 'staffs_detail' staff.id %}" class="btn btn-light btn-sm border-0" title="View Profile">

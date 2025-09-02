@@ -34,7 +34,7 @@ urlpatterns = [
     path('packages/delete-itinerary/<str:code>/', itinerary_controller.delete, name='delete_itinerary'),
 
     # GET method only
-    path('settings/', setting_controller.list, name = 'settings'),
+    path('settings/', setting_controller.settings_home, name = 'settings'),
     path('settings/access-logs/', setting_controller.logs),
     path('settings/account/', setting_controller.account),
     path('settings/account/email/', setting_controller.email),

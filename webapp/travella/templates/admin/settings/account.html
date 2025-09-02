@@ -3,34 +3,65 @@
 {% block setting_content %}
 
 <h4 class="fw-bold mb-4">Account Information</h4>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="d-flex align-items-center mb-4">
-        <img src="https://via.placeholder.com/80" class="rounded-circle" id="imagePreview" alt="Profile Image" style="width: 80px; height: 80px; object-fit: cover;">
-        <div class="ms-4">
-            <label for="imageUploadInput" class="btn btn-outline-custom-primary btn-sm rounded-pill">Upload Picture</label>
-            <input type="file" class="d-none" id="imageUploadInput" name="profile_image" accept="image/*">
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-lg-9">
-            <label for="nameInput" class="form-label">Name</label>
-            <input type="text" class="form-control form-control-custom" id="nameInput" name="name" value="Than Thar">
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-lg-9">
-            <label for="phoneInput" class="form-label">Phone</label>
-            <input type="tel" class="form-control form-control-custom" id="phoneInput" name="phone" value="09-246476786">
-         </div>
-    </div>
-    <div class="row mb-4">
-        <div class="col-lg-9">
-            <label for="addressInput" class="form-label">Address</label>
-            <textarea class="form-control form-control-custom" id="addressInput" name="address" rows="3">University Of Computer studies, Yangon</textarea>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-custom-primary">Save Changes</button>
-</form>
 
+<div class="content-card mb-4">
+    <h6 class="border-bottom pb-2 mb-4">Personal Details</h6>
+    <form method="POST" action="/admins/settings/account/info" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="d-flex align-items-center mb-4">
+            <img src="{{ user.photo_url|default:'https://via.placeholder.com/80' }}" class="rounded-circle me-4" id="imagePreview" alt="Profile Image" style="width: 80px; height: 80px; object-fit: cover;">
+            <div>
+                <label for="imageUploadInput" class="btn btn-outline-custom-primary btn-sm rounded-pill">Upload Picture</label>
+                <input type="file" class="d-none" id="imageUploadInput" name="profile_image" accept="image/*">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-9">
+                <label for="nameInput" class="form-label">Name</label>
+                <input type="text" class="form-control form-control-custom" id="nameInput" name="name" value="{{ user.name }}" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-lg-9">
+                <label for="phoneInput" class="form-label">Phone</label>
+                <input type="tel" class="form-control form-control-custom" id="phoneInput" name="phone" value="{{ user.phone }}" required>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-lg-9">
+                <label for="addressInput" class="form-label">Address</label>
+                <textarea class="form-control form-control-custom" id="addressInput" name="address" rows="3">{{ user.address }}</textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-custom-primary">Save Changes</button>
+    </form>
+</div>
+
+<div class="content-card mb-4">
+    <h6 class="border-bottom pb-2 mb-4">Security & History</h6>
+    <div class="row g-3">
+        <div class="col-sm-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Change Password</h5>
+                    <p class="card-text text-secondary df-fs-sm">
+                        Update your password to a new one.
+                    </p>
+                    <a href="/admins/settings/account/password" class="btn btn-secondary mt-2">Change Password</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Access History</h5>
+                    <p class="card-text text-secondary df-fs-sm">
+                        View all successful and failed sign-in attempts for your account.
+                    </p>
+                    <a href="/admins/settings/access-logs/" class="btn btn-secondary mt-2">View History</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
