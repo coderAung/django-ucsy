@@ -1,0 +1,197 @@
+{% extends "layouts/customer-layout.html" %}
+{% load static %}
+
+{% block mainTitle %}Customer{% endblock mainTitle %}
+{% block title %}Help & Support{% endblock title %}
+
+{% block cssFile %}
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') 
+                center/cover no-repeat;
+}
+
+.faq-item {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-question {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.faq-question:hover {
+    background-color: #0d5cb6 !important;
+}
+
+{% endblock cssFile %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-section text-center text-white">
+    <div class="container py-5">
+        <h1 class="display-4 fw-bold mb-3">How Can We Help You?</h1>
+        <p class="lead">Find answers to common questions or reach our support team directly.</p>
+    </div>
+</section>
+
+<!-- FAQs Section -->
+  <section id="faqs" class="container mb-5">
+    <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            How do I book a tour package? <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Booking a tour package is simple! Browse our destinations, select your preferred package, choose your
+              travel dates, and proceed to checkout. You'll need to provide traveler details and make a payment to
+              confirm your booking.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            What is your cancellation policy? <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Our cancellation policy varies by package. Generally, cancellations made 30+ days before departure
+              receive a full refund minus a processing fee. Between 15-29 days, we refund 50%. Cancellations within 14
+              days of departure are non-refundable. Please check specific terms for your package.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Do you offer travel insurance? <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, we highly recommend purchasing travel insurance for all bookings. We offer comprehensive insurance
+              options that cover trip cancellations, medical emergencies, lost luggage, and other travel-related issues.
+              You can add insurance during the booking process.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            How can I modify my existing booking? <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>You can modify your booking by logging into your account and accessing the "My Trips" section. For
+              changes to travel dates, destinations, or traveler information, please contact our support team as soon as
+              possible. Modification fees may apply depending on the changes and how close you are to your travel date.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            What documents do I need for Myanmar travel? <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>For international travel, you typically need a valid passport (with at least 6 months validity), visas
+              for your destination country, and any required vaccinations. We provide detailed documentation
+              requirements for each destination after booking, but we recommend checking with the relevant embassy for
+              the most current information.</p>
+          </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Can I customize a tour package? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! Many of our packages can be tailored to suit your preferences. You can request changes to the
+                itinerary, accommodation, or activities. Contact our support team, and we’ll help design a trip that
+                fits your needs.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Do you offer group discounts? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Absolutely! We offer special discounts for groups of 8 or more travelers. Please reach out to our team
+                for a custom quote based on your group size and destination.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              What payment methods do you accept? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>We accept major credit/debit cards, bank transfers, and secure online payment gateways. For some
+                destinations, we also offer installment payment plans — just ask our team!</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Are airport transfers included? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Many of our packages include airport pickup and drop-off. If not included, you can add this service
+                during checkout or request it separately by contacting us.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Do I need vaccinations for my trip? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Some destinations require specific vaccinations or health certificates. We’ll inform you about
+                recommended vaccines after booking, but we also advise checking official health guidelines for your
+                destination.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Can I travel solo on your tours? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! We welcome solo travelers. Some packages may include a single supplement fee, but we also have
+                group tours where you can share rooms with other travelers to save costs.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              How do I contact support during my trip? <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>We provide 24/7 customer support via phone, email, and live chat. You’ll receive emergency contact
+                details in your travel documents, so help is always just a call away.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
+
+{% block jsFile %}
+<script>
+    function toggleFaq(element) {
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector('i');
+
+        if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+            icon.classList.remove('bi-chevron-up');
+            icon.classList.add('bi-chevron-down');
+        } else {
+            answer.style.display = 'block';
+            icon.classList.remove('bi-chevron-down');
+            icon.classList.add('bi-chevron-up');
+        }
+    }
+</script>
+{% endblock jsFile %}

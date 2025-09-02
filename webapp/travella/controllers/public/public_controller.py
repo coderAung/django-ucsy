@@ -24,3 +24,6 @@ def packages(request:HttpRequest) -> HttpResponse:
 def package_detail(request:HttpRequest, code:str) -> HttpResponse:
     package_detail = packageService.detail(code = code)
     return render(request, view('packages/detail'), {'dto': package_detail})
+
+def help_support(request):
+    return render(request, 'support/help.html')
