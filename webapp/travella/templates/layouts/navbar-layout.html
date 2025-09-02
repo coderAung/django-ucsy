@@ -41,7 +41,13 @@ position-sticky sticky-top
                             <i class="fa-solid fa-arrow-right-from-bracket me-3 text-danger"></i>Sign Out</a></li>
                         </ul>
                     </div>
-                    <img src="https://cdn.pixabay.com/photo/2019/08/11/18/59/icon-4399701_1280.png"
+                    <img id="navBarProfileImage" src="
+                    {% if request.user.accountdetail.photo %}
+                    {{request.user.accountdetail.photo.url}}
+                    {% else %}                        
+                    https://cdn.pixabay.com/photo/2019/08/11/18/59/icon-4399701_1280.png
+                    {% endif %}
+                    "
                         style="width: 45px; height: 45px; border-radius: 50%;"
                         alt="">
                 </div>

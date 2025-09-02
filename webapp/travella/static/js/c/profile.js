@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await response.json()
         if(data.success) {
             profileImage.src = data.url
+            const navBarProfileImage = document.getElementById('navBarProfileImage')
+            if(navBarProfileImage) {
+                navBarProfileImage.src = data.url
+            }
         } else {
             console.log(data.message);
         }

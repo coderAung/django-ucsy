@@ -11,7 +11,7 @@ def get_profile_data(request:HttpRequest) -> 'AccountDto':
     account:Account = request.user
     detail:AccountDetail = account.accountdetail
     return AccountDto(
-        profile_image=detail.photo.url,
+        profile_image=detail.photo.url if detail.photo else '',
         phone=detail.phone,
         address=detail.address,
         name=detail.name,

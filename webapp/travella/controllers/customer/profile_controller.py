@@ -10,6 +10,7 @@ view = RouteView.get('customer/')
 
 def profile(request:HttpRequest) -> HttpResponse:
     try:
+        print(f'====={request.user.id}=====')
         profile_data = customer_profile_service.get_profile_data(request)
         booking_status = customer_profile_service.get_booking_status_by_account_id(profile_data.id)
         tour_reminders = customer_profile_service.get_tour_reminders_by_account_id(profile_data.id)
