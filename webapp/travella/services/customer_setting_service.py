@@ -9,7 +9,7 @@ from travella.exceptions.business_exception import BusinessException
 def get_setting_dtos(id:uuid) -> tuple['AccountInfo', list['AccessLogInfo']]:
     try:
         account:Account = Account.objects.get(id=id)
-        logs = AccessLog.objects.filter(account=account)
+        logs = AccessLog.objects.filter(account=account).order_by('-created_at')
         return AccountInfo._from(account), [AccessLogInfo._from(log) for log in logs]
     except ValueError as e:
         raise BusinessException(f'Account : {id} not found.')

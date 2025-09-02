@@ -128,18 +128,18 @@
                         <table class="table table-hover df-fs-sm">
                             <thead class="table-light">
                                 <tr class="align-middle">
-                                    <th>No.</th>
+                                    <th>Booking Code</th>
                                     <th>User</th>
                                     <th class="text-center">Tickets</th>
                                     <th class="text-center">Status</th>
                                     <th>Booked At</th>
-                                    <th></th>
+                                    {% comment %} <th></th> {% endcomment %}
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for bs in dto.bookingStatusItems %}
                                 <tr class="align-middle">
-                                    <td>{{forloop.counter}}</td>
+                                    <td>{{bs.booking_code}}</td>
                                     <td>{{bs.email}}</td>
                                     <td class="text-center">{{bs.ticket_count}}</td>
                                     <td>
@@ -154,9 +154,9 @@
                                         {% endif %}
                                     </td>
                                     <td>{{bs.bookedAt}}</td>
-                                    <td>
+                                    {% comment %} <td>
                                         <button data-bid="{{bs.id}}" class="btn btn-sm df-btn-soft-purple bookingOverviewBtn">Detail</button>
-                                    </td>
+                                    </td> {% endcomment %}
                                 </tr>
                                 {% endfor %}
                             </tbody>

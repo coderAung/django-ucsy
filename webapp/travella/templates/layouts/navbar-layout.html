@@ -4,9 +4,9 @@ position-sticky sticky-top
 {{cssClass}}
 ">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <div class="logo-icon"><i class="bi bi-compass-fill text-white"></i></div><span
-                class="fw-bold">Travella</span>
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'discover' %}">
+            <div class="logo-icon"><i class="bi bi-compass-fill me-2"></i></div>
+            <span class="fw-bold fs-4">Travella</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span
                 class="navbar-toggler-icon"></span></button>
@@ -54,7 +54,7 @@ position-sticky sticky-top
             {% else %}
             <div class="d-flex align-items-center"><a href="{% url 'sign_in'%}"
                     class="nav-login-link text-decoration-none text-dark fw-medium me-3">Sign In</a>
-                <a href="#" class="btn btn-primary-main rounded-pill px-4">Sign Up</a>
+                <a href="{% url 'sign_up' %}" class="btn btn-primary-main rounded-pill px-4">Sign Up</a>
             </div>
             {%endif%}
 

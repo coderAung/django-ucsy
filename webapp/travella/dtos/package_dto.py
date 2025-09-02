@@ -47,6 +47,7 @@ class PackageItem:
 @dataclass(frozen=True)
 class BookingStatus:
     id: uuid.UUID
+    booking_code:str
     email: str
     status: str
     ticket_count: int
@@ -56,6 +57,7 @@ class BookingStatus:
     def of(booking: Booking) -> "BookingStatus":
         return BookingStatus(
             id=booking.id,
+            booking_code = booking.booking_code,
             email=booking.customer.email,
             status=booking.get_status_display(),
             ticket_count=booking.ticket_count,

@@ -8,17 +8,21 @@
 {% block title %}Discover{% endblock %}
 
 {% block cssFile %}
-<link rel="stylesheet" href="{% static 'css/discover.css' %}">
-{%endblock%}
-{%block content%}
+    <link rel="stylesheet" href="{% static 'css/discover.css' %}">
+{% endblock %}
+
+{% block content %}
 <section class="hero-section">
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
                 <h1 class="mb-4">Make Memories That Last a Lifetime</h1>
-                <p class="lead text-muted mb-5">From sky-high thrills to deep-sea adventures, discover and book
-                    unforgettable experiences worldwide.</p>
-                <form class="search-bar-container d-flex align-items-center bg-white rounded shadow p-2" method="get" action="{% url 'customer_packages' %}">
+                <p class="lead text-muted mb-5">
+                    From sky-high thrills to deep-sea adventures, discover and book unforgettable experiences worldwide.
+                </p>
+                <form class="search-bar-container d-flex align-items-center bg-white rounded shadow p-2" 
+                      method="get" 
+                      action="{% url 'customer_packages' %}">
                     <div class="flex-grow-1 px-3">
                         <label class="text-muted small">Choose Destination</label>
                         <select name="destination" class="form-select border-0 shadow-none p-0">
@@ -41,23 +45,34 @@
                             <option value="500000-" {% if request.GET.price == "500000-" %}selected{% endif %}>500,000 kyats and above</option>
                         </select>
                     </div>
-                    
                     <button type="submit" class="btn search-btn d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle">
                         <i class="bi bi-search fs-5"></i>
                     </button>
                 </form>
-
             </div>
             <div class="col-lg-6">
                 <div class="hero-image-wrapper">
                     <div class="hero-image-clipper">
                         <img src="{% static 'images/myanmar.jpg' %}" class="img-fluid" alt="Paragliding">
                     </div>
-
                     <div class="location-tag"><i class="bi bi-geo-alt-fill"></i> Myanmar</div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div>
+        <img src="{% static 'images/airplane.png' %}" class="airplane" alt="">
+    </div>
+
+    <div class="animation-container">
+        <img src="{% static 'images/air_ballon1.png' %}" class="hot-air-balloon balloon-1" alt="Floating Balloon">
+        <img src="{% static 'images/air_ballon2.png' %}" class="hot-air-balloon balloon-2" alt="Floating Balloon">
+        <img src="{% static 'images/air_ballon4.png' %}" class="hot-air-balloon balloon-3" alt="Floating Balloon">
+        <img src="{% static 'images/air_ballon5.png' %}" class="hot-air-balloon balloon-4" alt="Floating Balloon">
+        <img src="{% static 'images/air_ballon2.png' %}" class="hot-air-balloon balloon-5" alt="Floating Balloon">
+        <img src="{% static 'images/air_ballon1.png' %}" class="hot-air-balloon balloon-6" alt="Floating Balloon">
+        <img src="{% static 'images/air_ballon4.png' %}" class="hot-air-balloon balloon-7" alt="Floating Balloon">
     </div>
 </section>
 
@@ -78,7 +93,6 @@
                     <p class="text-muted">Our team is here to help you around the clock, anywhere you are.</p>
                 </div>
             </div>
-
             <div class="col-md-4">
                 <div class="feature-box">
                     <div class="feature-icon"><i class="bi bi-shield-check"></i></div>
@@ -87,36 +101,38 @@
                 </div>
             </div>
         </div>
-        <div class="text-center mt-5"><a href="{%url 'customer_packages'%}"
-                class="btn btn-primary-main rounded-pill px-5 py-2">Find &
-                Book Your Adventure Now</a></div>
+        <div class="text-center mt-5">
+            <a href="{% url 'customer_packages' %}" class="btn btn-primary-main rounded-pill px-5 py-2">
+                Find & Book Your Adventure Now
+            </a>
+        </div>
     </div>
 </section>
 
-<!-- Adrenaline Rush Section -->
 <section class="section-padding package-section" id="packages">
     <div class="container">
         <div class="text-center mb-5">
             <p class="section-title-small mb-1" style="color: var(--brand-primary);">THE MOST BOOKED PACKAGE</p>
             <h2 class="section-title-large">Find Your Next Adrenaline Rush</h2>
         </div>
+
         <ul class="nav nav-pills justify-content-center mb-5 adventure-pills">
             <li class="nav-item">
                 <a class="nav-link active" href="{% url 'customer_packages' %}">All</a>
             </li>
             {% for c in categories %}
-            <li class="nav-item mt-1">
-                <a class="nav-link" href="{% url 'customer_packages' %}?categoryId={{ c.id }}">{{ c.name }}</a>
-            </li>
+                <li class="nav-item mt-1">
+                    <a class="nav-link" href="{% url 'customer_packages' %}?categoryId={{ c.id }}">{{ c.name }}</a>
+                </li>
             {% endfor %}
-            
         </ul>
+
         <div class="row g-4 g-lg-5">
             {% for package in most_booked_packages %}
                 <div class="col-lg-4 col-md-6">
-                    <div class="card adventure-card h-100">
-                        <span class="booking-count">
-                            <i class="bi bi-people-fill"></i> {{ package.booking_total }} booked
+                    <div class="card adventure-card h-100 position-relative">
+                        <span class="booking-count position-absolute rounded-pill mt-2 ms-2 px-2 text-white py-2" style="backdrop-filter: blur(4px) brightness(0.7);">
+                            <i class="bi bi-people-fill text-white"></i> {{ package.booking_count }} booked
                         </span>
                         <img src="{{ package.cover_photo }}" class="card-img-top" alt="{{ package.title }}">
                         <div class="card-body p-4">
@@ -133,22 +149,23 @@
                     </div>
                 </div>
             {% endfor %}
-   
         </div>
-        <div class="text-center mt-5 pt-3"><a href="{% url 'customer_packages' %}" class="btn btn-primary-main rounded-pill px-5 py-2">See More
-                Packages <i class="bi bi-arrow-right-short"></i></a></div>
+
+        <div class="text-center mt-5 pt-3">
+            <a href="{% url 'customer_packages' %}" class="btn btn-primary-main rounded-pill px-5 py-2">
+                See More Packages <i class="bi bi-arrow-right-short"></i>
+            </a>
+        </div>
     </div>
 </section>
 
-<!-- Expertise Section -->
 <section class="section-padding expertise-section" style="background-color: var(--page-bg);">
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
                 <p class="section-title-small mb-2">WHY CHOOSE US</p>
                 <h2 class="section-title-large display-6 mb-3">Your Next Thrills, Backed by Our Expertise</h2>
-                <p class="text-muted mb-4">We create unforgettable experiences. Whether you're scaling mountains or
-                    diving into the deep blue, we ensure every adventure is thrilling.</p>
+                <p class="text-muted mb-4">We create unforgettable experiences. Whether you're scaling mountains or diving into the deep blue, we ensure every adventure is thrilling.</p>
                 <a href="{% url 'about_us' %}" class="btn btn-primary-main rounded-pill px-4 py-2 mb-5">Read More</a>
                 <div class="row text-center">
                     <div class="col-4">
@@ -168,20 +185,18 @@
             <div class="col-lg-6">
                 <div class="row g-4">
                     <div class="col-12">
-                        <div class="image-card"><img src="{% static 'images/innlay.jpg' %}" class="img-fluid"
-                                alt="Mountain">
+                        <div class="image-card">
+                            <img src="{% static 'images/innlay.jpg' %}" class="img-fluid" alt="Mountain">
                             <div class="image-caption">
                                 <h5 class="fw-bold">Breathtaking Height</h5>
-                                
                             </div>
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="image-card"><img src="{% static 'images/mandalay.jpg' %}" class="img-fluid"
-                                alt="Beach">
+                        <div class="image-card">
+                            <img src="{% static 'images/mandalay.jpg' %}" class="img-fluid" alt="Beach">
                             <div class="image-caption">
                                 <h5 class="fw-bold">Golden Land</h5>
-                                
                             </div>
                         </div>
                     </div>
@@ -190,5 +205,4 @@
         </div>
     </div>
 </section>
-
-{%endblock%}
+{% endblock %}
