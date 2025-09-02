@@ -20,8 +20,6 @@ def get_filtered_staff(query: str = None, role: str = None) -> QuerySet[Account]
         q &= (Q(role=Account.Role.ADMIN ) | Q(role = Account.Role.MOD))
 
     base_queryset = Account.objects.filter(q)
-    for b in base_queryset:
-        print(b.email, b.role)
     return base_queryset
 
 
