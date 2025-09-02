@@ -13,6 +13,12 @@ def load_payments() -> PaymentType:
     populate_payment()
     return PaymentType.objects.all()
 
+def get_by_id(id:uuid) -> PaymentRequest:
+    try:
+        return PaymentRequest.objects.get(id=id)
+    except ValueError as e:
+        raise BusinessException('Payment not found.')
+
 def get_reservation_dtos(booking_id:uuid, customer_id:uuid) -> tuple[PackageInfo, BookingInfo]:
     booking = Booking.objects.get(id=booking_id)
     payment_request_count = PaymentRequest.objects.filter(booking__id = booking_id).count()

@@ -12,6 +12,7 @@ from travella.domains.models.booking_models import Booking
 from travella.domains.models.payment_models import PaymentRequest, PaymentType
 from travella.domains.models.tour_models import PackageData
 from travella.exceptions.business_exception import BusinessException
+from travella.services import customer_notification_service
 
 
 # cannot cancelled requesting status booking
@@ -51,7 +52,9 @@ def update_remaing_tickets(booking:Booking):
     package_data:PackageData = booking.package.data
     remaining_tickets = package_data.remaining_tickets
     package_data.remaining_tickets = remaining_tickets + ticket_count
+    print(package_data.remaining_tickets)
     package_data.save()
+    booking.status
 
 def cancel_pending_booking(booking:Booking):
     booking.status = Booking.Status.CANCELLED
@@ -74,9 +77,11 @@ def cancel_refundable_booking(form:'RefundForm'):
     try:
         booking = Booking.objects.get(id=form.booking_id)
         with transaction.atomic():
-            form.get_model().save()
+            refund = form.get_model()
+            refund.save()
             cancel_pending_booking(booking)
             update_remaing_tickets(booking)
+            customer_notification_service.save_refund_notification(refund)
     except ValueError as e:
         raise BusinessException('Unknown Error')
 

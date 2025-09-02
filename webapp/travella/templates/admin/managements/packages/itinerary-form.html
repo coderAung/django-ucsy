@@ -133,7 +133,7 @@
                 <div class="d-flex justify-content-end w-100 mt-3">
                     <div>
                         {% if not list %}
-                        <button type="button" class="btn df-btn-glass-gray">Skip For Now</button>
+                        <a href="{% url 'packages_detail' code %}" class="btn df-btn-glass-gray">Skip For Now</a>
                         {% else %}
                         <a href="{% url 'packages_detail' code %}" class="btn df-btn-glass-green">Done</a>
                         {% endif %}

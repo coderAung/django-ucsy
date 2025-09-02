@@ -62,6 +62,8 @@ def reserve(id:uuid, account_id:uuid):
         # update booking status to requestion to reserved
         payment_request.booking.status = Booking.Status.RESERVED
         payment_request.booking.save()
+        # add notif for reservation success
+        customer_notification_service.save_payment_reserved_notification(payment_request, account_id)
         # end transaction
 
 def get_reserver(id:uuid) -> Reserver:
