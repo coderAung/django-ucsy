@@ -33,7 +33,9 @@ class CustomerNotificationItem:
 
 
 def save_payment_reject_notification(payment_request:PaymentRequest, reject_message:str, account_id:uuid):
-    reject_content = f'Your payment request for booking : {payment_request.booking.id} is rejected. \nNote : {reject_message}'
+    reject_content = f"""
+                        Your payment request for booking : {payment_request.booking.booking_code} is rejected.
+                        Note : {reject_message}"""
     notification = CustomerNotification(
                 related_id = payment_request.id,
                 message = reject_content,
@@ -45,7 +47,7 @@ def save_payment_reject_notification(payment_request:PaymentRequest, reject_mess
     notification.save()
 
 def save_payment_reserved_notification(payment_request:PaymentRequest, account_id:uuid):
-    message = f'Your payment for booking : {payment_request.booking.id} is successfully reserved.'
+    message = f'Your payment for booking : {payment_request.booking.booking_code} is successfully reserved.'
     notification = CustomerNotification(
         related_id=payment_request.id,
         message = message,
@@ -56,7 +58,7 @@ def save_payment_reserved_notification(payment_request:PaymentRequest, account_i
     notification.save()
 
 def save_refund_notification(refund:Refunding):
-    message = f'Your booking {refund.booking.id} is cancelled. Refunding is processing.'
+    message = f'Your booking {refund.booking.booking_code} is cancelled. Refunding is processing.'
     notification = CustomerNotification(
         related_id = refund.id,
         message = message,

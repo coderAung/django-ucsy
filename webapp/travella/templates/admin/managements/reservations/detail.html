@@ -3,6 +3,11 @@
 {% load static %}
 
 
+{% block title %}
+    Payment - Detail
+{% endblock title %}
+    
+
 {% block cssFile %}
     <link rel="stylesheet" href="{% static 'css/glass.css' %}">
     <style>
@@ -123,7 +128,7 @@
                                     <div class="col">
                                         <div>
                                             <span>Booking Code</span>
-                                            <span class="mt-2 form-control">{{booking_info.id}}</span>
+                                            <span class="mt-2 form-control">{{booking_info.booking_code}}</span>
                                         </div>
                                     </div>
                                     <div class="col">

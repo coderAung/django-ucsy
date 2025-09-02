@@ -17,4 +17,3 @@ class CustomerNotification(AbstractModel):
     type = models.IntegerField(choices=NotificationType.choices, null=False)
     image = models.ImageField(upload_to='noti/')
     created_by = models.ForeignKey(Account, on_delete=models.PROTECT, null=True)
-    

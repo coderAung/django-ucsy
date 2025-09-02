@@ -132,9 +132,10 @@
                                                 <label for="locationInput" class="h6">Location <small class="df-fs-sm df-text-red">*</small></label>
                                                 <input id="locationInput" name="location" list="locations" placeholder="Enter Location" type="text" class="form-control">
                                                 <smalll class="df-fs-sm df-text-red d-none validationError">Location is required.</smalll>
+                                                <smalll class="df-fs-sm df-text-red d-none" id="invalidLocationError">Invalid location.</smalll>
                                                 <datalist id="locations">
                                                     {% for l in locations %}
-                                                        <option value="{{l.name}}">{{l.id}}</option>
+                                                        <option value="{{l.name}}" data-id="{{l.id}}">{{l.id}}</option>
                                                     {% endfor %}
                                                 </datalist>
                                                 

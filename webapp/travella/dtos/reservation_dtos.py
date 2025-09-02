@@ -40,6 +40,7 @@ class PackageInfo:
 @dataclass
 class BookingInfo:
     id:uuid
+    booking_code:str
     booking_date:date
     booking_time:time
     ticket_count:int
@@ -55,6 +56,7 @@ class BookingInfo:
     def of(b:Booking) -> 'BookingInfo':
         return BookingInfo(
             id=b.id,
+            booking_code=b.booking_code,
             booking_date=b.created_at.date(),
             booking_time=b.created_at.time(),
             ticket_count=b.ticket_count,
@@ -94,6 +96,7 @@ class PaymentRequestItem:
     email:str
     name:str
     phone:str
+    booking_id:uuid
     booking_code:str
     booking_date:date
     request_date:date
@@ -107,7 +110,8 @@ class PaymentRequestItem:
             email=p.customer.email,
             name=p.customer.accountdetail.name,
             phone=p.customer.accountdetail.phone,
-            booking_code=p.booking.id,
+            booking_id=p.booking.id,
+            booking_code=p.booking.booking_code,
             booking_date=p.booking.created_at.date,
             request_date=p.created_at.date,
             status=p.booking.get_status_display(),

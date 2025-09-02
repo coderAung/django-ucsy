@@ -24,11 +24,12 @@ class ReservationSearch:
             if self.type == 'email':
                 q &= Q(customer__email__startswith=self.q)
             elif self.type == 'booking_code':
-                is_valid, message = is_valid_uuid(self.q, f'Invalid Booking Code : {self.q}')
-                if is_valid:
-                    q &= Q(booking__id=uuid.UUID(self.q))
-                else:
-                    messages.error(self._request, message)
+                    q &= Q(booking__booking_code=self.q)
+                # is_valid, message = is_valid_uuid(self.q, f'Invalid Booking Code : {self.q}')
+                # if is_valid:
+                #     q &= Q(booking__id=uuid.UUID(self.q))
+                # else:
+                #     messages.error(self._request, message)
         if self.payment_status == 'reserved':
             q &= Q(booking__status = Booking.Status.RESERVED)
         else:

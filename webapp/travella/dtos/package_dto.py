@@ -23,6 +23,7 @@ class PackageItem:
     price: decimal.Decimal
     bookings: int
     remaining_tickets: int
+    is_deletable:bool
 
     @staticmethod
     def of(package: Package) -> "PackageItem":
@@ -39,6 +40,7 @@ class PackageItem:
             price=package.price,
             bookings=package.booking_count,
             remaining_tickets=package.data.remaining_tickets,
+            is_deletable=package.is_deletable,
         )
 
 
@@ -102,6 +104,7 @@ class PackageItemDetail(PackageItem):
             status=base_item.status,
             price=base_item.price,
             bookings=base_item.bookings,
+            is_deletable=base_item.is_deletable,
             remaining_tickets=package.data.remaining_tickets,
             overview=package.overview,
             bookingStatusItems=[BookingStatus.of(b) for b in package.bookings.all()],

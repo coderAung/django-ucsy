@@ -1,5 +1,19 @@
 let images = []
 let categories = [] // {'id': 1, 'name': 'Adventure'}
+let locations = [] // {'id': 1, 'name': 'Yangon'}
+
+function initLocations() {
+    const datalist = document.getElementById('locations')
+    const options = datalist.querySelectorAll('option')
+    Array.from(options).forEach(i => {
+        const id = i.dataset['id']
+        const value = i.value
+        locations.push({
+            id, value
+        })
+    })
+}
+
 function initCategories() {
     const categoryItems = document.getElementsByClassName('categoryItem')
     Array.from(categoryItems).forEach(item => {
@@ -24,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     initCategories()
+    initLocations()
     const categoryContainer = document.getElementById('categoryContainer')
     const codeInput = document.getElementById('codeInput')
     const categorySearch = document.getElementById('categorySearch')
@@ -142,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if(packageForm && publishBtn) {
         
-        validateForm = () => {
+        const validateForm = () => {
             if(codeInput.value &&
                 cidInput.value &&
                 nameInput.value &&
@@ -163,32 +178,28 @@ document.addEventListener('DOMContentLoaded', () => {
             return false
         }
 
-        formSubmit = e => {
+        const formSubmit = e => {
             e.preventDefault()
             const dt = new DataTransfer()
             images.forEach(i => dt.items.add(i))
             imageInput.value = ''
             imageInput.files = dt.files
-            // packageForm.submit()
             success = validateForm()
             if(!success) {
                 return
             }
-            packageForm.submit()
+            if(1 == locations.filter(l => l.value == locationInput.value).length) {
+                packageForm.submit()
+            } else {
+                const error = document.getElementById('invalidLocationError') 
+                if(error.classList.contains('d-none')) {
+                    error.classList.remove('d-none')
+                }
+            }
         }
 
         publishBtn.addEventListener('click', formSubmit)
         packageForm.addEventListener('submit', formSubmit)
-        // packageForm.addEventListener('submit', e => {
-        //     e.preventDefault()
-        //     const formData = new FormData(packageForm)
-        //     images.forEach(i => formData.append('images[]', i))
-        //     fetch(packageForm.action, {
-        //         method: 'POST',
-        //         body: formData,
-        //     }).then(res => res.json())
-        // })
-
     }
 })
 

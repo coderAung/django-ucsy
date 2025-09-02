@@ -1,6 +1,12 @@
 {% extends 'layouts/admin-layout.html' %}
 {% load tz %}
 
+
+{% block title %}
+  Booking - Detail
+{% endblock title %}
+  
+
 {% block content %}
 <div class="container my-5">
   <div class="card border-0 shadow-lg rounded-4" style="max-width: 800px; margin-left: 20px;">
@@ -21,8 +27,8 @@
       </div>
 
       <div class="row mb-3">
-        <div class="col-sm-5 text-muted fw-semibold">🔖 Booking ID:</div>
-        <div class="col-sm-7">{{ booking.id }}</div>
+        <div class="col-sm-5 text-muted fw-semibold">🔖 Booking Code:</div>
+        <div class="col-sm-7">{{ booking.booking_code }}</div>
       </div>
 
      <!-- Booking Date & Time Section -->

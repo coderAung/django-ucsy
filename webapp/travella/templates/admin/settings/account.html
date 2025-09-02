@@ -1,5 +1,7 @@
 {% extends 'layouts/setting-layout.html' %}
 
+{% load static %}
+
 {% block setting_content %}
 
 <style>
@@ -50,8 +52,7 @@
 <form method="POST" enctype="multipart/form-data" action="{% url 'settings_account_info' %}">
     {% csrf_token %}
     <div class="d-flex align-items-center mb-4">
-                <img src="{% if user.detail.photo %}{{ user.detail.photo.url }}{% else %}https://via.placeholder.com/80{% endif %}" class="rounded-circle" id="imagePreview" alt="Profile Image" style="width: 80px; height: 80px; object-fit: cover;">
-
+                <img src="{% if user.accountdetail.photo %}{{ user.accountdetail.photo.url }}{% else %} {% static 'images/profile.webp' %} {% endif %}" class="rounded-circle" id="imagePreview" alt="Profile Image" style="width: 80px; height: 80px; object-fit: cover;">
         <div class="ms-4">
             <label for="imageUploadInput" class="btn btn-outline-custom-primary btn-sm rounded-pill">Upload Picture</label>
             <input type="file" class="d-none" id="imageUploadInput" name="profile_image" accept="image/*">
@@ -60,19 +61,19 @@
     <div class="row mb-3">
         <div class="col-lg-9">
             <label for="nameInput" class="form-label">Name</label>
-            <input type="text" class="form-control form-control-custom" id="nameInput" name="name" value="{{ user.detail.name|default:'' }}">
+            <input type="text" class="form-control form-control-custom" id="nameInput" name="name" value="{{ user.accountdetail.name|default:'' }}">
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-lg-9">
             <label for="phoneInput" class="form-label">Phone</label>
-            <input type="tel" class="form-control form-control-custom" id="phoneInput" name="phone" value="{{ user.detail.phone|default:'' }}">
+            <input type="tel" class="form-control form-control-custom" id="phoneInput" name="phone" value="{{ user.accountdetail.phone|default:'' }}">
          </div>
     </div>
     <div class="row mb-4">
         <div class="col-lg-9">
             <label for="addressInput" class="form-label">Address</label>
-            <textarea class="form-control form-control-custom" id="addressInput" name="address" rows="3">{{ user.detail.address|default:'' }}</textarea>
+            <textarea class="form-control form-control-custom" id="addressInput" name="address" rows="3">{{ user.accountdetail.address|default:'' }}</textarea>
         </div>
     </div>
     <button type="submit" class="btn btn-custom-primary">Save Changes</button>

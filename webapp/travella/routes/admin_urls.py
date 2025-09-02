@@ -39,7 +39,7 @@ urlpatterns = [
     path('locations/delete/<int:pk>/', location_controller.location_delete, name='location_delete'),
 
 
-    path('settings/', setting_controller.list, name = 'settings'),
+    path('settings/', setting_controller.settings_home, name = 'settings'),
     path('settings/access-logs/', setting_controller.logs),
     path('settings/account/', setting_controller.account),
     path('settings/account/email/', setting_controller.email),

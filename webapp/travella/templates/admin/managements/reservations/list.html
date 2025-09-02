@@ -3,6 +3,10 @@
 {% load static %}
 
 
+{% block title %}
+    Reservations  
+{% endblock title %}
+
 {% block cssFile %}
     <link rel="stylesheet" href="{% static 'css/pagination2.css' %}">
 {% endblock cssFile %}
@@ -80,31 +84,40 @@
                 </thead>
 
                 <tbody>
-                    
-                    {% for item in list %}
-                        <tr class="align-middle">
-                            <td>{{forloop.counter}}</td>
-                            <td>{{item.email}}</td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.phone}}</td>
 
-                            <td>{{item.booking_code}}</td>
-                            <td>{{item.booking_date}}</td>
-                            <td>{{item.request_date}}</td>
-                            <td><span class="df-badge 
-                            {% if item.status == 'Requesting' %}
-                                {{'badge-purple'}}
-                            {% else %}
-                                {{'badge-green'}}
-                            {% endif %}">{{item.status}}</span></td>
-                            <td>{{item.payment_type}}</td>
-                            <td>
-                                <a href="{% url 'reservations_detail' item.reservation_id %}" class="btn btn-sm df-btn-glass-blue">
-                                    <i class="bi bi-eye df-text-blue"></i>
-                                </a>
-                            </td>
+                    
+                    {% if list %}
+                        {% for item in list %}
+                            <tr class="align-middle">
+                                <td>{{forloop.counter}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.phone}}</td>
+
+                                <td>{{item.booking_code}}</td>
+                                <td>{{item.booking_date}}</td>
+                                <td>{{item.request_date}}</td>
+                                <td><span class="df-badge 
+                                {% if item.status == 'Requesting' %}
+                                    {{'badge-purple'}}
+                                {% else %}
+                                    {{'badge-green'}}
+                                {% endif %}">{{item.status}}</span></td>
+                                <td>{{item.payment_type}}</td>
+                                <td>
+                                    <a href="{% url 'reservations_detail' item.reservation_id %}" class="btn btn-sm df-btn-glass-blue">
+                                        <i class="bi bi-eye df-text-blue"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td class="text-center" colspan="9">No records.</td>
                         </tr>
-                    {% endfor %}
+                    {% endif %}
+                        
+                    
                 </tbody>
             </table>
         </div>

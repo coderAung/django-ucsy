@@ -56,11 +56,10 @@
         ">
             <div class="d-flex align-items-center column-gap-3">
                 <a href="{% url 'customer_booking_history' %}" class="text-decoration"><i class="bi bi-arrow-left fs-4 text-white"></i></a>
-                <span class="fs-4">🏖️</span> 
                 <div class="">
                     <h4 class="mb-1 fw-bold text-white">Booking Details</h4>
                     <p class="mb-0 opacity-30">
-                        <strong class="text-white">ID : {{ booking.id }}</strong>
+                        <strong class="text-white">Booking Code : {{ booking.booking_code }}</strong>
                     </p>
                 </div>
             </div>
@@ -190,8 +189,8 @@
                         Cancel
                     </button>
                     <a href="{% url 'booking_reserve' booking.id %}" class="btn btn-success">Reserve</a>
-                {% elif booking.status == 2 %} {# Reserved #}
-                    <button data-bs-toggle="modal" data-bs-target="#bookingCancelModal" type="button" class="btn btn-danger">Cancel</button>
+                {% elif booking.status == 2 and package_status != 'Finished' %} {# Reserved #}
+                    <button data-bs-toggle="modal" data-bs-target="#bookingCancelModal" type="button" class="btn btn-danger">Cancel Booking</button>
                 {% endif %}
                 {# Cancelled (3) and Requesting (4) show no button #}
             </div>

@@ -52,8 +52,8 @@ def update_remaing_tickets(booking:Booking):
     package_data:PackageData = booking.package.data
     remaining_tickets = package_data.remaining_tickets
     package_data.remaining_tickets = remaining_tickets + ticket_count
-    print(package_data.remaining_tickets)
     package_data.save()
+    
     booking.status
 
 def cancel_pending_booking(booking:Booking):

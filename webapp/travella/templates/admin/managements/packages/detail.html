@@ -24,7 +24,7 @@
                 <div class="d-flex">
                     <div>
                         <div class="d-flex column-gap-2 align-items-start">
-                            <h5>#{{dto.code}}</h5>
+                            <h5>{{dto.code}}</h5>
                             <span class="df-badge badge-blue">{{dto.category}}</span>
                             <span class="df-badge 
                             {% if dto.status == 'Available' %}
@@ -35,8 +35,8 @@
                         </div>
                         <div class="d-flex mt-2 column-gap-3">
                             <h4>{{dto.name}}</h4>
-                            <a href="#" class="btn btn-sm df-btn-glass-gray align-self-start"><span class="bi bi-pencil df-text-blue"></span></a>  
-                            {% if dto.bookings == 0 %}
+                                {% comment %} <a href="#" class="btn btn-sm df-btn-glass-gray align-self-start"><span class="bi bi-pencil df-text-blue"></span></a>   {% endcomment %}
+                            {% if dto.is_deletable %}
                             <form action="{% url 'packages_delete' %}" class="d-none" id="deletePackageForm" method="post">
                             {% csrf_token %}
                                 <input type="text" name="code" id="codeInput" class="d-none">

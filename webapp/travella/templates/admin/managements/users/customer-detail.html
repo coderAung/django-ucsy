@@ -42,8 +42,8 @@
     .table thead th {
         border: none;
         color: var(--text-secondary);
-        font-weight: 600;
-        font-size: 0.85rem;
+        font-weight: 500;
+        font-size: 0.75rem;
         text-transform: uppercase;
     }
     .table tbody tr {
@@ -141,24 +141,24 @@
                     </span>
                 </div>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table df-fs-sm">
                         <thead>
                             <tr>
-                                <th>Booking ID</th>
+                                <th>Booking Code</th>
                                 <th>Package</th>
-                                <th>Booking Date</th>
+                                <th>Date</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for booking in customer_bookings %}
                                 <tr>
-                                    <td>#B-{{ booking.id|stringformat:"05d" }}</td>
-                                    <td>{{ booking.package.name }}</td> {# Assuming Booking model has a ForeignKey to a Package model #}
-                                    <td>{{ booking.createdAt|date:"M d, Y" }}</td>
+                                    <td>{{ booking.booking_code }}</td>
+                                    <td>{{ booking.package.title }}</td> {# Assuming Booking model has a ForeignKey to a Package model #}
+                                    <td>{{ booking.created_at|date:"M d, Y" }}</td>
                                     <td>
                                         {# You can add if/else logic here for different statuses #}
-                                        <span class="badge bg-success">{{ booking.status }}</span>
+                                        <span class="badge bg-success">{{ booking.get_status_display }}</span>
                                     </td>
                                 </tr>
                             {% empty %}

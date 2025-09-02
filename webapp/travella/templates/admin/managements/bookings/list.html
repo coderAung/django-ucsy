@@ -3,6 +3,11 @@
 {% load static %}
 
 
+{% block title %}
+  Bookings
+{% endblock title %}
+  
+
 {% block cssFile %}
   <link rel="stylesheet" href="{% static 'css/pagination2.css' %}">
 {% endblock cssFile %}
@@ -128,8 +133,6 @@
     {% include 'includes/pagination3.html' %}
   {% endif %}
 </div>
-
-
 
 <script>
 // Add JavaScript to handle pagination with filters

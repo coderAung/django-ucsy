@@ -33,7 +33,7 @@
                 </div>
             </form>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addLocationModal">
-                <i class="fa fa-plus me-1"></i> Add Location
+                <i class="fa fa-plus me-1 text-white"></i> Add Location
             </button>
         </div>
         <div class="card-body">
@@ -43,7 +43,7 @@
                         <tr>
                             <th scope="col" style="width: 5%;">No</th>
                             <th scope="col">Location Name</th>
-                            <th scope="col" style="width: 15%;">Packages Linked</th>
+                            <th scope="col" style="width: 15%;" class="text-center">Packages</th>
                             <th scope="col" style="width: 15%;" class="text-end">Actions</th>
                         </tr>
                     </thead>
@@ -52,19 +52,23 @@
                         <tr>
                             <td>{{ forloop.counter }}</td>
                             <td>{{ location.name }}</td>
-                            <td>{{ location.package_count }}</td>
+                            <td class="text-center">{{ location.package_count }}</td>
                             <td class="text-end">
+
+                                {% if location.package_count == 0 %}
+                                    <button type="button" class="btn btn-outline-danger btn-sm" title="Delete"
+                                            data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"
+                                            data-location-pk="{{ location.pk }}"
+                                            data-location-name="{{ location.name }}">
+                                        <i class="fa fa-trash text-danger"></i>
+                                    </button>
+                                {% endif %}
+
                                 <button type="button" class="btn btn-outline-primary btn-sm me-1" title="Edit"
                                         data-bs-toggle="modal" data-bs-target="#editLocationModal"
                                         data-location-pk="{{ location.pk }}"
                                         data-location-name="{{ location.name }}">
-                                    <i class="fa fa-pencil-alt"></i>
-                                </button>
-                                <button type="button" class="btn btn-outline-danger btn-sm" title="Delete"
-                                        data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"
-                                        data-location-pk="{{ location.pk }}"
-                                        data-location-name="{{ location.name }}">
-                                    <i class="fa fa-trash"></i>
+                                    <i class="fa fa-pencil-alt text-primary"></i>
                                 </button>
                             </td>
                         </tr>

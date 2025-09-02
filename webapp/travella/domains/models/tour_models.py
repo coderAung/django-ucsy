@@ -39,6 +39,10 @@ class Package(AbstractModel):
     location = models.ForeignKey(Location, on_delete=models.PROTECT, related_name='packages', null=True)
     
     @property
+    def is_deletable(self) -> bool:
+        return self.bookings.count() == 0
+
+    @property
     def booking_count(self) -> int:
         result = self.bookings.exclude(status=Booking.Status.CANCELLED).aggregate(total = Sum('ticket_count'))
         return result['total'] or 0
@@ -69,10 +73,10 @@ class PackageData(models.Model):
             return
         if self.package.departure <= date.today() and self.status != PackageData.Status.FINISHED:
             self.update_status(PackageData.Status.FINISHED)
-        
-        elif (self.package.total_tickets == self.package.booking_count or (self.package.departure - timedelta(10)) <= date.today()) and self.status != PackageData.Status.UNAVAILABLE:
+        elif (self.package.data.remaining_tickets == 0 or (self.package.departure - timedelta(10)) <= date.today()) and self.status != PackageData.Status.UNAVAILABLE:
             self.update_status(PackageData.Status.UNAVAILABLE)
-    
+        elif self.package.data.remaining_tickets > 0:
+            self.update_status(PackageData.Status.AVAILABLE)
 
 class Itinerary(models.Model):
     package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name='itineraries')

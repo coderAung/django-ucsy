@@ -118,9 +118,10 @@ def detail(request, id):
 
     # Transportation (default if not set)
     booking.package.transportation = getattr(booking.package, 'transportation', 'N/A')
-
+    package_status = booking.package.data.get_status_display()
     return render(request, BASE_TEMPLATE_PATH + 'detail.html', {
         "booking": booking,
+        "package_status": package_status,
         "tour_end_date": tour_end_date.strftime("%B %d, %Y") if tour_end_date else "N/A",
     })
 
@@ -143,7 +144,8 @@ def save(request):
         package = get_object_or_404(Package, id=package_id)
 
         # Use the imported function to check availability
-        available_tickets = calculate_available_tickets(package)
+        package_data:PackageData = package.data
+        available_tickets = package_data.remaining_tickets
         
         if ticket_count > available_tickets:
             return JsonResponse({
@@ -158,16 +160,19 @@ def save(request):
             unit_price=Decimal(str(package.price)),
             status=Booking.Status.PENDING
         )
+        
         booking.auto_cancel_date = booking.created_at + timedelta(hours=constants.BOOKING_AUTO_CANCEL)
         booking.save()
+        package_data.remaining_tickets = available_tickets - ticket_count
+        package_data.save()
         # Update user's account details
-        AccountDetail.objects.update_or_create(
-            account=request.user,
-            defaults={
-                'name': full_name,
-                'phone': phone
-            }
-        )
+        # AccountDetail.objects.update_or_create(
+        #     account=request.user,
+        #     defaults={
+        #         'name': full_name,
+        #         'phone': phone
+        #     }
+        # )
 
         messages.success(request, 'Booking success.')
 

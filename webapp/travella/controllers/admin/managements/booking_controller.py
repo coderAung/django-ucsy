@@ -93,9 +93,9 @@ def detail(request: HttpRequest, id: str) -> HttpResponse:
         try:
             history = Reservation.objects.get(booking=booking_obj)
             try:
-                reserved_by_name = history.reservedBy.accountdetail.name
+                reserved_by_name = history.reserved_by.accountdetail.name
             except AttributeError:
-                reserved_by_name = history.reservedBy.email  # Fallback to email
+                reserved_by_name = history.reserved_by.email  # Fallback to email
         except Reservation.DoesNotExist:
             reserved_by_name = "Unknown admin"
 
