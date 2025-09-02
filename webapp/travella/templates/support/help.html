@@ -1,40 +1,76 @@
 {% extends "layouts/customer-layout.html" %}
 {% load static %}
 
-{% block mainTitle %}Customer{% endblock mainTitle %}
-{% block title %}Help & Support{% endblock title %}
-
 {% block cssFile %}
+<style>
+:root {
+      --primary-color: #3498db;
+      --dark-color: #2c3e50;
+      --light-color: #ecf0f1;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #45ca62ff;
+      min-height: 100vh;
+    }
 .hero-section {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') 
-                center/cover no-repeat;
+      background: linear-gradient(135deg, #34befab5 0%, rgba(12, 236, 218, 0.548) 100%),
+        url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      color: white;
+      padding: 80px 0;
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 40px;
+    }
+
+.faq-section {
+  padding: 4rem 0;
 }
 
 .faq-item {
-    border-radius: 8px;
-    overflow: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
 }
 
 .faq-question {
-    cursor: pointer;
-    font-weight: 600;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  background-color: #f9f9f9;
 }
 
 .faq-question:hover {
-    background-color: #0d5cb6 !important;
+  background-color: #0d5cb6;
+  color: #fff;
 }
 
+.faq-answer {
+  padding: 1rem;
+  display: none;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+}
+</style>
 {% endblock cssFile %}
+
+
+{% block mainTitle %}Customer{% endblock mainTitle %}
+{% block title %}Help & Support{% endblock title %}
 
 {% block content %}
 
-<!-- Hero Section -->
 <section class="hero-section text-center text-white">
-    <div class="container py-5">
-        <h1 class="display-4 fw-bold mb-3">How Can We Help You?</h1>
-        <p class="lead">Find answers to common questions or reach our support team directly.</p>
-    </div>
+  <div class="container py-5">
+    <h1 class="display-4 fw-bold mb-3">How Can We Help You?</h1>
+    <p class="lead">Find answers to common questions or reach our support team directly.</p>
+  </div>
 </section>
 
 <!-- FAQs Section -->
@@ -176,22 +212,31 @@
   </section>
 
 {% endblock content %}
-
 {% block jsFile %}
 <script>
-    function toggleFaq(element) {
-        const answer = element.nextElementSibling;
-        const icon = element.querySelector('i');
+document.addEventListener('DOMContentLoaded', () => {
+    const faqQuestions = document.querySelectorAll('.faq-question');
 
-        if (answer.style.display === 'block') {
-            answer.style.display = 'none';
-            icon.classList.remove('bi-chevron-up');
-            icon.classList.add('bi-chevron-down');
-        } else {
-            answer.style.display = 'block';
-            icon.classList.remove('bi-chevron-down');
-            icon.classList.add('bi-chevron-up');
-        }
-    }
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            const icon = question.querySelector('i');
+
+            const isExpanded = question.getAttribute('aria-expanded') === 'true';
+
+            if (isExpanded) {
+                answer.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+                question.setAttribute('aria-expanded', 'false');
+            } else {
+                answer.style.display = 'block';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+                question.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+});
 </script>
 {% endblock jsFile %}

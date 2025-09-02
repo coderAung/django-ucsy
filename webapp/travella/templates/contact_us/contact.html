@@ -1,0 +1,178 @@
+{% extends "layouts/customer-layout.html" %}
+{% load static %}
+
+
+{% block cssFile %}
+<style>
+.contact-section {
+    padding: 60px 0;
+}
+
+.contact-form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.form-control {
+    border-radius: 4px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.contact-info {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.contact-info h4 {
+    color: #0d5cb6;
+}
+
+.social-icons a {
+    font-size: 2rem;
+    margin: 0 0.5rem;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0d5cb6;
+}
+</style>
+{% endblock cssFile %}
+
+{% block mainTitle %}Customer{% endblock mainTitle %}
+{% block title %}Contact Us{% endblock title %}
+
+{% block content %}
+
+<section class="contact-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5">
+                    <h2 class="display-4 fw-bold">Get in Touch</h2>
+                    <p class="lead">We'd love to hear from you! Please fill out the form below or contact us through the details provided.</p>
+                </div>
+                <div class="contact-form">
+                    <form action="" method="post" id="contactForm">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                            <div class="invalid-feedback">
+                                Please enter your name.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid email address.
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                            <div class="invalid-feedback">
+                                Please enter your message.
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <h4><i class="fas fa-envelope me-2"></i>Email Us</h4>
+                            <p>travell@gmail.com</p>
+                            <p>travelladmin@gmail.com</p>
+                            <p>welcomtravell@gmail.com</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h4><i class="fas fa-phone me-2"></i>Call Us</h4>
+                            <p>+95 9 123 456 789</p>
+                            <p>+95 9 234 678 123</p>
+                            <p>+95 9 123 456 789</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-icons text-center mt-4">
+                    <a href="#" class="btn btn-lg"><i class="bi-facebook"></i></a>
+                    <a href="#" class="btn btn-lg"><i class="bi-twitter-x"></i></a>
+                    <a href="#" class="btn btn-lg"><i class="bi-instagram"></i></a>
+                    <a href="#" class="btn btn-lg"><i class="bi-linkedin"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+{% endblock content %}
+
+{% block jsFile %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contactForm');
+        
+        form.addEventListener('submit', function(event) {
+            let isValid = true;
+            
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
+
+            // Simple validation check for each field
+            if (name.value.trim() === '') {
+                name.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                name.classList.remove('is-invalid');
+            }
+
+            if (email.value.trim() === '' || !validateEmail(email.value)) {
+                email.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                email.classList.remove('is-invalid');
+            }
+
+
+            if (message.value.trim() === '') {
+                message.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                message.classList.remove('is-invalid');
+            }
+            
+            // If the form is valid, show a success alert
+            if (isValid) {
+                alert("Message sent successfully!");
+                // You can add a `return true;` here if you're handling form submission via Django
+                // For this example, we'll prevent default submission to show the alert
+                event.preventDefault(); 
+            } else {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        });
+    });
+
+    // Helper function for email validation
+    function validateEmail(email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+</script>
+{% endblock jsFile %}
