@@ -34,17 +34,16 @@ urlpatterns = [
     path('packages/delete-itinerary/<str:code>/', itinerary_controller.delete, name='delete_itinerary'),
 
     # GET method only
-    path('settings/', setting_controller.list, name = 'settings'),
+    path('settings/', setting_controller.settings_home, name = 'settings'),
     path('settings/access-logs/', setting_controller.logs),
     path('settings/account/', setting_controller.account),
     path('settings/account/email/', setting_controller.email),
     path('settings/account/password/', setting_controller.password),
 
     # POST method only
-    path('settings/account/email/change/', account_controller.email),
-    path('settings/account/password/change/', account_controller.password),
-    path('settings/account/photo/', account_controller.photo),
-    path('settings/account/info/', account_controller.info),
+    path('settings/account/email/change/', account_controller.email, name='settings_account_email_change'),
+    path('settings/account/password/change/', account_controller.password, name='settings_account_password_change'),
+    path('settings/account/info/', account_controller.info, name='settings_account_info'),
 
     path('customers/', customer_controller.list, name='customers'),
     path('customers/<uuid:id>/', customer_controller.detail, name='customers_detail'),

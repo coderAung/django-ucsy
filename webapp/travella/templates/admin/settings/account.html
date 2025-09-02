@@ -2,11 +2,56 @@
 
 {% block setting_content %}
 
+<style>
+    /* Custom styling for the account settings page */
+    .form-control-custom {
+        border-radius: 0.5rem;
+        border: 1px solid #e0e0e0;
+        padding: 0.75rem 1rem;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    .form-control-custom:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    }
+
+    .btn-custom-primary {
+        background-color: #28a745;
+        border-color: #28a745;
+        color: white;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    }
+    
+    .btn-custom-primary:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn-outline-custom-primary {
+        color: #28a745;
+        border-color: #28a745;
+        background-color: transparent;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    .btn-outline-custom-primary:hover {
+        background-color: #28a745;
+        color: white;
+    }
+</style>
+
 <h4 class="fw-bold mb-4">Account Information</h4>
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" action="{% url 'settings_account_info' %}">
     {% csrf_token %}
     <div class="d-flex align-items-center mb-4">
-        <img src="https://via.placeholder.com/80" class="rounded-circle" id="imagePreview" alt="Profile Image" style="width: 80px; height: 80px; object-fit: cover;">
+                <img src="{% if user.detail.photo %}{{ user.detail.photo.url }}{% else %}https://via.placeholder.com/80{% endif %}" class="rounded-circle" id="imagePreview" alt="Profile Image" style="width: 80px; height: 80px; object-fit: cover;">
+
         <div class="ms-4">
             <label for="imageUploadInput" class="btn btn-outline-custom-primary btn-sm rounded-pill">Upload Picture</label>
             <input type="file" class="d-none" id="imageUploadInput" name="profile_image" accept="image/*">
@@ -15,22 +60,36 @@
     <div class="row mb-3">
         <div class="col-lg-9">
             <label for="nameInput" class="form-label">Name</label>
-            <input type="text" class="form-control form-control-custom" id="nameInput" name="name" value="Than Thar">
+            <input type="text" class="form-control form-control-custom" id="nameInput" name="name" value="{{ user.detail.name|default:'' }}">
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-lg-9">
             <label for="phoneInput" class="form-label">Phone</label>
-            <input type="tel" class="form-control form-control-custom" id="phoneInput" name="phone" value="09-246476786">
+            <input type="tel" class="form-control form-control-custom" id="phoneInput" name="phone" value="{{ user.detail.phone|default:'' }}">
          </div>
     </div>
     <div class="row mb-4">
         <div class="col-lg-9">
             <label for="addressInput" class="form-label">Address</label>
-            <textarea class="form-control form-control-custom" id="addressInput" name="address" rows="3">University Of Computer studies, Yangon</textarea>
+            <textarea class="form-control form-control-custom" id="addressInput" name="address" rows="3">{{ user.detail.address|default:'' }}</textarea>
         </div>
     </div>
     <button type="submit" class="btn btn-custom-primary">Save Changes</button>
 </form>
+
+<script>
+    document.getElementById('imageUploadInput').addEventListener('change', function(e) {
+        const imagePreview = document.getElementById('imagePreview');
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                imagePreview.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
 {% endblock %}

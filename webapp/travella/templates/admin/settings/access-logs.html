@@ -4,70 +4,50 @@
 
 <h5 class="fw-bold mb-4">Access History</h5>
 <div class="content-card">
-   <div class="table-responsive">
-       <table class="table table-hover df-fs-sm">
-           <thead>
-               <tr>
-                   <th>Email</th>
-                   <th>Type</th>
-                   <th>Status</th>
-                   <th>Message</th>
-                   <th>Date</th>
-                   <th>Time</th>
-               </tr>
-           </thead>
-           <tbody>
-               <tr>
-                   <td>catteleya@gmail.com</td>
-                   <td>Log In</td>
-                   <td><span class="badge rounded-pill bg-success">Success</span></td>
-                   <td class="text-secondary">-</td>
-                   <td>January 28, 2025</td>
-                   <td>09:15 AM</td>
-               </tr>
-               <tr>
-                   <td>thanthar@gmail.com</td>
-                   <td>Log In</td>
-                   <td><span class="badge rounded-pill bg-danger">Fail</span></td>
-                   <td>Incorrect password</td>
-                   <td>Match 17, 2025</td>
-                   <td>05:14 PM</td>
-               </tr>
-               <tr>
-                   <td>shoonlae@gmail.com</td>
-                   <td>Log Out</td>
-                   <td><span class="badge rounded-pill bg-success">Success</span></td>
-                   <td class="text-secondary">-</td>
-                   <td>May 21, 2025</td>
-                   <td>02:30 PM</td>
-               </tr>
-               <tr>
-                   <td>AungKoKo@gmail.com</td>
-                   <td>Log In</td>
-                   <td><span class="badge rounded-pill bg-danger">Fail</span></td>
-                   <td>Incorrect password</td>
-                   <td>June 27, 2025</td>
-                   <td>08:15 PM</td>
-               </tr>
-               <tr>
-                   <td>myohtwe@gmail.com</td>
-                   <td>Log Out</td>
-                   <td><span class="badge rounded-pill bg-success">Success</span></td>
-                   <td class="text-secondary">-</td>
-                   <td>July 7, 2025</td>
-                   <td>11:05 PM</td>
-               </tr>
-               <tr>
-                   <td>shinthant@gmail.com</td>
-                   <td>Log In</td>
-                   <td><span class="badge rounded-pill bg-danger">Fail</span></td>
-                   <td>Incorrect password</td>
-                   <td>October 4, 2025</td>
-                   <td>06:28 PM</td>
-               </tr>
-           </tbody>
-       </table>
-   </div>
+    <div class="table-responsive">
+        <table class="table table-hover df-fs-sm">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in access_logs %}
+                <tr>
+                    <td>{{ log.account.email }}</td>
+                    <td>{{ log.get_access_type_display }}</td>
+                    <td>
+                        {% if log.get_status_display == 'Success' %}
+                            <span class="badge rounded-pill bg-success">{{ log.get_status_display }}</span>
+                        {% else %}
+                            <span class="badge rounded-pill bg-danger">{{ log.get_status_display }}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if log.get_status_display == 'Success' %}
+                            <span class="text-secondary">-</span>
+                        {% else %}
+                            {{ log.message }}
+                        {% endif %}
+                    </td>
+                    <td>{{ log.created_at|date:"F d, Y" }}</td>
+                    <td>{{ log.created_at|time:"h:i A" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center text-muted p-4">
+                        No access history found for this account.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}

@@ -62,4 +62,4 @@ class AccountDetail(AbstractModel):
     photo = models.ImageField(upload_to='account/profile/', null=True)
     address = models.CharField(max_length=255, blank=True, null=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
-    account = models.OneToOneField('Account', on_delete=models.CASCADE)
+    account = models.OneToOneField('Account', on_delete=models.CASCADE, related_name='accountdetail')

@@ -1,9 +1,18 @@
+# C:\BookTour\webapp\travella\domains\services\access_log_service.py
+
 from dataclasses import dataclass
 import uuid
 from travella.domains.models.log_models import AccessLog
 
 
 def save_log(form:'AccessLogForm', account_id:uuid) -> int:
+    """
+    Saves an AccessLog entry, ensuring the form has a valid access type.
+    """
+    if not form.access_type:
+        # If the access type is not provided, raise a ValueError to debug the source
+        raise ValueError("Cannot save AccessLog: 'access_type' is required.")
+
     log = form.get_model(account_id)
     log.save()
     return log.id
@@ -19,7 +28,7 @@ class AccessLogForm:
         return AccessLogForm(
             access_type=AccessLog.Type.SIGN_IN,
             status=AccessLog.Status.SUCCESS,
-            message='Sign In Success'                    
+            message='Sign In Success'
         )
     
     @staticmethod
