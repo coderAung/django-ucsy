@@ -51,6 +51,7 @@ urlpatterns = [
 
     path('staffs/', staff_controller.list, name='staffs'),
     path('staffs/<uuid:id>/', staff_controller.detail, name='staffs_detail'),
+    path('staffs/add/', staff_controller.add_staff, name='add_staff'),
 
     path('reservations/', reservation_controller.get_list, name='reservations'),
     path('reservations/reserve/', reservation_controller.save, name='reservations_reserve'),

@@ -38,6 +38,14 @@ class Account(AbstractBaseUser, PermissionsMixin, AbstractModel):
     password = models.CharField(max_length=128)
     role = models.CharField(max_length=10, choices=Role.choices, default=Role.CUSTOMER)
 
+    created_by = models.ForeignKey(
+        'self',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='created_staff'
+    )
+
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 

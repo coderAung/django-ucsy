@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
-
+from django.db import transaction
+from ..domains.models.account_models import AccountDetail
 from ..domains.models.account_models import Account
 from django.db.models import Q, QuerySet
 def get_all_staff() -> QuerySet[Account]:
@@ -32,3 +33,13 @@ def get_staff_detail(account_id: str) -> Account:
         role__in=['admin', 'mod', 'Admin', 'Mod']
     )
     return staff_member
+
+def create_staff(name, email, password, role, creator):
+    try:
+        with transaction.atomic():
+            new_staff_account = Account.objects.create_user(email=email, password=password, role=role, created_by=creator )
+            AccountDetail.objects.create(account=new_staff_account, name=name)
+            return new_staff_account
+    except Exception as e:
+        print(f"Error creating staff: {e}")
+        return None
