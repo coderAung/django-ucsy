@@ -52,7 +52,7 @@ class PackageService:
     
     def get_gallery(self, code:str) -> list[str]:
         photos:QuerySet[Photo] = Package.objects.get(code = code).photos.all()
-        return [p.path.url for p in photos]
+        return [p.image.url for p in photos]
 
     def search_list(self, search:PackageSearch) -> PaginationResult:
         packages = Package.objects.filter(search.filter()).order_by('-created_at')
@@ -92,15 +92,20 @@ class PackageService:
         package:Package = form.to_model(account)
         package.save()
         PackageData(code=package.code, remaining_tickets=package.total_tickets, package=package).save()
+        first = True
         for i in images:
-            Photo.objects.create(package=package, path=i)
+            photo = Photo.objects.create(package=package, image=i)
+            if first:
+                first = False
+                package.cover_photo = photo.image.url
+                package.save()
         return package.code
     
     def delete(self, code:str):
         package = Package.objects.get(code = code)
         with transaction.atomic():
             for p in package.photos.all():
-                p.path.delete(save = False)
+                p.image.delete(save = False)
             package.delete()
 
     def search_for_customer(self, search:PublicPackageSearch)  -> PaginationResult:

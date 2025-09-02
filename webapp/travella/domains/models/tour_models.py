@@ -50,6 +50,14 @@ class Package(AbstractModel):
     @property
     def status_value(self) -> 'PackageData.Status':
         return PackageData.Status(self.data.status)
+    
+    @property
+    def days(self) -> int:
+        return self.duration
+
+    @property
+    def price_display(self) -> str:
+        return f'MMK - {self.price}'
 
 class PackageData(models.Model):
     class Status(models.TextChoices):
@@ -90,5 +98,5 @@ class Itinerary(models.Model):
         ]
 
 class Photo(models.Model):
-    path = models.ImageField(upload_to='public/tours/')
+    image = models.ImageField(upload_to='public/tours/')
     package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name='photos')

@@ -122,11 +122,11 @@
                         <div class="card-body p-4">
                             <div class="d-flex justify-content-between small">
                                 <span class="text-muted">{{ package.days }} Days</span>
-                                <span class="fw-bold" style="color: var(--brand-primary);">${{ package.price_display }}/person</span>
+                                <span class="fw-bold" style="color: var(--brand-primary);">{{ package.price_display }}/person</span>
                             </div>
                             <h5 class="card-title fw-bold my-2">{{ package.title }}</h5>
                             <p class="card-text text-muted small mb-3">
-                                <i class="bi bi-geo-alt-fill"></i> {{ package.location }}
+                                <i class="bi bi-geo-alt-fill"></i> {{ package.location.name }}
                             </p>
                             <a href="{% url 'public_packages_code' package.code %}" class="btn btn-primary-main rounded-pill px-4">Book Now</a>
                         </div>

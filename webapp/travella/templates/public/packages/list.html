@@ -109,12 +109,13 @@
                                             <span class="text-muted df-fs-sm">{{item.days}}</span>
                                             <span class="df-text-green df-fs-sm">{{item.price_display}}</span>
                                         </div>
-                                        <div class="mt-2">
-                                            <h6>{{item.title}}</h6>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center py-1 mt-2">
+                                        <div class="mt-2 d-flex justify-content-between align-items-center">
+                                            <h6 class="">{{item.title}}</h6>
                                             <span class="df-fs-sm df-text-blue"><i class="bi bi-geo-alt df-text-blue df-fs-sm"></i> {{item.location}}</span>
-                                            <a href="{% url 'public_packages_code' item.code %}" class="btn btn-sm df-btn-soft-blue rounded-pill">Explore More</a>
+                                        </div>
+                                        <div class="d-flex justify-content-end align-items-center column-gap-2 py-1 mt-2">
+                                            <a href="{% url 'public_packages_code' item.code %}" class="btn btn-sm df-btn-soft-purple rounded-pill">Explore More</a>
+                                            <a href="{% url 'packages_book' item.code %}" class="btn btn-sm df-btn-soft-blue rounded-pill">Book Now</a>
                                         </div>
                                     </div>
                                 </div>

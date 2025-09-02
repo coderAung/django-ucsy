@@ -58,7 +58,7 @@
         <script src="{% static 'js/c/package-detail.js' %}"></script>
     {% endif %}
 
-    <div class="container py-2">
+    <div class="container py-3 mb-4">
         <div class="mb-3">
             <span class="df-badge badge-blue">{{dto.category}}</span>
             <span class="df-badge
@@ -203,9 +203,9 @@
 
         <div class="mt-5">
             <div>
+                {% if itineraries %}
                 <h4 class="h3 mb-4">Itinerary</h4>
                 <div class="row row-cols-1 row-gap-3">
-                {% if itineraries %}
                     {% for i in itineraries %}
                     <div class="col">
                         <div class="container-fluid">
@@ -228,8 +228,8 @@
                         </div>
                     </div>
                     {% endfor %}
-                {% endif %}
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>

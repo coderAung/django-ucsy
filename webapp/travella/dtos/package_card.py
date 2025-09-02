@@ -39,7 +39,7 @@ class PackageCard:
             price=p.price,
             title=p.title,
             location=p.location.name if not p.location == None else 'Not Defined',
-            cover_photo=p.photos.first().path.url if p.photos.exists() else '',
+            cover_photo=p.cover_photo if p.cover_photo else '',
             category=p.category.name,
             transportation=Package.Transportation(p.transportation)
         )
@@ -66,7 +66,7 @@ class PackageDetail(PackageCard):
         self.title = p.title
         self.duration = p.duration
         self.price = p.price
-        self.cover_photo = p.photos.first().path.url if p.photos.exists() else ''
+        self.cover_photo = p.photos.first().image.url if p.photos.exists() else ''
         self.location = p.location.name if p.location != None else ''
         self.category = p.category.name
         self.transportation = Package.Transportation(p.transportation)
@@ -74,7 +74,7 @@ class PackageDetail(PackageCard):
         self.tickets = p.total_tickets
         self.overview = p.overview
         self.departure = p.departure
-        self.photos = [photo.path.url for photo in p.photos.all()]
+        self.photos = [photo.image.url for photo in p.photos.all()]
         self.status = p.status_value.label
     
     @staticmethod

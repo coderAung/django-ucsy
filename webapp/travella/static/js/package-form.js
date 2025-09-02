@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const codeInput = document.getElementById('codeInput')
     const categorySearch = document.getElementById('categorySearch')
     const cidInput = document.getElementById('cidInput')
+    const overviewInput = document.getElementById('overviewInput')
     if(continueBtn && categoryContainer && codeInput && categorySearch && cidInput) {
         categorySearch.addEventListener('keyup', () => {
             const key = categorySearch.value
@@ -166,7 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 ticketInput.value &&
                 priceInput.value &&
                 locationInput.value &&
-                transportationInput.value
+                transportationInput.value &&
+                overviewInput.value
             ) {
                 Array.from(document.getElementsByClassName('validationError'))
                     .forEach(er => !er.classList.contains('d-none') ? er.classList.add('d-none') : '')
