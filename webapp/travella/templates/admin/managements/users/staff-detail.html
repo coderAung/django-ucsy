@@ -57,7 +57,7 @@
                         style="width: 100%; height: 100%; object-fit: cover;"
                         src="
                             {% if staff.accountdetail.photo %}
-                                {{ staff.accountdetail.photo.url|default:'https://via.placeholder.com/120' }}" class="profile-pic-lg" alt="{{ staff.accountdetail.name }}
+                                {{ staff.accountdetail.photo.url }}" class="profile-pic-lg" alt="{{ staff.accountdetail.name }}
                             {% else %}
                                 {% static 'images/profile.webp' %}
                             {% endif %}">

@@ -1,6 +1,8 @@
 {% extends 'layouts/admin-layout.html' %}
 {% block title %}Customer Details{% endblock %}
 
+{% load static %}
+
 {% block cssFile %}
 <style>
     :root {
@@ -86,7 +88,18 @@
         <!-- ဘယ်ဘက် Column -->
         <div class="col-lg-4">
             <div class="content-card profile-card text-center mb-4">
-                <img src="{{ customer.accountdetail.photo|default:'https://via.placeholder.com/120' }}" class="profile-pic-lg" alt="{{ customer.accountdetail.name }}">
+
+                <div class="mx-auto" style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden;">
+                    <img
+                        style="width: 100%; height: 100%; object-fit: cover;"
+                        src="
+                            {% if customer.accountdetail.photo %}
+                                {{ customer.accountdetail.photo.url }}" class="profile-pic-lg" alt="{{ staff.accountdetail.name }}
+                            {% else %}
+                                {% static 'images/profile.webp' %}
+                            {% endif %}">
+                </div>
+
                 <h4 class="mt-4 mb-1 fw-bold">{{ customer.accountdetail.name|default:"N/A" }}</h4>
                 <p class="text-muted">{{ customer.email }}</p>
             </div>
@@ -109,13 +122,13 @@
                 </div>
             </div>
 
-            <div class="content-card">
+            {% comment %} <div class="content-card">
                 <h5 class="mb-3 fw-bold">Actions</h5>
                 <div class="d-grid gap-2">
                     <button class="btn btn-outline-danger"><i class="bi bi-slash-circle me-2"></i>Ban User</button>
                     <button class="btn btn-outline-secondary"><i class="bi bi-key me-2"></i>Reset Password</button>
                 </div>
-            </div>
+            </div> {% endcomment %}
         </div>
 
         <!-- ညာဘက် Column -->
