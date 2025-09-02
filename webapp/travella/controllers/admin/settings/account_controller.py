@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
 from travella.dtos.settings.account_staff_dto import AccountDetailDTO
 from travella.services.account_service import update_account_detail, update_account_email, update_account_password
+from django.http import JsonResponse
 
 base = 'admin/settings/'
 
@@ -33,15 +34,25 @@ def email(request: HttpRequest) -> HttpResponse:
         return redirect('/admins/settings/account/email/')
     except Exception as e:
         return redirect('/admins/settings/account/email/')
-
+    
 @require_POST
 def password(request: HttpRequest) -> HttpResponse:
     account = request.user
     old_password = request.POST.get('old_password', '')
-    new_password = request.POST.get('new_password', '')
-    
+    new_password1 = request.POST.get('new_password1', '')
+    new_password2 = request.POST.get('new_password2', '')
+
+    if new_password1 != new_password2:
+        # return redirect('/admins/settings/account/password/')
+        return JsonResponse({"error": "Passwords do not match"}, status=400)
+
+
     try:
-        update_account_password(account, old_password, new_password)
-        return redirect('/admins/settings/account/password/')
-    except Exception as e:
-        return redirect('/admins/settings/account/password/')
+        update_account_password(account, old_password, new_password1)
+    except Exception:
+        # return redirect('/admins/settings/account/password/')
+        return JsonResponse({"error": "Incorrect old password"}, status=400)
+
+
+    # return redirect('/admins/settings/account/password/')
+    return JsonResponse({"success": "Password changed successfully", "redirect": "/admins/settings/account/password/"})

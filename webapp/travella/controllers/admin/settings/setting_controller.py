@@ -77,18 +77,14 @@ def email(request:HttpRequest) -> HttpResponse:
 # settings/account/password/change POST
 @require_POST
 def password(request:HttpRequest) -> HttpResponse:
-    """
-    Handles password change form submission.
-    (Placeholder for logic to change password)
-    """
     return redirect('/admins/settings/account/password')
+
+def password(request: HttpRequest) -> HttpResponse:
+    return render(request, view('password-info'), {"account": request.user})
 
 # settings/access-logs GET
 def logs(request: HttpRequest) -> HttpResponse:
-    """
-    Renders the access logs page for the currently logged-in admin user.
-    """
-    # Assuming request.user is an authenticated user object
+
     access_logs = AccessLog.objects.filter(account=request.user).order_by('-created_at')
     
     context = {
@@ -100,9 +96,7 @@ def logs(request: HttpRequest) -> HttpResponse:
 
 
 def staff_detail(request, staff_id: str):
-    """
-    Renders the staff detail page with their information and access logs.
-    """
+
     staff = get_object_or_404(Account, id=staff_id)
     
     # This is the line that fixes the ordering
