@@ -67,7 +67,7 @@
     <div class="row mb-3">
         <div class="col-lg-9">
             <label for="phoneInput" class="form-label">Phone</label>
-            <input type="tel" class="form-control form-control-custom" id="phoneInput" name="phone" value="{{ user.accountdetail.phone|default:'' }}">
+            <input pattern="\d{8,12}" type="tel" class="form-control form-control-custom" id="phoneInput" name="phone" value="{{ user.accountdetail.phone|default:'' }}">
          </div>
     </div>
     <div class="row mb-4">
