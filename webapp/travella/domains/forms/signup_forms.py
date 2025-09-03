@@ -30,7 +30,7 @@ class Step1Form(forms.Form):
 
 class Step2Form(forms.Form):
     phone_number = forms.CharField(max_length=20, required=False, label="Phone Number (Optional)",
-        widget=forms.TextInput(attrs={**common_attrs, 'placeholder': 'Enter Your Phone Number'}))
+        widget=forms.TextInput(attrs={**common_attrs, 'placeholder': 'Enter Your Phone Number', "pattern": "\d{8,12}"}))
     address = forms.CharField(required=False, label="Address (Optional)",
         widget=forms.Textarea(attrs={**common_attrs, 'rows': 3, 'placeholder': 'Your current address'}))
 

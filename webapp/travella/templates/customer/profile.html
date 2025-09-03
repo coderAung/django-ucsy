@@ -54,8 +54,20 @@
                         <div class="d-flex flex-column row-gap-3 px-3 py-2">
                             <div class="fs-6 fw-bold border-bottom border-primary py-2">{{profile_data.name}}</div>
                             <div class="fs-6 fw-bold border-bottom border-primary py-2">{{profile_data.email}}</div>
-                            <div class="fs-6 fw-bold border-bottom border-primary py-2">{{profile_data.phone}}</div>
-                            <div class="fs-6 fw-bold border-bottom border-primary py-2">{{profile_data.address}}</div>
+                            <div class="fs-6 fw-bold border-bottom border-primary py-2">
+                                {% if profile_data.phone %}
+                                    {{profile_data.phone}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </div>
+                            <div class="fs-6 fw-bold border-bottom border-primary py-2">
+                                {% if profile_data.address %}
+                                    {{profile_data.address}}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
