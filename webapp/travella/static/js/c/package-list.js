@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             locationInput.value = ''
             resetDateBtn.click()
             keyInput.value = ''
+            filterForm.submit()
         })
 
     }

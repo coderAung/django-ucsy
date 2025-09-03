@@ -40,7 +40,7 @@ position-sticky sticky-top
                     {% if request.user.accountdetail.photo %}
                     {{request.user.accountdetail.photo.url}}
                     {% else %}                        
-                    https://cdn.pixabay.com/photo/2019/08/11/18/59/icon-4399701_1280.png
+                    {% static 'images/profile.webp' %}
                     {% endif %}
                     "
                         style="width: 45px; height: 45px; border-radius: 50%;"

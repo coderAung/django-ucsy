@@ -13,11 +13,11 @@
         </div>
         <div>
             <div class="mb-2">Phone</div>
-            <input pattern="\d{8,10}" type="tel" name="phone" class="form-control" value="{{account_info.phone}}" required>
+            <input pattern="\d{8,12}" type="tel" name="phone" placeholder="Enter Phone no." class="form-control" value="{%if account_info.phone %} {{account_info.phone}} {%endif%}" required>
         </div>
         <div>
             <div class="mb-2">Address</div>
-            <textarea name="address" id="" class="form-control">{{account_info.address}}</textarea>
+            <textarea name="address" id="" class="form-control" placeholder="Enter Address">{% if account_info.address %}{{account_info.address}}{% endif %}</textarea>
         </div>
         <div class="d-flex justify-content-end column-gap-2">
             <button type="reset" class="btn df-btn-glass-blue">Reset</button>

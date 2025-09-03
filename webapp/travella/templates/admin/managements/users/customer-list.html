@@ -1,4 +1,5 @@
 {% extends 'layouts/admin-layout.html' %}
+{% load static %}
 {% block title %}Customer Management{% endblock %}
 {% block cssFile %}
 <style>
@@ -109,15 +110,23 @@
                     <tr>
                         <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ customer.accountdetail.photo|default:'https://via.placeholder.com/45' }}" class="profile-pic-sm me-3" alt="{{ customer.accountdetail.name }}">
-                                    <div>
+                                    <img 
+                                    style="width: 50px; height: 50px; border-radius: 50%;"
+                                    src="
+                                    {% if customer.accountdetail.photo %}
+                                    {{customer.accountdetail.photo.url}}
+                                    {% else %}
+                                    {% static 'images/profile.webp' %}
+                                    {% endif %}
+                                        ">
+                                    <div class="ms-3">
                                         <div class="user-name">{{ customer.accountdetail.name|default:'N/A' }}</div>
                                         <div class="small text-muted">{{ customer.email }}</div>
                                     </div>
                                 </div>
                             </td>
                             <td>{{ customer.accountdetail.phone|default:"-" }}</td>
-                            <td>{{ customer.createdAt|date:"M d, Y" }}</td>
+                            <td>{{ customer.created_at|date:"M d, Y" }}</td>
                             <td>
                                 <span class="badge bg-success">Active</span> {# Status logic to be added later #}
                             </td>

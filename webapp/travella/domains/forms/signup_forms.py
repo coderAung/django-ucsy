@@ -10,7 +10,13 @@ class Step1Form(forms.Form):
     email = forms.EmailField(required=True, label="Email Address",
         widget=forms.EmailInput(attrs={**common_attrs, 'placeholder': 'Enter your email address'}))
     password = forms.CharField(required=True, label="Password",
-        widget=forms.PasswordInput(attrs={**common_attrs, 'placeholder': 'Enter a strong password'}))
+        widget=forms.PasswordInput(attrs={
+            **common_attrs, 
+            'placeholder': 'Enter a strong password',
+            'minlength': '8',
+            'pattern': '(?=.*\d)(?=.*[A-Z]).{8,}',
+            'required': 'true',
+        }))
     confirm_password = forms.CharField(required=True, label="Confirm Password",
         widget=forms.PasswordInput(attrs={**common_attrs, 'placeholder': 'Confirm your password'}))
 

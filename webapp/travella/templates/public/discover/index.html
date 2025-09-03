@@ -25,7 +25,7 @@
                       action="{% url 'customer_packages' %}">
                     <div class="flex-grow-1 px-3">
                         <label class="text-muted small">Choose Destination</label>
-                        <select name="destination" class="form-select border-0 shadow-none p-0">
+                        <select name="locationId" class="form-select border-0 shadow-none p-0">
                             <option value="">Any Destination</option>
                             {% for l in locations %}
                                 <option value="{{ l.id }}" {% if request.GET.destination == l.id|stringformat:"s" %}selected{% endif %}>

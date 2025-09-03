@@ -27,19 +27,41 @@ class PackageService:
 
         return packages
     
-    def generate_code(self, cid:int) -> str:
-        last_code_str:str = (Package.objects
-                         .filter(category_id = cid)
-                         .order_by('-code')
-                         .values('code')
-                         .first())['code']
-        prefix = last_code_str[:4]
-        last_code = int(last_code_str.removeprefix(prefix))
+    # def generate_code(self, cid:int) -> str:
+    #     last_code_str:str = (Package.objects
+    #                      .filter(category_id = cid)
+    #                      .order_by('-code')
+    #                      .values('code')
+    #                      .first())['code']
+    #     prefix = last_code_str[:4]
+    #     last_code = int(last_code_str.removeprefix(prefix))
 
-        new_code = last_code + 1
-        new_code_str = str(new_code).zfill(3)
-        cname = Category.objects.get(pk = cid).name
+    #     new_code = last_code + 1
+    #     new_code_str = str(new_code).zfill(3)
+    #     cname = Category.objects.get(pk = cid).name
+    #     return f'{prefix}{new_code_str}', cname
+
+    def generate_code(self, cid: int) -> str:
+        result = (Package.objects
+                .filter(category_id=cid)
+                .order_by('-code')
+                .values('code')
+                .first())
+    
+        cname = Category.objects.get(pk=cid).name
+
+        if result is None:
+            cid = int(cid)
+            prefix = f"PKG{cid:02d}" 
+            new_code_str = "001"
+        else:
+            last_code_str: str = result['code']
+            prefix = last_code_str[:4]  # adjust if needed
+            last_code = int(last_code_str.removeprefix(prefix))
+            new_code_str = str(last_code + 1).zfill(3)
+
         return f'{prefix}{new_code_str}', cname
+
 
     def get_all(self) -> list[PackageItem]:
         packages = Package.objects.all()

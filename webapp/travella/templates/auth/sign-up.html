@@ -83,6 +83,18 @@
                 </button>
             </div>
 
+            
+            {% if messages %}
+                
+                {% for m in messages %}
+                    <div class="alert alert-{%if m.tags == 'error'%}danger{%endif%} mt-2">
+                        {{m}}
+                    </div>
+                {% endfor %}
+                    
+            {% endif %}
+                
+
              <div class="text-center mt-4">
                 <p>Already have an account? <a href="{% url 'sign_in' %}" style="color: #fff; font-weight: 600;">Sign In</a></p>
             </div>

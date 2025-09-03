@@ -57,23 +57,23 @@
             {% endfor %}
             
 
-<div class="d-flex justify-content-between align-items-center mb-3 form-options">
+{% comment %} <div class="d-flex justify-content-between align-items-center mb-3 form-options">
     <div class="form-check">
         <input type="checkbox" class="form-check-input" id="rememberMe" name="remember_me">
         <label class="form-check-label" for="rememberMe">Remember me</label>
     </div>
     <a href="#" style="color: #aed9ff; font-size: 0.9em; text-decoration: none;">Forgot password?</a>
-</div>
+</div> {% endcomment %}
             
-            <button type="submit" class="btn btn-custom w-100">Sign In</button>
+            <button type="submit" class="btn btn-custom w-100 mt-3">Sign In</button>
 
             <!-- Server-side messages (e.g., "Invalid credentials") -->
             {% if messages %}
-            <div class="mt-3">
-                {% for message in messages %}
-                <div class="alert alert-danger">{{ message }}</div>
+                {% for m in messages %}
+                    <div class="alert alert-{%if m.tags == 'error'%}danger{%elif m.tags == 'success'%}success{%endif%} mt-3">
+                        {{m}}
+                    </div>
                 {% endfor %}
-            </div>
             {% endif %}
 
             <!-- Link to Sign Up Page -->

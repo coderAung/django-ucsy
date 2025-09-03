@@ -2,6 +2,8 @@
 {% extends 'layouts/admin-layout.html' %}
 {% block title %}Staff Management{% endblock %}
 
+{% load static %}
+
 {% block cssFile %}
 <style>
     :root {
@@ -133,8 +135,16 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ staff.accountdetail.photo|default:'https://via.placeholder.com/45' }}" class="profile-pic-sm me-3" alt="{{ staff.accountdetail.name }}">
-                                    <div>
+                                    <img 
+                                    style="width: 50px; height: 50px; border-radius: 50%;"
+                                    src="
+                                    {% if staff.accountdetail.photo %}
+                                    {{staff.accountdetail.photo.url}}
+                                    {% else %}
+                                    {% static 'images/profile.webp' %}
+                                    {% endif %}
+                                        ">
+                                    <div class="ms-3">
                                         <div class="user-name">{{ staff.accountdetail.name|default:'N/A' }}</div>
                                         <div class="small text-muted">{{ staff.email }}</div>
                                     </div>
