@@ -7,115 +7,134 @@
 {% endblock title %}
   
 
+{% block cssFile %}
+  <style>
+  .infoWrapper > .row {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+  .headerBg {
+background: #12efff;
+background: linear-gradient(180deg, rgba(18, 239, 255, 0.89) 2%, rgba(245, 253, 255, 0.33) 97%);
+
+}
+  </style>
+{% endblock cssFile %}
+  
+
 {% block content %}
-<div class="container my-5">
-  <div class="card border-0 shadow-lg rounded-4" style="max-width: 800px; margin-left: 20px;">
+
+  {% comment %} <div class="text-center py-2 position-sticky sticky-top" style="background: #BBF6FC;">
+    <h5 class="mb-1 fw-semibold" style="color:#393B4D;">📋 Booking Info</h5>
+    <p class="mb-0 small" style="color: #6c757d;">Overview of the traveler's booking information</p>
+  </div> {% endcomment %}
+  <div class="text-center py-2 position-sticky sticky-top headerBg">
+    <h5 class="mb-1 fw-semibold" style="color:#393B4D;">📋 Booking Info</h5>
+    <p class="mb-0 small" style="color: #6c757d;">Overview of the traveler's booking information</p>
+  </div>
+
+<div class="container-fluid bg-white">
+  <div class="border-0 w-100 mx-0 px-0">
     
     <!-- Fancy Header -->
-    <div class="card-header text-center py-2 rounded-top-4" style="background: #BBF6FC;">
-      <h4 class="mb-1 fw-semibold" style="color:#393B4D;">📋 Booking Info</h4>
-      <p class="mb-0 small" style="color: #6c757d;">Overview of the traveler's booking information</p>
-    </div>
 
     <!-- Card Body -->
-    <div class="card-body bg-light px-5 py-4 rounded-bottom-4">
-
+    <div class="d-flex flex-column px-5 mx-5 py-4 infoWrapper mb-3">
       <!-- First Section -->
       <div class="row mb-3">
-        <div class="col-sm-5 text-muted fw-semibold">📦 Package Name:</div>
-        <div class="col-sm-7">{{ booking.package.title }}</div>
+        <div class="col-sm-5 text-muted fw-semibold">🔖 Booking Code:</div>
+        <div class="col-sm-7 text-end">{{ booking.booking_code }}</div>
       </div>
 
       <div class="row mb-3">
-        <div class="col-sm-5 text-muted fw-semibold">🔖 Booking Code:</div>
-        <div class="col-sm-7">{{ booking.booking_code }}</div>
+        <div class="col-sm-5 text-muted fw-semibold">📦 Package Name:</div>
+        <div class="col-sm-7 text-end">{{ booking.package.title }}</div>
       </div>
-
      <!-- Booking Date & Time Section -->
 {% if booking_status == 1 %}  <!-- PENDING -->
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">⏳ {{ status_date_label }}:</div>
-        <div class="col-sm-7">{{ status_date|date:"F j, Y" }}</div>
+        <div class="col-sm-7 text-end">{{ status_date|date:"F j, Y" }}</div>
     </div>
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">🕒 {{ status_time_label }}:</div>
-        <div class="col-sm-7">{{ status_time }}</div>
+        <div class="col-sm-7 text-end">{{ status_time }}</div>
     </div>
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">📅 Reserved/Cancelled Date:</div>
-        <div class="col-sm-7">-</div>
+        <div class="col-sm-7 text-end">-</div>
     </div>
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">⏰ Reserved/Cancelled Time:</div>
-        <div class="col-sm-7">-</div>
+        <div class="col-sm-7 text-end">-</div>
     </div>
 
 {% elif booking_status == 4 %}  <!-- REQUESTING -->
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">📝 {{ status_date_label }}:</div>
-        <div class="col-sm-7">{{ status_date|date:"F j, Y" }}</div>
+        <div class="col-sm-7 text-end">{{ status_date|date:"F j, Y" }}</div>
     </div>
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">🕒 {{ status_time_label }}:</div>
-        <div class="col-sm-7">{{ status_time }}</div>
+        <div class="col-sm-7 text-end">{{ status_time }}</div>
     </div>
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">📅 Reserved/Cancelled Date:</div>
-        <div class="col-sm-7">-</div>
+        <div class="col-sm-7 text-end">-</div>
     </div>
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">⏰ Reserved/Cancelled Time:</div>
-        <div class="col-sm-7">-</div>
+        <div class="col-sm-7 text-end">-</div>
     </div>
 
 {% elif booking_status == 2 %}  <!-- RESERVED -->
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">📅 {{ status_date_label }}:</div>
-        <div class="col-sm-7">{{ status_date|date:"F j, Y" }}</div>
+        <div class="col-sm-7 text-end">{{ status_date|date:"F j, Y" }}</div>
     </div>
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">⏰ {{ status_time_label }}:</div>
-        <div class="col-sm-7">{{ status_time }}</div>
+        <div class="col-sm-7 text-end">{{ status_time }}</div>
     </div>
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">🙍 Reserved By:</div>
-        <div class="col-sm-7">{{ reserved_by_name }}</div>
+        <div class="col-sm-7 text-end">{{ reserved_by_name }}</div>
     </div>
 
 {% elif booking_status == 3 %}  <!-- CANCELLED -->
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">❌ {{ status_date_label }}:</div>
-        <div class="col-sm-7">{{ status_date|date:"F j, Y" }}</div>
+        <div class="col-sm-7 text-end">{{ status_date|date:"F j, Y" }}</div>
     </div>
     <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">⏰ {{ status_time_label }}:</div>
-        <div class="col-sm-7">{{ status_time }}</div>
+        <div class="col-sm-7 text-end">{{ status_time }}</div>
     </div>
 {% endif %}
 
       <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">🗓️ Departure Time:</div>
-        <div class="col-sm-7">{{ booking.package.departure|date:"F j, Y" }}</div>
+        <div class="col-sm-7 text-end">{{ booking.package.departure|date:"F j, Y" }}</div>
       </div>
 
       <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">⏳ Duration:</div>
-        <div class="col-sm-7">{{ booking.package.duration }} days</div>
+        <div class="col-sm-7 text-end">{{ booking.package.duration }} days</div>
       </div>
 
       <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">👥 Number of People:</div>
-        <div class="col-sm-7">{{ booking.ticket_count }}</div>
+        <div class="col-sm-7 text-end">{{ booking.ticket_count }}</div>
       </div>
       
       <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">💵 Unit Price (per ticket):</div>
-        <div class="col-sm-7">{{ booking.unit_price|floatformat:2 }} MMK</div>
+        <div class="col-sm-7 text-end">{{ booking.unit_price|floatformat:2 }} MMK</div>
       </div>
 
       <div class="row">
         <div class="col-sm-5 text-muted fw-semibold">💰 Total Cost:</div>
-        <div class="col-sm-7">{{ total_cost|floatformat:2 }} MMK</div>
+        <div class="col-sm-7 text-end">{{ total_cost|floatformat:2 }} MMK</div>
       </div>
 
       <!-- Decorative Divider -->
@@ -123,17 +142,17 @@
 
       <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">👤 Traveler Name:</div>
-        <div class="col-sm-7">{{ customer_name }}</div>
+        <div class="col-sm-7 text-end">{{ customer_name }}</div>
       </div>
 
       <div class="row mb-4">
         <div class="col-sm-5 text-muted fw-semibold">✉️ Email:</div>
-        <div class="col-sm-7">{{ customer_email }}</div>
+        <div class="col-sm-7 text-end">{{ customer_email }}</div>
       </div>
 
       <div class="row mb-3">
         <div class="col-sm-5 text-muted fw-semibold">📞 Phone:</div>
-        <div class="col-sm-7">{{ customer_phone }}</div>
+        <div class="col-sm-7 text-end">{{ customer_phone }}</div>
       </div>
     </div>
   </div>

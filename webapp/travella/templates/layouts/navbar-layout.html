@@ -36,15 +36,17 @@ position-sticky sticky-top
                             <i class="fa-solid fa-arrow-right-from-bracket me-3 text-danger"></i>Sign Out</a></li>
                         </ul>
                     </div>
-                    <img id="navBarProfileImage" src="
-                    {% if request.user.accountdetail.photo %}
-                    {{request.user.accountdetail.photo.url}}
-                    {% else %}                        
-                    {% static 'images/profile.webp' %}
-                    {% endif %}
-                    "
-                        style="width: 45px; height: 45px; border-radius: 50%;"
-                        alt="">
+                    <div style="width: 45px; height: 45px; border-radius: 50%; overflow: hidden;">
+                        <img id="navBarProfileImage" src="
+                        {% if request.user.accountdetail.photo %}
+                        {{request.user.accountdetail.photo.url}}
+                        {% else %}                        
+                        {% static 'images/profile.webp' %}
+                        {% endif %}
+                        "
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                            alt="">
+                    </div>
                 </div>
                 <form id="signOutForm" action="{% url 'sign_out' %}" method="post" class="d-none">
                     {% csrf_token %}

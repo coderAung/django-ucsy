@@ -204,24 +204,24 @@
         <div class="mt-5">
             <div>
                 {% if itineraries %}
-                <h4 class="h3 mb-4">Itinerary</h4>
+                <h5 class="mb-4">Itinerary</h5>
                 <div class="row row-cols-1 row-gap-3">
                     {% for i in itineraries %}
                     <div class="col">
                         <div class="container-fluid">
-                            <div class="shadow-sm row overflow-hidden dayCard">
+                            <div class="shadow-sm row dayCard">
                                 <div class="col-4 ps-0">
                                     <div class="">
                                         <img src="{{i.image}}" alt="" class="w-100 h-100" style="object-fit: cover;">
                                     </div>
                                 </div>
-                                <div class="py-2 px-4 col-8">
+                                <div class="py-2 px-4 col-8 overflow-auto">
                                     <div>
-                                        <h5>Day {{i.day}} - {{i.title}}</h5>
+                                        <h6>Day {{i.day}} - {{i.title}}</h6>
                                         {% comment %} <span class="text-muted">July 03, 2025</span> {% endcomment %}
                                     </div>
-                                    <div class="mt-3">
-                                        <p>{{i.description}}</p>
+                                    <div class="mt-3 overflow-auto" style="max-height: 150px;">
+                                        <p class="text-wrap overflow-auto df-fs-sm">{{i.description}}</p>
                                     </div>
                                 </div>
                             </div>
