@@ -157,6 +157,7 @@ def save(request):
             package=package,
             customer=request.user,
             ticket_count=ticket_count,
+            phone=phone,
             unit_price=Decimal(str(package.price)),
             status=Booking.Status.PENDING
         )

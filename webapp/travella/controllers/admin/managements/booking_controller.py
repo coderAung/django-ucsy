@@ -77,12 +77,14 @@ def detail(request: HttpRequest, id: str) -> HttpResponse:
         raise Http404("Booking not found")
 
     total_cost = booking_obj.ticket_count * booking_obj.unit_price
+    customer_phone = booking_obj.phone if booking_obj.phone else "Not provided"
 
     # Get customer details with fallbacks
     try:
         account_detail = AccountDetail.objects.get(account=booking_obj.customer)
         customer_name = account_detail.name
-        customer_phone = account_detail.phone
+        if not booking_obj.phone and account_detail.phone:
+            customer_phone = account_detail.phone
     except AccountDetail.DoesNotExist:
         customer_name = booking_obj.customer.email
         customer_phone = "Not provided"

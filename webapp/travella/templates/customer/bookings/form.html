@@ -117,7 +117,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label fw-bold text-dark">Phone Number:</label>
-                            <input type="tel" class="form-control rounded-pill px-3 py-2 bg-white" name="phone" id="phone" value="{{ user_phone }}" readonly required>
+                            <input type="tel" class="form-control rounded-pill px-3 py-2 bg-white" name="phone" id="phone" value="{{ user_phone|default:'' }}" placeholder="Enter your Phone Number " pattern="^[0-9]{9,12}$" minlength="9" maxlength="12" required>
                         </div>
 
                         <div class="row g-3 align-items-end mb-4">
