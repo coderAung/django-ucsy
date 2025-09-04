@@ -18,8 +18,13 @@ class Reservation(AbstractModel):
         return date.today() <= self.refund_cover_date
 
 class Refunding(AbstractModel):
+    class Status(models.IntegerChoices):
+        PROCESSING = 1, 'Processing'
+        REFUNDED = 2, 'Refunded'
+
     # booking_id
     id = models.UUIDField(primary_key=True, editable=False, auto_created=False)
     booking = models.OneToOneField(Booking, null=True, on_delete=models.CASCADE, related_name='refund')
     refund_phone = models.CharField(max_length=15, null=False)
     refund_payment_type = models.CharField(max_length=150)
+    status = models.IntegerField(choices=Status.choices, default=Status.PROCESSING)
