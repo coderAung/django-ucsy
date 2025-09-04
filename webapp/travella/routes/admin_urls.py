@@ -2,7 +2,7 @@ from tkinter.font import names
 
 from django.urls import path
 
-from travella.controllers.admin.managements import itinerary_controller, reservation_controller
+from travella.controllers.admin.managements import itinerary_controller, refund_request_controller, reservation_controller
 
 from ..controllers.admin.managements import booking_controller, category_controller, package_controller, \
     customer_controller, staff_controller, package_form_api
@@ -61,5 +61,8 @@ urlpatterns = [
     path('reservations/reserve/', reservation_controller.save, name='reservations_reserve'),
     path('reservations/reject/', reservation_controller.reject, name='reservations_reject'),
     path('reservations/<uuid:id>/', reservation_controller.detail, name='reservations_detail'),
+
+
+    path('refund_requests/', refund_request_controller._list, name='refund_requests'),
 
 ]
