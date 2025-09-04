@@ -35,7 +35,7 @@ class ServiceChatConsumer(AsyncWebsocketConsumer):
             receiver_id = self.customer_id
 
         await self.save_message(
-            sender_id=self.user.id,
+            sender_id=str(self.user.id),
             receiver_id=receiver_id,
             customer_id=self.customer_id,
             content=message_text
@@ -46,7 +46,7 @@ class ServiceChatConsumer(AsyncWebsocketConsumer):
             {
                 'type': 'chat_message',
                 'message': message_text,
-                'sender_id': self.user.id,
+                'sender_id': str(self.user.id),
                 'sender_type': 'customer' if account.role == Account.Role.CUSTOMER.value else 'admin',
             }
         )

@@ -2,6 +2,7 @@ import uuid
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
+from travella.domains.models.chat_message_models import ChatMessage
 from travella.dtos.package_search import PublicPackageSearch
 from travella.services import itinerary_service
 from travella.services.package_service import PackageService
@@ -36,5 +37,8 @@ def about(request: HttpRequest) -> HttpResponse:
 def help_support(request):
     return render(request, 'support/help.html')
 
-def contact_us(request):
+def contact_us(request:HttpRequest):
+    if(request.user.is_authenticated):
+        chat_messages = ChatMessage.objects.filter(customer__id=request.user.id)
+        return render(request, 'contact_us/chat-us.html', {'chat_messages': chat_messages})
     return render(request, 'contact_us/chat-us.html')
