@@ -143,7 +143,7 @@
                         </li>
                         <li class="list-group-item">
                             <i class="fas fa-phone me-2"></i>
-                            Phone: {{ booking.customer.accountdetail.phone|default:"N/A" }}
+                            Phone: {{ booking.phone|default:booking.customer.accountdetail.phone|default:"N/A" }}
                         </li>
                     </ul>
                 </div>
@@ -187,7 +187,7 @@
                             data-bs-toggle="modal"
                             data-bs-target="#bookingCancelModal"
                             class="btn btn-danger">
-                        Cancel
+                        Cancel Booking
                     </button>
                     <a href="{% url 'booking_reserve' booking.id %}" class="btn btn-success">Reserve</a>
                 {% elif booking.status == 2 and package_status != 'Finished' %} {# Reserved #}
