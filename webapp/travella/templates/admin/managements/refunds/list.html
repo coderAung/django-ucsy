@@ -43,7 +43,7 @@
                                     {% endif %}
                                 <td>{{i.created_at}}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm df-btn-glass-blue"><i class="bi bi-eye text-primary"></i></a>
+                                    <a href="{% url 'refund_requests_detail' i.id %}" class="btn btn-sm df-btn-glass-blue"><i class="bi bi-eye text-primary"></i></a>
                                 </td>
                             </tr>
                         {% endfor %}

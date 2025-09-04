@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import date, datetime, time, timedelta
+from django.utils import timezone
 import uuid
 
 from django.http import HttpRequest, QueryDict
@@ -54,11 +55,12 @@ class BookingInfo:
     
     @staticmethod
     def of(b:Booking) -> 'BookingInfo':
+        local_date = timezone.localtime(b.created_at)
         return BookingInfo(
             id=b.id,
             booking_code=b.booking_code,
-            booking_date=b.created_at.date(),
-            booking_time=b.created_at.time(),
+            booking_date=local_date.date(),
+            booking_time=local_date.time(),
             ticket_count=b.ticket_count,
             unit_price=b.unit_price,
             email=b.customer.email,

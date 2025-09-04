@@ -63,6 +63,6 @@ urlpatterns = [
     path('reservations/<uuid:id>/', reservation_controller.detail, name='reservations_detail'),
 
 
-    path('refund_requests/', refund_request_controller._list, name='refund_requests'),
-
+    path('refund_requests/', refund_request_controller.get_list, name='refund_requests'),
+    path('refund_requests/<uuid:id>', refund_request_controller.detail, name='refund_requests_detail'),
 ]
