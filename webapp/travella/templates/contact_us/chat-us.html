@@ -1,0 +1,45 @@
+{% extends 'layouts/customer-layout.html' %}
+
+{% load static %}
+
+
+{% block cssFile %}
+<style>
+.message.sent {
+    align-self: end;
+}
+.message.received {
+    align-self: start;
+}
+</style>    
+{% endblock cssFile %}
+    
+
+{% block title %}
+    Contact Us
+{% endblock title %}
+
+
+{% block content %}
+<div class="container mt-2 pb-5 mb-5">
+    <div class="w-75 mx-auto">
+        <h4>Chat with us</h4>
+    </div>
+    <div class="mt-3">
+        <div class="w-75 p-2 mx-auto shadow d-flex flex-column" style="height: 480px; height: 480px;">
+            <div id="chatLog" data-customer-id="{{request.user.id}}" data-user-type="customer" class="pb-5 px-3 d-flex flex-column justify-content-end flex-fill">
+                {% comment %} <div class="p-2 rounded bg-white align-self-end">
+                    message
+                </div> {% endcomment %}
+            </div>
+            <div class="">
+                <div class="d-flex">
+                    <input id="chatInput" class="px-4 py-2 form-control rounded-pill flex-fill" name="content">
+                    <button id="chatSendBtn" class="ms-2 btn df-btn-glass-blue rounded-pill">Send</button>
+                </div>
+                <script src="{% static 'js/chat.js' %}"></script>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

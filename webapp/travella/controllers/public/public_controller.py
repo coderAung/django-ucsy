@@ -37,4 +37,4 @@ def help_support(request):
     return render(request, 'support/help.html')
 
 def contact_us(request):
-    return render(request, 'contact_us/contact.html')
+    return render(request, 'contact_us/chat-us.html')
