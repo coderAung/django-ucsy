@@ -27,25 +27,24 @@
     </div>
     <div class="mt-3">
         <div class="w-75 mx-auto shadow d-flex flex-column">
-            <div  class="overflow-auto" style="height: 400px;">
-
-            <div id="chatLog" data-customer-id="{{request.user.id}}" data-user-type="customer"             
-            class="pb-5 px-3 d-flex flex-column justify-content-end flex-fill">
-
-                {% if chat_messages %}
-                    {% for cm in chat_messages %}
-                        <div class="p-2 rounded bg-white shadow-sm mb-3 message {% if cm.sender.id == request.user.id %} sent {% else %} received {% endif %}">
-                            {{cm.content}}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-
+            <div style="height: 400px;" class="overflow-auto" id="chatWrapper">
+                <div id="chatLog" data-customer-id="{{request.user.id}}" data-user-type="customer"             
+                    class="pb-3 px-3 d-flex flex-column justify-content-end"
+                    >
+                    {% if chat_messages %}
+                        {% for cm in chat_messages %}
+                            <div class="p-2 rounded bg-white shadow-sm mb-3 message {% if cm.sender.id == request.user.id %} sent {% else %} received {% endif %}">
+                                <div>{{cm.content}}</div>
+                                <div class="text-end df-fs-sm mt-2 text-muted">{{cm.created_at}}</div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
             </div>
 
-            </div>
-            <div class="position-sticky sticky-bottom bg-transparent">
+            <div class="bg-transparent">
                 <div class="d-flex align-items-center py-2 px-2">
-                    <textarea id="chatInput" class="px-4 form-control flex-fill" name="content"></textarea>
+                    <textarea placeholder="Chat with admin" id="chatInput" class="px-4 form-control flex-fill" name="content"></textarea>
                     <button id="chatSendBtn" class="ms-2 btn df-btn-glass-blue rounded-pill">Send</button>
                 </div>
                 <script src="{% static 'js/chat.js' %}"></script>

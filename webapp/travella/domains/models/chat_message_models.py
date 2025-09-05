@@ -6,6 +6,7 @@ class ChatMessage(models.Model):
     customer = models.ForeignKey('Account', related_name='customer_messages', on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['created_at']

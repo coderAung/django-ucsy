@@ -1,4 +1,5 @@
 import json
+from django.utils.timezone import localtime
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 
@@ -34,12 +35,14 @@ class ServiceChatConsumer(AsyncWebsocketConsumer):
         else:
             receiver_id = self.customer_id
 
-        await self.save_message(
+        msg = await self.save_message(
             sender_id=str(self.user.id),
             receiver_id=receiver_id,
             customer_id=self.customer_id,
             content=message_text
         )
+
+        # created_at = localtime(msg.created_at).strftime('%Y-%m-%d %H:%M:%S')
 
         await self.channel_layer.group_send(
             self.room_group_name,
@@ -48,6 +51,7 @@ class ServiceChatConsumer(AsyncWebsocketConsumer):
                 'message': message_text,
                 'sender_id': str(self.user.id),
                 'sender_type': 'customer' if account.role == Account.Role.CUSTOMER.value else 'admin',
+                'created_at': msg.created_at.isoformat(),
             }
         )
 
@@ -56,6 +60,7 @@ class ServiceChatConsumer(AsyncWebsocketConsumer):
             'message': event['message'],
             'sender_id': event['sender_id'],
             'sender_type': event['sender_type'],
+            'created_at': event['created_at'],
         }))
 
     @database_sync_to_async
@@ -65,9 +70,11 @@ class ServiceChatConsumer(AsyncWebsocketConsumer):
         sender = Account.objects.get(id=sender_id)
         receiver = Account.objects.get(id=receiver_id) if receiver_id else None
         customer = Account.objects.get(id=customer_id)
-        ChatMessage.objects.create(
+        msg = ChatMessage(
             sender=sender,
             receiver=receiver,
             customer=customer,
             content=content
         )
+        msg.save()
+        return msg
