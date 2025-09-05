@@ -1,0 +1,108 @@
+{% extends 'layouts/admin-layout.html' %}
+
+{% load static %}
+
+{% block cssFile %}
+<style>
+.chat.active {
+    background-color: rgba(14, 90, 222, 0.3);
+}
+
+.message.sent, .sent {
+    align-self: end;
+}
+.message.received, .received {
+    align-self: start;
+}
+.chat {
+    cursor: pointer;
+}
+.chat:hover {
+    backdrop-filter: brightness(0.85);
+}
+</style>    
+{% endblock cssFile %}
+
+{% block title %}
+    Chat
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row h-100">
+            <div class="col-3">
+                <div class="border-end h-100 px-1 position-sticky sticky-top bg-white overflow-auto"  style="max-height: 100vh; min-height: 100vh;">
+                    <div class="border-bottom py-2 position-sticky sticky-top bg-white">
+                        <h5>Customers</h5>
+                    </div>
+                    <div class="d-flex flex-column">
+
+                        <script src="{% static 'js/chatter.js' %}"></script>                            
+                        {% for c in chaters %}
+                            <div 
+                            class="{% if c.unread_count > 0%}unread{% endif %} border-bottom d-flex py-2 px-2 chat" data-customer-id="{{c.id}}">
+                                <div class="d-flex justify-content-center align-items-center overflow-hidden" style="width: 50px; height: 50px; border-radius: 50%;">
+                                    <img style="width: 100%; height: 100%; object-fit: cover;" 
+                                        src="{%if c.photo %}{{c.photo}}{% else %}{% static 'images/profile.webp' %}{% endif %}"
+                                        alt="" srcset="">
+                                </div>
+                                <div class="flex-fill ms-3">
+                                    <div class="fs-6">{{c.name}} {% if c.unread_count > 0 %}<span class="df-badge badge-red ms-2">{{c.unread_count}}</span>{% endif %}</div>
+                                    <span class="df-fs-sm text-muted">{{c.email}}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-9">
+                
+                {% if customer %}
+                    <div class="d-flex flex-column h-100 position-sticky sticky-top bg-white">
+                        <div class="p-2 d-flex border-bottom position-sticky sticky-top bg-white">
+                            <div class="d-flex justify-content-center align-items-center overflow-hidden" style="width: 50px; height: 50px; border-radius: 50%;">
+                                    <img style="width: 100%; height: 100%; object-fit: cover;" 
+                                    
+                                    src="{%if customer.accountdetail.photo %}{{customer.accountdetail.photo.url}}{% else %}{% static 'images/profile.webp' %}{% endif %}"
+                                    
+                                     alt="" srcset="">
+                            </div>
+                            <div class="flex-fill ms-3">
+                                <div class="fs-6">{{customer.accountdetail.name}}</div>
+                                <span class="df-fs-sm text-muted">{{customer.email}}</span>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column flex-fill">
+                            <div class="overflow-auto pt-3" id="chatWrapper" style="height: 500px;">
+                                <div id="chatLog" data-customer-id="{{customer.id}}" data-user-type="admin" class="flex-grow-1 overflow-auto px-3 pb-3 d-flex flex-column justify-content-end">
+                                    {% if chat_messages %}
+                                        {% for cm in chat_messages %}
+                                            <div class="p-2 rounded bg-white shadow-sm mb-3 message {% if cm.sender.id == request.user.id %} sent {% else %} received {% endif %}">
+                                                <div>{{cm.content}}</div>
+                                                <div class="text-end df-fs-sm mt-2 text-muted">{{cm.created_at}}</div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="d-flex bg-white position-sticky sticky-bottom align-items-center">
+                                <textarea placeholder="Repy to customer" id="chatInput" row="1" type="text" class="form-control px-4"></textarea>
+                                <button id="chatSendBtn" class="btn df-btn-glass-blue ms-3">Send</button>
+                            </div>
+                            <script src="{% static 'js/chat.js' %}"></script>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="h-100 d-flex justify-content-center align-items-center">
+                        <h5>Select one customer to chat.</h5>
+                    </div>
+
+                {% endif %}
+                    
+
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

@@ -14,8 +14,9 @@ class AuthMiddleWare:
         self.public_urls = [
             '/auth/sign-in',
             '/auth/sign-up',
-            '/public',
-            '/media/public',
+            '/public/',
+            '/static/',
+            '/media/public/',
             '/test/'
         ]
     
