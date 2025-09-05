@@ -64,5 +64,8 @@ urlpatterns = [
 
 
     path('refund_requests/', refund_request_controller.get_list, name='refund_requests'),
+
+    path('refund_requests/confirm/', refund_request_controller.confirm, name='refund_confirm'),
+
     path('refund_requests/<uuid:id>', refund_request_controller.detail, name='refund_requests_detail'),
 ]

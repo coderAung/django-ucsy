@@ -14,7 +14,6 @@
 {% block cssFile %}
     <style>
         .dayCard {
-            max-height: 200px;
             min-height: 200px;
         }
 
@@ -211,7 +210,7 @@
                         <div class="container-fluid">
                             <div class="shadow-sm row dayCard">
                                 <div class="col-4 ps-0">
-                                    <div class="">
+                                    <div class="overflow-hidden d-flex justify-content-center align-items-center" style="max-height: 250px;">
                                         <img src="{{i.image}}" alt="" class="w-100 h-100" style="object-fit: cover;">
                                     </div>
                                 </div>

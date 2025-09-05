@@ -18,3 +18,4 @@ def detail(request:HttpRequest, id:uuid) -> HttpResponse:
     except ValueError as e:
         messages.error(request, 'Refund Not Found.')
         return redirect('notifications')
+    

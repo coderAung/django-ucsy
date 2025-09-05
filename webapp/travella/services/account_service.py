@@ -10,19 +10,24 @@ def get_id_by_email(email:str) -> uuid:
 
 def update_account_detail(account, dto) -> AccountDetail:
     """Updates the account details based on the provided DTO."""
+    if account.accountdetail:
+        detail = account.accountdetail        
+        detail.name = dto.name
+        detail.phone = dto.phone
+        detail.address = dto.address
+        if dto.profile_image:
+            detail.photo = dto.profile_image
+        detail.save()
+        return detail
+    else:
+        detail = AccountDetail(
+            account = account, name=dto.name, 
+            phone = dto.phone, address = dto.address)
+        if dto.profile_image:
+            detail.photo = dto.profile_image
+        detail.save()
+        return detail
 
-    detail = None    
-    if not AccountDetail.objects.filter(account__email = account.email):
-        detail = AccountDetail.objects.create(account=account)
-    detail.name = dto.name
-    detail.phone = dto.phone
-    detail.address = dto.address
-
-    if dto.profile_image:
-        detail.photo = dto.profile_image
-
-    detail.save()
-    return detail
 
 def update_account_email(account, new_email: str) -> None:
 
