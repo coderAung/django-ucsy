@@ -44,6 +44,9 @@
         <div class="d-flex mb-3 align-items-center">
             <a href="{% url 'customer_bookings_detail' booking_info.id  %}" class="backBtn me-3"><i class="bi bi-arrow-left fs-5"></i></a>
             <div class="fs-5 fw-bold">Reservation Form</div>
+            {% for message in messages %}
+                {% include 'includes/alert.html' with message=message classNames='py-2 px-3 ms-3 flex-fill align-self-center my-auto'%}
+            {% endfor %}
         </div>
         <div class="row row-cols-3">
 

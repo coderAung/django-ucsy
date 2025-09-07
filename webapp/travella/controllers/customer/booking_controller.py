@@ -6,12 +6,14 @@ from django.contrib import messages
 from django.http import JsonResponse
 from datetime import timedelta
 from travella.domains.models.booking_history_model import Reservation
+from travella.domains.models.limit_models import AccountLimit
 from travella.domains.models.tour_models import Package, PackageData
 from travella.domains.models.booking_models import Booking
 from travella.domains.models.account_models import AccountDetail
 
 # Import the function from your admin service
-from travella.services import booking_auto_service
+from travella.exceptions.business_exception import BusinessException
+from travella.services import account_limit_service, booking_auto_service
 from travella.services.booking_service import calculate_available_tickets
 from travella.utils import constants
 
@@ -19,13 +21,14 @@ BASE_TEMPLATE_PATH = 'customer/bookings/'
 
 @login_required
 def new(request, code: str):
+
     """Display the booking form for a package."""
     package = get_object_or_404(Package, code=code)
 
     if package.data.status != PackageData.Status.AVAILABLE:
         messages.error(request, "This tour is no longer available for booking.")
         return redirect('customer_booking_history')
-
+    
     # Get user account details for auto-filling the form
     try:
         account_detail = AccountDetail.objects.get(account=request.user)
@@ -54,6 +57,8 @@ def new(request, code: str):
         'user_phone': user_phone,
         'available_seats': available_seats,
     }
+    limit_counts = account_limit_service.get_limit_counts(request.user.id, AccountLimit.Type.BOOKING)
+    messages.info(request, f'Your Booking limit is {limit_counts}.')
     return render(request, BASE_TEMPLATE_PATH + 'form.html', context)
 
 @login_required
@@ -128,6 +133,16 @@ def detail(request, id):
 @require_POST
 @login_required
 def save(request):
+    # Booking limit logic
+    try:
+        account_limit_service.check_limit(request.user.id, AccountLimit.Type.BOOKING)
+    except BusinessException as e:
+        messages.warning(request, e.get_message())
+        return JsonResponse({
+            'status': 'warning',
+            'message': 'booking limit',
+        })
+
     """Save a new booking ONLY when user confirms in the modal."""
     try:
         # Get form data

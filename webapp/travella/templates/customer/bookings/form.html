@@ -9,6 +9,11 @@
         
         <div class="col-12">
             <h4 class="card-title text-center fw-bold mb-3">Tour Details</h4>
+            
+            {% for message in messages %}
+                {% include 'includes/alert.html' with classNames='my-2' message=message %}
+            {% endfor %}
+                
         </div>
         
         <div class="col-12">

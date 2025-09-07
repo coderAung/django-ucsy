@@ -3,9 +3,10 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib import messages
 
+from travella.domains.models.limit_models import AccountLimit
 from travella.dtos.reservation_dtos import PaymentRequestForm
 from travella.exceptions.business_exception import BusinessException
-from travella.services import payment_request_service
+from travella.services import account_limit_service, payment_request_service
 from travella.services.payment_request_service import load_payments
 from travella.utils.route_view import RouteView
 
@@ -21,6 +22,8 @@ def new(request:HttpRequest, id:uuid) -> HttpResponse:
     try:
         package_info, booking_info = payment_request_service.get_reservation_dtos(id, request.user.id)
         payments = load_payments()
+        payment_limit_counts = account_limit_service.get_limit_counts(request.user.id, AccountLimit.Type.PAYMENT)
+        messages.info(request, f'Your payment limit is {payment_limit_counts}.')
         return render(request, view('form'), {
             'payments': payments,
             'package_info': package_info,
@@ -32,6 +35,11 @@ def new(request:HttpRequest, id:uuid) -> HttpResponse:
 
 
 def save(request:HttpRequest) -> HttpResponse:
+    try:
+        account_limit_service.check_limit(request.user.id, AccountLimit.Type.PAYMENT)
+    except BusinessException as e:
+        messages.info(request, e.get_message())
+        return redirect(request.path)
     form = PaymentRequestForm.of(request.POST, request.FILES)
     customer_id = request.user.id
     payment_request_service.save(customer_id, form)

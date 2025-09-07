@@ -14,7 +14,6 @@ def discover(request: HttpRequest) -> HttpResponse:
     locations = load_locations()
     categories = load_categories()
     most_booked_packages = PackageService().get_most_booked_packages(count=3)
-    print(most_booked_packages)
 
     context = {
         **stats,

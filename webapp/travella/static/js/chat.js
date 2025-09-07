@@ -16,10 +16,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     chatSocket.onmessage = e => {
         const data = JSON.parse(e.data);
+        if(data.type=='limit_alert') {
+            alert(data.message)
+            const limitInfo = document.getElementById('limitInfo')
+            if(limitInfo) {
+                limitInfo.textContent = `You chat limit is ${data.limit_counts}.`
+            }
+            return
+        }
+
         const isSent = data.sender_type === userType;
         
-        const msgDiv = createMsg(data.message, data.created_at, isSent);
+        const msgDiv = createMsg(data, isSent);
         chatLog.appendChild(msgDiv);
+        if(data.sender_type === 'customer') {
+            const limitInfo = document.getElementById('limitInfo')
+            if(limitInfo) {
+                limitInfo.textContent = `You chat limit is ${data.limit_counts}.`
+            }
+        }
         scrollToBottom();
     };
 
@@ -31,10 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
             "sender_type": userType
         }));
         chatInput.value = "";
-        chatInput.focus();
+        chatInput.focus()
     };
 
-    chatSendBtn.onclick = sendMessage;
+    chatSendBtn.onclick = sendMessage
 
     chatInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -47,11 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollToBottom();
 });
 
-function createMsg(message, created_at, isSent) {
-
-
+function createMsg({message, created_at, sender_type, sender_name}, isSent) {
     const mainDiv = document.createElement('div')
-    const msgDiv = document.createElement('div');
+    const msgDiv = document.createElement('div')
     mainDiv.classList.add(
         'message',
         isSent ? 'sent' : 'received',
@@ -63,7 +76,7 @@ function createMsg(message, created_at, isSent) {
     // span.textContent = formatDate(created_at)
 
     const date = new Date(created_at);
-    span.textContent = new Intl.DateTimeFormat('en-US', {
+    dateText = new Intl.DateTimeFormat('en-US', {
         month: 'short',   // Sep
         day: 'numeric',   // 5
         year: 'numeric',  // 2025
@@ -71,6 +84,8 @@ function createMsg(message, created_at, isSent) {
         minute: '2-digit', // 22
         hour12: true      // a.m./p.m.
     }).format(date);
+    span.textContent = `${sender_name} | ${dateText}`
+    
     mainDiv.appendChild(msgDiv)
     mainDiv.appendChild(span)
     return mainDiv;

@@ -1,6 +1,7 @@
 from django.urls import path
 from django.shortcuts import render
 
+from travella.controllers.admin import chat_controller
 from travella.controllers.customer import booking_cancel_controller, delete_account_controller, notification_controller, profile_controller, refund_controller, setting_controller
 from ..controllers.customer import payment_request_controller, review_controller, booking_controller
 
@@ -35,5 +36,5 @@ urlpatterns = [
 
     path('settings/', setting_controller.settings, name='customer_settings'),
     path('account/delete/', delete_account_controller.delete, name='customer_delete_account'),
-
+    path('chats/delete/<uuid:id>/', chat_controller.clear_history, name='customer_chat_clear'),
 ]

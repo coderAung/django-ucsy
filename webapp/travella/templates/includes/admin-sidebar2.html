@@ -30,7 +30,7 @@
       <span>Refunds</span>
     </a>
 
-    <a class="nav-link d-flex align-items-center mb-1 sidebar-item {% if request.path == '/admins/refund-requests/' %}active{% endif %}" href="{% url 'chat_list' %}">
+    <a class="nav-link d-flex align-items-center mb-1 sidebar-item {% if request.path == '/admins/chats/' %}active{% elif request.path|slice:':14' == '/admins/chats/' %}active{% endif %}" href="{% url 'chat_list' %}">
       <i class="bi bi-chat me-2"></i>
       <span>Chat</span>
     </a>

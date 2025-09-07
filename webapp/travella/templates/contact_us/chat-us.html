@@ -5,11 +5,18 @@
 
 {% block cssFile %}
 <style>
+
+#chatSetting:hover {
+    backdrop-filter: brightness(0.8);
+}
+
+
 .message.sent {
     align-self: end;
 }
 .message.received {
     align-self: start;
+    background-color: rgba(176, 232, 252, 0.8) !important;
 }
 </style>    
 {% endblock cssFile %}
@@ -22,33 +29,62 @@
 
 {% block content %}
 <div class="container mt-2 pb-5 mb-5">
-    <div class="w-75 mx-auto">
-        <h4>Chat with us</h4>
-    </div>
     <div class="mt-3">
         <div class="w-75 mx-auto shadow d-flex flex-column">
-            <div style="height: 400px;" class="overflow-auto" id="chatWrapper">
-                <div id="chatLog" data-customer-id="{{request.user.id}}" data-user-type="customer"             
-                    class="pb-3 px-3 d-flex flex-column justify-content-end"
-                    >
-                    {% if chat_messages %}
-                        {% for cm in chat_messages %}
-                            <div class="p-2 rounded bg-white shadow-sm mb-3 message {% if cm.sender.id == request.user.id %} sent {% else %} received {% endif %}">
-                                <div>{{cm.content}}</div>
-                                <div class="text-end df-fs-sm mt-2 text-muted">{{cm.created_at}}</div>
-                            </div>
-                        {% endfor %}
+            <div class="d-flex justify-content-between px-3 py-1">
+                <div class="d-flex">
+                    <h5 class="">Chat with us</h5>
+                    {% if request.user.is_authenticated %}
+                        <span id="limitInfo" class="text-primary df-fs-sm align-self-center ms-3">Your chat limit is {{chat_limit}}.</span>
                     {% endif %}
                 </div>
-            </div>
-
-            <div class="bg-transparent">
-                <div class="d-flex align-items-center py-2 px-2">
-                    <textarea placeholder="Chat with admin" id="chatInput" class="px-4 form-control flex-fill" name="content"></textarea>
-                    <button id="chatSendBtn" class="ms-2 btn df-btn-glass-blue rounded-pill">Send</button>
+                {% if request.user.is_authenticated %}
+                <div class="dropstart align-self-center">
+                    <div class="px-2 py-1 rounded pointer" id="chatSetting" data-bs-toggle="dropdown">
+                        <i class="bi bi-three-dots-vertical"></i>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><div type="button" onclick="document.getElementById('clearHistoryForm').submit()" class="dropdown-item df-text-cyan df-fs-sm pointer"><i class="fa-solid fa-trash-can df-text-cyan me-3"></i>Clear History</div></li>
+                    </ul>
+                    <form action="{% url 'customer_chat_clear' request.user.id %}" method="post" class="d-none" id="clearHistoryForm">
+                        {% csrf_token %}
+                    </form>
                 </div>
-                <script src="{% static 'js/chat.js' %}"></script>
+                {% endif %}
             </div>
+            {% if request.user.is_authenticated %}
+                <div style="height: 400px;" class="overflow-auto" id="chatWrapper">
+                    <div id="chatLog" data-customer-id="{{request.user.id}}" data-user-type="customer"             
+                        class="pb-3 px-3 d-flex flex-column justify-content-end"
+                        >
+                        {% if chat_messages %}
+                            {% for cm in chat_messages %}
+                                <div class="p-2 rounded bg-white shadow-sm mb-3 message {% if cm.sender.id == request.user.id %} sent {% else %} received {% endif %}">
+                                    <div>{{cm.content}}</div>
+                                    <div class="text-end df-fs-sm mt-2 text-muted">{{cm.created_at}}</div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="bg-transparent">
+                    <div class="d-flex align-items-center py-2 px-2">
+                        <textarea placeholder="Chat with admin" id="chatInput" class="px-4 form-control flex-fill" name="content"></textarea>
+                        <button id="chatSendBtn" class="ms-2 btn df-btn-glass-blue rounded-pill">Send</button>
+                    </div>
+                    <script src="{% static 'js/chat.js' %}"></script>
+                </div>
+
+            {% else %}
+
+                <div style="height: 400px;" class="d-flex flex-column justify-content-center align-items-center" id="chatWrapper">
+                    <h6>Sign in to chat with us</h6>
+                    <a href="{% url 'sign_in' %}" class="btn btn-primary-main w-25 mt-3 rounded-pill">Sign In</a>
+                </div>
+
+            {% endif %}
+                
         </div>
     </div>
 </div>

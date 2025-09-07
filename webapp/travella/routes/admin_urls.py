@@ -64,12 +64,13 @@ urlpatterns = [
     path('reservations/<uuid:id>/', reservation_controller.detail, name='reservations_detail'),
 
 
-    path('refund_requests/', refund_request_controller.get_list, name='refund_requests'),
+    path('refund-requests/', refund_request_controller.get_list, name='refund_requests'),
 
-    path('refund_requests/confirm/', refund_request_controller.confirm, name='refund_confirm'),
+    path('refund-requests/confirm/', refund_request_controller.confirm, name='refund_confirm'),
 
-    path('refund_requests/<uuid:id>', refund_request_controller.detail, name='refund_requests_detail'),
+    path('refund-requests/<uuid:id>', refund_request_controller.detail, name='refund_requests_detail'),
 
     path('chats/', chat_controller.chat_list, name='chat_list'),
+    path('chats/delete/<uuid:id>/', chat_controller.clear_history, name='chat_clear'),
     path('chats/<uuid:id>/', chat_controller.chat_room, name='chat_room'),
 ]

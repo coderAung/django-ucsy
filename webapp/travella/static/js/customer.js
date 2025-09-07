@@ -147,6 +147,11 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
+            if(data.status == 'warning') {
+                location.reload()
+                return
+            }
+
             if (data.error) {
                 showAlertModal("Booking Failed", data.error);
                 throw new Error(data.error);

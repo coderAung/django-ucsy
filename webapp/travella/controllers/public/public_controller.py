@@ -3,8 +3,9 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from travella.domains.models.chat_message_models import ChatMessage
+from travella.domains.models.limit_models import AccountLimit
 from travella.dtos.package_search import PublicPackageSearch
-from travella.services import itinerary_service
+from travella.services import account_limit_service, itinerary_service
 from travella.services.package_service import PackageService
 from travella.services.package_utils import load_categories, load_locations
 from travella.utils.route_view import RouteView
@@ -40,5 +41,6 @@ def help_support(request):
 def contact_us(request:HttpRequest):
     if(request.user.is_authenticated):
         chat_messages = ChatMessage.objects.filter(customer__id=request.user.id)
-        return render(request, 'contact_us/chat-us.html', {'chat_messages': chat_messages})
+        chat_limit = account_limit_service.get_limit_counts(request.user.id, AccountLimit.Type.CHAT)
+        return render(request, 'contact_us/chat-us.html', {'chat_messages': chat_messages, 'chat_limit': chat_limit})
     return render(request, 'contact_us/chat-us.html')

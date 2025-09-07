@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 import uuid
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.views.decorators.http import require_POST
 from django.db.models import Count, Q, Max, F
 
 from travella.domains.models.account_models import Account
@@ -42,6 +43,14 @@ def chat_room(request:HttpRequest, id:uuid) -> HttpResponse:
     chaters = [Chater(a.id, a.accountdetail.name, a.email, a.accountdetail.photo.url if a.accountdetail.photo else '', a.unread_count) for a in customers]
     chat_messages = ChatMessage.objects.filter(customer__id=customer.id)
     return render(request, view('chat'), {'chaters': chaters, 'customer': customer, 'chat_messages': chat_messages,})
+
+@require_POST
+def clear_history(request:HttpRequest, id:uuid) -> HttpResponse:
+    ChatMessage.objects.filter(customer__id=id).delete()
+    if request.user.role == Account.Role.CUSTOMER:
+        return redirect('contact_us')
+    else:
+        return redirect('chat_room', id=id)
 
 @dataclass
 class Chater:

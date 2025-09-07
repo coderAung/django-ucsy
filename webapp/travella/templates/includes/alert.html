@@ -1,0 +1,9 @@
+<div class="{{classNames}} alert
+{% if message.tags == 'success' %} alert-success
+{% elif message.tags == 'warning' %} alert-warning
+{% elif message.tags == 'info' %} alert-info
+{% elif message.tags == 'error' %} alert-danger
+{% endif %}
+">
+    {{message}}
+</div>    
