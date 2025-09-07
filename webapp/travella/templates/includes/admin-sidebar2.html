@@ -30,6 +30,11 @@
       <span>Refunds</span>
     </a>
 
+    <a class="nav-link d-flex align-items-center mb-1 sidebar-item {% if request.path == '/admins/refund-requests/' %}active{% endif %}" href="{% url 'chat_list' %}">
+      <i class="bi bi-chat me-2"></i>
+      <span>Chat</span>
+    </a>
+
     </div>
 
     <!-- Group 2: Packages / Categories / Locations -->
